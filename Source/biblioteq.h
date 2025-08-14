@@ -55,6 +55,7 @@
 #include "ui_biblioteq_allinfo.h"
 #include "ui_biblioteq_branch_s.h"
 #include "ui_biblioteq_errordiag.h"
+#include "ui_biblioteq_generalmessagediag.h"
 #include "ui_biblioteq_history.h"
 #include "ui_biblioteq_mainwindow.h"
 #include "ui_biblioteq_members_browser.h"
@@ -522,6 +523,7 @@ class biblioteq: public QMainWindow
   Ui_allDialog al;
   Ui_branchSelect br;
   Ui_errordialog er;
+  Ui_generalmessagediag m_notifyOfOverdueItemsUI;
   Ui_historyDialog history;
   Ui_mainWindow ui;
   Ui_membersBrowser bb;

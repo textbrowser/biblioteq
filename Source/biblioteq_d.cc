@@ -1256,6 +1256,33 @@ void biblioteq::slotMergeSQLiteDatabases(void)
 
 void biblioteq::slotNotifyOfOverdueItems(void)
 {
+  auto dialog = findChild<QDialog *> ("notify_of_overdue_items_dialog");
+
+  if(!m_db.isOpen())
+    {
+      dialog ? (void) dialog->close() : (void) 0;
+      return;
+    }
+
+  if(!dialog)
+    {
+      m_notifyOfOverdueItemsUI.setupUi(dialog = new QDialog(this));
+      connect(m_notifyOfOverdueItemsUI.cancelButton,
+	      SIGNAL(clicked(void)),
+	      dialog,
+	      SLOT(close(void)));
+      dialog->resize(500, 500);
+      dialog->setObjectName("notify_of_overdue_items_dialog");
+      dialog->setWindowTitle(tr("BiblioteQ: Overdue Items Notification"));
+    }
+
+#ifdef Q_OS_ANDROID
+  dialog->showMaximized();
+#else
+  dialog->showNormal();
+#endif
+  dialog->activateWindow();
+  dialog->raise();
 }
 
 void biblioteq::slotPrintIconsView(void)
