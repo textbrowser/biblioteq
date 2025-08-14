@@ -1202,7 +1202,7 @@ biblioteq::biblioteq(void):QMainWindow()
   auto group2 = new QActionGroup(this);
 
   group2->setExclusive(true);
-  group2->setObjectName("ViewModeMenu");
+  group2->setObjectName("view_mode_menu");
   action = group2->addAction(tr("Icons Mode"));
   action->setCheckable(true);
   action->setData(0);

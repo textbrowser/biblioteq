@@ -154,12 +154,12 @@ void biblioteq_documentationwindow::load(const QByteArray &data)
       m_ui.stack->setCurrentIndex(1);
     }
 
-  auto buffer = findChild<QBuffer *> ("pdf-buffer");
+  auto buffer = findChild<QBuffer *> ("pdf_buffer");
 
   if(!buffer)
     {
       buffer = new QBuffer(this);
-      buffer->setObjectName("pdf-buffer");
+      buffer->setObjectName("pdf_buffer");
     }
   else
     buffer->close();

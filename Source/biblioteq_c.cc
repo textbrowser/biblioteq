@@ -1711,7 +1711,7 @@ void biblioteq::readConfigurationFile(void)
   if(viewModeIndex < 0 || viewModeIndex > 1)
     viewModeIndex = 1;
 
-  auto ag = findChild<QActionGroup *> ("ViewModeMenu");
+  auto ag = findChild<QActionGroup *> ("view_mode_menu");
 
   if(ag && ag->actions().size() > viewModeIndex)
     ag->actions().at(viewModeIndex)->setChecked(true);
