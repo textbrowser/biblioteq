@@ -3384,6 +3384,8 @@ void biblioteq::slotConnectDB(void)
   if(ui.actionPopulateOnStart->isChecked())
     slotRefresh();
 
+  canAccessOverdueItems() && ui.actionOverdue_Items_Notification->isChecked() ?
+    m_overdueItemsTimer.start() : m_overdueItemsTimer.stop();
   prepareContextMenus();
   prepareUpgradeNotification();
 }
@@ -3419,10 +3421,11 @@ void biblioteq::slotDisconnect(void)
   m_files ? m_files->reset() : (void) 0;
   m_import->reset();
   m_membersWasRefreshed = false;
-  m_roles = "";
+  m_overdueItemsTimer.stop();
   m_pages = 0;
   m_queryHistory->reset();
   m_queryOffset = 0;
+  m_roles = "";
   delete m_searchQuery;
   m_searchQuery = nullptr;
   m_sqliteMergeDatabases ? m_sqliteMergeDatabases->reset() : (void) 0;

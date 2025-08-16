@@ -1326,6 +1326,8 @@ biblioteq::biblioteq(void):QMainWindow()
 
 biblioteq::~biblioteq()
 {
+  m_aboutTimer.stop();
+  m_overdueItemsTimer.stop();
 }
 
 QHash<QString, QString> biblioteq::getAmazonHash(void) const
