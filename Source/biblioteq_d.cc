@@ -1292,6 +1292,10 @@ void biblioteq::slotNotifyOfOverdueItems(void)
 
       if(count <= 0)
 	return;
+
+      m_notifyOfOverdueItemsUI.text->setText
+	(tr("Please review All Overdue items. There are at least "
+	    "<b>%1 item(s)</b> which must be returned.").arg(count));
     }
   else
     return;
