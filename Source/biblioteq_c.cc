@@ -5523,6 +5523,7 @@ void biblioteq::slotRequest(void)
 	  Ui_generalmessagediag ui;
 
 	  ui.setupUi(&dialog);
+	  ui.hideForThisSession->setVisible(false);
 	  ui.text->setText(str);
 	  connect(ui.cancelButton,
 		  SIGNAL(clicked(void)),

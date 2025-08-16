@@ -5788,6 +5788,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
       Ui_generalmessagediag ui;
 
       ui.setupUi(&dialog);
+      ui.hideForThisSession->setVisible(false);
       ui.text->setText(errors);
       connect(ui.cancelButton,
 	      SIGNAL(clicked(void)),

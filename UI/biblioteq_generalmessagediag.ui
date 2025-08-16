@@ -37,6 +37,13 @@
       <number>5</number>
      </property>
      <item>
+      <widget class="QCheckBox" name="hideForThisSession">
+       <property name="text">
+        <string>Hide for this session.</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <spacer>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -73,6 +80,11 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>text</tabstop>
+  <tabstop>hideForThisSession</tabstop>
+  <tabstop>cancelButton</tabstop>
+ </tabstops>
  <resources>
   <include location="../Icons/icons.qrc"/>
  </resources>

@@ -1363,6 +1363,7 @@ void biblioteq_import::slotImport(void)
 	}
 
       ui.setupUi(&dialog);
+      ui.hideForThisSession->setVisible(false);
       ui.text->setPlainText(errorstr.trimmed());
       connect(ui.cancelButton,
 	      SIGNAL(clicked(void)),
