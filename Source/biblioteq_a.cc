@@ -3966,22 +3966,27 @@ void biblioteq::slotLanguageChanged(void)
 void biblioteq::slotListOverdueItems(void)
 {
   QString memberid("");
-  auto const row = bb.table->currentRow();
 
-  if(m_members_diag->isVisible())
+  if(bb.overdueButton == sender() && m_members_diag->isVisible())
     memberid = biblioteq_misc_functions::getColumnString
-      (bb.table, row, m_bbColumnHeaderIndexes.indexOf("Member ID"));
+      (bb.table,
+       bb.table->currentRow(),
+       m_bbColumnHeaderIndexes.indexOf("Member ID"));
   else if(m_roles.isEmpty())
     memberid = dbUserName();
 
   (void) populateTable(POPULATE_ALL, "All Overdue", memberid);
+
+  if(bb.overdueButton == sender())
+    {
 #ifdef Q_OS_ANDROID
-  m_members_diag->showMaximized();
+      m_members_diag->showMaximized();
 #else
-  m_members_diag->showNormal();
+      m_members_diag->showNormal();
 #endif
-  m_members_diag->activateWindow();
-  m_members_diag->raise();
+      m_members_diag->activateWindow();
+      m_members_diag->raise();
+    }
 }
 
 void biblioteq::slotListReservedItems(const QString &id)

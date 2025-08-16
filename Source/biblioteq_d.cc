@@ -529,8 +529,6 @@ void biblioteq::prepareIcons(void)
 	(QIcon::fromTheme("document-print", QIcon(":/16x16/fileprint.png")));
       history.reloadButton->setIcon
 	(QIcon::fromTheme("view-refresh", QIcon(":/16x16/reload.png")));
-      m_notifyOfOverdueItemsUI.cancelButton->setIcon
-	(QIcon::fromTheme("dialog-cancel", QIcon(":/16x16/cancel.png")));
       pass.cancelButton->setIcon
 	(QIcon::fromTheme("dialog-cancel", QIcon(":/16x16/cancel.png")));
       pass.okButton->setIcon
@@ -682,8 +680,6 @@ void biblioteq::prepareIcons(void)
       history.prevTool->setIcon(QIcon(":/32x32/previous.png"));
       history.printButton->setIcon(QIcon(":/16x16/fileprint.png"));
       history.reloadButton->setIcon(QIcon(":/16x16/reload.png"));
-      m_notifyOfOverdueItemsUI.cancelButton->setIcon
-	(QIcon(":/16x16/cancel.png"));
       pass.cancelButton->setIcon(QIcon(":/16x16/cancel.png"));
       pass.okButton->setIcon(QIcon(":/16x16/ok.png"));
       ui.actionChangePassword->setIcon(QIcon(":/32x32/password.png"));
@@ -1279,6 +1275,10 @@ void biblioteq::slotNotifyOfOverdueItems(void)
 	      SIGNAL(clicked(void)),
 	      dialog,
 	      SLOT(hide(void)));
+      connect(m_notifyOfOverdueItemsUI.text,
+	      SIGNAL(anchorClicked(const QUrl &)),
+	      this,
+	      SLOT(slotListOverdueItems(void)));
       dialog->resize(500, 500);
       dialog->setObjectName("notify_of_overdue_items_dialog");
       dialog->setWindowTitle(tr("BiblioteQ: Overdue Items Notification"));
@@ -1305,7 +1305,10 @@ void biblioteq::slotNotifyOfOverdueItems(void)
 
       m_notifyOfOverdueItemsUI.text->setText
 	(tr("Please review All Overdue items. There are at least "
-	    "<b>%1 item(s)</b> which must be returned.").arg(count));
+	    "<b>%1 item(s)</b> which must be returned. "
+	    "<a href=\"all_overdue\">Please "
+	    "click to display the All Overdue category in the "
+	    "main window.</a>").arg(count));
     }
   else
     return;
