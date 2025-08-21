@@ -675,3 +675,5 @@ Remaining Items
 7.   Test Android and correct.
 8.   PostgreSQL notifications: PostgreSQL::notify() and
      QSqlDriver::subscribeToNotification().
+9.   If possible, adjust the number of columns in Icons Mode based
+     on the size of the view.
