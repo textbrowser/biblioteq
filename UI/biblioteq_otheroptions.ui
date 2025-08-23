@@ -32,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>888</width>
-         <height>742</height>
+         <width>882</width>
+         <height>747</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -597,10 +597,10 @@
               <item>
                <widget class="QSpinBox" name="icons_view_column_count">
                 <property name="toolTip">
-                 <string>[5, 100]</string>
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Valid range is [0, 100]. A value of zero will automatically adjust the number of columns from the main window's size.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                 <property name="minimum">
-                 <number>5</number>
+                 <number>0</number>
                 </property>
                 <property name="maximum">
                  <number>100</number>
