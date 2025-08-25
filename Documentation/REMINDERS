@@ -663,6 +663,8 @@ Completed Items
 332. Files Browser: access PDF files.
 333. Modern file digests such as SHA3-512.
 334. GH #398. Delimit a keyword into multiple rows by newline characters.
+335. If possible, adjust the number of columns in Icons Mode based
+     on the size of the view.
 
 Remaining Items
 
@@ -675,5 +677,3 @@ Remaining Items
 7.   Test Android and correct.
 8.   PostgreSQL notifications: PostgreSQL::notify() and
      QSqlDriver::subscribeToNotification().
-9.   If possible, adjust the number of columns in Icons Mode based
-     on the size of the view.
