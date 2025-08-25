@@ -188,6 +188,17 @@ bool biblioteq::showMainTableImages(void) const
   return m_otherOptions->showMainTableImages();
 }
 
+int biblioteq::imageModeColumns(void) const
+{
+  auto const columns = m_otherOptions->iconsViewColumnCount();
+
+  if(columns > 0)
+    return columns;
+  else
+    return static_cast<int>
+      (qMax(1.0, width() / (30.0 + qMax(126, s_noImageResize.width()))));
+}
+
 void biblioteq::addItemWindowToTab(QMainWindow *window)
 {
   if(!QSettings().value("tabbed_item_windows", true).toBool() || !window)
@@ -900,6 +911,11 @@ void biblioteq::refresh(const QString &filter)
 	action->trigger();
 	break;
       }
+}
+
+void biblioteq::resizeEvent(QResizeEvent *event)
+{
+  QMainWindow::resizeEvent(event);
 }
 
 void biblioteq::showStatusBarMessage(const QString &text, const int duration)

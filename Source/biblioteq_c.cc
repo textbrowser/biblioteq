@@ -486,7 +486,7 @@ int biblioteq::populateTable(QSqlQuery *query,
   QTableWidgetItem *item = nullptr;
   QString itemType("");
   QString str("");
-  auto const columns = m_otherOptions->iconsViewColumnCount();
+  auto const columns = imageModeColumns();
   auto const limit = pageLimit();
   auto offset = m_queryOffset;
   int i = -1;

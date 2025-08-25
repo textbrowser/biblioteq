@@ -29,7 +29,7 @@
 #define _BIBLIOTEQ_H_
 
 #define BIBLIOTEQ_GUEST_ACCOUNT "xbook_guest"
-#define BIBLIOTEQ_VERSION "2025.08.19"
+#define BIBLIOTEQ_VERSION "2025.09.19"
 #define BIBLIOTEQ_VERSION_FILE_URL			\
   "https://raw.githubusercontent.com/"			\
   "textbrowser/biblioteq/master/Source/biblioteq.h"
@@ -550,6 +550,7 @@ class biblioteq: public QMainWindow
   bool canAccessOverdueItems(void) const;
   bool emptyContainers(void);
   bool isCurrentItemAPhotograph(void) const;
+  int imageModeColumns(void) const;
   void addConfigOptions(const QString &typefilter);
   void addItemWindowToTab(QMainWindow *window);
   void adminSetup(void);
@@ -577,6 +578,7 @@ class biblioteq: public QMainWindow
   void readGlobalConfiguration(void);
   void resetAdminBrowser(void);
   void resetMembersBrowser(void);
+  void resizeEvent(QResizeEvent *event);
   void showStatusBarMessage(const QString &text, const int duration);
 
  private slots:

@@ -123,7 +123,7 @@ int biblioteq::populateTable(const int search_type_arg,
   QString type = "";
   QStringList tmplist; // Used for custom queries.
   QTableWidgetItem *item = nullptr;
-  auto const columns = m_otherOptions->iconsViewColumnCount();
+  auto const columns = imageModeColumns();
   auto const now(QDate::currentDate());
   auto const search_type = search_type_arg;
   auto offset = m_queryOffset;
