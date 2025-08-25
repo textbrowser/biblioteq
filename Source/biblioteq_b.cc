@@ -4233,6 +4233,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	  {
 	    pixmapItem->setData(0, myoid);
 	    pixmapItem->setData(1, itemType);
+	    pixmapItem->setData(2, i);
 	  }
 
       if(progress)

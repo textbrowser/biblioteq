@@ -1129,6 +1129,7 @@ int biblioteq::populateTable(QSqlQuery *query,
 	  {
 	    pixmapItem->setData(0, myoid);
 	    pixmapItem->setData(1, itemType);
+	    pixmapItem->setData(2, i);
 	  }
 
       if(progress)
