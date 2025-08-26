@@ -515,6 +515,7 @@ class biblioteq: public QMainWindow
   QTextBrowser *m_printPreview;
   QTimer m_aboutTimer;
   QTimer m_overdueItemsTimer;
+  QTimer m_resizeTimer;
   QVector<QPointer<QMainWindow> > m_attachedWindows;
   QVector<QString> m_abColumnHeaderIndexes;
   QVector<QString> m_bbColumnHeaderIndexes;
@@ -685,6 +686,7 @@ class biblioteq: public QMainWindow
   void slotResetErrorLog(void);
   void slotResetLoginDialog(void);
   void slotResizeColumnsAfterSort(void);
+  void slotResizeTimeout(void);
   void slotRoleChanged(int index);
   void slotSaveAdministrators(void);
   void slotSaveConfig(void);

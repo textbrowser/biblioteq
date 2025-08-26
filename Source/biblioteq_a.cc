@@ -264,6 +264,8 @@ biblioteq::biblioteq(void):QMainWindow()
   m_printPreview->setVisible(false);
   m_queryHistory = new biblioteq_query_history(this);
   m_queryOffset = 0;
+  m_resizeTimer.setInterval(500);
+  m_resizeTimer.setSingleShot(true);
   m_searchQuery = nullptr;
   m_status_bar_label = nullptr;
   userinfo_diag = new userinfo_diag_class(m_members_diag);
@@ -271,6 +273,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(timeout(void)),
 	  this,
 	  SLOT(slotNotifyOfOverdueItems(void)));
+  connect(&m_resizeTimer,
+	  SIGNAL(timeout(void)),
+	  this,
+	  SLOT(slotResizeTimeout(void)));
   connect(QCoreApplication::instance(),
 	  SIGNAL(lastWindowClosed(void)),
 	  this,
@@ -1328,6 +1334,7 @@ biblioteq::~biblioteq()
 {
   m_aboutTimer.stop();
   m_overdueItemsTimer.stop();
+  m_resizeTimer.stop();
 }
 
 QHash<QString, QString> biblioteq::getAmazonHash(void) const

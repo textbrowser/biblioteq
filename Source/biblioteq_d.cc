@@ -916,41 +916,7 @@ void biblioteq::refresh(const QString &filter)
 void biblioteq::resizeEvent(QResizeEvent *event)
 {
   QMainWindow::resizeEvent(event);
-
-  if(m_otherOptions->iconsViewColumnCount() > 0)
-    return;
-
-  QMap<int, QGraphicsItem *> map;
-
-  foreach(auto item, ui.graphicsView->items())
-    if(item)
-      map[item->data(2).toInt()] = item;
-
-  QMapIterator<int, QGraphicsItem *> it(map);
-  auto const columns = imageModeColumns();
-  int iconTableColumnIdx = 0;
-  int iconTableRowIdx = 0;
-
-  while(it.hasNext())
-    {
-      it.next();
-
-      if(iconTableRowIdx == 0)
-	it.value()->setPos(140.0 * iconTableColumnIdx + 15.0, 15.0);
-      else
-	it.value()->setPos
-	  (140.0 * iconTableColumnIdx + 15.0, 200.0 * iconTableRowIdx + 15.0);
-
-      iconTableColumnIdx += 1;
-
-      if(columns <= iconTableColumnIdx)
-	{
-	  iconTableColumnIdx = 0;
-	  iconTableRowIdx += 1;
-	}
-    }
-
-  ui.graphicsView->setSceneRect(ui.graphicsView->scene()->itemsBoundingRect());
+  m_resizeTimer.start();
 }
 
 void biblioteq::showStatusBarMessage(const QString &text, const int duration)
@@ -1400,6 +1366,44 @@ void biblioteq::slotPrintIconsView(void)
     }
 
   QApplication::processEvents();
+}
+
+void biblioteq::slotResizeTimeout(void)
+{
+  if(m_otherOptions->iconsViewColumnCount() > 0)
+    return;
+
+  QMap<int, QGraphicsItem *> map;
+
+  foreach(auto item, ui.graphicsView->items())
+    if(item)
+      map[item->data(2).toInt()] = item;
+
+  QMapIterator<int, QGraphicsItem *> it(map);
+  auto const columns = imageModeColumns();
+  int iconTableColumnIdx = 0;
+  int iconTableRowIdx = 0;
+
+  while(it.hasNext())
+    {
+      it.next();
+
+      if(iconTableRowIdx == 0)
+	it.value()->setPos(140.0 * iconTableColumnIdx + 15.0, 15.0);
+      else
+	it.value()->setPos
+	  (140.0 * iconTableColumnIdx + 15.0, 200.0 * iconTableRowIdx + 15.0);
+
+      iconTableColumnIdx += 1;
+
+      if(columns <= iconTableColumnIdx)
+	{
+	  iconTableColumnIdx = 0;
+	  iconTableRowIdx += 1;
+	}
+    }
+
+  ui.graphicsView->setSceneRect(ui.graphicsView->scene()->itemsBoundingRect());
 }
 
 void biblioteq::slotSaveGeneralSearchCaseSensitivity(bool state)
