@@ -2688,6 +2688,24 @@ void biblioteq::showMain(void)
 	      m_specialExecutablesIcons[fileInfo.absoluteFilePath()] =
 		QFileInfo(list.at(i).trimmed()).absoluteFilePath();
 	  }
+	else if(list.at(i).endsWith(".sqlite", Qt::CaseInsensitive))
+	  {
+	    if(!openDatabase)
+	      {
+		br.filename->setText(QFileInfo(list.at(i)).absoluteFilePath());
+
+		for(int j = 0; j < br.branch_name->count(); j++)
+		  if(m_branches.contains(br.branch_name->itemText(j)))
+		    if(m_branches[br.branch_name->itemText(j)].
+		       value("database_type") == "sqlite")
+		      {
+			br.branch_name->setCurrentIndex(j);
+			openDatabase = true;
+			slotConnectDB();
+			break;
+		      }
+	      }
+	  }
     }
 
   QTimer::singleShot(1500, this, &biblioteq::slotDelayedPreparation);
