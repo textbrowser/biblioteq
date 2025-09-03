@@ -35,7 +35,6 @@
 #include "biblioteq_pdfreader.h"
 
 #include <QFileDialog>
-#include <QInputDialog>
 #include <QSettings>
 #include <QShortcut>
 #include <QSqlField>
@@ -782,10 +781,10 @@ void biblioteq_grey_literature::modify(const int state)
       foreach(auto textfield, findChildren<QLineEdit *> ())
 	textfield->setCursorPosition(0);
 
-      storeData(this);
-
       if(!m_duplicate)
 	populateFiles();
+
+      storeData(this);
     }
 
   m_ui.title->setFocus();
@@ -842,11 +841,15 @@ void biblioteq_grey_literature::populateFiles(void)
 
 	    item->setData
 	      (Qt::UserRole, query.value(record.count() - 1).toLongLong());
-	    item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 
-	    if(m_engWindowTitle == "Modify")
-	      if(record.fieldName(i) == "description")
-		item->setToolTip(tr("Double-click to edit."));
+	    if(m_engWindowTitle == "Modify" &&
+	       record.fieldName(i) == "description")
+	      item->setFlags
+		(Qt::ItemIsEditable |
+		 Qt::ItemIsEnabled |
+		 Qt::ItemIsSelectable);
+	    else
+	      item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 
 	    m_ui.files->setItem(row, i, item);
 	  }
@@ -1009,6 +1012,7 @@ void biblioteq_grey_literature::slotAttachFiles(void)
 
       QApplication::restoreOverrideCursor();
       populateFiles();
+      storeData(this);
     }
 
   QApplication::processEvents();
@@ -1112,6 +1116,7 @@ void biblioteq_grey_literature::slotDeleteFiles(void)
 
   QApplication::restoreOverrideCursor();
   populateFiles();
+  storeData(this);
 }
 
 void biblioteq_grey_literature::slotExportFiles(void)
@@ -1237,50 +1242,7 @@ void biblioteq_grey_literature::slotFilesDoubleClicked(QTableWidgetItem *item)
 	  QApplication::restoreOverrideCursor();
 	}
 #endif
-
-      return;
     }
-
-  if(m_engWindowTitle != "Modify")
-    return;
-
-  auto item1 = m_ui.files->item
-    (item->row(), static_cast<int> (Columns::DESCRIPTION));
-
-  if(!item1)
-    return;
-
-  auto const description(item1->text());
-  auto item2 = m_ui.files->item
-    (item->row(), static_cast<int> (Columns::MYOID));
-
-  if(!item2)
-    return;
-
-  QString text("");
-  auto ok = true;
-
-  text = QInputDialog::getText(this,
-			       tr("BiblioteQ: File Description"),
-			       tr("Description"),
-			       QLineEdit::Normal,
-			       description,
-			       &ok).trimmed();
-
-  if(!ok)
-    return;
-
-  QSqlQuery query(qmain->getDB());
-  auto const myoid(item2->text());
-
-  query.prepare("UPDATE grey_literature_files SET description = ? "
-		"WHERE item_oid = ? AND myoid = ?");
-  query.addBindValue(text);
-  query.addBindValue(m_oid);
-  query.addBindValue(myoid);
-
-  if(query.exec())
-    item1->setText(text);
 }
 
 void biblioteq_grey_literature::slotGo(void)
@@ -1739,7 +1701,6 @@ void biblioteq_grey_literature::updateDatabase(void)
 		"location = ?, "
 		"notes = ? "
 		"WHERE myoid = ?");
-
   query.addBindValue(m_ui.author->toPlainText());
 
   if(m_ui.client->toPlainText().isEmpty())
@@ -1784,6 +1745,35 @@ void biblioteq_grey_literature::updateDatabase(void)
 	 __FILE__,
 	 __LINE__);
       goto db_rollback;
+    }
+
+  for(int i = 0; i < m_ui.files->rowCount(); i++)
+    {
+      auto item1 = m_ui.files->item
+	(i, static_cast<int> (Columns::DESCRIPTION));
+
+      if(!item1)
+	continue;
+
+      auto item2 = m_ui.files->item(i, static_cast<int> (Columns::MYOID));
+
+      if(!item2)
+	continue;
+
+      query.prepare
+	("UPDATE grey_literature_files SET description = ? "
+	 "WHERE item_oid = ? AND myoid = ?");
+      query.addBindValue(item1->text().trimmed());
+      query.addBindValue(m_oid);
+      query.addBindValue(item2->text());
+
+      if(!query.exec())
+	qmain->addError
+	  (tr("Database Error"),
+	   tr("Unable to update the entry."),
+	   query.lastError().text(),
+	   __FILE__,
+	   __LINE__);
     }
 
   if(!qmain->getDB().commit())

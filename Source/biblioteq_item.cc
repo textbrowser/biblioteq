@@ -136,56 +136,72 @@ bool biblioteq_item::hasDataChanged(QMainWindow *window) const
   if(!window)
     return false;
 
-  QMap<QString, QImage> newimg;
-  QMap<QString, QString> newdata;
-  QString classname = "";
-  QString objectname = "";
+  QMap<QString, QImage> newImg;
+  QMap<QString, QString> newData;
+  QString className = "";
+  QString objectName = "";
   auto hasChanged = false;
   int i = 0;
 
   foreach(auto widget, window->findChildren<QWidget *> ())
     {
-      classname = widget->metaObject()->className();
-      objectname = widget->objectName();
+      className = widget->metaObject()->className();
+      objectName = widget->objectName();
 
-      if(classname == "QComboBox")
-	newdata[objectname] =
+      if(className == "QComboBox")
+	newData[objectName] =
 	  (qobject_cast<QComboBox *> (widget))->currentText().trimmed();
-      else if(classname == "QDateEdit")
-	newdata[objectname] =
+      else if(className == "QDateEdit")
+	newData[objectName] =
 	  (qobject_cast<QDateEdit *> (widget))->date().toString
 	  (biblioteq::s_databaseDateFormat);
-      else if(classname == "QDoubleSpinBox")
-	newdata[objectname] =
+      else if(className == "QDoubleSpinBox")
+	newData[objectName] =
 	  (qobject_cast<QDoubleSpinBox *> (widget))->text().trimmed();
-      else if(classname == "QLineEdit")
-	newdata[objectname] =
+      else if(className == "QLineEdit")
+	newData[objectName] =
 	  (qobject_cast<QLineEdit *> (widget))->text().trimmed();
-      else if(classname == "QPlainTextEdit" ||
+      else if(className == "QPlainTextEdit" ||
 	      qobject_cast<QPlainTextEdit *> (widget))
-	newdata[objectname] =
+	newData[objectName] =
 	  (qobject_cast<QPlainTextEdit *> (widget))->toPlainText().trimmed();
-      else if(classname == "QSpinBox")
-	newdata[objectname] =
+      else if(className == "QSpinBox")
+	newData[objectName] =
 	  (qobject_cast<QSpinBox *> (widget))->text().trimmed();
-      else if(classname == "QTextEdit")
-	newdata[objectname] =
+      else if(className == "QTableWidget")
+	{
+	  auto table = qobject_cast<QTableWidget *> (widget);
+
+	  if(table)
+	    {
+	      QString str("");
+
+	      for(int i = 0; i < table->rowCount(); i++)
+		for(int j = 0; j < table->columnCount(); j++)
+		  if(table->item(i, j))
+		    str += table->item(i, j)->text().trimmed();
+
+	      newData[objectName] = str;
+	    }
+	}
+      else if(className == "QTextEdit")
+	newData[objectName] =
 	  (qobject_cast<QTextEdit *> (widget))->toPlainText().trimmed();
-      else if(classname == "QTimeEdit")
-	newdata[objectname] =
+      else if(className == "QTimeEdit")
+	newData[objectName] =
 	  (qobject_cast<QTimeEdit *> (widget))->text().trimmed();
-      else if(classname == "biblioteq_hyperlinked_text_edit")
-	newdata[objectname] =
+      else if(className == "biblioteq_hyperlinked_text_edit")
+	newData[objectName] =
 	  (qobject_cast<biblioteq_hyperlinked_text_edit *> (widget))->
 	  toPlainText().trimmed();
-      else if(classname == "biblioteq_image_drop_site")
-	newimg[objectname] =
+      else if(className == "biblioteq_image_drop_site")
+	newImg[objectName] =
 	  (qobject_cast<biblioteq_image_drop_site *> (widget))->m_image;
     }
 
   for(i = 0; i < m_imageValues.size(); i++)
     if(m_imageValues.value(m_imageValues.keys().at(i)) !=
-       newimg.value(m_imageValues.keys().at(i)))
+       newImg.value(m_imageValues.keys().at(i)))
       {
 	hasChanged = true;
 	break;
@@ -193,7 +209,7 @@ bool biblioteq_item::hasDataChanged(QMainWindow *window) const
 
   for(i = 0; i < m_widgetValues.size(); i++)
     if(m_widgetValues.value(m_widgetValues.keys().at(i)) !=
-       newdata.value(m_widgetValues.keys().at(i)))
+       newData.value(m_widgetValues.keys().at(i)))
       {
 	hasChanged = true;
 	break;
@@ -270,9 +286,9 @@ void biblioteq_item::setQMain(QMainWindow *window)
 
   foreach(auto widget, window->findChildren<QWidget *> ())
     {
-      const QString classname(widget->metaObject()->className());
+      const QString className(widget->metaObject()->className());
 
-      if(classname == "biblioteq_hyperlinked_text_edit")
+      if(className == "biblioteq_hyperlinked_text_edit")
 	qobject_cast<biblioteq_hyperlinked_text_edit *> (widget)->
 	  setQMain(qmain);
     }
@@ -357,6 +373,22 @@ void biblioteq_item::storeData(QMainWindow *window)
       else if(className == "QSpinBox")
 	m_widgetValues[objectName] =
 	  (qobject_cast<QSpinBox *> (widget))->text().trimmed();
+      else if(className == "QTableWidget")
+	{
+	  auto table = qobject_cast<QTableWidget *> (widget);
+
+	  if(table)
+	    {
+	      QString str("");
+
+	      for(int i = 0; i < table->rowCount(); i++)
+		for(int j = 0; j < table->columnCount(); j++)
+		  if(table->item(i, j))
+		    str += table->item(i, j)->text().trimmed();
+
+	      m_widgetValues[objectName] = str;
+	    }
+	}
       else if(className == "QTextEdit")
 	m_widgetValues[objectName] =
 	  (qobject_cast<QTextEdit *> (widget))->toPlainText().trimmed();
