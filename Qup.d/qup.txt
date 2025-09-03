@@ -123,10 +123,10 @@ url = https://github.com/textbrowser/biblioteq/releases/download/qup
 [Unix]
 
 desktop = ./biblioteq.desktop
-executable = BiblioteQ_PiOS_12_ARM
-executable = BiblioteQ_PiOS_12_ARM64
-executable = BiblioteQ_Ubuntu_16_PowerPC
-executable = BiblioteQ_Ubuntu_24_AMD64
+executable = BiblioteQ_PiOS_ARM
+executable = BiblioteQ_PiOS_ARM64
+executable = BiblioteQ_Ubuntu_PowerPC
+executable = BiblioteQ_Ubuntu_AMD64
 local_executable = BiblioteQ
 shell = ./biblioteq.sh
 url = https://github.com/textbrowser/biblioteq/releases/download/qup
@@ -135,8 +135,9 @@ url = https://github.com/textbrowser/biblioteq/releases/download/qup
 
 executable = BiblioteQ_Intel.exe
 file = Windows-Installation.pdf
-file = qt.conf
 file_destination = Documentation
+file = qt.conf
+file_destination = .
 local_executable = BiblioteQ.exe
 url = https://github.com/textbrowser/biblioteq/releases/download/qup
 
