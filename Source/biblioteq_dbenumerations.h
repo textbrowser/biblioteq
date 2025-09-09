@@ -120,11 +120,7 @@ class biblioteq_dbenumerations_item_delegate: public QStyledItemDelegate
 	  connect(comboBox,
 		  SIGNAL(activated(int)),
 		  this,
-		  SLOT(slotCurrentIndexChanged(int))
-#ifdef Q_OS_MACOS
-		  , Qt::QueuedConnection
-#endif
-		  );
+		  SLOT(slotCurrentIndexChanged(int)));
 	  comboBox->setCurrentIndex(comboBox->findText(value));
 
 	  if(comboBox->currentIndex() < 0)

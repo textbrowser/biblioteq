@@ -121,11 +121,7 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
 		connect(pushButton,
 			SIGNAL(clicked(void)),
 			this,
-			SLOT(slotSelectColor(void))
-#ifdef Q_OS_MACOS
-			, Qt::QueuedConnection
-#endif
-			);
+			SLOT(slotSelectColor(void)));
 		m_index = index;
 		pushButton->setText
 		  (index.data().toString().remove('&').trimmed());
@@ -138,11 +134,7 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
 		connect(pushButton,
 			SIGNAL(clicked(void)),
 			this,
-			SLOT(slotResetRow(void))
-#ifdef Q_OS_MACOS
-			, Qt::QueuedConnection
-#endif
-			);
+			SLOT(slotResetRow(void)));
 		m_index = index;
 		pushButton->setText(tr("Reset Row"));
 		return pushButton;
