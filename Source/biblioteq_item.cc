@@ -199,21 +199,35 @@ bool biblioteq_item::hasDataChanged(QMainWindow *window) const
 	  (qobject_cast<biblioteq_image_drop_site *> (widget))->m_image;
     }
 
-  for(i = 0; i < m_imageValues.size(); i++)
-    if(m_imageValues.value(m_imageValues.keys().at(i)) !=
-       newImg.value(m_imageValues.keys().at(i)))
-      {
-	hasChanged = true;
-	break;
-      }
+  {
+    QMapIterator<QString, QImage> it(m_imageValues);
 
-  for(i = 0; i < m_widgetValues.size(); i++)
-    if(m_widgetValues.value(m_widgetValues.keys().at(i)) !=
-       newData.value(m_widgetValues.keys().at(i)))
+    while(it.hasNext())
       {
-	hasChanged = true;
-	break;
+	it.next();
+
+	if(it.value() != newImg.value(it.key()))
+	  {
+	    hasChanged = true;
+	    break;
+	  }
       }
+  }
+
+  {
+    QMapIterator<QString, QString> it(m_widgetValues);
+
+    while(it.hasNext())
+      {
+	it.next();
+
+	if(it.value() != newData.value(it.key()))
+	  {
+	    hasChanged = true;
+	    break;
+	  }
+      }
+  }
 
   return hasChanged;
 }

@@ -1117,8 +1117,13 @@ QStringList biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
   if(!map.contains("Video Game"))
     map["Video Game"] = "1";
 
-  for(int i = 0; i < map.values().size(); i++)
-    minimumdays.append(map.values().at(i));
+  QMapIterator<QString, QString> it(map);
+
+  while(it.hasNext())
+    {
+      it.next();
+      minimumdays.append(it.value());
+    }
 
   return minimumdays;
 }

@@ -373,7 +373,6 @@ void biblioteq_files::slotFilesDoubleClicked(QTableWidgetItem *item)
 
       QByteArray data;
       QSqlQuery query(m_biblioteq->getDB());
-      auto const fileName(index.data().toString());
       auto const oid = index.sibling
 	(index.row(), static_cast<int> (Columns::MYOID)).data().toLongLong();
       auto const tableName
@@ -393,7 +392,7 @@ void biblioteq_files::slotFilesDoubleClicked(QTableWidgetItem *item)
 #ifdef BIBLIOTEQ_LINKED_WITH_POPPLER
 	  auto reader = new biblioteq_pdfreader(m_biblioteq);
 
-	  reader->load(data, fileName);
+	  reader->load(data, index.data().toString());
 #else
 	  auto reader = new biblioteq_documentationwindow(m_biblioteq);
 

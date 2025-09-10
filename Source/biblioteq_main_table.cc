@@ -51,22 +51,23 @@ biblioteq_main_table::biblioteq_main_table(QWidget *parent):
 QHash<QString, QString> biblioteq_main_table::friendlyStates(void) const
 {
   QHash<QString, QString> states;
+  QHashIterator<QString, QList<int> > it(m_hiddenColumns);
 
-  for(int i = 0; i < m_hiddenColumns.keys().size(); i++)
+  while(it.hasNext())
     {
+      it.next();
+
       QString state("");
 
-      for(int j = 0;
-	  j < m_hiddenColumns.value(m_hiddenColumns.keys().at(i)).size();
-	  j++)
-	state += QString::number
-	  (m_hiddenColumns.value(m_hiddenColumns.keys().at(i)).at(j)).
-	  append(",");
+      auto const list(it.value());
+
+      for(int j = 0; j < list.size(); j++)
+	state += QString::number(list.at(j)).append(",");
 
       if(state.endsWith(","))
 	state = state.mid(0, state.length() - 1);
 
-      states[m_hiddenColumns.keys().at(i)] = state;
+      states[it.key()] = state;
     }
 
   return states;
@@ -155,22 +156,26 @@ void biblioteq_main_table::parseStates(const QHash<QString, QString> &states)
 {
   m_hiddenColumns.clear();
 
-  for(int i = 0; i < states.keys().size(); i++)
+  QHashIterator<QString, QString> it(states);
+
+  while(it.hasNext())
     {
+      it.next();
+
       QList<int> intList;
       auto const strList
-	(states[states.keys().at(i)].split(",",
+	(it.value().split(",",
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
-					   Qt::SkipEmptyParts
+			  Qt::SkipEmptyParts
 #else
-					   QString::SkipEmptyParts
+			  QString::SkipEmptyParts
 #endif
-					   ));
+			  ));
 
       for(int j = 0; j < strList.size(); j++)
-	intList.append(qBound(0, strList.at(j).toInt(), strList.size()));
+	intList.append(qMax(0, strList.at(j).toInt()));
 
-      m_hiddenColumns[states.keys().at(i)] = intList;
+      m_hiddenColumns[it.key()] = intList;
     }
 }
 

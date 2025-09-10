@@ -254,8 +254,6 @@ void biblioteq_custom_query::slotPopulateFavorites(void)
 
   QSettings settings;
   QStringList list;
-  auto const shortcut
-    (settings.value("custom_query_favorite_shortcut").toString().trimmed());
   auto const text(cq.favorites->currentText());
 
   cq.favorites->clear();
