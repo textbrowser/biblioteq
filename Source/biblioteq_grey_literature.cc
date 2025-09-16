@@ -1076,8 +1076,9 @@ void biblioteq_grey_literature::slotDatabaseEnumerationsCommitted(void)
 
 void biblioteq_grey_literature::slotDeleteFiles(void)
 {
-  auto const list(m_ui.files->selectionModel()->
-		  selectedRows(static_cast<int> (Columns::MYOID)));
+  auto const list
+    (m_ui.files->selectionModel()->
+     selectedRows(static_cast<int> (Columns::MYOID)));
 
   if(list.isEmpty())
     {
@@ -1121,8 +1122,9 @@ void biblioteq_grey_literature::slotDeleteFiles(void)
 
 void biblioteq_grey_literature::slotExportFiles(void)
 {
-  auto const list(m_ui.files->selectionModel()->
-		  selectedRows(static_cast<int> (Columns::MYOID)));
+  auto const list
+    (m_ui.files->selectionModel()->
+     selectedRows(static_cast<int> (Columns::MYOID)));
 
   if(list.isEmpty())
     return;

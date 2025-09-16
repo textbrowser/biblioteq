@@ -41,9 +41,9 @@ class biblioteq_animated_tool_button: public QToolButton
   {
     m_animator.setPropertyName("color");
     m_animator.setTargetObject(this);
-    m_negativeColor = QColor(255, 36, 0); // A sprite of green.
+    m_negativeColor = QColor(255, 36, 0); // A sprite of red.
     m_originalColor = palette().color(QPalette::Window);
-    m_positiveColor = QColor(0, 177, 64); // A sprite of red.
+    m_positiveColor = QColor(0, 177, 64); // A sprite of green.
   }
 
   ~biblioteq_animated_tool_button()

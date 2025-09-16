@@ -3646,7 +3646,8 @@ void biblioteq::slotDuplicate(void)
   biblioteq_videogame *videogame = nullptr;
   int c = 1;
 
-  std::stable_sort(list.begin(), list.end());
+  std::stable_sort
+    (list.begin(), list.end(), biblioteq_misc_functions::sortByRow);
 
   foreach(auto const &index, list)
     {
@@ -4104,7 +4105,8 @@ void biblioteq::slotModify(void)
   biblioteq_videogame *videogame = nullptr;
   int c = 1;
 
-  std::stable_sort(list.begin(), list.end());
+  std::stable_sort
+    (list.begin(), list.end(), biblioteq_misc_functions::sortByRow);
 
   foreach(auto const &index, list)
     {
@@ -5871,7 +5873,8 @@ void biblioteq::slotViewDetails(void)
   biblioteq_videogame *videogame = nullptr;
   int c = 1;
 
-  std::stable_sort(list.begin(), list.end());
+  std::stable_sort
+    (list.begin(), list.end(), biblioteq_misc_functions::sortByRow);
 
   foreach(auto const &index, list)
     {

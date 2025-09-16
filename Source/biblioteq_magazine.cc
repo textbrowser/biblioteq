@@ -2207,7 +2207,7 @@ void biblioteq_magazine::slotDeleteFiles(void)
 
 void biblioteq_magazine::slotExportFiles(void)
 {
-  QModelIndexList list
+  auto const list
     (ma.files->selectionModel()->
      selectedRows(static_cast<int> (Columns::MYOID)));
 

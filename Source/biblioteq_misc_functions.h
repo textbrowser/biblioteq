@@ -167,6 +167,12 @@ class biblioteq_misc_functions
 			  const QString &,
 			  const QString &,
 			  QString &);
+
+  static bool sortByRow(const QModelIndex &index1, const QModelIndex &index2)
+  {
+    return index1.row() < index2.row();
+  }
+
   static bool sqliteReturnReminder(QString &,
 				   const QSqlDatabase &,
 				   const QString &,
