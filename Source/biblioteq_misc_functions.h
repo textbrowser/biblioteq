@@ -156,6 +156,7 @@ class biblioteq_misc_functions
 			       const QString &,
 			       const QString &,
 			       QString &);
+  static bool isEnvironmentSet(const char *name);
   static bool isItemAvailable
     (QString &,
      const QSqlDatabase &,

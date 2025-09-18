@@ -446,16 +446,19 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
 	   qRound(0.95 * m_parentWid->size().height()));
 
 #ifdef Q_OS_MACOS
-  foreach(auto tool_button, findChildren<QToolButton *> ())
+  if(!biblioteq_misc_functions::isEnvironmentSet("QT_STYLE_OVERRIDE"))
+    foreach(auto tool_button, findChildren<QToolButton *> ())
+      {
 #if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
-    tool_button->setStyleSheet
-    ("QToolButton {border: none; padding-right: 10px}"
-     "QToolButton::menu-button {border: none;}");
+	tool_button->setStyleSheet
+	  ("QToolButton {border: none; padding-right: 10px}"
+	   "QToolButton::menu-button {border: none;}");
 #else
-    tool_button->setStyleSheet
-      ("QToolButton {border: none; padding-right: 15px}"
-       "QToolButton::menu-button {border: none; width: 15px;}");
+	tool_button->setStyleSheet
+	  ("QToolButton {border: none; padding-right: 15px}"
+	   "QToolButton::menu-button {border: none; width: 15px;}");
 #endif
+      }
 #endif
 
   ma.splitter->setStretchFactor(0, 0);

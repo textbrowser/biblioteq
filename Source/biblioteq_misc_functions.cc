@@ -1614,6 +1614,14 @@ bool biblioteq_misc_functions::isCopyCheckedOut(const QSqlDatabase &db,
   return isCheckedOut;
 }
 
+bool biblioteq_misc_functions::isEnvironmentSet(const char *name)
+{
+  if(!name)
+    return false;
+  else
+    return !qgetenv(name).isNull();
+}
+
 bool biblioteq_misc_functions::isItemAvailable
 (QString &error,
  const QSqlDatabase &db,

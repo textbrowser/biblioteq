@@ -1054,16 +1054,19 @@ biblioteq::biblioteq(void):QMainWindow()
   al.resetButton->setMenu(menu1);
 
 #ifdef Q_OS_MACOS
-  foreach(auto tool_button, m_all_diag->findChildren<QToolButton *> ())
+  if(!biblioteq_misc_functions::isEnvironmentSet("QT_STYLE_OVERRIDE"))
+    foreach(auto tool_button, m_all_diag->findChildren<QToolButton *> ())
+      {
 #if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
-    tool_button->setStyleSheet
-    ("QToolButton {border: none; padding-right: 10px}"
-     "QToolButton::menu-button {border: none;}");
+	tool_button->setStyleSheet
+	  ("QToolButton {border: none; padding-right: 10px}"
+	   "QToolButton::menu-button {border: none;}");
 #else
-    tool_button->setStyleSheet
-      ("QToolButton {border: none; padding-right: 15px}"
-       "QToolButton::menu-button {border: none; width: 15px;}");
+	tool_button->setStyleSheet
+	  ("QToolButton {border: none; padding-right: 15px}"
+	   "QToolButton::menu-button {border: none; width: 15px;}");
 #endif
+      }
 #endif
 
   ui.actionAutoPopulateOnCreation->setEnabled(false);
@@ -2445,10 +2448,13 @@ void biblioteq::showMain(void)
     }
 
 #ifdef Q_OS_MACOS
-  if(m_error_bar_label)
-    m_error_bar_label->setStyleSheet
-      ("QToolButton {border: none;}"
-       "QToolButton::menu-button {border: none;}");
+  if(!biblioteq_misc_functions::isEnvironmentSet("QT_STYLE_OVERRIDE"))
+    {
+      if(m_error_bar_label)
+	m_error_bar_label->setStyleSheet
+	  ("QToolButton {border: none;}"
+	   "QToolButton::menu-button {border: none;}");
+    }
 #endif
 
   ui.itemsCountLabel->setText(tr("0 Results"));
