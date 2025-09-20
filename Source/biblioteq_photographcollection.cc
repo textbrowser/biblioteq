@@ -409,25 +409,30 @@ void biblioteq_photographcollection::closeEvent(QCloseEvent *event)
 
   if(m_engWindowTitle.contains("Create") ||
      m_engWindowTitle.contains("Modify"))
-    if(hasDataChanged(this))
-      {
-	if(QMessageBox::
-	   question(this,
-		    tr("BiblioteQ: Question"),
-		    tr("Your changes have not been saved. Continue closing?"),
-		    QMessageBox::No | QMessageBox::Yes,
-		    QMessageBox::No) == QMessageBox::No)
-	  {
-	    QApplication::processEvents();
+    {
+      QString key("");
 
-	    if(event)
-	      event->ignore();
+      if(hasDataChanged(this, key))
+	{
+	  if(QMessageBox::
+	     question(this,
+		      tr("BiblioteQ: Question"),
+		      tr("Your changes (%1) have not been saved. "
+			 "Continue closing?").arg(key),
+		      QMessageBox::No | QMessageBox::Yes,
+		      QMessageBox::No) == QMessageBox::No)
+	    {
+	      QApplication::processEvents();
 
-	    return;
-	  }
+	      if(event)
+		event->ignore();
 
-	QApplication::processEvents();
-      }
+	      return;
+	    }
+
+	  QApplication::processEvents();
+	}
+    }
 
   QMainWindow::closeEvent(event);
   qmain->removePhotographCollection(this);

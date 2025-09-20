@@ -100,7 +100,7 @@ class biblioteq_item
   biblioteq *qmain;
   bool m_isQueryEnabled;
   int m_oldq;
-  bool hasDataChanged(QMainWindow *window) const;
+  bool hasDataChanged(QMainWindow *window, QString &key) const;
   void prepareIcons(QMainWindow *window);
   void print(QWidget *parent);
   void setQMain(QMainWindow *window);

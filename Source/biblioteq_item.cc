@@ -131,7 +131,7 @@ QString biblioteq_item::getID(void) const
   return m_oid;
 }
 
-bool biblioteq_item::hasDataChanged(QMainWindow *window) const
+bool biblioteq_item::hasDataChanged(QMainWindow *window, QString &key) const
 {
   if(!window)
     return false;
@@ -141,7 +141,6 @@ bool biblioteq_item::hasDataChanged(QMainWindow *window) const
   QString className = "";
   QString objectName = "";
   auto hasChanged = false;
-  int i = 0;
 
   foreach(auto widget, window->findChildren<QWidget *> ())
     {
@@ -209,7 +208,7 @@ bool biblioteq_item::hasDataChanged(QMainWindow *window) const
 	if(it.value() != newImg.value(it.key()))
 	  {
 	    hasChanged = true;
-	    break;
+	    key += key.isEmpty() ? it.key() : ", " + it.key();
 	  }
       }
   }
@@ -224,7 +223,7 @@ bool biblioteq_item::hasDataChanged(QMainWindow *window) const
 	if(it.value() != newData.value(it.key()))
 	  {
 	    hasChanged = true;
-	    break;
+	    key += key.isEmpty() ? it.key() : ", " + it.key();
 	  }
       }
   }
