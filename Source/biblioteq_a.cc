@@ -1780,6 +1780,17 @@ void biblioteq::closeEvent(QCloseEvent *event)
 	}
     }
 
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  if(!emptyContainers())
+    {
+      QApplication::restoreOverrideCursor();
+      event ? event->ignore() : (void) 0;
+      return;
+    }
+  else
+    QApplication::restoreOverrideCursor();
+
   slotExit();
 }
 
@@ -3776,6 +3787,19 @@ void biblioteq::slotExit(void)
     return;
   else
     lock.unlock();
+
+  if(sender()) // A person requested an exit.
+    {
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+
+      if(!emptyContainers())
+	{
+	  QApplication::restoreOverrideCursor();
+	  return;
+	}
+      else
+	QApplication::restoreOverrideCursor();
+    }
 
   QSettings().setValue("mainwindow_state", saveState());
   m_admin_diag->deleteLater();
