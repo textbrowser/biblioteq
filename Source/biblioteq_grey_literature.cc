@@ -1780,7 +1780,7 @@ void biblioteq_grey_literature::updateDatabase(void)
       if(!query.exec())
 	qmain->addError
 	  (tr("Database Error"),
-	   tr("Unable to update the entry."),
+	   tr("Unable to update the grey_literature_files entry."),
 	   query.lastError().text(),
 	   __FILE__,
 	   __LINE__);
