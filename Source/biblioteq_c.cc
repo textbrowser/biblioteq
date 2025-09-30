@@ -5314,7 +5314,7 @@ void biblioteq::slotRequest(void)
   QProgressDialog progress(this);
   QString itemType("");
   QString oid("");
-  QString str("");
+  QString str("<html>");
   QString title("");
   auto const now(QDateTime::currentDateTime());
   auto error = false;
@@ -5447,13 +5447,14 @@ void biblioteq::slotRequest(void)
 								    itemType))
 		    {
 		      if(member.trimmed().isEmpty())
-			str += tr("The item <b>%1</b> is requested by "
-				  "another patron. Please set it aside.\n").
+			str += tr
+			  ("The item <b>%1</b> is requested by "
+			   "another patron. Please set it aside.<br>").
 			  arg(title);
 		      else
 			str += tr("The item <b>%1</b> is requested by "
 				  "another patron (<b>%2</b>). "
-				  "Please set it aside.\n").
+				  "Please set it aside.<br>").
 			  arg(title).arg(member.trimmed());
 		    }
 		}
@@ -5519,16 +5520,16 @@ void biblioteq::slotRequest(void)
 
   if(numcompleted > 0)
     {
-      str = str.trimmed();
+      str += "</html>";
 
-      if(str.isEmpty() == false)
+      if(str != "<html></html>")
 	{
 	  QDialog dialog(this);
 	  Ui_generalmessagediag ui;
 
 	  ui.setupUi(&dialog);
 	  ui.hideForThisSession->setVisible(false);
-	  ui.text->setText(str);
+	  ui.text->setHtml(str);
 	  connect(ui.cancelButton,
 		  SIGNAL(clicked(void)),
 		  &dialog,
