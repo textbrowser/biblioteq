@@ -5447,12 +5447,12 @@ void biblioteq::slotRequest(void)
 								    itemType))
 		    {
 		      if(member.trimmed().isEmpty())
-			str += tr("The item %1 is requested by "
-				  "another patron. "
-				  "Please set it aside.\n").arg(title);
+			str += tr("The item <b>%1</b> is requested by "
+				  "another patron. Please set it aside.\n").
+			  arg(title);
 		      else
-			str += tr("The item %1 is requested by "
-				  "another patron (%2). "
+			str += tr("The item <b>%1</b> is requested by "
+				  "another patron (<b>%2</b>). "
 				  "Please set it aside.\n").
 			  arg(title).arg(member.trimmed());
 		    }

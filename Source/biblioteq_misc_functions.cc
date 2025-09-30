@@ -800,9 +800,7 @@ QString biblioteq_misc_functions::sqliteReturnReminders(const QSqlDatabase &db)
 
     query.setForwardOnly(true);
 
-    if(query.exec("SELECT item_identifier, "
-		  "item_type, "
-		  "member_identifier "
+    if(query.exec("SELECT item_identifier, item_type, member_identifier "
 		  "FROM return_reminders "
 		  "ORDER BY 2, 1"))
       while(query.next())
