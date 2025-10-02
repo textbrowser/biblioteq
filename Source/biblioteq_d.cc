@@ -1284,6 +1284,9 @@ void biblioteq::slotNotifyOfOverdueItems(void)
   if(!dialog)
     {
       m_notifyOfOverdueItemsUI.setupUi(dialog = new QDialog(this));
+      m_notifyOfOverdueItemsUI.hideForThisSession->setToolTip
+	(tr("<html>This dialog will be shown persistently unless this option "
+	    "is enabled or all overdue items have been returned.</html>"));
       connect(m_notifyOfOverdueItemsUI.cancelButton,
 	      SIGNAL(clicked(void)),
 	      dialog,
@@ -1325,18 +1328,24 @@ void biblioteq::slotNotifyOfOverdueItems(void)
 	    "<b>%1 item(s)</b> which must be returned. "
 	    "<a href=\"all_overdue\">Please "
 	    "click to display the All Overdue category in the "
-	    "main window.</a>").arg(count));
+	    "main window.</a> "
+	    "This dialog will be shown persistently unless it's hidden "
+	    "for this session or all overdue items have been returned.").
+	 arg(count));
     }
   else
     return;
 
+  if(!dialog->isVisible())
+    {
 #ifdef Q_OS_ANDROID
-  dialog->showMaximized();
+      dialog->showMaximized();
 #else
-  dialog->showNormal();
+      dialog->showNormal();
 #endif
-  dialog->activateWindow();
-  dialog->raise();
+      dialog->activateWindow();
+      dialog->raise();
+    }
 }
 
 void biblioteq::slotPrintIconsView(void)
