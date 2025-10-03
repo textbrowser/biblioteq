@@ -2259,7 +2259,6 @@ void biblioteq_book::populateFiles(void)
 
 	    item->setData
 	      (Qt::UserRole, query.value(record.count() - 1).toLongLong());
-	    item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 
 	    if(m_engWindowTitle == "Modify" &&
 	       record.fieldName(i) == "description")

@@ -41,7 +41,6 @@
 #include <QActionGroup>
 #include <QAuthenticator>
 #include <QFileDialog>
-#include <QInputDialog>
 #include <QNetworkAccessManager>
 #include <QNetworkProxy>
 #include <QSettings>
@@ -1048,10 +1047,10 @@ void biblioteq_magazine::modify(const int state)
       foreach(auto textfield, findChildren<QLineEdit *> ())
 	textfield->setCursorPosition(0);
 
-      storeData(this);
-
       if(!m_duplicate)
 	populateFiles();
+
+      storeData(this);
     }
 
   ma.id->setFocus();
@@ -1890,11 +1889,15 @@ void biblioteq_magazine::populateFiles(void)
 
 	    item->setData
 	      (Qt::UserRole, query.value(record.count() - 1).toLongLong());
-	    item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 
-	    if(m_engWindowTitle == "Modify")
-	      if(record.fieldName(i) == "description")
-		item->setToolTip(tr("Double-click to edit."));
+	    if(m_engWindowTitle == "Modify" &&
+	       record.fieldName(i) == "description")
+	      item->setFlags
+		(Qt::ItemIsEditable |
+		 Qt::ItemIsEnabled |
+		 Qt::ItemIsSelectable);
+	    else
+	      item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 
 	    ma.files->setItem(row, i, item);
 	  }
@@ -2095,6 +2098,7 @@ void biblioteq_magazine::slotAttachFiles(void)
 
       QApplication::restoreOverrideCursor();
       populateFiles();
+      storeData(this);
     }
 
   QApplication::processEvents();
@@ -2211,6 +2215,7 @@ void biblioteq_magazine::slotDeleteFiles(void)
 
   QApplication::restoreOverrideCursor();
   populateFiles();
+  storeData(this);
 }
 
 void biblioteq_magazine::slotExportFiles(void)
@@ -2353,52 +2358,7 @@ void biblioteq_magazine::slotFilesDoubleClicked(QTableWidgetItem *item)
 	  QApplication::restoreOverrideCursor();
 	}
 #endif
-
-      return;
     }
-
-  if(m_engWindowTitle != "Modify")
-    return;
-
-  auto item1 = ma.files->item
-    (item->row(), static_cast<int> (Columns::DESCRIPTION));
-
-  if(!item1)
-    return;
-
-  auto const description(item1->text());
-  auto item2 = ma.files->item(item->row(), static_cast<int> (Columns::MYOID));
-
-  if(!item2)
-    return;
-
-  auto ok = true;
-  auto const text
-    (QInputDialog::getText(this,
-			   tr("BiblioteQ: File Description"),
-			   tr("Description"),
-			   QLineEdit::Normal,
-			   description, &ok).trimmed());
-
-  if(!ok)
-    return;
-
-  QSqlQuery query(qmain->getDB());
-  auto const myoid(item2->text());
-
-  if(m_subType == "Journal")
-    query.prepare("UPDATE journal_files SET description = ? "
-		  "WHERE item_oid = ? AND myoid = ?");
-  else
-    query.prepare("UPDATE magazine_files SET description = ? "
-		  "WHERE item_oid = ? AND myoid = ?");
-
-  query.bindValue(0, text);
-  query.bindValue(1, m_oid);
-  query.bindValue(2, myoid);
-
-  if(query.exec())
-    item1->setText(text);
 }
 
 void biblioteq_magazine::slotGo(void)
@@ -2830,6 +2790,41 @@ void biblioteq_magazine::slotGo(void)
 		     __FILE__,
 		     __LINE__);
 		  goto db_rollback;
+		}
+
+	      for(int i = 0; i < ma.files->rowCount(); i++)
+		{
+		  auto item1 = ma.files->item
+		    (i, static_cast<int> (Columns::DESCRIPTION));
+
+		  if(!item1)
+		    continue;
+
+		  auto item2 = ma.files->item
+		    (i, static_cast<int> (Columns::MYOID));
+
+		  if(!item2)
+		    continue;
+
+		  if(m_subType == "Journal")
+		    query.prepare("UPDATE journal_files SET description = ? "
+				  "WHERE item_oid = ? AND myoid = ?");
+		  else
+		    query.prepare("UPDATE magazine_files SET description = ? "
+				  "WHERE item_oid = ? AND myoid = ?");
+
+		  query.addBindValue(item1->text().trimmed());
+		  query.addBindValue(m_oid);
+		  query.addBindValue(item2->text());
+
+		  if(!query.exec())
+		    qmain->addError
+		      (tr("Database Error"),
+		       tr("Unable to update the %1_files entry.").
+		       arg(m_subType.toLower()),
+		       query.lastError().text(),
+		       __FILE__,
+		       __LINE__);
 		}
 
 	      if(!qmain->getDB().commit())

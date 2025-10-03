@@ -665,6 +665,7 @@ Completed Items
 334. GH #398. Delimit a keyword into multiple rows by newline characters.
 335. If possible, adjust the number of columns in Icons Mode based
      on the size of the view.
+336. Editable file Description columns instead of input dialogs.
 
 Remaining Items
 
@@ -677,4 +678,3 @@ Remaining Items
 7.   Test Android and correct.
 8.   PostgreSQL notifications: PostgreSQL::notify() and
      QSqlDriver::subscribeToNotification().
-9.   Editable file Description columns instead of input dialogs.
