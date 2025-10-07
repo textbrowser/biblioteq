@@ -1,11 +1,11 @@
 cache()
 include(biblioteq-source.pro)
 
-CONFIG		+= qt release warn_on
-LANGUAGE	= C++
-QMAKE_CLEAN	+= BiblioteQ
-QT              += core gui network printsupport sql svg widgets
-TEMPLATE	= app
+CONFIG	    += qt release warn_on
+LANGUAGE    = C++
+QMAKE_CLEAN += BiblioteQ
+QT          += core gui network printsupport sql svg widgets
+TEMPLATE    = app
 
 QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wcast-align \
@@ -25,14 +25,14 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -fwrapv \
                           -pedantic \
                           -std=c++17
-QMAKE_DISTCLEAN += -r .qmake.cache .qmake.stash Temporary
-QMAKE_EXTRA_TARGETS = purge
+QMAKE_DISTCLEAN        += -r .qmake.cache .qmake.stash Temporary
+QMAKE_EXTRA_TARGETS    = purge
 
-INCLUDEPATH	+= Source
-LIBS		+=
+INCLUDEPATH += Source
+LIBS	    +=
 
-PROJECTNAME	= BiblioteQ
-TARGET		= BiblioteQ
+PROJECTNAME = BiblioteQ
+TARGET	    = BiblioteQ
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/Android
 
@@ -50,7 +50,7 @@ deployment.files = Data/*.csv \
                    Documentation/*.html \
                    Documentation/Contributed/French/*.html \
                    biblioteq.conf
-deployment.path = /assets
+deployment.path  = /assets
 
 INSTALLS += deployment
 

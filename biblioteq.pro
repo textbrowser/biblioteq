@@ -3,14 +3,14 @@ include(biblioteq-source.pro)
 
 purge.commands = find . -name \'*~*\' -exec rm -f {} \;
 
-CONFIG		+= copy_dir_files qt release warn_on
-DEFINES		+= BIBLIOTEQ_CONFIGURATION_FILE="'\"biblioteq.conf\"'" \
-                   QT_DEPRECATED_WARNINGS
-LANGUAGE	= C++
-QMAKE_CLEAN	+= BiblioteQ
-QT              += gui network printsupport sql widgets
-QT              -= webkit
-TEMPLATE	= app
+CONFIG	    += copy_dir_files qt release warn_on
+DEFINES	    += BIBLIOTEQ_CONFIGURATION_FILE="'\"biblioteq.conf\"'" \
+               QT_DEPRECATED_WARNINGS
+LANGUAGE    = C++
+QMAKE_CLEAN += BiblioteQ
+QT          += gui network printsupport sql widgets
+QT          -= webkit
+TEMPLATE    = app
 
 freebsd-* | openbsd-* {
 QMAKE_CXXFLAGS_RELEASE += -Wall \
@@ -57,10 +57,10 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -std=c++17
 }
 
-QMAKE_DISTCLEAN += -r .qmake.cache .qmake.stash Temporary
+QMAKE_DISTCLEAN     += -r .qmake.cache .qmake.stash Temporary
 QMAKE_EXTRA_TARGETS = purge
 
-ICON		= Icons/book.png
-INCLUDEPATH	+= Source
-PROJECTNAME	= BiblioteQ
-TARGET		= BiblioteQ
+ICON	    = Icons/book.png
+INCLUDEPATH += Source
+PROJECTNAME = BiblioteQ
+TARGET	    = BiblioteQ
