@@ -30,6 +30,8 @@
 #include <QFileDialog>
 #include <QProgressDialog>
 #include <QSettings>
+#include <QSqlField>
+#include <QSqlRecord>
 #include <QTextStream>
 #include <QtMath>
 
@@ -124,6 +126,10 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  this,
 	  SLOT(slotDiscoverMemberName(void)));
   connect(m_ui.dreamy_member_id,
+	  SIGNAL(returnPressed(void)),
+	  this,
+	  SLOT(slotDiscoverDreamy(void)));
+  connect(m_ui.dreamy_member_id,
 	  SIGNAL(textEdited(const QString &)),
 	  m_ui.dreamy_member_name,
 	  SLOT(clear(void)));
@@ -151,6 +157,8 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(currentChanged(int)),
 	  this,
 	  SLOT(slotPageIndexChanged(int)));
+  m_ui.dreamy_table->horizontalHeader()->setSortIndicator
+    (0, Qt::AscendingOrder);
   prepareIcons();
   slotPageIndexChanged(m_ui.tab->currentIndex());
 }
@@ -617,10 +625,12 @@ void biblioteq_batch_activities::returnItems(void)
 		   "book.title, "
 		   "book.id, "
 		   "book.callnumber, "
-		   "book.publisher, book.pdate, "
+		   "book.publisher, "
+		   "book.pdate, "
 		   "book.category, "
 		   "book.language, "
-		   "book.price, book.monetary_units, "
+		   "book.price, "
+		   "book.monetary_units, "
 		   "book.quantity, "
 		   "book.location, "
 		   "book.quantity - "
@@ -653,10 +663,12 @@ void biblioteq_batch_activities::returnItems(void)
 		   "book.title, "
 		   "book.id, "
 		   "book.callnumber, "
-		   "book.publisher, book.pdate, "
+		   "book.publisher, "
+		   "book.pdate, "
 		   "book.category, "
 		   "book.language, "
-		   "book.price, book.monetary_units, "
+		   "book.price, "
+		   "book.monetary_units, "
 		   "book.quantity, "
 		   "book.location, "
 		   "book.accession_number, "
@@ -675,10 +687,12 @@ void biblioteq_batch_activities::returnItems(void)
 		   "cd.title, "
 		   "cd.id, "
 		   "'' AS callnumber, "
-		   "cd.recording_label, cd.rdate, "
+		   "cd.recording_label, "
+		   "cd.rdate, "
 		   "cd.category, "
 		   "cd.language, "
-		   "cd.price, cd.monetary_units, "
+		   "cd.price, "
+		   "cd.monetary_units, "
 		   "cd.quantity, "
 		   "cd.location, "
 		   "cd.quantity - "
@@ -711,10 +725,12 @@ void biblioteq_batch_activities::returnItems(void)
 		   "cd.title, "
 		   "cd.id, "
 		   "callnumber, "
-		   "cd.recording_label, cd.rdate, "
+		   "cd.recording_label, "
+		   "cd.rdate, "
 		   "cd.category, "
 		   "cd.language, "
-		   "cd.price, cd.monetary_units, "
+		   "cd.price, "
+		   "cd.monetary_units, "
 		   "cd.quantity, "
 		   "cd.location, "
 		   "cd.accession_number, "
@@ -733,10 +749,12 @@ void biblioteq_batch_activities::returnItems(void)
 		   "dvd.title, "
 		   "dvd.id, "
 		   "'' AS callnumber, "
-		   "dvd.studio, dvd.rdate, "
+		   "dvd.studio, "
+		   "dvd.rdate, "
 		   "dvd.category, "
 		   "dvd.language, "
-		   "dvd.price, dvd.monetary_units, "
+		   "dvd.price, "
+		   "dvd.monetary_units, "
 		   "dvd.quantity, "
 		   "dvd.location, "
 		   "dvd.quantity - "
@@ -769,10 +787,12 @@ void biblioteq_batch_activities::returnItems(void)
 		   "dvd.title, "
 		   "dvd.id, "
 		   "callnumber, "
-		   "dvd.studio, dvd.rdate, "
+		   "dvd.studio, "
+		   "dvd.rdate, "
 		   "dvd.category, "
 		   "dvd.language, "
-		   "dvd.price, dvd.monetary_units, "
+		   "dvd.price, "
+		   "dvd.monetary_units, "
 		   "dvd.quantity, "
 		   "dvd.location, "
 		   "dvd.accession_number, "
@@ -849,10 +869,12 @@ void biblioteq_batch_activities::returnItems(void)
 		   "journal.title, "
 		   "journal.id, "
 		   "journal.callnumber, "
-		   "journal.publisher, journal.pdate, "
+		   "journal.publisher, "
+		   "journal.pdate, "
 		   "journal.category, "
 		   "journal.language, "
-		   "journal.price, journal.monetary_units, "
+		   "journal.price, "
+		   "journal.monetary_units, "
 		   "journal.quantity, "
 		   "journal.location, "
 		   "journal.quantity - "
@@ -886,10 +908,12 @@ void biblioteq_batch_activities::returnItems(void)
 		   "journal.title, "
 		   "journal.id, "
 		   "journal.callnumber, "
-		   "journal.publisher, journal.pdate, "
+		   "journal.publisher, "
+		   "journal.pdate, "
 		   "journal.category, "
 		   "journal.language, "
-		   "journal.price, journal.monetary_units, "
+		   "journal.price, "
+		   "journal.monetary_units, "
 		   "journal.quantity, "
 		   "journal.location, "
 		   "journal.accession_number, "
@@ -908,10 +932,12 @@ void biblioteq_batch_activities::returnItems(void)
 		   "magazine.title, "
 		   "magazine.id, "
 		   "magazine.callnumber, "
-		   "magazine.publisher, magazine.pdate, "
+		   "magazine.publisher, "
+		   "magazine.pdate, "
 		   "magazine.category, "
 		   "magazine.language, "
-		   "magazine.price, magazine.monetary_units, "
+		   "magazine.price, "
+		   "magazine.monetary_units, "
 		   "magazine.quantity, "
 		   "magazine.location, "
 		   "magazine.quantity - "
@@ -945,10 +971,12 @@ void biblioteq_batch_activities::returnItems(void)
 		   "magazine.title, "
 		   "magazine.id, "
 		   "magazine.callnumber, "
-		   "magazine.publisher, magazine.pdate, "
+		   "magazine.publisher, "
+		   "magazine.pdate, "
 		   "magazine.category, "
 		   "magazine.language, "
-		   "magazine.price, magazine.monetary_units, "
+		   "magazine.price, "
+		   "magazine.monetary_units, "
 		   "magazine.quantity, "
 		   "magazine.location, "
 		   "magazine.accession_number, "
@@ -967,10 +995,12 @@ void biblioteq_batch_activities::returnItems(void)
 		   "videogame.title, "
 		   "videogame.id, "
 		   "'' AS callnumber, "
-		   "videogame.publisher, videogame.rdate, "
+		   "videogame.publisher, "
+		   "videogame.rdate, "
 		   "videogame.genre, "
 		   "videogame.language, "
-		   "videogame.price, videogame.monetary_units, "
+		   "videogame.price, "
+		   "videogame.monetary_units, "
 		   "videogame.quantity, "
 		   "videogame.location, "
 		   "videogame.quantity - "
@@ -1004,10 +1034,12 @@ void biblioteq_batch_activities::returnItems(void)
 		   "videogame.title, "
 		   "videogame.id, "
 		   "callnumber, "
-		   "videogame.publisher, videogame.rdate, "
+		   "videogame.publisher, "
+		   "videogame.rdate, "
 		   "videogame.genre, "
 		   "videogame.language, "
-		   "videogame.price, videogame.monetary_units, "
+		   "videogame.price, "
+		   "videogame.monetary_units, "
 		   "videogame.quantity, "
 		   "videogame.location, "
 		   "videogame.accession_number, "
@@ -1172,6 +1204,117 @@ void biblioteq_batch_activities::slotDeleteBorrowingRow(void)
 
   for(auto i = rows.size() - 1; i >= 0; i--)
     m_ui.borrow_table->removeRow(rows.at(i));
+
+  QApplication::restoreOverrideCursor();
+}
+
+void biblioteq_batch_activities::slotDiscoverDreamy(void)
+{
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  m_ui.dreamy_table->setRowCount(0);
+
+  QSqlQuery query(m_qmain->getDB());
+  QString search("");
+  auto const ids(QStringList()
+		  << "id"
+		  << "id"
+		  << "id"
+		  << "document_id"
+		  << "id"
+		  << "id"
+		  << "id");
+  auto const list(QStringList()
+		  << "book"
+		  << "cd"
+		  << "dvd"
+		  << "grey_literature"
+		  << "journal"
+		  << "magazine"
+		  << "videogame");
+  auto const text(m_ui.dreamy_member_id->text().trimmed());
+  auto const titles(QStringList()
+		  << "title"
+		  << "title"
+		  << "title"
+		  << "document_title"
+		  << "title"
+		  << "title"
+		  << "title");
+  auto const types(QStringList()
+		  << "Book"
+		  << "CD"
+		  << "DVD"
+		  << "Grey Literature"
+		  << "Journal"
+		  << "Magazine"
+		  << "Video Game");
+
+  query.setForwardOnly(true);
+
+  for(int i = 0; i < list.size(); i++)
+    {
+      search.append
+	(QString("SELECT DISTINCT "
+		 "item_borrower.duedate, "
+		 "item_borrower.reserved_date, "
+		 "%1.%2, "
+		 "%1.%3, "
+		 "member.memberid, "
+		 "member.last_name || ', ' || member.first_name AS name, "
+		 "%1.type "
+		 "FROM "
+		 "member, "
+		 "%1 LEFT JOIN item_borrower ON "
+		 "%1.myoid = item_borrower.item_oid AND "
+		 "item_borrower.type = '%4' "
+		 "WHERE "
+		 "item_borrower.memberid LIKE ? AND "
+		 "item_borrower.memberid = member.memberid "
+		 "GROUP BY "
+		 "item_borrower.duedate, "
+		 "item_borrower.reserved_date, "
+		 "%1.%2, "
+		 "%1.%3, "
+		 "member.memberid, "
+		 "name, "
+		 "%1.type ").
+	 arg(list.at(i)).arg(ids.at(i)).arg(titles.at(i)).arg(types.at(i)));
+
+      if(i != list.size() - 1)
+	search.append("UNION ALL ");
+    }
+
+  search.append("ORDER BY 1");
+  query.prepare(search);
+
+  for(int i = 0; i < list.size(); i++)
+    if(text.isEmpty())
+      query.addBindValue("%");
+    else
+      query.addBindValue(text);
+
+  if(query.exec())
+    {
+      m_ui.dreamy_table->setSortingEnabled(false);
+
+      while(query.next())
+	{
+	  m_ui.dreamy_table->setRowCount(m_ui.dreamy_table->rowCount() + 1);
+
+	  auto const record(query.record());
+
+	  for(int i = 0; i < record.count(); i++)
+	    {
+	      auto item = new QTableWidgetItem
+		(record.field(i).value().toString().trimmed());
+
+	      m_ui.dreamy_table->setItem
+		(m_ui.dreamy_table->rowCount() - 1, i, item);
+	    }
+	}
+
+      m_ui.dreamy_table->setSortingEnabled(true);
+    }
 
   QApplication::restoreOverrideCursor();
 }

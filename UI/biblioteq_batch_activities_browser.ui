@@ -548,6 +548,9 @@
              <property name="horizontalScrollMode">
               <enum>QAbstractItemView::ScrollPerPixel</enum>
              </property>
+             <property name="sortingEnabled">
+              <bool>true</bool>
+             </property>
              <property name="cornerButtonEnabled">
               <bool>false</bool>
              </property>
@@ -570,12 +573,27 @@
              </column>
              <column>
               <property name="text">
+               <string>Reserved Date</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
                <string>Identifier</string>
               </property>
              </column>
              <column>
               <property name="text">
                <string>Title</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Member ID</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Member Name</string>
               </property>
              </column>
              <column>
