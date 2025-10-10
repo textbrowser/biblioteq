@@ -30,7 +30,6 @@
 #include <QFileDialog>
 #include <QProgressDialog>
 #include <QSettings>
-#include <QSqlQueryModel>
 #include <QTextStream>
 #include <QtMath>
 
@@ -103,7 +102,7 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
   connect(m_ui.borrow_member_id,
 	  SIGNAL(textEdited(const QString &)),
 	  this,
-	  SLOT(slotBorrowerMemberIdEdited(const QString &)));
+	  SLOT(slotMemberIdEdited(const QString &)));
   connect(m_ui.borrow_scan,
 	  SIGNAL(returnPressed(void)),
 	  this,
@@ -120,6 +119,18 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(returnPressed(void)),
 	  this,
 	  SLOT(slotScannedDiscover(void)));
+  connect(m_ui.dreamy_member_id,
+	  SIGNAL(editingFinished(void)),
+	  this,
+	  SLOT(slotDiscoverMemberName(void)));
+  connect(m_ui.dreamy_member_id,
+	  SIGNAL(textEdited(const QString &)),
+	  m_ui.dreamy_member_name,
+	  SLOT(clear(void)));
+  connect(m_ui.dreamy_member_id,
+	  SIGNAL(textEdited(const QString &)),
+	  this,
+	  SLOT(slotMemberIdEdited(const QString &)));
   connect(m_ui.export_missing,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -533,10 +544,10 @@ void biblioteq_batch_activities::prepareIcons(void)
 
 void biblioteq_batch_activities::reset(void)
 {
-  delete findChild<QSqlQueryModel *> ("borrow_member_id_completer_model");
-  m_ui.borrow_member_id->completer() ?
-    m_ui.borrow_member_id->completer()->deleteLater() : Q_UNUSED(0);
+  m_memberIdCompleter ? m_memberIdCompleter->deleteLater() : (void) 0;
+  m_memberIdModel ? m_memberIdModel->deleteLater() : (void) 0;
   m_ui.borrow_member_id->setCompleter(nullptr);
+  m_ui.dreamy_member_id->setCompleter(nullptr);
   m_ui.tab->setCurrentIndex(0);
   slotReset();
 }
@@ -1035,18 +1046,25 @@ void biblioteq_batch_activities::show(QMainWindow *parent, const bool center)
   raise();
   m_ui.borrow_member_id->setFocus();
 
-  if(!m_ui.borrow_member_id->completer())
-    {
-      auto completer = new QCompleter(this);
-      auto model = new QSqlQueryModel(this);
+  if(!m_memberIdCompleter)
+    m_memberIdCompleter = new QCompleter(this);
 
-      completer->setCaseSensitivity(Qt::CaseInsensitive);
-      completer->setCompletionColumn(0);
-      completer->setCompletionMode(QCompleter::InlineCompletion);
-      completer->setFilterMode(Qt::MatchContains);
-      completer->setModel(model);
-      m_ui.borrow_member_id->setCompleter(completer);
-      model->setObjectName("borrow_member_id_completer_model");
+  if(!m_memberIdModel)
+    m_memberIdModel = new QSqlQueryModel(this);
+
+  if(m_memberIdCompleter && m_memberIdModel)
+    {
+      m_memberIdCompleter->setCaseSensitivity(Qt::CaseInsensitive);
+      m_memberIdCompleter->setCompletionColumn(0);
+      m_memberIdCompleter->setCompletionMode(QCompleter::InlineCompletion);
+      m_memberIdCompleter->setFilterMode(Qt::MatchContains);
+      m_memberIdCompleter->setModel(m_memberIdModel);
+
+      if(!m_ui.borrow_member_id->completer())
+	m_ui.borrow_member_id->setCompleter(m_memberIdCompleter);
+
+      if(!m_ui.dreamy_member_id->completer())
+	m_ui.dreamy_member_id->setCompleter(m_memberIdCompleter);
     }
 }
 
@@ -1137,36 +1155,6 @@ void biblioteq_batch_activities::slotBorrowItemChanged(QTableWidgetItem *item)
     }
 }
 
-void biblioteq_batch_activities::slotBorrowerMemberIdEdited(const QString &text)
-{
-  if(text.trimmed().isEmpty())
-    return;
-
-  auto model = findChild<QSqlQueryModel *>
-    ("borrow_member_id_completer_model");
-
-  if(!model)
-    return;
-
-  QSqlQuery query(m_qmain->getDB());
-  QString E("");
-
-  if(m_qmain->getDB().driverName() != "QSQLITE")
-    E = "E";
-
-  query.prepare
-    ("SELECT memberid FROM member WHERE "
-     "LOWER(memberid) LIKE " + E + "'%' || ? || '%'");
-  query.addBindValue(text.toLower().trimmed());
-  query.exec();
-  model->clear();
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 2, 0))
-  model->setQuery(std::move(query));
-#else
-  model->setQuery(query);
-#endif
-}
-
 void biblioteq_batch_activities::slotClose(void)
 {
 #ifdef Q_OS_ANDROID
@@ -1190,18 +1178,21 @@ void biblioteq_batch_activities::slotDeleteBorrowingRow(void)
 
 void biblioteq_batch_activities::slotDiscoverMemberName(void)
 {
-  if(m_ui.borrow_member_id == sender())
+  if(m_ui.borrow_member_id == sender() || m_ui.dreamy_member_id == sender())
     {
       QApplication::setOverrideCursor(Qt::WaitCursor);
 
       QString errorstr("");
-      auto const name(biblioteq_misc_functions::
-		      getMemberName(m_qmain->getDB(),
-				    m_ui.borrow_member_id->text(),
-				    errorstr));
+      auto const name
+	(biblioteq_misc_functions::
+	 getMemberName(m_qmain->getDB(),
+		       qobject_cast<QLineEdit *> (sender())->text(),
+		       errorstr));
+      auto widget = m_ui.borrow_member_id == sender() ?
+	m_ui.borrow_member_name : m_ui.dreamy_member_name;
 
-      m_ui.borrow_member_name->setText(name);
-      m_ui.borrow_member_name->setCursorPosition(0);
+      widget->setText(name);
+      widget->setCursorPosition(0);
       QApplication::restoreOverrideCursor();
     }
 }
@@ -1654,6 +1645,30 @@ void biblioteq_batch_activities::slotMediaStatusChanged
 }
 #endif
 
+void biblioteq_batch_activities::slotMemberIdEdited(const QString &text)
+{
+  if(m_memberIdModel == nullptr || text.trimmed().isEmpty())
+    return;
+
+  QSqlQuery query(m_qmain->getDB());
+  QString E("");
+
+  if(m_qmain->getDB().driverName() != "QSQLITE")
+    E = "E";
+
+  query.prepare
+    ("SELECT memberid FROM member WHERE "
+     "LOWER(memberid) LIKE " + E + "'%' || ? || '%'");
+  query.addBindValue(text.toLower().trimmed());
+  query.exec();
+  m_memberIdModel->clear();
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 2, 0))
+  m_memberIdModel->setQuery(std::move(query));
+#else
+  m_memberIdModel->setQuery(query);
+#endif
+}
+
 void biblioteq_batch_activities::slotPageIndexChanged(int index)
 {
   m_ui.go->setEnabled(index != static_cast<int> (Pages::Discover));
@@ -1679,9 +1694,9 @@ void biblioteq_batch_activities::slotReset(void)
 	  }
 
       m_ui.borrow_member_id->clear();
+      m_ui.borrow_member_id->setFocus();
       m_ui.borrow_member_name->clear();
       m_ui.borrow_scan->clear();
-      m_ui.borrow_scan->setFocus();
       m_ui.borrow_scan_type->setCurrentIndex(0);
       m_ui.borrow_table->clearContents();
       m_ui.borrow_table->setRowCount(0);
@@ -1694,6 +1709,27 @@ void biblioteq_batch_activities::slotReset(void)
       m_ui.discover_scan->setFocus();
       m_ui.discover_table->clearContents();
       m_ui.discover_table->setRowCount(0);
+    }
+
+  if(!sender() ||
+     m_ui.tab->currentIndex() == static_cast<int> (Pages::DreamyExtensions))
+    {
+      if(m_ui.dreamy_table->rowCount() > 0 && sender())
+	if(QMessageBox::question(this,
+				 tr("BiblioteQ: Question"),
+				 tr("Are you sure that you wish to reset?"),
+				 QMessageBox::No | QMessageBox::Yes,
+				 QMessageBox::No) == QMessageBox::No)
+	  {
+	    QApplication::processEvents();
+	    return;
+	  }
+
+      m_ui.dreamy_member_id->clear();
+      m_ui.dreamy_member_id->setFocus();
+      m_ui.dreamy_member_name->clear();
+      m_ui.dreamy_table->clearContents();
+      m_ui.dreamy_table->setRowCount(0);
     }
 
   if(!sender() ||

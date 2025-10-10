@@ -35,6 +35,8 @@
 #endif
 #include <QMediaPlayer>
 #endif
+#include <QPointer>
+#include <QSqlQueryModel>
 
 #include "ui_biblioteq_batch_activities_browser.h"
 
@@ -72,9 +74,12 @@ class biblioteq_batch_activities: public QMainWindow
     {
       Borrow = 0,
       Discover = 1,
-      Return = 2
+      DreamyExtensions = 2,
+      Return = 3
     };
 
+  QPointer<QCompleter> m_memberIdCompleter;
+  QPointer<QSqlQueryModel> m_memberIdModel;
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
 #ifdef BIBLIOTEQ_AUDIO_SUPPORTED
   QScopedPointer<QAudioOutput> m_audioOutput;
@@ -95,7 +100,6 @@ class biblioteq_batch_activities: public QMainWindow
   void slotAddBorrowingRow(void);
   void slotAudioEnabled(void);
   void slotBorrowItemChanged(QTableWidgetItem *item);
-  void slotBorrowerMemberIdEdited(const QString &text);
   void slotClose(void);
   void slotDeleteBorrowingRow(void);
   void slotDiscoverMemberName(void);
@@ -108,6 +112,7 @@ class biblioteq_batch_activities: public QMainWindow
   void slotMediaError(QMediaPlayer::Error error, const QString &errorString);
   void slotMediaStatusChanged(QMediaPlayer::MediaStatus status);
 #endif
+  void slotMemberIdEdited(const QString &text);
   void slotPageIndexChanged(int index);
   void slotReset(void);
   void slotScanBorrowingTimerTimeout(void);
