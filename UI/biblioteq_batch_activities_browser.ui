@@ -601,6 +601,11 @@
                <string>Type</string>
               </property>
              </column>
+             <column>
+              <property name="text">
+               <string>OID (Hidden)</string>
+              </property>
+             </column>
             </widget>
            </item>
            <item>

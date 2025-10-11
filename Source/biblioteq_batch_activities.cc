@@ -159,6 +159,8 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SLOT(slotPageIndexChanged(int)));
   m_ui.dreamy_table->horizontalHeader()->setSortIndicator
     (0, Qt::AscendingOrder);
+  m_ui.dreamy_table->setColumnHidden
+    (m_ui.dreamy_table->columnCount() - 1, true);
   prepareIcons();
   slotPageIndexChanged(m_ui.tab->currentIndex());
 }
@@ -1261,7 +1263,8 @@ void biblioteq_batch_activities::slotDiscoverDreamy(void)
 		 "%1.%3, "
 		 "member.memberid, "
 		 "member.last_name || ', ' || member.first_name AS name, "
-		 "%1.type "
+		 "%1.type, "
+		 "item_borrower.myoid "
 		 "FROM "
 		 "member, "
 		 "%1 LEFT JOIN item_borrower ON "
@@ -1277,14 +1280,14 @@ void biblioteq_batch_activities::slotDiscoverDreamy(void)
 		 "%1.%3, "
 		 "member.memberid, "
 		 "name, "
-		 "%1.type ").
+		 "%1.type, "
+		 "item_borrower.myoid ").
 	 arg(list.at(i)).arg(ids.at(i)).arg(titles.at(i)).arg(types.at(i)));
 
       if(i != list.size() - 1)
 	search.append("UNION ALL ");
     }
 
-  search.append("ORDER BY 1");
   query.prepare(search);
 
   for(int i = 0; i < list.size(); i++)
@@ -1308,6 +1311,7 @@ void biblioteq_batch_activities::slotDiscoverDreamy(void)
 	      auto item = new QTableWidgetItem
 		(record.field(i).value().toString().trimmed());
 
+	      item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable :
 	      m_ui.dreamy_table->setItem
 		(m_ui.dreamy_table->rowCount() - 1, i, item);
 	    }
