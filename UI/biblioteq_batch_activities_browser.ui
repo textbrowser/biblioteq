@@ -598,12 +598,17 @@
              </column>
              <column>
               <property name="text">
+               <string>Administrator</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
                <string>Type</string>
               </property>
              </column>
              <column>
               <property name="text">
-               <string>OID (Hidden)</string>
+               <string>MYOID (Hidden)</string>
               </property>
              </column>
             </widget>

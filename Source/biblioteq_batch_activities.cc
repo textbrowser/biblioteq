@@ -1263,6 +1263,7 @@ void biblioteq_batch_activities::slotDiscoverDreamy(void)
 		 "%1.%3, "
 		 "member.memberid, "
 		 "member.last_name || ', ' || member.first_name AS name, "
+		 "item_borrower.reserved_by, "
 		 "%1.type, "
 		 "item_borrower.myoid "
 		 "FROM "
@@ -1280,6 +1281,7 @@ void biblioteq_batch_activities::slotDiscoverDreamy(void)
 		 "%1.%3, "
 		 "member.memberid, "
 		 "name, "
+		 "item_borrower.reserved_by, "
 		 "%1.type, "
 		 "item_borrower.myoid ").
 	 arg(list.at(i)).arg(ids.at(i)).arg(titles.at(i)).arg(types.at(i)));
@@ -1311,7 +1313,7 @@ void biblioteq_batch_activities::slotDiscoverDreamy(void)
 	      auto item = new QTableWidgetItem
 		(record.field(i).value().toString().trimmed());
 
-	      item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable :
+	      item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 	      m_ui.dreamy_table->setItem
 		(m_ui.dreamy_table->rowCount() - 1, i, item);
 	    }
