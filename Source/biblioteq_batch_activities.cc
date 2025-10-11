@@ -51,6 +51,8 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 #ifndef BIBLIOTEQ_AUDIO_SUPPORTED
   m_ui.audio->setChecked(false);
   m_ui.audio->setEnabled(false);
+  m_ui.audio->setToolTip
+    (tr("BiblioteQ was not created with multimedia libraries."));
 #else
   m_ui.audio->setChecked
     (QSettings().value("otheroptions/batch_activities_audio", false).toBool());
@@ -161,6 +163,11 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
     (0, Qt::AscendingOrder);
   m_ui.dreamy_table->setColumnHidden
     (m_ui.dreamy_table->columnCount() - 1, true);
+  m_ui.tab->setCurrentIndex
+    (qBound(0,
+	    QSettings().value("otheroptions/batch_activities_page_index").
+	    toInt(),
+	    m_ui.tab->count() - 1));
   prepareIcons();
   slotPageIndexChanged(m_ui.tab->currentIndex());
 }
@@ -558,7 +565,6 @@ void biblioteq_batch_activities::reset(void)
   m_memberIdModel ? m_memberIdModel->deleteLater() : (void) 0;
   m_ui.borrow_member_id->setCompleter(nullptr);
   m_ui.dreamy_member_id->setCompleter(nullptr);
-  m_ui.tab->setCurrentIndex(0);
   slotReset();
 }
 
@@ -1820,6 +1826,7 @@ void biblioteq_batch_activities::slotMemberIdEdited(const QString &text)
 
 void biblioteq_batch_activities::slotPageIndexChanged(int index)
 {
+  QSettings().setValue("otheroptions/batch_activities_page_index", index);
   m_ui.go->setEnabled(index != static_cast<int> (Pages::Discover));
 }
 
