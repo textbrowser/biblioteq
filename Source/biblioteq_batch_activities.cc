@@ -1106,6 +1106,8 @@ void biblioteq_batch_activities::show(QMainWindow *parent, const bool center)
       if(!m_ui.dreamy_member_id->completer())
 	m_ui.dreamy_member_id->setCompleter(m_memberIdCompleter);
     }
+
+  m_ui.dreamy_date->setDate(QDate::currentDate());
 }
 
 void biblioteq_batch_activities::slotAddBorrowingRow(void)
