@@ -43,6 +43,41 @@ QColor biblioteq_batch_activities::s_notSoOkColor =
 QColor biblioteq_batch_activities::s_okColor =
   QColor(144, 238, 144); // Green light.
 
+biblioteq_batch_activities_item_delegate::
+biblioteq_batch_activities_item_delegate(QObject *parent):
+  QStyledItemDelegate(parent)
+{
+}
+
+QWidget *biblioteq_batch_activities_item_delegate::createEditor
+(QWidget *parent,
+ const QStyleOptionViewItem &option,
+ const QModelIndex &index) const
+{
+  switch(index.column())
+    {
+    case static_cast<int> (biblioteq_batch_activities::
+			   DreamyTableColumns::
+			   NEW_RETURN_DATE):
+      {
+	auto editor = new QDateEdit(parent);
+
+	editor->setCalendarPopup(true);
+	editor->setDate
+	  (QDate::fromString(index.data().toString().trimmed(),
+			     biblioteq::s_databaseDateFormat));
+	return editor;
+      }
+    default:
+      {
+	break;
+      }
+    }
+
+  return QStyledItemDelegate::createEditor(parent, option, index);
+}
+
+
 biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
   QMainWindow(parent)
 {
@@ -160,9 +195,13 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  this,
 	  SLOT(slotPageIndexChanged(int)));
   m_ui.dreamy_table->horizontalHeader()->setSortIndicator
-    (0, Qt::AscendingOrder);
+    (static_cast<int> (DreamyTableColumns::NEW_RETURN_DATE),
+     Qt::AscendingOrder);
   m_ui.dreamy_table->setColumnHidden
     (m_ui.dreamy_table->columnCount() - 1, true);
+  m_ui.dreamy_table->setItemDelegateForColumn
+    (static_cast<int> (DreamyTableColumns::NEW_RETURN_DATE),
+     new biblioteq_batch_activities_item_delegate(this));
   m_ui.tab->setCurrentIndex
     (qBound(0,
 	    QSettings().value("otheroptions/batch_activities_page_index").
@@ -1321,7 +1360,13 @@ void biblioteq_batch_activities::slotDiscoverDreamy(void)
 	      auto item = new QTableWidgetItem
 		(record.field(i).value().toString().trimmed());
 
-	      item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+	      if(i == static_cast<int> (DreamyTableColumns::NEW_RETURN_DATE))
+		item->setFlags(Qt::ItemIsEditable |
+			       Qt::ItemIsEnabled |
+			       Qt::ItemIsSelectable);
+	      else
+		item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+
 	      m_ui.dreamy_table->setItem
 		(m_ui.dreamy_table->rowCount() - 1, i, item);
 	    }

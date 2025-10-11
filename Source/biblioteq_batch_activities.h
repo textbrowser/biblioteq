@@ -37,6 +37,7 @@
 #endif
 #include <QPointer>
 #include <QSqlQueryModel>
+#include <QStyledItemDelegate>
 
 #include "ui_biblioteq_batch_activities_browser.h"
 
@@ -47,6 +48,11 @@ class biblioteq_batch_activities: public QMainWindow
   Q_OBJECT
 
  public:
+  enum class DreamyTableColumns
+    {
+      NEW_RETURN_DATE = 0
+    };
+
   biblioteq_batch_activities(biblioteq *parent);
   ~biblioteq_batch_activities();
   void prepareIcons(void);
@@ -126,6 +132,17 @@ class biblioteq_batch_activities: public QMainWindow
 
  signals:
   void listMembersReservedItems(const QString &id);
+};
+
+class biblioteq_batch_activities_item_delegate: public QStyledItemDelegate
+{
+  Q_OBJECT
+
+ public:
+  biblioteq_batch_activities_item_delegate(QObject *parent);
+  QWidget *createEditor(QWidget *parent,
+			const QStyleOptionViewItem &option,
+			const QModelIndex &index) const;
 };
 
 #endif
