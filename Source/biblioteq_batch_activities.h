@@ -50,7 +50,8 @@ class biblioteq_batch_activities: public QMainWindow
  public:
   enum class DreamyTableColumns
     {
-      NEW_RETURN_DATE = 0
+      NEW_RETURN_DATE = 0,
+      RESERVED_DATE = 1
     };
 
   biblioteq_batch_activities(biblioteq *parent);

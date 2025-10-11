@@ -1357,16 +1357,23 @@ void biblioteq_batch_activities::slotDiscoverDreamy(void)
 
 	  for(int i = 0; i < record.count(); i++)
 	    {
-	      auto item = new QTableWidgetItem
-		(record.field(i).value().toString().trimmed());
+	      auto item = new QTableWidgetItem();
+	      auto text(record.field(i).value().toString().trimmed());
 
-	      if(i == static_cast<int> (DreamyTableColumns::NEW_RETURN_DATE))
-		item->setFlags(Qt::ItemIsEditable |
-			       Qt::ItemIsEnabled |
-			       Qt::ItemIsSelectable);
+	      if(i == static_cast<int> (DreamyTableColumns::NEW_RETURN_DATE) ||
+		 i == static_cast<int> (DreamyTableColumns::RESERVED_DATE))
+		{
+		  item->setFlags(Qt::ItemIsEditable |
+				 Qt::ItemIsEnabled |
+				 Qt::ItemIsSelectable);
+		  text = QLocale().toString
+		    (QDate::fromString(text, biblioteq::s_databaseDateFormat),
+		     QLocale::ShortFormat);
+		}
 	      else
 		item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 
+	      item->setText(text);
 	      m_ui.dreamy_table->setItem
 		(m_ui.dreamy_table->rowCount() - 1, i, item);
 	    }
