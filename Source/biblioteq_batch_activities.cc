@@ -1935,6 +1935,7 @@ void biblioteq_batch_activities::slotReset(void)
 	    return;
 	  }
 
+      m_ui.dreamy_date->setDate(QDate::currentDate());
       m_ui.dreamy_member_id->clear();
       m_ui.dreamy_member_id->setFocus();
       m_ui.dreamy_member_name->clear();
