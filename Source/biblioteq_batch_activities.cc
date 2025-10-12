@@ -67,7 +67,9 @@ QWidget *biblioteq_batch_activities_item_delegate::createEditor
 	  (QDate::fromString(index.data().toString().trimmed(),
 			     QLocale().dateFormat(QLocale::LongFormat)));
 	editor->setDisplayFormat(QLocale().dateFormat(QLocale::LongFormat));
-	editor->setMinimumDate(editor->date());
+	editor->setMinimumDate
+	  (QDate::fromString(index.data(Qt::UserRole).toString().trimmed(),
+			     QLocale().dateFormat(QLocale::LongFormat)));
 	return editor;
       }
     default:
@@ -1390,6 +1392,7 @@ void biblioteq_batch_activities::slotDiscoverDreamy(void)
 	      else
 		item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 
+	      item->setData(Qt::UserRole, text);
 	      item->setText(text);
 	      m_ui.dreamy_table->setItem
 		(m_ui.dreamy_table->rowCount() - 1, i, item);
