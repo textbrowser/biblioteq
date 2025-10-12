@@ -141,6 +141,7 @@ class biblioteq_batch_activities_item_delegate: public QStyledItemDelegate
 
  public:
   biblioteq_batch_activities_item_delegate(QObject *parent);
+  QString displayText(const QVariant &value, const QLocale &locale) const;
   QWidget *createEditor(QWidget *parent,
 			const QStyleOptionViewItem &option,
 			const QModelIndex &index) const;

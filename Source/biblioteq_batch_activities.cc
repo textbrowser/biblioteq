@@ -65,7 +65,9 @@ QWidget *biblioteq_batch_activities_item_delegate::createEditor
 	editor->setCalendarPopup(true);
 	editor->setDate
 	  (QDate::fromString(index.data().toString().trimmed(),
-			     biblioteq::s_databaseDateFormat));
+			     QLocale().dateFormat(QLocale::LongFormat)));
+	editor->setDisplayFormat(QLocale().dateFormat(QLocale::LongFormat));
+	editor->setMinimumDate(editor->date());
 	return editor;
       }
     default:
@@ -77,6 +79,14 @@ QWidget *biblioteq_batch_activities_item_delegate::createEditor
   return QStyledItemDelegate::createEditor(parent, option, index);
 }
 
+QString biblioteq_batch_activities_item_delegate::displayText
+(const QVariant &value, const QLocale &locale) const
+{
+  if(value.type() == QVariant::String)
+    return value.toString();
+  else
+    return locale.toString(value.toDate(), QLocale::LongFormat);
+}
 
 biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
   QMainWindow(parent)
@@ -194,6 +204,8 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(currentChanged(int)),
 	  this,
 	  SLOT(slotPageIndexChanged(int)));
+  m_ui.dreamy_date->setDisplayFormat
+    (QLocale().dateFormat(QLocale::LongFormat));
   m_ui.dreamy_table->horizontalHeader()->setSortIndicator
     (static_cast<int> (DreamyTableColumns::NEW_RETURN_DATE),
      Qt::AscendingOrder);
@@ -1363,12 +1375,17 @@ void biblioteq_batch_activities::slotDiscoverDreamy(void)
 	      if(i == static_cast<int> (DreamyTableColumns::NEW_RETURN_DATE) ||
 		 i == static_cast<int> (DreamyTableColumns::RESERVED_DATE))
 		{
-		  item->setFlags(Qt::ItemIsEditable |
-				 Qt::ItemIsEnabled |
-				 Qt::ItemIsSelectable);
+		  if(i ==
+		     static_cast<int> (DreamyTableColumns::NEW_RETURN_DATE))
+		    item->setFlags(Qt::ItemIsEditable |
+				   Qt::ItemIsEnabled |
+				   Qt::ItemIsSelectable);
+		  else
+		    item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+
 		  text = QLocale().toString
 		    (QDate::fromString(text, biblioteq::s_databaseDateFormat),
-		     QLocale::ShortFormat);
+		     QLocale::LongFormat);
 		}
 	      else
 		item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
