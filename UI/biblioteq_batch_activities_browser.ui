@@ -593,6 +593,11 @@
              </column>
              <column>
               <property name="text">
+               <string>Accession Number</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
                <string>Title</string>
               </property>
              </column>

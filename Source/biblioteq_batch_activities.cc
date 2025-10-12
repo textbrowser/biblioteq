@@ -1285,6 +1285,14 @@ void biblioteq_batch_activities::slotDiscoverDreamy(void)
 
   QSqlQuery query(m_qmain->getDB());
   QString search("");
+  auto const ans(QStringList()
+		 << "accession_number"
+		 << "accession_number"
+		 << "accession_number"
+		 << "job_number"
+		 << "accession_number"
+		 << "accession_number"
+		 << "accession_number");
   auto const ids(QStringList()
 		  << "id"
 		  << "id"
@@ -1329,6 +1337,7 @@ void biblioteq_batch_activities::slotDiscoverDreamy(void)
 		 "item_borrower.reserved_date, "
 		 "%1.%2, "
 		 "%1.%3, "
+		 "%1.%4, "
 		 "member.memberid, "
 		 "member.last_name || ', ' || member.first_name AS name, "
 		 "item_borrower.reserved_by, "
@@ -1338,7 +1347,7 @@ void biblioteq_batch_activities::slotDiscoverDreamy(void)
 		 "member, "
 		 "%1 LEFT JOIN item_borrower ON "
 		 "%1.myoid = item_borrower.item_oid AND "
-		 "item_borrower.type = '%4' "
+		 "item_borrower.type = '%5' "
 		 "WHERE "
 		 "item_borrower.memberid LIKE ? AND "
 		 "item_borrower.memberid = member.memberid "
@@ -1347,12 +1356,17 @@ void biblioteq_batch_activities::slotDiscoverDreamy(void)
 		 "item_borrower.reserved_date, "
 		 "%1.%2, "
 		 "%1.%3, "
+		 "%1.%4, "
 		 "member.memberid, "
 		 "name, "
 		 "item_borrower.reserved_by, "
 		 "%1.type, "
 		 "item_borrower.myoid ").
-	 arg(list.at(i)).arg(ids.at(i)).arg(titles.at(i)).arg(types.at(i)));
+	 arg(list.at(i)).
+	 arg(ids.at(i)).
+	 arg(ans.at(i)).
+	 arg(titles.at(i)).
+	 arg(types.at(i)));
 
       if(i != list.size() - 1)
 	search.append("UNION ALL ");
