@@ -14,6 +14,10 @@ BIBLIOTEQ_ESCAPE_SINGLE_QUOTE
 
 Escape the single quote before executing an SQL query.
 
+BIBLIOTEQ_GUEST_ACCOUNT
+
+The guest account for PostgreSQL.
+
 BIBLIOTEQ_LINKED_WITH_POPPLER
 BIBLIOTEQ_LINKED_WITH_POPPLER5 (Qt 5)
 BIBLIOTEQ_LINKED_WITH_POPPLER6 (Qt 6)
@@ -30,8 +34,8 @@ Location of the libpq library on MacOS.
 
 BIBLIOTEQ_NON_PORTABLE
 
-Define if BiblioteQ should write data to some
-application-specific location.
+Define if BiblioteQ should write data to some application-specific
+location.
 
 BIBLIOTEQ_POPPLER_VERSION_DEFINED
 

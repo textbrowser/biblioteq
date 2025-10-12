@@ -1,5 +1,5 @@
 Please verify that translations are consistent. BiblioteQ requires
-correct table column headers in order to locate columns. If a translation
+correct table column headers for locating columns. If a translation
 is not consistent, correct columns will not be located.
 
 https://doc.qt.io/qt/linguist-manager.html
