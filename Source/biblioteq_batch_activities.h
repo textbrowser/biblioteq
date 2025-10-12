@@ -111,6 +111,7 @@ class biblioteq_batch_activities: public QMainWindow
   void slotDeleteBorrowingRow(void);
   void slotDiscoverDreamy(void);
   void slotDiscoverMemberName(void);
+  void slotDreamyGo(void);
   void slotExportMissing(void);
   void slotGo(void);
   void slotListDiscoveredItems(void);

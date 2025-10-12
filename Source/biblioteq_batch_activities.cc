@@ -84,10 +84,10 @@ QWidget *biblioteq_batch_activities_item_delegate::createEditor
 QString biblioteq_batch_activities_item_delegate::displayText
 (const QVariant &value, const QLocale &locale) const
 {
-  if(value.type() == QVariant::String)
-    return value.toString();
-  else
+  if(value.type() == QVariant::Date)
     return locale.toString(value.toDate(), QLocale::LongFormat);
+  else
+    return value.toString();
 }
 
 biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
@@ -170,6 +170,10 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(returnPressed(void)),
 	  this,
 	  SLOT(slotScannedDiscover(void)));
+  connect(m_ui.dreamy_go,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotDreamyGo(void)));
   connect(m_ui.dreamy_member_id,
 	  SIGNAL(editingFinished(void)),
 	  this,
@@ -592,6 +596,8 @@ void biblioteq_batch_activities::prepareIcons(void)
       m_ui.borrow_list->setIcon(QIcon(":/32x32/stamp.png"));
       m_ui.close->setIcon
 	(QIcon::fromTheme("window-close", QIcon(":/32x32/cancel.png")));
+      m_ui.dreamy_go->setIcon
+	(QIcon::fromTheme("dialog-ok", QIcon(":/32x32/ok.png")));
       m_ui.export_missing->setIcon
 	(QIcon::fromTheme("document-save-as", QIcon(":/32x32/save.png")));
       m_ui.go->setIcon(QIcon::fromTheme("dialog-ok", QIcon(":/32x32/ok.png")));
@@ -606,6 +612,7 @@ void biblioteq_batch_activities::prepareIcons(void)
       m_ui.borrow_delete_row->setIcon(QIcon(":/16x16/eraser.png"));
       m_ui.borrow_list->setIcon(QIcon(":/32x32/stamp.png"));
       m_ui.close->setIcon(QIcon(":/32x32/cancel.png"));
+      m_ui.dreamy_go->setIcon(QIcon(":/32x32/ok.png"));
       m_ui.export_missing->setIcon(QIcon(":/32x32/save.png"));
       m_ui.go->setIcon(QIcon(":/32x32/ok.png"));
       m_ui.reset->setIcon(QIcon(":/32x32/reload.png"));
@@ -1424,6 +1431,33 @@ void biblioteq_batch_activities::slotDiscoverMemberName(void)
       widget->setCursorPosition(0);
       QApplication::restoreOverrideCursor();
     }
+}
+
+void biblioteq_batch_activities::slotDreamyGo(void)
+{
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  m_ui.dreamy_table->setSortingEnabled(false);
+
+  auto const dreamy(m_ui.dreamy_date->date());
+
+  for(int i = 0; i < m_ui.dreamy_table->rowCount(); i++)
+    {
+      auto item = m_ui.dreamy_table->item
+	(i, static_cast<int> (DreamyTableColumns::NEW_RETURN_DATE));
+
+      if(!item)
+	continue;
+
+      auto const date
+	(QDate::fromString(item->data(Qt::UserRole).toString().trimmed(),
+			   QLocale().dateFormat(QLocale::LongFormat)));
+
+      if(date <= dreamy)
+	item->setText(QLocale().toString(dreamy, QLocale::LongFormat));
+    }
+
+  m_ui.dreamy_table->setSortingEnabled(true);
+  QApplication::restoreOverrideCursor();
 }
 
 void biblioteq_batch_activities::slotExportMissing(void)
