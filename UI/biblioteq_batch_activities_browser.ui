@@ -648,7 +648,7 @@
              <item>
               <widget class="QToolButton" name="dreamy_go">
                <property name="toolTip">
-                <string>Go! (Current Page)</string>
+                <string>Set All New Return Dates!</string>
                </property>
                <property name="text">
                 <string/>
