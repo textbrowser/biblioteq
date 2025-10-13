@@ -1416,8 +1416,6 @@ void biblioteq_batch_activities::slotDiscoverDreamy(void)
 
   if(query.exec())
     {
-      auto const now(QDate::currentDate());
-
       m_ui.dreamy_table->setSortingEnabled(false);
 
       while(query.next())
@@ -1436,17 +1434,9 @@ void biblioteq_batch_activities::slotDiscoverDreamy(void)
 		{
 		  if(i ==
 		     static_cast<int> (DreamyTableColumns::NEW_RETURN_DATE))
-		    {
-		      auto const date
-			(QDate::fromString(text,
-					   biblioteq::s_databaseDateFormat));
-
-		      date < now ?
-			item->setBackground(s_notSoOkColor) : (void) 0;
-		      item->setFlags(Qt::ItemIsEditable |
-				     Qt::ItemIsEnabled |
-				     Qt::ItemIsSelectable);
-		    }
+		    item->setFlags(Qt::ItemIsEditable |
+				   Qt::ItemIsEnabled |
+				   Qt::ItemIsSelectable);
 		  else
 		    item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 
