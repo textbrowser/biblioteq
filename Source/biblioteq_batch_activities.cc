@@ -1331,42 +1331,76 @@ void biblioteq_batch_activities::slotDiscoverDreamy(void)
 
   for(int i = 0; i < list.size(); i++)
     {
-      search.append
-	(QString("SELECT DISTINCT "
-		 "item_borrower.duedate, "
-		 "item_borrower.reserved_date, "
-		 "%1.%2, "
-		 "%1.%3, "
-		 "%1.%4, "
-		 "member.memberid, "
-		 "member.last_name || ', ' || member.first_name AS name, "
-		 "item_borrower.reserved_by, "
-		 "%1.type, "
-		 "item_borrower.myoid "
-		 "FROM "
-		 "member, "
-		 "%1 LEFT JOIN item_borrower ON "
-		 "%1.myoid = item_borrower.item_oid AND "
-		 "item_borrower.type = '%5' "
-		 "WHERE "
-		 "item_borrower.memberid LIKE ? AND "
-		 "item_borrower.memberid = member.memberid "
-		 "GROUP BY "
-		 "item_borrower.duedate, "
-		 "item_borrower.reserved_date, "
-		 "%1.%2, "
-		 "%1.%3, "
-		 "%1.%4, "
-		 "member.memberid, "
-		 "name, "
-		 "item_borrower.reserved_by, "
-		 "%1.type, "
-		 "item_borrower.myoid ").
-	 arg(list.at(i)).
-	 arg(ids.at(i)).
-	 arg(ans.at(i)).
-	 arg(titles.at(i)).
-	 arg(types.at(i)));
+      if(list.at(i) == "book")
+	search.append
+	  ("SELECT DISTINCT "
+	   "item_borrower.duedate, "
+	   "item_borrower.reserved_date, "
+	   "COALESCE(NULLIF(book.id, ''), NULLIF(book.isbn13, ''), '') "
+	   "AS isbn, "
+	   "book.accession_number, "
+	   "book.title, "
+	   "member.memberid, "
+	   "member.last_name || ', ' || member.first_name AS name, "
+	   "item_borrower.reserved_by, "
+	   "book.type, "
+	   "item_borrower.myoid "
+	   "FROM "
+	   "member, "
+	   "book LEFT JOIN item_borrower ON "
+	   "book.myoid = item_borrower.item_oid AND "
+	   "item_borrower.type = 'Book' "
+	   "WHERE "
+	   "item_borrower.memberid LIKE ? AND "
+	   "item_borrower.memberid = member.memberid "
+	   "GROUP BY "
+	   "item_borrower.duedate, "
+	   "item_borrower.reserved_date, "
+	   "isbn, "
+	   "book.accession_number, "
+	   "book.title, "
+	   "member.memberid, "
+	   "name, "
+	   "item_borrower.reserved_by, "
+	   "book.type, "
+	   "item_borrower.myoid ");
+      else
+	search.append
+	  (QString("SELECT DISTINCT "
+		   "item_borrower.duedate, "
+		   "item_borrower.reserved_date, "
+		   "%1.%2, "
+		   "%1.%3, "
+		   "%1.%4, "
+		   "member.memberid, "
+		   "member.last_name || ', ' || member.first_name AS name, "
+		   "item_borrower.reserved_by, "
+		   "%1.type, "
+		   "item_borrower.myoid "
+		   "FROM "
+		   "member, "
+		   "%1 LEFT JOIN item_borrower ON "
+		   "%1.myoid = item_borrower.item_oid AND "
+		   "item_borrower.type = '%5' "
+		   "WHERE "
+		   "item_borrower.memberid LIKE ? AND "
+		   "item_borrower.memberid = member.memberid "
+		   "GROUP BY "
+		   "item_borrower.duedate, "
+		   "item_borrower.reserved_date, "
+		   "%1.%2, "
+		   "%1.%3, "
+		   "%1.%4, "
+		   "member.memberid, "
+		   "name, "
+		   "item_borrower.reserved_by, "
+		   "%1.type, "
+		   "item_borrower.myoid ").
+	   arg(list.at(i)).
+	   arg(ids.at(i)).
+	   arg(ans.at(i)).
+	   arg(titles.at(i)).
+	   arg(types.at(i)));
 
       if(i != list.size() - 1)
 	search.append("UNION ALL ");
