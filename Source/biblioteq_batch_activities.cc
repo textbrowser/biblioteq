@@ -81,13 +81,21 @@ QWidget *biblioteq_batch_activities_item_delegate::createEditor
   return QStyledItemDelegate::createEditor(parent, option, index);
 }
 
-QString biblioteq_batch_activities_item_delegate::displayText
-(const QVariant &value, const QLocale &locale) const
+void biblioteq_batch_activities_item_delegate::
+setModelData(QWidget *editor,
+	     QAbstractItemModel *model,
+	     const QModelIndex &index) const
 {
-  if(value.type() == QVariant::Date)
-    return locale.toString(value.toDate(), QLocale::LongFormat);
-  else
-    return value.toString();
+  auto date = qobject_cast<QDateEdit *> (editor);
+
+  if(date && model)
+    {
+      model->setData
+	(index, QLocale().toString(date->date(), QLocale::LongFormat));
+      return;
+    }
+
+  QStyledItemDelegate::setModelData(editor, model, index);
 }
 
 biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
@@ -537,6 +545,36 @@ void biblioteq_batch_activities::closeEvent(QCloseEvent *event)
 
 void biblioteq_batch_activities::discover(void)
 {
+}
+
+void biblioteq_batch_activities::dreamyExtensions(void)
+{
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  for(int i = 0; i < m_ui.dreamy_table->rowCount(); i++)
+    {
+      auto item1 = m_ui.dreamy_table->item
+	(i, static_cast<int> (DreamyTableColumns::NEW_RETURN_DATE));
+      auto item2 = m_ui.dreamy_table->item
+	(i, static_cast<int> (DreamyTableColumns::MYOID));
+
+      if(!item1 || !item2)
+	continue;
+
+      QSqlQuery query(m_qmain->getDB());
+
+      query.prepare("UPDATE item_borrower SET duedate = ? WHERE myoid = ?");
+      query.addBindValue
+	(QDate::fromString(item1->text(),
+			   QLocale().dateFormat(QLocale::LongFormat)).
+	 toString(biblioteq::s_databaseDateFormat));
+      query.addBindValue(item2->text());
+
+      if(query.exec())
+	item1->setData(Qt::UserRole, item1->text());
+    }
+
+  QApplication::restoreOverrideCursor();
 }
 
 void biblioteq_batch_activities::play(const QString &file)
@@ -1616,6 +1654,11 @@ void biblioteq_batch_activities::slotGo(void)
     case Pages::Discover:
       {
 	discover();
+	break;
+      }
+    case Pages::DreamyExtensions:
+      {
+	dreamyExtensions();
 	break;
       }
     case Pages::Return:

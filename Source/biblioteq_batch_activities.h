@@ -50,6 +50,7 @@ class biblioteq_batch_activities: public QMainWindow
  public:
   enum class DreamyTableColumns
     {
+      MYOID = 9,
       NEW_RETURN_DATE = 0,
       RESERVED_DATE = 1
     };
@@ -100,6 +101,7 @@ class biblioteq_batch_activities: public QMainWindow
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
   void discover(void);
+  void dreamyExtensions(void);
   void play(const QString &file);
   void returnItems(void);
 
@@ -142,10 +144,14 @@ class biblioteq_batch_activities_item_delegate: public QStyledItemDelegate
 
  public:
   biblioteq_batch_activities_item_delegate(QObject *parent);
-  QString displayText(const QVariant &value, const QLocale &locale) const;
+
+ private:
   QWidget *createEditor(QWidget *parent,
 			const QStyleOptionViewItem &option,
 			const QModelIndex &index) const;
+  void setModelData(QWidget *editor,
+		    QAbstractItemModel *model,
+		    const QModelIndex &index) const;
 };
 
 #endif
