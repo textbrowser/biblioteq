@@ -25,16 +25,27 @@
 ** BIBLIOTEQ, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#include <QDate>
+
 #include "biblioteq_numeric_table_item.h"
+
+biblioteq_numeric_table_item::biblioteq_numeric_table_item
+(const QDate &date):
+  QTableWidgetItem(QLocale().toString(date, QLocale::LongFormat))
+{
+  m_type = QVariant::Date;
+}
 
 biblioteq_numeric_table_item::biblioteq_numeric_table_item
 (const double value):QTableWidgetItem(QString::number(value, 'f', 2))
 {
+  m_type = QVariant::Double;
 }
 
 biblioteq_numeric_table_item::biblioteq_numeric_table_item
 (const int value):QTableWidgetItem(QString::number(value))
 {
+  m_type = QVariant::Int;
 }
 
 QVariant biblioteq_numeric_table_item::value(void) const
@@ -46,8 +57,25 @@ bool biblioteq_numeric_table_item::operator <
 (const QTableWidgetItem &other) const
 {
   /*
-  ** Ignore toDouble() failures.
+  ** Ignore conversion failures.
   */
 
-  return text().toDouble() < other.text().toDouble();
+  switch(m_type)
+    {
+    case QVariant::Date:
+      {
+	auto const date1
+	  (QDate::fromString(text(),
+			     QLocale().dateFormat(QLocale::LongFormat)));
+	auto const date2
+	  (QDate::fromString(other.text(),
+			     QLocale().dateFormat(QLocale::LongFormat)));
+
+	return date1 < date2;
+      }
+    case QVariant::Double:
+      return text().toDouble() < other.text().toDouble();
+    default:
+      return text().toInt() < other.text().toInt();
+    }
 }

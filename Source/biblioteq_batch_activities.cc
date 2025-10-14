@@ -37,6 +37,7 @@
 
 #include "biblioteq.h"
 #include "biblioteq_batch_activities.h"
+#include "biblioteq_numeric_table_item.h"
 
 QColor biblioteq_batch_activities::s_notSoOkColor =
   QColor(255, 114, 118); // Red light.
@@ -1464,12 +1465,15 @@ void biblioteq_batch_activities::slotDiscoverDreamy(void)
 
 	  for(int i = 0; i < record.count(); i++)
 	    {
-	      auto item = new QTableWidgetItem();
+	      QTableWidgetItem *item = nullptr;
 	      auto text(record.field(i).value().toString().trimmed());
 
 	      if(i == static_cast<int> (DreamyTableColumns::NEW_RETURN_DATE) ||
 		 i == static_cast<int> (DreamyTableColumns::RESERVED_DATE))
 		{
+		  item = new biblioteq_numeric_table_item
+		    (QDate::fromString(text, biblioteq::s_databaseDateFormat));
+
 		  if(i ==
 		     static_cast<int> (DreamyTableColumns::NEW_RETURN_DATE))
 		    item->setFlags(Qt::ItemIsEditable |
@@ -1483,7 +1487,10 @@ void biblioteq_batch_activities::slotDiscoverDreamy(void)
 		     QLocale::LongFormat);
 		}
 	      else
-		item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+		{
+		  item = new QTableWidgetItem();
+		  item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+		}
 
 	      item->setData(Qt::UserRole, text);
 	      item->setText(text);
