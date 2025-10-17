@@ -1958,13 +1958,11 @@ void biblioteq_batch_activities::slotListDiscoveredItems(void)
   QApplication::restoreOverrideCursor();
   (void) m_qmain->populateTable
     (query, "All", biblioteq::NEW_PAGE, biblioteq::POPULATE_SEARCH);
-  show(m_qmain, false);
 }
 
 void biblioteq_batch_activities::slotListMembersReservedItems(void)
 {
   emit listMembersReservedItems(m_ui.borrow_member_id->text());
-  show(m_qmain, false);
 }
 
 #ifdef BIBLIOTEQ_AUDIO_SUPPORTED

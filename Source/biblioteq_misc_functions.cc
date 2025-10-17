@@ -2296,16 +2296,16 @@ void biblioteq_misc_functions::center
   else if(child == nullptr || parent == nullptr)
     return;
 
-  auto c(child->geometry());
+  auto geometry(child->geometry());
 
-  if(c.isNull())
+  if(geometry.isNull())
     {
       child->show();
-      c = child->geometry();
+      geometry = child->geometry();
     }
 
-  c.moveCenter(parent->geometry().center());
-  child->setGeometry(c);
+  geometry.moveCenter(parent->geometry().center());
+  child->setGeometry(geometry);
 }
 
 void biblioteq_misc_functions::createBookCopy(const QString &idArg,
