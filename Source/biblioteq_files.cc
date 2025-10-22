@@ -264,7 +264,8 @@ void biblioteq_files::slotEnableWidgets(void)
      m_biblioteq->getRoles().contains("administrator"));
   m_ui.digests->setToolTip
     (m_ui.digests->isEnabled() ?
-     tr("Compute digests of selected file(s).") :
+     tr("<html>Update digests of selected entries. "
+	"The process may not be timely.</html>") :
      tr("Function requires administrator or librarian permissions."));
 }
 
