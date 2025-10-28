@@ -3675,12 +3675,12 @@ void biblioteq::slotDuplicate(void)
       auto const oid = biblioteq_misc_functions::getColumnString
 	(table, i, table->columnNumber("MYOID"));
       auto const type = biblioteq_misc_functions::getColumnString
-	(table, i, table->columnNumber("Type"));
+	(table, i, table->columnNumber("Type")).toLower();
 
       showStatusBarMessage
 	(tr("Duplicating item %1 of %2.").arg(c++).arg(list.size()), 5000);
 
-      if(type.toLower() == "book")
+      if(type == "book")
 	{
 	  book = new biblioteq_book(this, oid, index);
 	  addItemWindowToTab(book);
@@ -3690,7 +3690,7 @@ void biblioteq::slotDuplicate(void)
 		  book,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
-      else if(type.toLower() == "cd")
+      else if(type == "cd")
 	{
 	  cd = new biblioteq_cd(this, oid, index);
 	  addItemWindowToTab(cd);
@@ -3700,7 +3700,7 @@ void biblioteq::slotDuplicate(void)
 		  cd,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
-      else if(type.toLower() == "dvd")
+      else if(type == "dvd")
 	{
 	  dvd = new biblioteq_dvd(this, oid, index);
 	  addItemWindowToTab(dvd);
@@ -3710,7 +3710,7 @@ void biblioteq::slotDuplicate(void)
 		  dvd,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
-      else if(type.toLower() == "grey literature")
+      else if(type == "grey literature")
 	{
 	  gl = new biblioteq_grey_literature(this, oid, index);
 	  addItemWindowToTab(gl);
@@ -3720,7 +3720,7 @@ void biblioteq::slotDuplicate(void)
 		  gl,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
-      else if(type.toLower() == "journal")
+      else if(type == "journal")
 	{
 	  journal = new biblioteq_journal(this, oid, index);
 	  addItemWindowToTab(journal);
@@ -3730,7 +3730,7 @@ void biblioteq::slotDuplicate(void)
 		  journal,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
-      else if(type.toLower() == "magazine")
+      else if(type == "magazine")
 	{
 	  magazine = new biblioteq_magazine(this, oid, index, "magazine");
 	  addItemWindowToTab(magazine);
@@ -3740,7 +3740,7 @@ void biblioteq::slotDuplicate(void)
 		  magazine,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
-      else if(type.toLower() == "photograph collection")
+      else if(type == "photograph collection")
 	{
 	  photograph = new biblioteq_photographcollection(this, oid, index);
 	  addItemWindowToTab(photograph);
@@ -3750,7 +3750,7 @@ void biblioteq::slotDuplicate(void)
 		  photograph,
 		  SLOT(slotDatabaseEnumerationsCommitted(void)));
 	}
-      else if(type.toLower() == "video game")
+      else if(type == "video game")
 	{
 	  videogame = new biblioteq_videogame(this, oid, index);
 	  addItemWindowToTab(videogame);
@@ -4144,7 +4144,7 @@ void biblioteq::slotModify(void)
       auto const oid = biblioteq_misc_functions::getColumnString
 	(table, i, table->columnNumber("MYOID"));
       auto const type = biblioteq_misc_functions::getColumnString
-	(table, i, table->columnNumber("Type"));
+	(table, i, table->columnNumber("Type")).toLower();
 
       book = nullptr;
       cd = nullptr;
@@ -4157,7 +4157,7 @@ void biblioteq::slotModify(void)
 	(tr("Retrieving item %1 of %2.").arg(c++).arg(list.size()), 5000);
       videogame = nullptr;
 
-      if(type.toLower() == "book")
+      if(type == "book")
 	{
 	  auto created = true;
 
@@ -4192,7 +4192,7 @@ void biblioteq::slotModify(void)
 		      SLOT(slotDatabaseEnumerationsCommitted(void)));
 	    }
 	}
-      else if(type.toLower() == "cd")
+      else if(type == "cd")
 	{
 	  auto created = true;
 
@@ -4227,7 +4227,7 @@ void biblioteq::slotModify(void)
 		      SLOT(slotDatabaseEnumerationsCommitted(void)));
 	    }
 	}
-      else if(type.toLower() == "dvd")
+      else if(type == "dvd")
 	{
 	  auto created = true;
 
@@ -4262,7 +4262,7 @@ void biblioteq::slotModify(void)
 		      SLOT(slotDatabaseEnumerationsCommitted(void)));
 	    }
 	}
-      else if(type.toLower() == "grey literature")
+      else if(type == "grey literature")
 	{
 	  auto created = true;
 
@@ -4298,7 +4298,7 @@ void biblioteq::slotModify(void)
 		      SLOT(slotDatabaseEnumerationsCommitted(void)));
 	    }
 	}
-      else if(type.toLower() == "journal")
+      else if(type == "journal")
 	{
 	  auto created = true;
 
@@ -4333,7 +4333,7 @@ void biblioteq::slotModify(void)
 		      SLOT(slotDatabaseEnumerationsCommitted(void)));
 	    }
 	}
-      else if(type.toLower() == "magazine")
+      else if(type == "magazine")
 	{
 	  auto created = true;
 
@@ -4373,7 +4373,7 @@ void biblioteq::slotModify(void)
 		      SLOT(slotDatabaseEnumerationsCommitted(void)));
 	    }
 	}
-      else if(type.toLower() == "photograph collection")
+      else if(type == "photograph collection")
 	{
 	  auto created = true;
 
@@ -4409,7 +4409,7 @@ void biblioteq::slotModify(void)
 		      SLOT(slotDatabaseEnumerationsCommitted(void)));
 	    }
 	}
-      else if(type.toLower() == "video game")
+      else if(type == "video game")
 	{
 	  auto created = true;
 
