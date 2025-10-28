@@ -32,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>882</width>
-         <height>747</height>
+         <width>888</width>
+         <height>742</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -854,6 +854,62 @@
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_16">
             <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_13">
+              <item>
+               <widget class="QLabel" name="label_23">
+                <property name="text">
+                 <string>Database PRAGMA Encoding</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="sqlite_database_encoding">
+                <property name="toolTip">
+                 <string>Strings are always in English.</string>
+                </property>
+                <item>
+                 <property name="text">
+                  <string notr="true">Default</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">UTF-8</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">UTF-16</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_24">
+                <property name="text">
+                 <string>Please be careful with this setting. Once an encoding has been set for a database, it may not be modified.</string>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_13">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+            <item>
              <widget class="QLabel" name="label_17">
               <property name="text">
                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Items which will produce reminders upon their return. SQLite only.&lt;/p&gt;&lt;p&gt;For example, &amp;quot;BOOK := 1234567890 member_identifier&amp;quot; (BOOK := Identifier[[:space:]]Member-Identifier). The member_identifier value is optional. For books, ISBNs are required. The type is recorded in English.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;One entry per line please.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;BOOK, CD, DVD, GREY LITERATURE, JOURNAL, MAGAZINE, VIDEO GAME&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1193,6 +1249,7 @@
   <tabstop>generated_letter</tabstop>
   <tabstop>members_mandatory_field_color</tabstop>
   <tabstop>members_visible_columns</tabstop>
+  <tabstop>sqlite_database_encoding</tabstop>
   <tabstop>sqlite_reminders</tabstop>
   <tabstop>scripts</tabstop>
   <tabstop>shortcuts</tabstop>
