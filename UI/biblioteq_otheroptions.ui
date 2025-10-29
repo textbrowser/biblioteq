@@ -865,7 +865,7 @@
               <item>
                <widget class="QComboBox" name="sqlite_database_encoding">
                 <property name="toolTip">
-                 <string>Strings are always in English.</string>
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The strings of this widget are in English and will not be translated.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                 <item>
                  <property name="text">
@@ -887,7 +887,7 @@
               <item>
                <widget class="QLabel" name="label_24">
                 <property name="text">
-                 <string>Please be careful with this setting. Once an encoding has been set for a database, it may not be modified.</string>
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The encoding is configured shortly after an SQLite database is &lt;span style=&quot; font-weight:600;&quot;&gt;created.&lt;/span&gt; Please &lt;span style=&quot; font-weight:600;&quot;&gt;be careful&lt;/span&gt; with this setting. Once an encoding has been set for a database, it may not be modified.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                 <property name="wordWrap">
                  <bool>true</bool>

@@ -223,6 +223,36 @@ QString biblioteq_otheroptions::dateFormat(const QString &it) const
     return format;
 }
 
+QString biblioteq_otheroptions::sqliteDatabaseEncoding(void) const
+{
+  auto const index = qBound
+    (0,
+     QSettings().value("otheroptions/sqlite_database_encoding_index").toInt(),
+     m_ui.sqlite_database_encoding->count() - 1);
+
+  switch(index)
+    {
+    case 0:
+      {
+	return "";
+      }
+    case 1:
+      {
+	return "UTF-8";
+      }
+    case 2:
+      {
+	return "UTF-16";
+      }
+    default:
+      {
+	return "";
+      }
+    }
+
+  return "";
+}
+
 bool biblioteq_otheroptions::isMembersColumnVisible(const QString &text) const
 {
   for(int i = 0; i < m_ui.members_visible_columns->count(); i++)
@@ -726,6 +756,11 @@ void biblioteq_otheroptions::prepareSettings(void)
     (settings.value("show_maintable_progress_dialogs", true).toBool());
   m_ui.show_maintable_tooltips->setChecked
     (settings.value("show_maintable_tooltips", false).toBool());
+  m_ui.sqlite_database_encoding->setCurrentIndex
+    (qBound(0,
+	    settings.value("otheroptions/sqlite_database_encoding_index", 0).
+	    toInt(),
+	    m_ui.sqlite_database_encoding->count() - 1));
   m_ui.sqlite_reminders->setPlainText
     (biblioteq_misc_functions::sqliteReturnReminders(m_qmain->getDB()));
   m_ui.style_override->setText
@@ -1023,6 +1058,7 @@ void biblioteq_otheroptions::slotReset(void)
   m_ui.special_value_colors->scrollToTop();
   m_ui.special_value_colors->sortByColumn(0, Qt::AscendingOrder);
   m_ui.special_value_colors_check_box->setChecked(false);
+  m_ui.sqlite_database_encoding->setCurrentIndex(0);
   m_ui.sqlite_reminders->clear();
   m_ui.style_override->clear();
   slotResetCustomQueryColors();
@@ -1196,6 +1232,9 @@ void biblioteq_otheroptions::slotSave(void)
      m_ui.only_utf8_printable_text->isChecked());
   settings.setValue
     ("otheroptions/scripts", m_ui.scripts->toPlainText().trimmed());
+  settings.setValue
+    ("otheroptions/sqlite_database_encoding_index",
+     m_ui.sqlite_database_encoding->currentIndex());
   settings.setValue
     ("show_maintable_images", m_ui.show_maintable_images->isChecked());
   settings.setValue

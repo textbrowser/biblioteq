@@ -317,6 +317,7 @@ class biblioteq_otheroptions: public QMainWindow
   }
 
   QString dateFormat(const QString &it) const;
+  QString sqliteDatabaseEncoding(void) const;
   bool isMembersColumnVisible(const QString &text) const;
   bool showBookReadStatus(void) const;
   bool showMainTableImages(void) const;

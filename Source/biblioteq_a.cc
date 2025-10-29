@@ -3502,6 +3502,10 @@ void biblioteq::slotDisplayNewSqliteDialog(void)
 							QString::SkipEmptyParts
 #endif
 							));
+	    auto const str(m_otherOptions->sqliteDatabaseEncoding());
+
+	    if(!str.isEmpty())
+	      query.exec(QString("PRAGMA ENCODING = '%1'").arg(str));
 
 	    foreach(auto const &string, list)
 	      if(!query.exec("CREATE " + string))
