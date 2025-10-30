@@ -89,6 +89,11 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):
   m_ui.special_value_colors->setItemDelegateForColumn
     (static_cast<int> (SpecialColorsColumns::Reset),
      m_specialValueColorsItemDelegate);
+#ifndef BIBLIOTEQ_SQLITE3_INCLUDE_FILE_EXISTS
+  m_ui.sqlite_runtime_loadable_extensions->setEnabled(false);
+  m_ui.sqlite_runtime_loadable_extensions->setToolTip
+    (tr("BiblioteQ was created without a required SQLite file (sqlite3.h).");
+#endif
   prepareSQLKeywords();
   prepareSettings();
   prepareShortcuts();
@@ -763,6 +768,13 @@ void biblioteq_otheroptions::prepareSettings(void)
 	    m_ui.sqlite_database_encoding->count() - 1));
   m_ui.sqlite_reminders->setPlainText
     (biblioteq_misc_functions::sqliteReturnReminders(m_qmain->getDB()));
+#ifdef BIBLIOTEQ_SQLITE3_INCLUDE_FILE_EXISTS
+  m_ui.sqlite_runtime_loadable_extensions->setPlainText
+    (settings.value("otheroptions/sqlite_runtime_loadable_extensions").
+     toString());
+#else
+  m_ui.sqlite_runtime_loadable_extensions->clear();
+#endif
   m_ui.style_override->setText
     (settings.value("otheroptions/QT_STYLE_OVERRIDE").toString().trimmed());
   QApplication::restoreOverrideCursor();
@@ -1060,6 +1072,7 @@ void biblioteq_otheroptions::slotReset(void)
   m_ui.special_value_colors_check_box->setChecked(false);
   m_ui.sqlite_database_encoding->setCurrentIndex(0);
   m_ui.sqlite_reminders->clear();
+  m_ui.sqlite_runtime_loadable_extensions->clear();
   m_ui.style_override->clear();
   slotResetCustomQueryColors();
 }
@@ -1235,6 +1248,9 @@ void biblioteq_otheroptions::slotSave(void)
   settings.setValue
     ("otheroptions/sqlite_database_encoding_index",
      m_ui.sqlite_database_encoding->currentIndex());
+  settings.setValue
+    ("otheroptions/sqlite_runtime_loadable_extensions",
+     m_ui.sqlite_runtime_loadable_extensions->toPlainText().trimmed());
   settings.setValue
     ("show_maintable_images", m_ui.show_maintable_images->isChecked());
   settings.setValue

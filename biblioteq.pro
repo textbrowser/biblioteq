@@ -57,6 +57,11 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -std=c++17
 }
 
+exists(/usr/include/sqlite3.h) {
+DEFINES += BIBLIOTEQ_SQLITE3_INCLUDE_FILE_EXISTS
+LIBS    += -lsqlite3
+}
+
 QMAKE_DISTCLEAN     += -r .qmake.cache .qmake.stash Temporary
 QMAKE_EXTRA_TARGETS = purge
 

@@ -58,6 +58,13 @@
 
 #include <limits>
 
+#ifdef BIBLIOTEQ_SQLITE3_INCLUDE_FILE_EXISTS
+extern "C"
+{
+#include <sqlite3.h>
+}
+#endif
+
 QColor biblioteq::availabilityColor(const QString &itemType) const
 {
   return m_otherOptions->availabilityColor(itemType);
@@ -3165,6 +3172,62 @@ void biblioteq::slotConnectDB(void)
   ** We've connected successfully. Let's initialize other containers and
   ** widgets.
   */
+
+#ifdef BIBLIOTEQ_SQLITE3_INCLUDE_FILE_EXISTS
+  if(m_db.driverName() == "QSQLITE")
+    {
+      auto list
+	(QSettings().value("otheroptions/sqlite_runtime_loadable_extensions").
+	 toString().split('\n'));
+
+      list.removeDuplicates();
+
+      foreach(auto const &i, list)
+	if(!i.trimmed().isEmpty())
+	  {
+	    QFileInfo const fileInfo(i);
+
+	    if(fileInfo.isReadable())
+	      {
+		auto handle = *static_cast<sqlite3 **>
+		  (m_db.driver()->handle().data());
+
+		if(!(handle && sqlite3_enable_load_extension(handle, 1) == 0))
+		  {
+		    addError
+		      (tr("SQLite Run-Time Loadable Extension"),
+		       tr("The file %1 was not loaded.").arg(i),
+		       tr("Could not execute sqlite3_enable_load_extension() "
+			  "correctly."),
+		       __FILE__,
+		       __LINE__);
+		    continue;
+		  }
+
+		QSqlQuery query(m_db);
+
+		if(query.exec(QString("SELECT load_extension('%1')").arg(i)))
+		  addError(tr("SQLite Run-Time Loadable Extension"),
+			   tr("The file %1 was loaded properly.").arg(i),
+			   "",
+			   __FILE__,
+			   __LINE__);
+		else
+		  addError(tr("SQLite Run-Time Loadable Extension"),
+			   tr("The file %1 was not loaded.").arg(i),
+			   query.lastError().text(),
+			   __FILE__,
+			   __LINE__);
+	      }
+	    else
+	      addError(tr("SQLite Run-Time Loadable Extension"),
+		       tr("The file %1 is not readable.").arg(i),
+		       tr("The file %1 is not readable.").arg(i),
+		       __FILE__,
+		       __LINE__);
+	  }
+    }
+#endif
 
   QSettings settings;
 
