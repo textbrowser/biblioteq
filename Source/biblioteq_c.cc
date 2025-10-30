@@ -3192,7 +3192,8 @@ void biblioteq::slotConnectDB(void)
 		auto handle = *static_cast<sqlite3 **>
 		  (m_db.driver()->handle().data());
 
-		if(!(handle && sqlite3_enable_load_extension(handle, 1) == 0))
+		if(!(handle &&
+		     sqlite3_enable_load_extension(handle, 1) == SQLITE_OK))
 		  {
 		    addError
 		      (tr("SQLite Run-Time Loadable Extension"),
