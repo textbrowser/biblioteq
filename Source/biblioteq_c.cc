@@ -3192,8 +3192,18 @@ void biblioteq::slotConnectDB(void)
 		auto handle = *static_cast<sqlite3 **>
 		  (m_db.driver()->handle().data());
 
-		if(!(handle &&
-		     sqlite3_enable_load_extension(handle, 1) == SQLITE_OK))
+		if(!handle)
+		  {
+		    addError
+		      (tr("SQLite Run-Time Loadable Extension"),
+		       tr("The file %1 was not loaded.").arg(i),
+		       tr("The object handle is not valid."),
+		       __FILE__,
+		       __LINE__);
+		    continue;
+		  }
+
+		if(sqlite3_enable_load_extension(handle, 1) != SQLITE_OK)
 		  {
 		    addError
 		      (tr("SQLite Run-Time Loadable Extension"),
@@ -3205,20 +3215,26 @@ void biblioteq::slotConnectDB(void)
 		    continue;
 		  }
 
-		QSqlQuery query(m_db);
+		char *error = nullptr;
 
-		if(query.exec(QString("SELECT load_extension('%1')").arg(i)))
+		if(sqlite3_load_extension(handle,
+					  i.toUtf8().constData(),
+					  nullptr,
+					  &error) == SQLITE_OK)
 		  addError(tr("SQLite Run-Time Loadable Extension"),
 			   tr("The file %1 was loaded properly.").arg(i),
-			   "",
+			   tr("The file %1 was loaded properly.").arg(i),
 			   __FILE__,
 			   __LINE__);
 		else
 		  addError(tr("SQLite Run-Time Loadable Extension"),
 			   tr("The file %1 was not loaded.").arg(i),
-			   query.lastError().text(),
+			   error ?
+			   error : tr("Error with sqlite3_load_extension()."),
 			   __FILE__,
 			   __LINE__);
+
+		sqlite3_free(error);
 	      }
 	    else
 	      addError(tr("SQLite Run-Time Loadable Extension"),
