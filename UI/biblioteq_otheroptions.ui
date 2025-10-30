@@ -947,7 +947,7 @@
                <item>
                 <widget class="QLabel" name="label_25">
                  <property name="text">
-                  <string>Absolute file paths only! Extensions will be loaded after an SQLite database is opened.</string>
+                  <string>Absolute file paths only! Extensions will be loaded after an SQLite database is opened. Please review the Error Log for information.</string>
                  </property>
                  <property name="wordWrap">
                   <bool>true</bool>

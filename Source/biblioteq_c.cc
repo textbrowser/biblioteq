@@ -3178,7 +3178,7 @@ void biblioteq::slotConnectDB(void)
     {
       auto list
 	(QSettings().value("otheroptions/sqlite_runtime_loadable_extensions").
-	 toString().split('\n'));
+	 toString().trimmed().split('\n'));
 
       list.removeDuplicates();
 
