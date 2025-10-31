@@ -3162,11 +3162,13 @@ void biblioteq::slotConnectDB(void)
       return;
     }
   else
+    {
 #ifdef Q_OS_ANDROID
-    m_branch_diag->hide();
+      m_branch_diag->hide();
 #else
-    m_branch_diag->close();
+      m_branch_diag->close();
 #endif
+    }
 
   /*
   ** We've connected successfully. Let's initialize other containers and
@@ -3174,75 +3176,79 @@ void biblioteq::slotConnectDB(void)
   */
 
 #ifdef BIBLIOTEQ_SQLITE3_INCLUDE_FILE_EXISTS
-  if(m_db.driverName() == "QSQLITE")
+  if(m_db.driver()->handle().isValid() && m_db.driverName() == "QSQLITE")
     {
-      auto list
-	(QSettings().value("otheroptions/sqlite_runtime_loadable_extensions").
-	 toString().trimmed().split('\n'));
+      auto handle = *static_cast<sqlite3 **> (m_db.driver()->handle().data());
+      auto ok = true;
 
-      list.removeDuplicates();
+      if(!handle)
+	{
+	  addError
+	    (tr("SQLite Run-Time Loadable Extension"),
+	     tr("The SQLite database handle is not valid."),
+	     tr("The SQLite database handle is not valid."),
+	     __FILE__,
+	     __LINE__);
+	  ok = false;
+	}
 
-      foreach(auto const &i, list)
-	if(!i.trimmed().isEmpty())
-	  {
-	    QFileInfo const fileInfo(i);
+      if(ok && sqlite3_enable_load_extension(handle, 1) != SQLITE_OK)
+	{
+	  addError
+	    (tr("SQLite Run-Time Loadable Extension"),
+	     tr("The function sqlite3_enable_load_extension() failed."),
+	     tr("The function sqlite3_enable_load_extension() failed."),
+	     __FILE__,
+	     __LINE__);
+	  ok = false;
+	}
 
-	    if(fileInfo.isReadable())
+      if(ok)
+	{
+	  auto list
+	    (QSettings().
+	     value("otheroptions/sqlite_runtime_loadable_extensions").
+	     toString().trimmed().split('\n'));
+
+	  list.removeDuplicates();
+
+	  foreach(auto const &i, list)
+	    if(!i.trimmed().isEmpty())
 	      {
-		auto handle = *static_cast<sqlite3 **>
-		  (m_db.driver()->handle().data());
+		QFileInfo const fileInfo(i);
 
-		if(!handle)
+		if(fileInfo.isReadable())
 		  {
-		    addError
-		      (tr("SQLite Run-Time Loadable Extension"),
-		       tr("The file %1 was not loaded.").arg(i),
-		       tr("The object handle is not valid."),
-		       __FILE__,
-		       __LINE__);
-		    continue;
+		    char *error = nullptr;
+
+		    if(sqlite3_load_extension(handle,
+					      i.toUtf8().constData(),
+					      nullptr,
+					      &error) == SQLITE_OK)
+		      addError(tr("SQLite Run-Time Loadable Extension"),
+			       tr("The file %1 was loaded properly.").arg(i),
+			       tr("The file %1 was loaded properly.").arg(i),
+			       __FILE__,
+			       __LINE__);
+		    else
+		      addError
+			(tr("SQLite Run-Time Loadable Extension"),
+			 tr("The file %1 was not loaded.").arg(i),
+			 error ?
+			 error : tr("Error with sqlite3_load_extension()."),
+			 __FILE__,
+			 __LINE__);
+
+		    sqlite3_free(error);
 		  }
-
-		if(sqlite3_enable_load_extension(handle, 1) != SQLITE_OK)
-		  {
-		    addError
-		      (tr("SQLite Run-Time Loadable Extension"),
-		       tr("The file %1 was not loaded.").arg(i),
-		       tr("Could not execute sqlite3_enable_load_extension() "
-			  "correctly."),
-		       __FILE__,
-		       __LINE__);
-		    continue;
-		  }
-
-		char *error = nullptr;
-
-		if(sqlite3_load_extension(handle,
-					  i.toUtf8().constData(),
-					  nullptr,
-					  &error) == SQLITE_OK)
-		  addError(tr("SQLite Run-Time Loadable Extension"),
-			   tr("The file %1 was loaded properly.").arg(i),
-			   tr("The file %1 was loaded properly.").arg(i),
-			   __FILE__,
-			   __LINE__);
 		else
 		  addError(tr("SQLite Run-Time Loadable Extension"),
-			   tr("The file %1 was not loaded.").arg(i),
-			   error ?
-			   error : tr("Error with sqlite3_load_extension()."),
+			   tr("The file %1 is not readable.").arg(i),
+			   tr("The file %1 is not readable.").arg(i),
 			   __FILE__,
 			   __LINE__);
-
-		sqlite3_free(error);
 	      }
-	    else
-	      addError(tr("SQLite Run-Time Loadable Extension"),
-		       tr("The file %1 is not readable.").arg(i),
-		       tr("The file %1 is not readable.").arg(i),
-		       __FILE__,
-		       __LINE__);
-	  }
+	}
     }
 #endif
 
