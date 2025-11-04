@@ -42,6 +42,7 @@ do
     if [ "$i" = "--database" ]
     then
 	file="1"
+
 	continue
     fi
 

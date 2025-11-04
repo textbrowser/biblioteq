@@ -61,18 +61,21 @@ do
     if [ "$i" = "--account" ]
     then
 	account="1"
+
 	continue
     fi
 
     if [ "$i" = "--host" ]
     then
 	host="1"
+
 	continue
     fi
 
     if [ "$i" = "--database" ]
     then
 	database="1"
+
 	continue
     fi
 
