@@ -1846,12 +1846,11 @@ int biblioteq_misc_functions::getColumnNumber(const QTableWidget *table,
   if(columnName.isEmpty() || !table)
     return -1;
 
-  QTableWidgetItem *column = nullptr;
   int num = -1;
 
   for(int i = 0; i < table->columnCount(); i++)
     {
-      column = table->horizontalHeaderItem(i);
+      auto column = table->horizontalHeaderItem(i);
 
       if(column == nullptr)
 	continue;
@@ -2739,9 +2738,8 @@ void biblioteq_misc_functions::highlightWidget(QWidget *widget,
   if(!widget)
     return;
 
-  QPalette pal;
+  auto pal = widget->palette();
 
-  pal = widget->palette();
   pal.setColor(widget->backgroundRole(), color);
   widget->setPalette(pal);
 }
