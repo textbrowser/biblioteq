@@ -1250,13 +1250,13 @@ QStringList biblioteq_misc_functions::getReservedItems(const QString &memberid,
   query.bindValue(4, memberid);
   query.bindValue(5, memberid);
 
-  QDate date;
-
   if(query.exec())
     while(query.next())
       {
-	date = QDate::fromString(query.value(4).toString().trimmed(),
-				 biblioteq::s_databaseDateFormat);
+	auto const date = QDate::fromString
+	  (query.value(4).toString().trimmed(),
+	   biblioteq::s_databaseDateFormat);
+
 	str = QString(QObject::tr("#")) +
 	  QString::number(list.size() + 1) + "<br>";
 	str += QObject::tr("Barcode: ") +
@@ -1453,9 +1453,8 @@ bool biblioteq_misc_functions::hasMemberExpired(const QSqlDatabase &db,
 	  if(db.driverName() == "QSQLITE")
 	    {
 	      auto const date
-		(QDate::
-		 fromString(query.value(0).toString().trimmed(),
-			    biblioteq::s_databaseDateFormat));
+		(QDate::fromString(query.value(0).toString().trimmed(),
+				   biblioteq::s_databaseDateFormat));
 
 	      if(date.daysTo(QDate::currentDate()) > 0)
 		expired = true;
