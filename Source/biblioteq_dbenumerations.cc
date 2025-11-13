@@ -283,6 +283,7 @@ void biblioteq_dbenumerations::populateWidgets(void)
 
   clear();
 
+  QMap<QString, QString> map;
   QSettings settings;
   QString errorstr("");
   QStringList list;
@@ -392,7 +393,7 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	}
       else if(str == "minimum_days")
 	{
-	  list = biblioteq_misc_functions::getMinimumDays
+	  map = biblioteq_misc_functions::getMinimumDays
 	    (qmain->getDB(), errorstr);
 	  tableWidget = m_ui.minimumDaysTable;
 	}
@@ -477,17 +478,20 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	  m_ui.locationsTable->resizeColumnToContents(0);
 	  m_ui.locationsTable->resizeRowsToContents();
 	}
-      else if(tableWidget == m_ui.minimumDaysTable && tableWidget)
+      else if(m_ui.minimumDaysTable == tableWidget && tableWidget)
 	{
-	  for(int j = 0; j < list.size(); j++)
+	  for(int j = 0; j < tableWidget->rowCount(); j++)
 	    {
+	      auto item = tableWidget->item(j, 0);
 	      auto lineEdit = qobject_cast<QLineEdit *>
 		(tableWidget->
 		 cellWidget(j, static_cast<int> (MinimumDaysTable::Days)));
 
-	      if(lineEdit)
+	      if(item && lineEdit)
 		lineEdit->setText
-		  (QString::number(qBound(1, list.at(j).toInt(), 1000)));
+		  (QString::number(qBound(1,
+					  map.value(item->text()).toInt(),
+					  1000)));
 	    }
 
 	  m_ui.minimumDaysTable->resizeColumnToContents(0);

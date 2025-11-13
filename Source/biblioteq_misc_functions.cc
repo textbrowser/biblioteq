@@ -127,6 +127,56 @@ QList<int> biblioteq_misc_functions::selectedRows(QTableWidget *table)
   return rows;
 }
 
+
+QMap<QString, QString> biblioteq_misc_functions::getMinimumDays
+(const QSqlDatabase &db, QString &errorstr)
+{
+  QMap<QString, QString> map;
+  QSqlQuery query(db);
+  QString querystr("");
+  QStringList minimumdays;
+
+  errorstr = "";
+  querystr = "SELECT type, days FROM minimum_days "
+    "WHERE LENGTH(TRIM(type)) > 0 ORDER BY type";
+
+  if(query.exec(querystr))
+    while(query.next())
+      {
+	if(query.value(0).toString().trimmed() == "CD")
+	  map["CD"] = map["Music CD"] = query.value(1).toString().trimmed();
+	else
+	  map[query.value(0).toString().trimmed()] =
+	    query.value(1).toString().trimmed();
+      }
+
+  if(!map.contains("Book"))
+    map["Book"] = "1";
+
+  if(!map.contains("CD"))
+    map["CD"] = "1";
+
+  if(!map.contains("DVD"))
+    map["DVD"] = "1";
+
+  if(!map.contains("Grey Literature"))
+    map["Grey Literature"] = "1";
+
+  if(!map.contains("Journal"))
+    map["Journal"] = "1";
+
+  if(!map.contains("Magazine"))
+    map["Magazine"] = "1";
+
+  if(!map.contains("Music CD"))
+    map["Music CD"] = "1";
+
+  if(!map.contains("Video Game"))
+    map["Video Game"] = "1";
+
+  return map;
+}
+
 QMap<QString, qint64> biblioteq_misc_functions::getItemsReservedCounts
 (const QSqlDatabase &db, const QString &memberid, QString &errorstr)
 {
@@ -1070,60 +1120,6 @@ QStringList biblioteq_misc_functions::getLocations(const QSqlDatabase &db,
     errorstr = query.lastError().text();
 
   return locations;
-}
-
-QStringList biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
-						     QString &errorstr)
-{
-  QMap<QString, QString> map;
-  QSqlQuery query(db);
-  QString querystr("");
-  QStringList minimumdays;
-
-  errorstr = "";
-  querystr = "SELECT type, days FROM minimum_days "
-    "WHERE LENGTH(TRIM(type)) > 0 ORDER BY type";
-
-  if(query.exec(querystr))
-    while(query.next())
-      {
-	if(query.value(0).toString().trimmed() == "CD")
-	  map["Music CD"] = query.value(1).toString().trimmed();
-	else
-	  map[query.value(0).toString().trimmed()] =
-	    query.value(1).toString().trimmed();
-      }
-
-  if(!map.contains("Book"))
-    map["Book"] = "1";
-
-  if(!map.contains("DVD"))
-    map["DVD"] = "1";
-
-  if(!map.contains("Grey Literature"))
-    map["Grey Literature"] = "1";
-
-  if(!map.contains("Journal"))
-    map["Journal"] = "1";
-
-  if(!map.contains("Magazine"))
-    map["Magazine"] = "1";
-
-  if(!map.contains("Music CD"))
-    map["Music CD"] = "1";
-
-  if(!map.contains("Video Game"))
-    map["Video Game"] = "1";
-
-  QMapIterator<QString, QString> it(map);
-
-  while(it.hasNext())
-    {
-      it.next();
-      minimumdays.append(it.value());
-    }
-
-  return minimumdays;
 }
 
 QStringList biblioteq_misc_functions::getMonetaryUnits(const QSqlDatabase &db,

@@ -52,6 +52,7 @@ class biblioteq_misc_functions
   static QList<QPair<QString, QString> > getLocations(const QSqlDatabase &,
 						      QString &);
   static QList<int> selectedRows(QTableWidget *);
+  static QMap<QString, QString> getMinimumDays(const QSqlDatabase &, QString &);
   static QMap<QString, qint64> getItemsReservedCounts(const QSqlDatabase &,
 						      const QString &,
 						      QString &);
@@ -105,7 +106,6 @@ class biblioteq_misc_functions
   static QStringList getLocations(const QSqlDatabase &,
 				  const QString &,
 				  QString &);
-  static QStringList getMinimumDays(const QSqlDatabase &, QString &);
   static QStringList getMonetaryUnits(const QSqlDatabase &, QString &);
   static QStringList getReservedItems(const QString &,
 				      const QSqlDatabase &,
