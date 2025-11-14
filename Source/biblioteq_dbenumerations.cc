@@ -482,7 +482,8 @@ void biblioteq_dbenumerations::populateWidgets(void)
 	{
 	  for(int j = 0; j < tableWidget->rowCount(); j++)
 	    {
-	      auto item = tableWidget->item(j, 0);
+	      auto item = tableWidget->item
+		(j, static_cast<int> (MinimumDaysTable::Type));
 	      auto lineEdit = qobject_cast<QLineEdit *>
 		(tableWidget->
 		 cellWidget(j, static_cast<int> (MinimumDaysTable::Days)));
