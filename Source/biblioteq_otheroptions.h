@@ -342,7 +342,8 @@ class biblioteq_otheroptions: public QMainWindow
     {
       AVAILABILITY_COLOR = 1,
       DATE_FORMAT = 1,
-      ITEM_TYPE = 0
+      ITEM_TYPE = 0,
+      OVERDUE_COLOR = 1
     };
 
   enum class Limits
@@ -393,7 +394,7 @@ class biblioteq_otheroptions: public QMainWindow
   void changeEvent(QEvent *event);
   void closeEvent(QCloseEvent *event);
   void keyPressEvent(QKeyEvent *event);
-  void prepareAvailability(void);
+  void prepareColorTable(QTableWidget *table);
   void prepareIcons(void);
   void prepareSQLKeywords(void);
   void prepareShortcuts(void);

@@ -369,8 +369,11 @@ void biblioteq_otheroptions::keyPressEvent(QKeyEvent *event)
   QMainWindow::keyPressEvent(event);
 }
 
-void biblioteq_otheroptions::prepareAvailability(void)
+void biblioteq_otheroptions::prepareColorTable(QTableWidget *table)
 {
+  if(!table)
+    return;
+
   QSettings settings;
   QStringList list1;
   QStringList list2;
@@ -383,26 +386,54 @@ void biblioteq_otheroptions::prepareAvailability(void)
 	<< tr("Magazines")
 	<< tr("Music CDs")
 	<< tr("Video Games");
-  list2 << settings.value("otheroptions/book_availability_color").toString()
-	<< settings.value("otheroptions/dvd_availability_color").toString()
-	<< settings.value("otheroptions/grey_literature_availability_color").
-           toString()
-	<< settings.value("otheroptions/journal_availability_color").toString()
-	<< settings.value("otheroptions/magazine_availability_color").toString()
-	<< settings.value("otheroptions/cd_availability_color").toString()
-	<< settings.value("otheroptions/videogame_availability_color").
-           toString();
-  list3 << "otheroptions/book_availability_color"
-	<< "otheroptions/dvd_availability_color"
-	<< "otheroptions/grey_literature_availability_color"
-	<< "otheroptions/journal_availability_color"
-	<< "otheroptions/magazine_availability_color"
-	<< "otheroptions/cd_availability_color"
-	<< "otheroptions/videogame_availability_color";
-  m_ui.availability_color->setRowCount(list1.size());
-  m_ui.availability_color->setSortingEnabled(false);
-  m_ui.availability_colors->setChecked
-    (settings.value("otheroptions/availability_colors", false).toBool());
+
+  if(m_ui.availability_color == table)
+    {
+      list2 << settings.value("otheroptions/book_availability_color").toString()
+	    << settings.value("otheroptions/dvd_availability_color").toString()
+	    << settings.value("otheroptions/"
+			      "grey_literature_availability_color").toString()
+	    << settings.value("otheroptions/"
+			      "journal_availability_color").toString()
+	    << settings.value("otheroptions/"
+			      "magazine_availability_color").toString()
+	    << settings.value("otheroptions/cd_availability_color").toString()
+	    << settings.value("otheroptions/"
+			      "videogame_availability_color").toString();
+      list3 << "otheroptions/book_availability_color"
+	    << "otheroptions/dvd_availability_color"
+	    << "otheroptions/grey_literature_availability_color"
+	    << "otheroptions/journal_availability_color"
+	    << "otheroptions/magazine_availability_color"
+	    << "otheroptions/cd_availability_color"
+	    << "otheroptions/videogame_availability_color";
+    }
+  else
+    {
+      list2 << settings.value("otheroptions/book_overdue_color").toString()
+	    << settings.value("otheroptions/dvd_overdue_color").toString()
+	    << settings.value("otheroptions/"
+			      "grey_literature_overdue_color").toString()
+	    << settings.value("otheroptions/journal_overdue_color").toString()
+	    << settings.value("otheroptions/magazine_overdue_color").toString()
+	    << settings.value("otheroptions/cd_overdue_color").toString()
+	    << settings.value("otheroptions/"
+			      "videogame_overdue_color").toString();
+      list3 << "otheroptions/book_overdue_color"
+	    << "otheroptions/dvd_overdue_color"
+	    << "otheroptions/grey_literature_overdue_color"
+	    << "otheroptions/journal_overdue_color"
+	    << "otheroptions/magazine_overdue_color"
+	    << "otheroptions/cd_overdue_color"
+	    << "otheroptions/videogame_overdue_color";
+    }
+
+  table->setRowCount(list1.size());
+  table->setSortingEnabled(false);
+
+  if(m_ui.availability_color == table)
+    m_ui.availability_colors->setChecked
+      (settings.value("otheroptions/availability_colors", false).toBool());
 
   for(int i = 0; i < list1.size(); i++)
     {
@@ -425,10 +456,15 @@ void biblioteq_otheroptions::prepareAvailability(void)
       layout->setContentsMargins(0, 0, 0, 0);
       item->setData(Qt::UserRole, list3.at(i));
       item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-      m_ui.availability_color->setCellWidget
-	(i, static_cast<int> (ItemsColumns::AVAILABILITY_COLOR), widget);
-      m_ui.availability_color->setItem
-	(i, static_cast<int> (ItemsColumns::ITEM_TYPE), item);
+
+      if(m_ui.availability_color == table)
+	table->setCellWidget
+	  (i, static_cast<int> (ItemsColumns::AVAILABILITY_COLOR), widget);
+      else
+	table->setCellWidget
+	  (i, static_cast<int> (ItemsColumns::OVERDUE_COLOR), widget);
+
+      table->setItem(i, static_cast<int> (ItemsColumns::ITEM_TYPE), item);
       biblioteq_misc_functions::assignImage
 	(pushButton, QColor(QString(list2.at(i)).remove('&')));
       pushButton->setMinimumWidth(135);
@@ -437,11 +473,10 @@ void biblioteq_otheroptions::prepareAvailability(void)
       widget->setLayout(layout);
     }
 
-  m_ui.availability_color->resizeColumnToContents
-    (static_cast<int> (ItemsColumns::ITEM_TYPE));
-  m_ui.availability_color->resizeRowsToContents();
-  m_ui.availability_color->setSortingEnabled(true);
-  m_ui.availability_color->sortByColumn(0, Qt::AscendingOrder);
+  table->resizeColumnToContents(static_cast<int> (ItemsColumns::ITEM_TYPE));
+  table->resizeRowsToContents();
+  table->setSortingEnabled(true);
+  table->sortByColumn(0, Qt::AscendingOrder);
 }
 
 void biblioteq_otheroptions::prepareEnvironmentVariables(void)
@@ -595,7 +630,8 @@ void biblioteq_otheroptions::prepareSQLKeywords(void)
 void biblioteq_otheroptions::prepareSettings(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
-  prepareAvailability();
+  prepareColorTable(m_ui.availability_color);
+  prepareColorTable(m_ui.overdue_color);
   prepareIcons();
   prepareShortcuts();
 
