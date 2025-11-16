@@ -116,14 +116,11 @@ QColor biblioteq_otheroptions::availabilityColor(const QString &it) const
   auto const itemType(QString(it).remove(' ').toLower().trimmed());
 
   if(itemType.contains("book"))
-    value = settings.value
-      ("otheroptions/book_availability_color").toString();
+    value = settings.value("otheroptions/book_availability_color").toString();
   else if(itemType.contains("cd") || itemType.contains("music"))
-    value = settings.value
-      ("otheroptions/cd_availability_color").toString();
+    value = settings.value("otheroptions/cd_availability_color").toString();
   else if(itemType.contains("dvd"))
-    value = settings.value
-      ("otheroptions/dvd_availability_color").toString();
+    value = settings.value("otheroptions/dvd_availability_color").toString();
   else if(itemType.contains("grey"))
     value = settings.value
       ("otheroptions/grey_literature_availability_color").toString();
@@ -176,6 +173,36 @@ QColor biblioteq_otheroptions::membersMandatoryFieldColor(void) const
 
   if(!color.isValid())
     color = QColor(255, 248, 220);
+
+  return color;
+}
+
+QColor biblioteq_otheroptions::overdueColor(const QString &it) const
+{
+  QSettings settings;
+  QString value("");
+  auto const itemType(QString(it).remove(' ').toLower().trimmed());
+
+  if(itemType.contains("book"))
+    value = settings.value("otheroptions/book_overdue_color").toString();
+  else if(itemType.contains("cd") || itemType.contains("music"))
+    value = settings.value("otheroptions/cd_overdue_color").toString();
+  else if(itemType.contains("dvd"))
+    value = settings.value("otheroptions/dvd_overdue_color").toString();
+  else if(itemType.contains("grey"))
+    value = settings.value
+      ("otheroptions/grey_literature_overdue_color").toString();
+  else if(itemType.contains("journal"))
+    value = settings.value("otheroptions/journal_overdue_color").toString();
+  else if(itemType.contains("magazine"))
+    value = settings.value("otheroptions/magazine_overdue_color").toString();
+  else if(itemType.contains("video"))
+    value = settings.value("otheroptions/videogame_overdue_color").toString();
+
+  auto color(QColor(value.remove('&')));
+
+  if(!color.isValid())
+    color = QColor(255, 114, 118);
 
   return color;
 }
