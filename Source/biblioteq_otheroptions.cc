@@ -27,6 +27,8 @@
 
 #include "biblioteq_otheroptions.h"
 
+static QColor s_overdueColor = QColor(255, 114, 118);
+
 biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):
   QMainWindow(parent)
 {
@@ -202,7 +204,7 @@ QColor biblioteq_otheroptions::overdueColor(const QString &it) const
   auto color(QColor(value.remove('&')));
 
   if(!color.isValid())
-    color = QColor(255, 114, 118);
+    color = s_overdueColor;
 
   return color;
 }
@@ -449,7 +451,7 @@ void biblioteq_otheroptions::prepareColorTable(QTableWidget *table)
       connect(pushButton,
 	      SIGNAL(clicked(void)),
 	      this,
-	      SLOT(slotSelectAvailabilityColor(void)));
+	      SLOT(slotSelectColor(void)));
       layout->addSpacerItem(spacer1);
       layout->addWidget(pushButton);
       layout->addSpacerItem(spacer2);
@@ -465,11 +467,21 @@ void biblioteq_otheroptions::prepareColorTable(QTableWidget *table)
 	  (i, static_cast<int> (ItemsColumns::OVERDUE_COLOR), widget);
 
       table->setItem(i, static_cast<int> (ItemsColumns::ITEM_TYPE), item);
-      biblioteq_misc_functions::assignImage
-	(pushButton, QColor(QString(list2.at(i)).remove('&')));
+
+      auto color(QColor(QString(list2.at(i)).remove('&')));
+
+      if(!color.isValid())
+	{
+	  if(m_ui.availability_color == table)
+	    color = QColor(Qt::white);
+	  else
+	    color = s_overdueColor;
+	}
+
+      biblioteq_misc_functions::assignImage(pushButton, color);
       pushButton->setMinimumWidth(135);
       pushButton->setProperty("key", list3.at(i));
-      pushButton->setText(QString(list2.at(i)).remove('&'));
+      pushButton->setText(color.name());
       widget->setLayout(layout);
     }
 
@@ -1052,6 +1064,23 @@ void biblioteq_otheroptions::slotReset(void)
 	item->setCheckState(Qt::Checked);
     }
 
+  for(int i = 0; i < m_ui.overdue_color->rowCount(); i++)
+    {
+      auto widget = m_ui.overdue_color->cellWidget
+	(i, static_cast<int> (ItemsColumns::OVERDUE_COLOR));
+
+      if(widget)
+	{
+	  auto pushButton = widget->findChild<QPushButton *> ();
+
+	  if(pushButton)
+	    {
+	      biblioteq_misc_functions::assignImage(pushButton, s_overdueColor);
+	      pushButton->setText(s_overdueColor.name());
+	    }
+	}
+    }
+
   {
     QColor const color(255, 248, 220);
 
@@ -1121,6 +1150,12 @@ void biblioteq_otheroptions::slotReset(void)
   m_ui.isbn10_display_format->setCurrentIndex(0);
   m_ui.isbn13_display_format->setCurrentIndex(0);
   m_ui.only_utf8_printable_text->setChecked(false);
+  m_ui.overdue_color->clearSelection();
+  m_ui.overdue_color->resizeColumnToContents
+    (static_cast<int> (ItemsColumns::ITEM_TYPE));
+  m_ui.overdue_color->resizeRowsToContents();
+  m_ui.overdue_color->scrollToTop();
+  m_ui.overdue_color->sortByColumn(0, Qt::AscendingOrder);
   m_ui.scripts->clear();
   m_ui.show_maintable_images->setChecked(true);
   m_ui.show_maintable_progress_dialogs->setChecked(true);
@@ -1258,6 +1293,22 @@ void biblioteq_otheroptions::slotSave(void)
 	}
     }
 
+  for(int i = 0; i < m_ui.overdue_color->rowCount(); i++)
+    {
+      auto widget = m_ui.overdue_color->cellWidget
+	(i, static_cast<int> (ItemsColumns::OVERDUE_COLOR));
+
+      if(widget)
+	{
+	  auto pushButton = widget->findChild<QPushButton *> ();
+
+	  if(pushButton)
+	    settings.setValue
+	      (pushButton->property("key").toString(),
+	       pushButton->text().remove('&').trimmed());
+	}
+    }
+
   for(int i = 0; i < m_ui.shortcuts->rowCount(); i++)
     if(m_ui.shortcuts->item(i, 0) &&
        m_ui.shortcuts->item(i, 0)->text() == tr("Custom Query Favorite") &&
@@ -1369,28 +1420,6 @@ void biblioteq_otheroptions::slotSave(void)
   emit saved();
   prepareIcons();
   QApplication::restoreOverrideCursor();
-}
-
-void biblioteq_otheroptions::slotSelectAvailabilityColor(void)
-{
-  auto pushButton = qobject_cast<QPushButton *> (sender());
-
-  if(!pushButton)
-    return;
-
-  QColorDialog dialog(this);
-
-  dialog.setCurrentColor(QColor(pushButton->text().remove('&')));
-
-  if(dialog.exec() == QDialog::Accepted)
-    {
-      QApplication::processEvents();
-      biblioteq_misc_functions::assignImage
-	(pushButton, dialog.selectedColor());
-      pushButton->setText(dialog.selectedColor().name());
-    }
-  else
-    QApplication::processEvents();
 }
 
 void biblioteq_otheroptions::slotSelectColor(void)
