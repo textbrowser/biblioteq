@@ -32,8 +32,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>888</width>
-         <height>742</height>
+         <width>867</width>
+         <height>753</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -655,6 +655,50 @@
                </spacer>
               </item>
              </layout>
+            </item>
+            <item>
+             <widget class="QTableWidget" name="overdue_color">
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
+              <property name="selectionMode">
+               <enum>QAbstractItemView::SingleSelection</enum>
+              </property>
+              <property name="selectionBehavior">
+               <enum>QAbstractItemView::SelectRows</enum>
+              </property>
+              <property name="verticalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
+              <property name="horizontalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
+              <property name="sortingEnabled">
+               <bool>true</bool>
+              </property>
+              <attribute name="horizontalHeaderMinimumSectionSize">
+               <number>250</number>
+              </attribute>
+              <attribute name="horizontalHeaderDefaultSectionSize">
+               <number>250</number>
+              </attribute>
+              <attribute name="horizontalHeaderStretchLastSection">
+               <bool>true</bool>
+              </attribute>
+              <attribute name="verticalHeaderVisible">
+               <bool>false</bool>
+              </attribute>
+              <column>
+               <property name="text">
+                <string>Item Type</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Overdue Color</string>
+               </property>
+              </column>
+             </widget>
             </item>
             <item>
              <widget class="QCheckBox" name="show_maintable_progress_dialogs">
@@ -1279,6 +1323,7 @@
   <tabstop>main_window_canvas_background_color</tabstop>
   <tabstop>icons_view_column_count</tabstop>
   <tabstop>only_utf8_printable_text</tabstop>
+  <tabstop>overdue_color</tabstop>
   <tabstop>show_maintable_progress_dialogs</tabstop>
   <tabstop>show_maintable_images</tabstop>
   <tabstop>show_maintable_tooltips</tabstop>
