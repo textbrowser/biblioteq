@@ -94,7 +94,7 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):
 #ifndef BIBLIOTEQ_SQLITE3_INCLUDE_FILE_EXISTS
   m_ui.sqlite_runtime_loadable_extensions->setEnabled(false);
   m_ui.sqlite_runtime_loadable_extensions->setToolTip
-    (tr("BiblioteQ was created without a required SQLite file (sqlite3.h).");
+    (tr("BiblioteQ was created without a required SQLite file (sqlite3.h)."));
 #endif
   prepareSQLKeywords();
   prepareSettings();
