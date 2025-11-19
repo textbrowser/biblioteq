@@ -33,7 +33,7 @@
 #define BIBLIOTEQ_VERSION_FILE_URL			\
   "https://raw.githubusercontent.com/"			\
   "textbrowser/biblioteq/master/Source/biblioteq.h"
-#define BIBLIOTEQ_VERSION_LTS "2025.05.17"
+#define BIBLIOTEQ_VERSION_LTS "2025.11.22"
 
 #include "biblioteq_batch_activities.h"
 #include "biblioteq_book.h"
