@@ -4066,10 +4066,10 @@ int biblioteq::populateTable(const int search_type_arg,
 		    (query.value(j).toString().trimmed());
 
 		  auto const duedate
-		    (QDateTime::fromString(query.value(j).toString().trimmed(),
-					   s_databaseDateFormat));
+		    (QDate::fromString(query.value(j).toString().trimmed(),
+				       s_databaseDateFormat));
 
-		  if(QDateTime::currentDateTime() > duedate)
+		  if(QDate::currentDate() > duedate)
 		    item->setBackground
 		      (m_otherOptions->overdueColor(itemType));
 		}

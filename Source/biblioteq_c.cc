@@ -966,11 +966,11 @@ int biblioteq::populateTable(QSqlQuery *query,
 		    (m_searchQuery->value(j).toString().trimmed());
 
 		  auto const duedate
-		    (QDateTime::
+		    (QDate::
 		     fromString(m_searchQuery->value(j).toString().trimmed(),
 				s_databaseDateFormat));
 
-		  if(QDateTime::currentDateTime() > duedate)
+		  if(QDate::currentDate() > duedate)
 		    item->setBackground
 		      (m_otherOptions->overdueColor(itemType));
 		}
