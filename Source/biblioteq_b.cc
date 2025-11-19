@@ -4069,7 +4069,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		    (QDateTime::fromString(query.value(j).toString().trimmed(),
 					   s_databaseDateFormat));
 
-		  if(duedate <= QDateTime::currentDateTime())
+		  if(QDateTime::currentDateTime() > duedate)
 		    item->setBackground
 		      (m_otherOptions->overdueColor(itemType));
 		}
