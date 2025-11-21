@@ -33,19 +33,31 @@ biblioteq_numeric_table_item::biblioteq_numeric_table_item
 (const QDate &date):
   QTableWidgetItem(QLocale().toString(date, QLocale::LongFormat))
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+  m_type = QMetaType::QDate;
+#else
   m_type = QVariant::Date;
+#endif
 }
 
 biblioteq_numeric_table_item::biblioteq_numeric_table_item
 (const double value):QTableWidgetItem(QString::number(value, 'f', 2))
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+  m_type = QMetaType::Double;
+#else
   m_type = QVariant::Double;
+#endif
 }
 
 biblioteq_numeric_table_item::biblioteq_numeric_table_item
 (const int value):QTableWidgetItem(QString::number(value))
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+  m_type = QMetaType::Int;
+#else
   m_type = QVariant::Int;
+#endif
 }
 
 QVariant biblioteq_numeric_table_item::value(void) const
@@ -62,7 +74,11 @@ bool biblioteq_numeric_table_item::operator <
 
   switch(m_type)
     {
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    case QMetaType::QDate:
+#else
     case QVariant::Date:
+#endif
       {
 	auto const date1
 	  (QDate::fromString(text(),
@@ -73,7 +89,11 @@ bool biblioteq_numeric_table_item::operator <
 
 	return date1 < date2;
       }
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    case QMetaType::Double:
+#else
     case QVariant::Double:
+#endif
       return text().toDouble() < other.text().toDouble();
     default:
       return text().toInt() < other.text().toInt();

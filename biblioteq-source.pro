@@ -1,3 +1,4 @@
+!android {
 exists(/usr/include/poppler/cpp) {
 DEFINES     += BIBLIOTEQ_POPPLER_VERSION_DEFINED
 INCLUDEPATH += /usr/include/poppler/cpp
@@ -47,6 +48,7 @@ DEFINES     += BIBLIOTEQ_LINKED_WITH_POPPLER \
                BIBLIOTEQ_LINKED_WITH_POPPLER5
 INCLUDEPATH += /usr/local/include/poppler/qt5
 LIBS        += -lpoppler-qt5
+}
 }
 }
 

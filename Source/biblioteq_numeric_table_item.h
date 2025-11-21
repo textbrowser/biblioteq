@@ -28,6 +28,9 @@
 #ifndef _BIBLIOTEQ_NUMERIC_TABLE_ITEM_H_
 #define _BIBLIOTEQ_NUMERIC_TABLE_ITEM_H_
 
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+#include <QMetaType>
+#endif
 #include <QTableWidgetItem>
 
 class biblioteq_numeric_table_item: public QTableWidgetItem
@@ -40,7 +43,11 @@ class biblioteq_numeric_table_item: public QTableWidgetItem
   bool operator <(const QTableWidgetItem &other) const;
 
  private:
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+  QMetaType::Type m_type;
+#else
   QVariant::Type m_type;
+#endif
 };
 
 #endif
