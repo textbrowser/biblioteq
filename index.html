@@ -64,9 +64,9 @@
 	  operating systems and is compatible with any system which
 	  supports a modern Qt. BiblioteQ is distributed with a BSD
 	  license.</p>
-	<p>The newest <b>software release</b> version <b>is 2025.05.17</b>.
+	<p>The newest <b>software release</b> version <b>is 2025.11.22</b>.
 	  <br>
-	  The newest <b>source release</b> version is <b>2025.10.03</b>.</p>
+	  The newest <b>source release</b> version is <b>2025.11.22</b>.</p>
 	<h3>BiblioteQ Summary</h3>
 	<ul>
 	  <li>AMD, ARM, Alpha, Apple Silicon, PowerPC,
@@ -134,6 +134,28 @@
 	</ul>
 	<hr>
 	<h3>Release Notes</h3>
+	<p>November 22, 2025</p>
+	<ul>
+	  <li>Corrected recording of minimum days in the Database Enumerations
+	    Browser. The respective interface table expects one sort-order while
+	    the database query produces a separate sort-order.
+	    GitHub ticket #424.</li>
+	  <li>Do not center Batch Activities Browser after a Borrow or Discover
+	    function is activated. GitHub ticket #419.</li>
+	  <li>Highlight an overdue item only if the current date is greater
+	    than the item's due date. GitHub ticket #426.</li>
+	  <li>New Batch Activities Browser -> Dream Extensions.
+	    GitHub ticket #418.</li>
+	  <li>New Other Options -> SQLite -> Database PRAGMA Encoding.</li>
+	  <li>Overdue colors. Other Options -> Main Window.
+	    GitHub ticket #426.</li>
+	  <li>Perhaps an LTS release?</li>
+	  <li>PostgreSQL 15.14.2; Windows.</li>
+	  <li>Record the page index of the Batch Activities Browser in the
+	    INI file.</li>
+	  <li>SQLite run-time loadable extensions. Other Options -> SQLite ->
+	    Run-Time Loadable Extensions. GitHub ticket #421.</li>
+	</ul>
 	<p>October 3, 2025</p>
 	<ul>
 	  <li>Added lively documentation to the Overdue Items Notification
