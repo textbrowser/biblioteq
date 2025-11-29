@@ -475,6 +475,11 @@
                <string>Title</string>
               </property>
              </column>
+             <column>
+              <property name="text">
+               <string>Reminder</string>
+              </property>
+             </column>
             </widget>
            </item>
           </layout>

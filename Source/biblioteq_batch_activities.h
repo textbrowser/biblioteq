@@ -75,6 +75,7 @@ class biblioteq_batch_activities: public QMainWindow
     {
       CATEGORY_COLUMN = 1,
       IDENTIFIER_COLUMN = 0,
+      REMINDER_COLUMN = 3,
       TITLE_COLUMN = 2
     };
 
