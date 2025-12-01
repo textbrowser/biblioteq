@@ -2271,6 +2271,14 @@ void biblioteq_batch_activities::slotScanDiscoverTimerTimeout(void)
     (m_ui.discover_table->rowCount() - 1,
      static_cast<int> (DiscoverTableColumns::TITLE_COLUMN),
      item);
+  item = new QTableWidgetItem();
+  item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+  item->setText(hash.value("reminder").trimmed());
+  item->setToolTip(item->text());
+  m_ui.discover_table->setItem
+    (m_ui.discover_table->rowCount() - 1,
+     static_cast<int> (DiscoverTableColumns::REMINDER_COLUMN),
+     item);
   m_ui.discover_scan->clear();
   m_ui.discover_scan->setFocus();
   QApplication::restoreOverrideCursor();
