@@ -91,6 +91,8 @@ class biblioteq_misc_functions
   static QString isbn10to13(const QString &);
   static QString isbn13to10(const QString &);
   static QString linearizeString(const QString &);
+  static QString prettySQLiteReminder
+    (const QString &member, const QString &title);
   static QString queryString(QSqlQuery *);
   static QString sqliteReturnReminders(const QSqlDatabase &);
   static QStringList getBookBindingTypes(const QSqlDatabase &, QString &);

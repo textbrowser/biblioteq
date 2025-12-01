@@ -5532,18 +5532,8 @@ void biblioteq::slotRequest(void)
 								    m_db,
 								    identifier,
 								    itemType))
-		    {
-		      if(member.trimmed().isEmpty())
-			str += tr
-			  ("The item <b>%1</b> is requested by "
-			   "another patron. Please set it aside.<br>").
-			  arg(title);
-		      else
-			str += tr("The item <b>%1</b> is requested by "
-				  "another patron (<b>%2</b>). "
-				  "Please set it aside.<br>").
-			  arg(title).arg(member.trimmed());
-		    }
+		    str += biblioteq_misc_functions::prettySQLiteReminder
+		      (member, title) + "<br>";
 		}
 
 	      goto progress_label;

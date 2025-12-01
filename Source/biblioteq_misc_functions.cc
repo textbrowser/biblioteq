@@ -796,6 +796,33 @@ QString biblioteq_misc_functions::linearizeString(const QString &text)
   return text.simplified().replace("<br>", " ").simplified().trimmed();
 }
 
+QString biblioteq_misc_functions::prettySQLiteReminder
+(const QString &member, const QString &title)
+{
+  if(member.trimmed().isEmpty())
+    {
+      if(title.trimmed().isEmpty())
+	return QObject::tr("The item is requested by another patron. "
+			   "Please set it aside.");
+      else
+	return QObject::tr("The item <b>%1</b> is requested by "
+			   "another patron. Please set it aside.").
+	  arg(title.trimmed());
+    }
+  else
+    {
+      if(title.trimmed().isEmpty())
+	return QObject::tr("The item is requested by "
+			   "another patron (<b>%1</b>). Please set it aside.").
+	  arg(member.trimmed());
+      else
+	return QObject::tr("The item <b>%1</b> is requested by "
+			   "another patron (<b>%2</b>). "
+			   "Please set it aside.").
+	  arg(title.trimmed()).arg(member.trimmed());
+    }
+}
+
 QString biblioteq_misc_functions::queryString(QSqlQuery *query)
 {
   if(!query)
