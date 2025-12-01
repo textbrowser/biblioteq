@@ -2234,6 +2234,8 @@ void biblioteq_batch_activities::slotScanDiscoverTimerTimeout(void)
     }
 
   QHash<QString, QString> hash;
+  QString member("");
+  QString str("");
   auto item = new QTableWidgetItem(m_ui.discover_scan->text().trimmed());
 
   item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
@@ -2271,9 +2273,16 @@ void biblioteq_batch_activities::slotScanDiscoverTimerTimeout(void)
     (m_ui.discover_table->rowCount() - 1,
      static_cast<int> (DiscoverTableColumns::TITLE_COLUMN),
      item);
-  item = new QTableWidgetItem();
+
+  if(biblioteq_misc_functions::sqliteReturnReminder(member,
+						    m_qmain->getDB(),
+						    id,
+						    hash.value("categories")))
+    str = biblioteq_misc_functions::prettySQLiteReminder
+      ("", hash.value("title"));
+
+  item = new QTableWidgetItem(str);
   item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-  item->setText(hash.value("reminder").trimmed());
   item->setToolTip(item->text());
   m_ui.discover_table->setItem
     (m_ui.discover_table->rowCount() - 1,

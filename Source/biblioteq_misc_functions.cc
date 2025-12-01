@@ -270,6 +270,7 @@ QString biblioteq_misc_functions::categories
 (QHash<QString, QString> &hash, const QSqlDatabase &db, const QString &id)
 {
   QSqlQuery query(db);
+  QString identifier(id.trimmed());
   QString querystr("");
   QString string("");
   QString title("");
@@ -291,9 +292,9 @@ QString biblioteq_misc_functions::categories
 	  querystr = "SELECT title FROM book WHERE "
 	    "accession_number = ? OR id = ? OR isbn13 = ?";
 	  query.prepare(querystr);
-	  query.addBindValue(id);
-	  query.addBindValue(QString(id).remove('-'));
-	  query.addBindValue(QString(id).remove('-'));
+	  query.addBindValue(identifier);
+	  query.addBindValue(QString(identifier).remove('-'));
+	  query.addBindValue(QString(identifier).remove('-'));
 	}
       else
 	{
@@ -306,7 +307,7 @@ QString biblioteq_misc_functions::categories
 	      ("SELECT title FROM %1 WHERE id = ?").arg(list.at(i));
 
 	  query.prepare(querystr);
-	  query.addBindValue(id.trimmed());
+	  query.addBindValue(identifier);
 	}
 
       if(query.exec() && query.next())
@@ -805,19 +806,18 @@ QString biblioteq_misc_functions::prettySQLiteReminder
 	return QObject::tr("The item is requested by another patron. "
 			   "Please set it aside.");
       else
-	return QObject::tr("The item <b>%1</b> is requested by "
-			   "another patron. Please set it aside.").
+	return QObject::tr("The item %1 is requested by another patron. "
+			   "Please set it aside.").
 	  arg(title.trimmed());
     }
   else
     {
       if(title.trimmed().isEmpty())
-	return QObject::tr("The item is requested by "
-			   "another patron (<b>%1</b>). Please set it aside.").
+	return QObject::tr("The item is requested by another patron (%1). "
+			   "Please set it aside.").
 	  arg(member.trimmed());
       else
-	return QObject::tr("The item <b>%1</b> is requested by "
-			   "another patron (<b>%2</b>). "
+	return QObject::tr("The item %1 is requested by another patron (%2). "
 			   "Please set it aside.").
 	  arg(title.trimmed()).arg(member.trimmed());
     }
