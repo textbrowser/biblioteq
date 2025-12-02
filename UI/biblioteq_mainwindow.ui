@@ -739,6 +739,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionBatchActivitiesBrowser"/>
    <addaction name="actionReservationHistory"/>
    <addaction name="actionRequests"/>
    <addaction name="reserveTool"/>
@@ -1452,6 +1453,10 @@
    </property>
   </action>
   <action name="actionBatchActivitiesBrowser">
+   <property name="icon">
+    <iconset resource="../Icons/icons.qrc">
+     <normaloff>:/32x32/data.png</normaloff>:/32x32/data.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Batch Activities Browser...</string>
    </property>

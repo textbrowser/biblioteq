@@ -477,7 +477,7 @@
              </column>
              <column>
               <property name="text">
-               <string>Reminder</string>
+               <string>SQLite Reminder</string>
               </property>
              </column>
             </widget>
