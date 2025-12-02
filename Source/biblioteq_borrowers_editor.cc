@@ -602,19 +602,10 @@ void biblioteq_borrowers_editor::slotEraseBorrower(void)
 							m_identifier,
 							m_itemType))
 	{
-	  if(member.trimmed().isEmpty())
-	    QMessageBox::information
-	      (this,
-	       tr("BiblioteQ: Information"),
-	       tr("Please set the item aside as another patron has requested "
-		  "it."));
-	  else
-	    QMessageBox::information
-	      (this,
-	       tr("BiblioteQ: Information"),
-	       tr("Please set the item aside as another patron (%1) "
-		  "has requested it.").arg(member));
+	  auto const str
+	    (biblioteq_misc_functions::prettySQLiteReminder(member, ""));
 
+	  QMessageBox::information(this, tr("BiblioteQ: Information"), str);
 	  QApplication::processEvents();
 	}
     }
