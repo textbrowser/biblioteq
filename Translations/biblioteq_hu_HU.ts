@@ -179,6 +179,22 @@
         <source>(Empty)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>The item is requested by another patron. Please set it aside.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The item %1 is requested by another patron. Please set it aside.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The item is requested by another patron (%1). Please set it aside.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The item %1 is requested by another patron (%2). Please set it aside.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UserInfo</name>
@@ -971,6 +987,10 @@
     </message>
     <message>
         <source>Set All New Return Dates!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SQLite Reminder</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2721,14 +2741,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>The file %1 is not readable.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The item &lt;b&gt;%1&lt;/b&gt; is requested by another patron. Please set it aside.&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The item &lt;b&gt;%1&lt;/b&gt; is requested by another patron (&lt;b&gt;%2&lt;/b&gt;). Please set it aside.&lt;br&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
