@@ -63,6 +63,13 @@ extern "C"
 {
 #include <sqlite3.h>
 }
+
+static void regexp(sqlite3_context *context, int argc, sqlite3_value **argv)
+{
+  Q_UNUSED(argc);
+  Q_UNUSED(argv);
+  Q_UNUSED(context);
+}
 #endif
 
 QColor biblioteq::availabilityColor(const QString &itemType) const
@@ -3192,6 +3199,22 @@ void biblioteq::slotConnectDB(void)
 	     __LINE__);
 	  ok = false;
 	}
+
+      if(ok && sqlite3_create_function_v2(handle,
+					  "REGEXP",
+					  2,
+					  SQLITE_UTF8,
+					  nullptr,
+					  regexp,
+					  nullptr,
+					  nullptr,
+					  nullptr) != SQLITE_OK)
+	addError
+	  (tr("SQLite Create Function"),
+	   tr("The function sqlite3_create_function_v2(REGEXP) failed."),
+	   tr("The function sqlite3_create_function_v2(REGEXP) failed."),
+	   __FILE__,
+	   __LINE__);
 
       if(ok && sqlite3_enable_load_extension(handle, 1) != SQLITE_OK)
 	{
