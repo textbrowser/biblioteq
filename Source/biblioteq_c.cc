@@ -85,6 +85,9 @@ static void regexp(sqlite3_context *context, int argc, sqlite3_value **argv)
     return;
 
   QRegularExpression const r(expression);
+
+  sqlite3_result_int
+    (context, QRegularExpressionMatch(r.match(text)).hasMatch());
 }
 #endif
 
