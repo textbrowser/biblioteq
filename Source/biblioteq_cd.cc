@@ -43,7 +43,8 @@ biblioteq_cd::biblioteq_cd(biblioteq *parentArg,
 			   const QModelIndex &index):
   QMainWindow(), biblioteq_item(index)
 {
-  QRegularExpression rx1("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]");
+  QRegularExpression const rx1
+    ("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]");
   auto menu = new QMenu(this);
   auto validator1 = new QRegularExpressionValidator(rx1, this);
   auto scene1 = new QGraphicsScene(this);

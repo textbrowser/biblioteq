@@ -40,8 +40,8 @@ void biblioteq_sql_syntax_highlighter::highlightBlock(const QString &text)
     {
       if(rule.pattern.pattern().contains("/* A COMMENT. */"))
 	{
-	  QRegularExpression end("\\*/");
-	  QRegularExpression start("/\\*");
+	  QRegularExpression const end("\\*/");
+	  QRegularExpression const start("/\\*");
 
 	  setCurrentBlockState(0);
 
@@ -53,8 +53,8 @@ void biblioteq_sql_syntax_highlighter::highlightBlock(const QString &text)
 	  while(startIndex >= 0)
 	    {
 	      QRegularExpressionMatch endMatch;
+	      const int endIndex = text.indexOf(end, startIndex, &endMatch);
 	      int commentLength = 0;
-	      int endIndex = text.indexOf(end, startIndex, &endMatch);
 
 	      if(endIndex == -1)
 		{

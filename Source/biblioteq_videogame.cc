@@ -43,7 +43,7 @@ biblioteq_videogame::biblioteq_videogame(biblioteq *parentArg,
 {
   qmain = parentArg;
 
-  QRegularExpression rx
+  QRegularExpression const rx
     ("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]");
   auto menu = new QMenu(this);
   auto scene1 = new QGraphicsScene(this);

@@ -83,6 +83,8 @@ static void regexp(sqlite3_context *context, int argc, sqlite3_value **argv)
     */
 
     return;
+
+  QRegularExpression const r(expression);
 }
 #endif
 
