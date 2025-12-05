@@ -39,7 +39,7 @@ static int callnum_lt(const QString &m, const QString &n)
 {
   // In all of its glory.
 
-  QString lc_regexp
+  QString const lc_regexp
     ("([A-Za-z]+) *([0-9]+)(?: *\\.([0-9]+))?"
      "(?: *\\.([A-Za-z][0-9]+))?(?: *([A-Za-z][0-9]+))?(?: +([0-9]{4}))? *");
 
@@ -54,8 +54,8 @@ static int callnum_lt(const QString &m, const QString &n)
   //   6. Year (space is required before it).
   // (https://geography.about.com/library/congress/blhowto.htm)
 
-  QRegExp match1(lc_regexp);
-  QRegExp match2(match1); // Copy constructor should be faster.
+  QRegExp const match1(lc_regexp);
+  QRegExp const match2(match1); // Copy constructor should be faster.
   auto const res1 = match1.exactMatch(m);
   auto const res2 = match2.exactMatch(n);
 
@@ -98,8 +98,10 @@ static int callnum_lt(const QString &m, const QString &n)
   qDebug() << "Call number regex match failed." << endl;
 #endif
 #else
-  QRegularExpression match1(QRegularExpression::anchoredPattern(lc_regexp));
-  QRegularExpression match2(match1); // Copy constructor should be faster.
+  QRegularExpression const match1
+    (QRegularExpression::anchoredPattern(lc_regexp));
+  QRegularExpression const match2
+    (match1); // Copy constructor should be faster.
   auto const m1(match1.match(m));
   auto const n1(match2.match(n));
   auto const res1 = m1.hasMatch();
