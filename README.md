@@ -1,5 +1,7 @@
 BiblioteQ is awesome, open library software. PostgreSQL and SQLite databases.
 
+Please visit https://resources.kohasupport.com/z3950 for Z39.50 servers.
+
 ## Features
 
 - AMD, ARM, Alpha, Apple Silicon, PowerPC, Sparc architecture support.
