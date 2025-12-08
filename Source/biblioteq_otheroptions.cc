@@ -93,8 +93,11 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):
      m_specialValueColorsItemDelegate);
 #ifndef BIBLIOTEQ_SQLITE3_INCLUDE_FILE_EXISTS
   m_ui.sqlite_runtime_loadable_extensions->setEnabled(false);
+  m_ui.sqlite_runtime_loadable_extensions->setPlaceholderText
+    (tr("BiblioteQ was created without a required SQLite file (sqlite3.h). "
+	"This property is disabled."));
   m_ui.sqlite_runtime_loadable_extensions->setToolTip
-    (tr("BiblioteQ was created without a required SQLite file (sqlite3.h)."));
+    (m_ui.sqlite_runtime_loadable_extensions->placeholderText());
 #endif
   prepareSQLKeywords();
   prepareSettings();
