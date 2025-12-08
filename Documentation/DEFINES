@@ -48,4 +48,5 @@ Defined if Qt PDF modules are available.
 BIBLIOTEQ_SQLITE3_INCLUDE_FILE_EXISTS
 
 Defined if the sqlite3.h file is present somewhere on the system.
-The sqlite3.h is required for run-time loadable extensions.
+The sqlite3.h is required for run-time loadable extensions and special
+SQLite functions.
