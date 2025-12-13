@@ -62,6 +62,13 @@ class biblioteq_batch_activities: public QMainWindow
   void show(QMainWindow *parent, const bool center = true);
 
  private:
+  enum class AddTableColumns
+    {
+      CATEGORY_COLUMN = 0,
+      IDENTIFIER_COLUMN = 1,
+      QUERY_SYSTEM_COLUMN = 2
+    };
+
   enum class BorrowTableColumns
     {
       CATEGORY_COLUMN = 0,
@@ -81,10 +88,11 @@ class biblioteq_batch_activities: public QMainWindow
 
   enum class Pages
     {
-      Borrow = 0,
-      Discover = 1,
-      DreamyExtensions = 2,
-      Return = 3
+      Add = 0,
+      Borrow = 1,
+      Discover = 2,
+      DreamyExtensions = 3,
+      Return = 4
     };
 
   QPointer<QCompleter> m_memberIdCompleter;
