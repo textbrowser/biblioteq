@@ -81,7 +81,7 @@ Please visit https://resources.kohasupport.com/z3950 for Z39.50 servers.
 ### Debian Installation
 
 ```
-wget https://github.com/textbrowser/biblioteq/releases/download/2025.11.22/BiblioteQ-2025.11.22_amd64.deb
-sudo dpkg -i BiblioteQ-2025.11.22_amd64.deb
+wget https://github.com/textbrowser/biblioteq/releases/download/2025.12.25/BiblioteQ-2025.12.25_amd64.deb
+sudo dpkg -i BiblioteQ-2025.12.25_amd64.deb
 sudo apt install -f
 ```
