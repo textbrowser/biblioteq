@@ -1187,7 +1187,6 @@ void biblioteq_batch_activities::show(QMainWindow *parent, const bool center)
 #endif
   activateWindow();
   raise();
-  m_ui.borrow_member_id->setFocus();
 
   if(!m_memberIdCompleter)
     m_memberIdCompleter = new QCompleter(this);
@@ -2058,6 +2057,7 @@ void biblioteq_batch_activities::slotReset(void)
 	  }
 
       m_ui.add_scan->clear();
+      m_ui.add_scan->setFocus();
       m_ui.add_scan_type->setCurrentIndex(0);
       m_ui.add_table->clearContents();
       m_ui.add_table->setRowCount(0);
@@ -2130,6 +2130,7 @@ void biblioteq_batch_activities::slotScanAddingTimerTimeout(void)
   if(!m_ui.add_scan->text().trimmed().isEmpty())
     {
       QString type("");
+      auto const row = m_ui.add_table->rowCount();
 
       if(m_ui.add_scan_type->currentText() == tr("Book"))
 	type = "Book";
@@ -2147,6 +2148,22 @@ void biblioteq_batch_activities::slotScanAddingTimerTimeout(void)
 	type = "Photograph Collection";
       else if(m_ui.add_scan_type->currentText() == tr("Video Game"))
 	type = "Video Game";
+
+      m_ui.add_table->setRowCount(row + 1);
+
+      auto item = new QTableWidgetItem(type);
+
+      item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable);
+      m_ui.add_table->setItem
+	(row, static_cast<int> (AddTableColumns::CATEGORY_COLUMN), item);
+      item = new QTableWidgetItem(m_ui.add_scan->text().trimmed());
+      item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable);
+      m_ui.add_table->setItem
+	(row, static_cast<int> (AddTableColumns::IDENTIFIER_COLUMN), item);
+      item = new QTableWidgetItem(tr("Open Library"));
+      item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable);
+      m_ui.add_table->setItem
+	(row, static_cast<int> (AddTableColumns::QUERY_SYSTEM_COLUMN), item);
     }
 
   m_ui.add_scan->clear();
@@ -2451,8 +2468,10 @@ void biblioteq_batch_activities::slotSetGlobalFonts(const QFont &font)
       widget->update();
     }
 
+  m_ui.add_table->resizeRowsToContents();
   m_ui.borrow_table->resizeColumnsToContents();
   m_ui.discover_table->resizeColumnsToContents();
+  m_ui.dreamy_table->resizeColumnsToContents();
   m_ui.return_table->resizeColumnsToContents();
   update();
 }
