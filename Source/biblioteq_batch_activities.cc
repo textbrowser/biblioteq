@@ -45,9 +45,10 @@ QColor biblioteq_batch_activities::s_okColor =
   QColor(144, 238, 144); // Green light.
 
 biblioteq_batch_activities_item_delegate::
-biblioteq_batch_activities_item_delegate(QObject *parent):
-  QStyledItemDelegate(parent)
+biblioteq_batch_activities_item_delegate
+(const QString &tableName, QObject *parent):QStyledItemDelegate(parent)
 {
+  m_tableName = tableName;
 }
 
 QWidget *biblioteq_batch_activities_item_delegate::createEditor
@@ -55,28 +56,76 @@ QWidget *biblioteq_batch_activities_item_delegate::createEditor
  const QStyleOptionViewItem &option,
  const QModelIndex &index) const
 {
-  switch(index.column())
+  if(m_tableName == "add_table")
     {
-    case static_cast<int> (biblioteq_batch_activities::
-			   DreamyTableColumns::
-			   NEW_RETURN_DATE):
-      {
-	auto editor = new QDateEdit(parent);
+      switch(index.column())
+	{
+	case static_cast<int> (biblioteq_batch_activities::AddTableColumns::
+			       CATEGORY_COLUMN):
+	  {
+	    QStringList list;
+	    auto editor = new QComboBox(parent);
 
-	editor->setCalendarPopup(true);
-	editor->setDate
-	  (QDate::fromString(index.data().toString().trimmed(),
-			     QLocale().dateFormat(QLocale::LongFormat)));
-	editor->setDisplayFormat(QLocale().dateFormat(QLocale::LongFormat));
-	editor->setMinimumDate
-	  (QDate::fromString(index.data(Qt::UserRole).toString().trimmed(),
-			     QLocale().dateFormat(QLocale::LongFormat)));
-	return editor;
-      }
-    default:
-      {
-	break;
-      }
+	    list << tr("Book")
+		 << tr("CD")
+		 << tr("DVD")
+		 << tr("Grey Literature")
+		 << tr("Journal")
+		 << tr("Magazine")
+		 << tr("Photograph Collection")
+		 << tr("Video Game");
+	    std::sort(list.begin(), list.end());
+	    editor->addItems(list);
+	    editor->setSizeAdjustPolicy(QComboBox::AdjustToContents);
+	    editor->setSizePolicy
+	      (QSizePolicy::Preferred, QSizePolicy::Minimum);
+	    return editor;
+	  }
+	case static_cast<int> (biblioteq_batch_activities::AddTableColumns::
+			       QUERY_SYSTEM_COLUMN):
+	  {
+	    QStringList list;
+	    auto editor = new QComboBox(parent);
+
+	    list << tr("Open Library");
+	    std::sort(list.begin(), list.end());
+	    editor->addItems(list);
+	    editor->setSizeAdjustPolicy(QComboBox::AdjustToContents);
+	    editor->setSizePolicy
+	      (QSizePolicy::Preferred, QSizePolicy::Minimum);
+	    return editor;
+	  }
+	default:
+	  {
+	    break;
+	  }
+	}
+    }
+  else if(m_tableName == "dreamy_table")
+    {
+      switch(index.column())
+	{
+	case static_cast<int> (biblioteq_batch_activities::
+			       DreamyTableColumns::
+			       NEW_RETURN_DATE):
+	  {
+	    auto editor = new QDateEdit(parent);
+
+	    editor->setCalendarPopup(true);
+	    editor->setDate
+	      (QDate::fromString(index.data().toString().trimmed(),
+				 QLocale().dateFormat(QLocale::LongFormat)));
+	    editor->setDisplayFormat(QLocale().dateFormat(QLocale::LongFormat));
+	    editor->setMinimumDate
+	      (QDate::fromString(index.data(Qt::UserRole).toString().trimmed(),
+				 QLocale().dateFormat(QLocale::LongFormat)));
+	    return editor;
+	  }
+	default:
+	  {
+	    break;
+	  }
+	}
     }
 
   return QStyledItemDelegate::createEditor(parent, option, index);
@@ -223,6 +272,12 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(currentChanged(int)),
 	  this,
 	  SLOT(slotPageIndexChanged(int)));
+  m_ui.add_table->setItemDelegateForColumn
+    (static_cast<int> (AddTableColumns::CATEGORY_COLUMN),
+     new biblioteq_batch_activities_item_delegate("add_table", this));
+  m_ui.add_table->setItemDelegateForColumn
+    (static_cast<int> (AddTableColumns::QUERY_SYSTEM_COLUMN),
+     new biblioteq_batch_activities_item_delegate("add_table", this));
   m_ui.dreamy_date->setDisplayFormat
     (QLocale().dateFormat(QLocale::LongFormat));
   m_ui.dreamy_table->horizontalHeader()->setSortIndicator
@@ -232,7 +287,7 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
     (m_ui.dreamy_table->columnCount() - 1, true);
   m_ui.dreamy_table->setItemDelegateForColumn
     (static_cast<int> (DreamyTableColumns::NEW_RETURN_DATE),
-     new biblioteq_batch_activities_item_delegate(this));
+     new biblioteq_batch_activities_item_delegate("dreamy_table", this));
   m_ui.tab->setCurrentIndex
     (qBound(0,
 	    QSettings().value("otheroptions/batch_activities_page_index").

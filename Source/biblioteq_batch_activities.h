@@ -48,6 +48,13 @@ class biblioteq_batch_activities: public QMainWindow
   Q_OBJECT
 
  public:
+  enum class AddTableColumns
+    {
+      CATEGORY_COLUMN = 0,
+      IDENTIFIER_COLUMN = 1,
+      QUERY_SYSTEM_COLUMN = 2
+    };
+
   enum class DreamyTableColumns
     {
       MYOID = 9,
@@ -62,13 +69,6 @@ class biblioteq_batch_activities: public QMainWindow
   void show(QMainWindow *parent, const bool center = true);
 
  private:
-  enum class AddTableColumns
-    {
-      CATEGORY_COLUMN = 0,
-      IDENTIFIER_COLUMN = 1,
-      QUERY_SYSTEM_COLUMN = 2
-    };
-
   enum class BorrowTableColumns
     {
       CATEGORY_COLUMN = 0,
@@ -147,6 +147,9 @@ class biblioteq_batch_activities: public QMainWindow
 
  signals:
   void listMembersReservedItems(const QString &id);
+  void createItem(const QString &identifier,
+		  const QString &querySystem,
+		  const QString &type);
 };
 
 class biblioteq_batch_activities_item_delegate: public QStyledItemDelegate
@@ -154,9 +157,11 @@ class biblioteq_batch_activities_item_delegate: public QStyledItemDelegate
   Q_OBJECT
 
  public:
-  biblioteq_batch_activities_item_delegate(QObject *parent);
+  biblioteq_batch_activities_item_delegate
+    (const QString &tableName, QObject *parent);
 
  private:
+  QString m_tableName;
   QWidget *createEditor(QWidget *parent,
 			const QStyleOptionViewItem &option,
 			const QModelIndex &index) const;
