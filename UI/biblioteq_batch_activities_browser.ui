@@ -121,6 +121,11 @@
                </item>
                <item>
                 <property name="text">
+                 <string>Photograph Collection</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
                  <string>Video Game</string>
                 </property>
                </item>

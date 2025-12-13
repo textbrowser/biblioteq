@@ -135,6 +135,10 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(fontChanged(const QFont &)),
 	  this,
 	  SLOT(slotSetGlobalFonts(const QFont &)));
+  connect(m_ui.add_scan,
+	  SIGNAL(returnPressed(void)),
+	  this,
+	  SLOT(slotScannedAdd(void)));
   connect(m_ui.audio,
 	  SIGNAL(toggled(bool)),
 	  this,
@@ -166,7 +170,7 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
   connect(m_ui.borrow_scan,
 	  SIGNAL(returnPressed(void)),
 	  this,
-	  SLOT(slotScannedBorrowing(void)));
+	  SLOT(slotScannedBorrow(void)));
   connect(m_ui.close,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -2040,6 +2044,25 @@ void biblioteq_batch_activities::slotReset(void)
   ** If sender() is null, reset all fields.
   */
 
+  if(!sender() || m_ui.tab->currentIndex() == static_cast<int> (Pages::Add))
+    {
+      if(m_ui.add_table->rowCount() > 0 && sender())
+	if(QMessageBox::question(this,
+				 tr("BiblioteQ: Question"),
+				 tr("Are you sure that you wish to reset?"),
+				 QMessageBox::No | QMessageBox::Yes,
+				 QMessageBox::No) == QMessageBox::No)
+	  {
+	    QApplication::processEvents();
+	    return;
+	  }
+
+      m_ui.add_scan->clear();
+      m_ui.add_scan_type->setCurrentIndex(0);
+      m_ui.add_table->clearContents();
+      m_ui.add_table->setRowCount(0);
+    }
+
   if(!sender() || m_ui.tab->currentIndex() == static_cast<int> (Pages::Borrow))
     {
       if(m_ui.borrow_table->rowCount() > 0 && sender())
@@ -2093,14 +2116,40 @@ void biblioteq_batch_activities::slotReset(void)
       m_ui.dreamy_table->setRowCount(0);
     }
 
-  if(!sender() ||
-     m_ui.tab->currentIndex() == static_cast<int> (Pages::Return))
+  if(!sender() || m_ui.tab->currentIndex() == static_cast<int> (Pages::Return))
     {
       m_ui.return_scan->clear();
       m_ui.return_scan->setFocus();
       m_ui.return_table->clearContents();
       m_ui.return_table->setRowCount(0);
     }
+}
+
+void biblioteq_batch_activities::slotScanAddingTimerTimeout(void)
+{
+  if(!m_ui.add_scan->text().trimmed().isEmpty())
+    {
+      QString type("");
+
+      if(m_ui.add_scan_type->currentText() == tr("Book"))
+	type = "Book";
+      else if(m_ui.add_scan_type->currentText() == tr("CD"))
+	type = "CD";
+      else if(m_ui.add_scan_type->currentText() == tr("DVD"))
+	type = "DVD";
+      else if(m_ui.add_scan_type->currentText() == tr("Grey Literature"))
+	type = "Grey Literature";
+      else if(m_ui.add_scan_type->currentText() == tr("Journal"))
+	type = "Journal";
+      else if(m_ui.add_scan_type->currentText() == tr("Magazine"))
+	type = "Magazine";
+      else if(m_ui.add_scan_type->currentText() == tr("Photograph Collection"))
+	type = "Photograph Collection";
+      else if(m_ui.add_scan_type->currentText() == tr("Video Game"))
+	type = "Video Game";
+    }
+
+  m_ui.add_scan->clear();
 }
 
 void biblioteq_batch_activities::slotScanBorrowingTimerTimeout(void)
@@ -2372,7 +2421,12 @@ void biblioteq_batch_activities::slotScanReturnTimerTimeout(void)
     play("qrc:/error.wav");
 }
 
-void biblioteq_batch_activities::slotScannedBorrowing(void)
+void biblioteq_batch_activities::slotScannedAdd(void)
+{
+  QTimer::singleShot(100, this, SLOT(slotScanAddingTimerTimeout(void)));
+}
+
+void biblioteq_batch_activities::slotScannedBorrow(void)
 {
   QTimer::singleShot(100, this, SLOT(slotScanBorrowingTimerTimeout(void)));
 }
