@@ -18,7 +18,7 @@ postgresql=postgresql.zip
 
 rm -f $postgresql
 
-filename="/postgresql/postgresql-15.14-2-windows-x64-binaries.zip"
+filename="/postgresql/postgresql-15.15-2-windows-x64-binaries.zip"
 host="https://get.enterprisedb.com"
 
 wget --output-document=$postgresql --progress=bar $host$filename
