@@ -1283,6 +1283,39 @@ void biblioteq_batch_activities::show(QMainWindow *parent, const bool center)
     }
 
   m_ui.dreamy_date->setDate(QDate::currentDate());
+
+  switch(m_ui.tab->currentIndex())
+    {
+    case static_cast<int> (Pages::Add):
+      {
+	m_ui.add_scan->setFocus();
+	break;
+      }
+    case static_cast<int> (Pages::Borrow):
+      {
+	m_ui.borrow_scan->setFocus();
+	break;
+      }
+    case static_cast<int> (Pages::Discover):
+      {
+	m_ui.discover_scan->setFocus();
+	break;
+      }
+    case static_cast<int> (Pages::DreamyExtensions):
+      {
+	m_ui.dreamy_member_id->setFocus();
+	break;
+      }
+    case static_cast<int> (Pages::Return):
+      {
+	m_ui.return_scan->setFocus();
+	break;
+      }
+    default:
+      {
+	break;
+      }
+    }
 }
 
 void biblioteq_batch_activities::slotAddBorrowingRow(void)
