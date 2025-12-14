@@ -61,6 +61,11 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
   void modify(const int state, const QString &behavior = "");
   void search(const QString &field = "", const QString &value = "");
 
+  void setIdentifier(const QString &id)
+  {
+    pc.id_collection->setText(id.trimmed());
+  }
+
   void setPublicationDateFormat(const QString &dateFormat)
   {
     pc.publication_date->setDisplayFormat(dateFormat);

@@ -68,6 +68,11 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
   void populateDisplayAfterZ3950(const QStringList &list,
 				 const QString &recordSyntax);
 
+  void setIdentifier(const QString &id)
+  {
+    ma.id->setText(id.trimmed());
+  }
+
   void setPublicationDateFormat(const QString &dateFormat)
   {
     ma.publication_date->setDisplayFormat(dateFormat);

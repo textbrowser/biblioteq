@@ -1041,7 +1041,6 @@ void biblioteq::slotCreateItemPanel(const QString &identifier,
 				    const QString &querySystem,
 				    const QString &type)
 {
-  Q_UNUSED(identifier);
   Q_UNUSED(querySystem);
 
   std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
@@ -1058,6 +1057,7 @@ void biblioteq::slotCreateItemPanel(const QString &identifier,
 
       addItemWindowToTab(book);
       book->insert();
+      book->setIdentifier(identifier);
       connect(this,
 	      SIGNAL(databaseEnumerationsCommitted(void)),
 	      book,

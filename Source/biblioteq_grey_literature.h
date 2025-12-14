@@ -56,6 +56,11 @@ class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
   void modify(const int state);
   void search(const QString &field = "", const QString &value = "");
 
+  void setIdentifier(const QString &id)
+  {
+    m_ui.id->setText(id.trimmed());
+  }
+
   void setPublicationDateFormat(const QString &dateFormat)
   {
     m_ui.date->setDisplayFormat(dateFormat);

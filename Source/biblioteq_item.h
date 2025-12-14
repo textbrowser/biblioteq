@@ -83,6 +83,11 @@ class biblioteq_item
     return "";
   }
 
+  virtual void setIdentifier(const QString &id)
+  {
+    Q_UNUSED(id);
+  }
+
   virtual void setPublicationDateFormat(const QString &dateFormat);
   void setOldQ(const int q);
   void updateQuantity(const int q);

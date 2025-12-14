@@ -56,6 +56,11 @@ class biblioteq_dvd: public QMainWindow, public biblioteq_item
   void modify(const int state);
   void search(const QString &field = "", const QString &value = "");
 
+  void setIdentifier(const QString &id)
+  {
+    dvd.id->setText(id.trimmed());
+  }
+
   void setPublicationDateFormat(const QString &dateFormat)
   {
     dvd.release_date->setDisplayFormat(dateFormat);

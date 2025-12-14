@@ -57,6 +57,11 @@ class biblioteq_cd: public QMainWindow, public biblioteq_item
   void modify(const int state);
   void search(const QString &field = "", const QString &value = "");
 
+  void setIdentifier(const QString &id)
+  {
+    cd.id->setText(id.trimmed());
+  }
+
   void setPublicationDateFormat(const QString &dateFormat)
   {
     cd.release_date->setDisplayFormat(dateFormat);

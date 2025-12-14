@@ -56,6 +56,11 @@ class biblioteq_videogame: public QMainWindow, public biblioteq_item
   void modify(const int state);
   void search(const QString &field = "", const QString &value = "");
 
+  void setIdentifier(const QString &id)
+  {
+    vg.id->setText(id.trimmed());
+  }
+
   void setPublicationDateFormat(const QString &dateFormat)
   {
     vg.release_date->setDisplayFormat(dateFormat);

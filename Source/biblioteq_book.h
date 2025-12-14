@@ -64,6 +64,14 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void modify(const int state);
   void search(const QString &field = "", const QString &value = "");
 
+  void setIdentifier(const QString &identifier)
+  {
+    if(QString(identifier).remove('-').trimmed().length() == 10)
+      id.id->setText(identifier.trimmed());
+    else
+      id.isbn13->setText(identifier.trimmed());
+  }
+
   void setPublicationDateFormat(const QString &dateFormat)
   {
     id.publication_date->setDisplayFormat(dateFormat);
