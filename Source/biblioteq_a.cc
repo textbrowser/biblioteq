@@ -282,6 +282,14 @@ biblioteq::biblioteq(void):QMainWindow()
 	  this,
 	  SLOT(slotLastWindowClosed(void)));
   connect(m_batchActivities,
+	  SIGNAL(createItem(const QString &,
+			    const QString &,
+			    const QString &)),
+	  this,
+	  SLOT(slotCreateItemPanel(const QString &,
+				   const QString &,
+				   const QString &)));
+  connect(m_batchActivities,
 	  SIGNAL(listMembersReservedItems(const QString &)),
 	  this,
 	  SLOT(slotListReservedItems(const QString &)));
@@ -3915,12 +3923,10 @@ void biblioteq::slotInsertBook(void)
 
 void biblioteq::slotInsertCD(void)
 {
-  QString id("");
   biblioteq_cd *cd = nullptr;
 
   m_idCt += 1;
-  id = QString("insert_%1").arg(m_idCt);
-  cd = new biblioteq_cd(this, id, QModelIndex());
+  cd = new biblioteq_cd(this, QString("insert_%1").arg(m_idCt), QModelIndex());
   addItemWindowToTab(cd);
   cd->insert();
   connect(this,
@@ -3931,12 +3937,11 @@ void biblioteq::slotInsertCD(void)
 
 void biblioteq::slotInsertDVD(void)
 {
-  QString id("");
   biblioteq_dvd *dvd = nullptr;
 
   m_idCt += 1;
-  id = QString("insert_%1").arg(m_idCt);
-  dvd = new biblioteq_dvd(this, id, QModelIndex());
+  dvd = new biblioteq_dvd
+    (this, QString("insert_%1").arg(m_idCt), QModelIndex());
   addItemWindowToTab(dvd);
   dvd->insert();
   connect(this,
@@ -3947,12 +3952,11 @@ void biblioteq::slotInsertDVD(void)
 
 void biblioteq::slotInsertJourn(void)
 {
-  QString id("");
   biblioteq_journal *journal = nullptr;
 
   m_idCt += 1;
-  id = QString("insert_%1").arg(m_idCt);
-  journal = new biblioteq_journal(this, id, QModelIndex());
+  journal = new biblioteq_journal
+    (this, QString("insert_%1").arg(m_idCt), QModelIndex());
   addItemWindowToTab(journal);
   journal->insert();
   connect(this,
@@ -3963,12 +3967,11 @@ void biblioteq::slotInsertJourn(void)
 
 void biblioteq::slotInsertMag(void)
 {
-  QString id("");
   biblioteq_magazine *magazine = nullptr;
 
   m_idCt += 1;
-  id = QString("insert_%1").arg(m_idCt);
-  magazine = new biblioteq_magazine(this, id, QModelIndex(), "magazine");
+  magazine = new biblioteq_magazine
+    (this, QString("insert_%1").arg(m_idCt), QModelIndex(), "magazine");
   addItemWindowToTab(magazine);
   magazine->insert();
   connect(this,
@@ -3979,12 +3982,11 @@ void biblioteq::slotInsertMag(void)
 
 void biblioteq::slotInsertPhotograph(void)
 {
-  QString id("");
   biblioteq_photographcollection *photograph = nullptr;
 
   m_idCt += 1;
-  id = QString("insert_%1").arg(m_idCt);
-  photograph = new biblioteq_photographcollection(this, id, QModelIndex());
+  photograph = new biblioteq_photographcollection
+    (this, QString("insert_%1").arg(m_idCt), QModelIndex());
   addItemWindowToTab(photograph);
   photograph->insert();
   connect(this,
@@ -3995,12 +3997,11 @@ void biblioteq::slotInsertPhotograph(void)
 
 void biblioteq::slotInsertVideoGame(void)
 {
-  QString id("");
   biblioteq_videogame *videogame = nullptr;
 
   m_idCt += 1;
-  id = QString("insert_%1").arg(m_idCt);
-  videogame = new biblioteq_videogame(this, id, QModelIndex());
+  videogame = new biblioteq_videogame
+    (this, QString("insert_%1").arg(m_idCt), QModelIndex());
   addItemWindowToTab(videogame);
   videogame->insert();
   connect(this,

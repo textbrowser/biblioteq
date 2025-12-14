@@ -306,6 +306,24 @@ biblioteq_batch_activities::~biblioteq_batch_activities()
 #endif
 }
 
+void biblioteq_batch_activities::add(void)
+{
+  for(int i = 0; i < m_ui.add_table->rowCount(); i++)
+    {
+      auto item1 = m_ui.add_table->item
+	(i, static_cast<int> (AddTableColumns::IDENTIFIER_COLUMN));
+      auto item2 = m_ui.add_table->item
+	(i, static_cast<int> (AddTableColumns::QUERY_SYSTEM_COLUMN));
+      auto item3 = m_ui.add_table->item
+	(i, static_cast<int> (AddTableColumns::CATEGORY_COLUMN));
+
+      if(!item1 || !item2 || !item3)
+	continue;
+
+      emit createItem(item1->text(), item2->text(), item3->text());
+    }
+}
+
 void biblioteq_batch_activities::borrow(void)
 {
   auto const memberId(m_ui.borrow_member_id->text().trimmed());
@@ -1711,6 +1729,11 @@ void biblioteq_batch_activities::slotGo(void)
 {
   switch(static_cast<Pages> (m_ui.tab->currentIndex()))
     {
+    case Pages::Add:
+      {
+	add();
+	break;
+      }
     case Pages::Borrow:
       {
 	borrow();

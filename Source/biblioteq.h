@@ -608,6 +608,9 @@ class biblioteq: public QMainWindow
   void slotContextMenu(const QPoint &point);
   void slotContributors(void);
   void slotCopyError(void);
+  void slotCreateItemPanel(const QString &identifier,
+			   const QString &querySystem,
+			   const QString &type);
   void slotCustomQuery(void);
   void slotDVDSearch(void);
   void slotDelayedPreparation(void);

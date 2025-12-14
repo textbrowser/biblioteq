@@ -4327,12 +4327,11 @@ void biblioteq::slotGreyLiteratureSearch(void)
 
 void biblioteq::slotInsertGreyLiterature(void)
 {
-  QString id("");
   biblioteq_grey_literature *gl = nullptr;
 
   m_idCt += 1;
-  id = QString("insert_%1").arg(m_idCt);
-  gl = new biblioteq_grey_literature(this, id, QModelIndex());
+  gl = new biblioteq_grey_literature
+    (this, QString("insert_%1").arg(m_idCt), QModelIndex());
   addItemWindowToTab(gl);
   gl->insert();
   connect(this,

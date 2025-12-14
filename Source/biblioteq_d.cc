@@ -1037,6 +1037,34 @@ void biblioteq::slotContributors(void)
   m_contributors->show();
 }
 
+void biblioteq::slotCreateItemPanel(const QString &identifier,
+				    const QString &querySystem,
+				    const QString &type)
+{
+  Q_UNUSED(identifier);
+  Q_UNUSED(querySystem);
+
+  std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
+
+  if(!lock.try_lock())
+    return;
+
+  if(type == tr("Book"))
+    {
+      m_idCt += 1;
+
+      auto book = new biblioteq_book
+	(this, QString("insert_%1").arg(m_idCt), QModelIndex());
+
+      addItemWindowToTab(book);
+      book->insert();
+      connect(this,
+	      SIGNAL(databaseEnumerationsCommitted(void)),
+	      book,
+	      SLOT(slotDatabaseEnumerationsCommitted(void)));
+    }
+}
+
 void biblioteq::slotCustomQuery(void)
 {
   if(!m_db.isOpen())
