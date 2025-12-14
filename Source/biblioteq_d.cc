@@ -1041,8 +1041,6 @@ void biblioteq::slotCreateItemPanel(const QString &identifier,
 				    const QString &querySystem,
 				    const QString &type)
 {
-  Q_UNUSED(querySystem);
-
   std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
   if(!lock.try_lock())
@@ -1056,6 +1054,7 @@ void biblioteq::slotCreateItemPanel(const QString &identifier,
 	(this, QString("insert_%1").arg(m_idCt), QModelIndex());
 
       addItemWindowToTab(book);
+      book->delayedQuery(querySystem);
       book->insert();
       book->setIdentifier(identifier);
       connect(this,

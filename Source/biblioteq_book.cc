@@ -59,6 +59,7 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
   auto scene2 = new QGraphicsScene(this);
 
   qmain = parentArg;
+  m_doNotShowDialogs = false;
   m_duplicate = false;
   m_imageManager = new QNetworkAccessManager(this);
   m_oid = oidArg;
@@ -936,6 +937,15 @@ void biblioteq_book::createSRUDialog(void)
 	  SLOT(slotSRUCanceled(void)));
 }
 
+void biblioteq_book::delayedQuery(const QString &querySystem)
+{
+  if(querySystem == tr("Open Library"))
+    {
+      QTimer::singleShot(1500, this, SLOT(slotOpenLibraryQuery(void)));
+      m_doNotShowDialogs = true;
+    }
+}
+
 void biblioteq_book::downloadFinished(void)
 {
   if(m_imageBuffer.property("which") == "front")
@@ -1478,25 +1488,29 @@ void biblioteq_book::openLibraryDownloadFinished(void)
   if(m_openLibraryResults.isEmpty() ||
      m_openLibraryResults.length() <= 10)
     {
-      QMessageBox::critical
-	(this,
-	 tr("BiblioteQ: Open Library Query Error"),
-	 tr("The Open Library query produced invalid results. "
-	    "Perhaps the book is not defined."));
-      QApplication::processEvents();
+      if(!m_doNotShowDialogs)
+	{
+	  QMessageBox::critical
+	    (this,
+	     tr("BiblioteQ: Open Library Query Error"),
+	     tr("The Open Library query produced invalid results. "
+		"Perhaps the book is not defined."));
+	  QApplication::processEvents();
+	}
     }
   else
     {
-      if(QMessageBox::question
-	 (this,
-	  tr("BiblioteQ: Question"),
-	  tr("Replace existing values with those retrieved from Open Library?"),
-	  QMessageBox::No | QMessageBox::Yes,
-	  QMessageBox::No) == QMessageBox::No)
-	{
-	  QApplication::processEvents();
-	  return;
-	}
+      if(!m_doNotShowDialogs)
+	if(QMessageBox::question(this,
+				 tr("BiblioteQ: Question"),
+				 tr("Replace existing values with those "
+				    "retrieved from Open Library?"),
+				 QMessageBox::No | QMessageBox::Yes,
+				 QMessageBox::No) == QMessageBox::No)
+	  {
+	    QApplication::processEvents();
+	    return;
+	  }
 
       populateAfterOpenLibrary();
     }
@@ -3240,7 +3254,7 @@ void biblioteq_book::slotGo(void)
 
 	  QApplication::restoreOverrideCursor();
 
-	  if(newq < maxcopynumber)
+	  if(maxcopynumber > newq)
 	    {
 	      QMessageBox::critical
 		(this,
@@ -3252,7 +3266,7 @@ void biblioteq_book::slotGo(void)
 	      id.quantity->setValue(m_oldq);
 	      return;
 	    }
-	  else if(newq > m_oldq)
+	  else if(m_oldq < newq)
 	    {
 	      if(QMessageBox::question
 		 (this,
@@ -4496,12 +4510,17 @@ void biblioteq_book::slotOpenLibraryQuery(void)
 
   if(!ok)
     {
-      QMessageBox::critical
-	(this,
-	 tr("BiblioteQ: User Error"),
-	 tr("In order to query an Open Library site, "
-	    "Alternate Identifier, ISBN-10, or ISBN-13 must be provided."));
-      QApplication::processEvents();
+      if(!m_doNotShowDialogs)
+	{
+	  QMessageBox::critical
+	    (this,
+	     tr("BiblioteQ: User Error"),
+	     tr("In order to query an Open Library site, "
+		"Alternate Identifier, ISBN-10, or ISBN-13 must "
+		"be provided."));
+	  QApplication::processEvents();
+	}
+
       id.id->setFocus();
       return;
     }
@@ -4668,7 +4687,7 @@ void biblioteq_book::slotOpenLibraryQuery(void)
 
 void biblioteq_book::slotOpenLibraryQueryError(const QString &text)
 {
-  if(text.trimmed().isEmpty())
+  if(m_doNotShowDialogs || text.trimmed().isEmpty())
     return;
 
   QMessageBox::critical

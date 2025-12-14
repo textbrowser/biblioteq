@@ -59,6 +59,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
       return QString(tr("Book (%1)").arg(title));
   }
 
+  void delayedQuery(const QString &querySystem);
   void duplicate(const QString &p_oid, const int state);
   void insert(void);
   void modify(const int state);
@@ -106,6 +107,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   QString m_engWindowTitle;
   Ui_informationDialog id;
   Ui_passwordDialog ui_p;
+  bool m_doNotShowDialogs;
   bool m_duplicate;
   biblioteq_item_working_dialog *createImageDownloadDialog
     (const QString &downloadType);
