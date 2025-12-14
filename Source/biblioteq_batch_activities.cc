@@ -67,13 +67,13 @@ QWidget *biblioteq_batch_activities_item_delegate::createEditor
 	    auto editor = new QComboBox(parent);
 
 	    list << tr("Book")
-		 << tr("CD")
-		 << tr("DVD")
-		 << tr("Grey Literature")
+	      // << tr("CD")
+	      // << tr("DVD")
+	      // << tr("Grey Literature")
 		 << tr("Journal")
-		 << tr("Magazine")
-		 << tr("Photograph Collection")
-		 << tr("Video Game");
+		 << tr("Magazine");
+	      // << tr("Photograph Collection")
+	      // << tr("Video Game");
 	    std::sort(list.begin(), list.end());
 	    editor->addItems(list);
 	    editor->setSizeAdjustPolicy(QComboBox::AdjustToContents);
@@ -2207,30 +2207,10 @@ void biblioteq_batch_activities::slotScanAddingTimerTimeout(void)
 {
   if(!m_ui.add_scan->text().trimmed().isEmpty())
     {
-      QString type("");
       auto const row = m_ui.add_table->rowCount();
-
-      if(m_ui.add_scan_type->currentText() == tr("Book"))
-	type = "Book";
-      else if(m_ui.add_scan_type->currentText() == tr("CD"))
-	type = "CD";
-      else if(m_ui.add_scan_type->currentText() == tr("DVD"))
-	type = "DVD";
-      else if(m_ui.add_scan_type->currentText() == tr("Grey Literature"))
-	type = "Grey Literature";
-      else if(m_ui.add_scan_type->currentText() == tr("Journal"))
-	type = "Journal";
-      else if(m_ui.add_scan_type->currentText() == tr("Magazine"))
-	type = "Magazine";
-      else if(m_ui.add_scan_type->currentText() == tr("Photograph Collection"))
-	type = "Photograph Collection";
-      else if(m_ui.add_scan_type->currentText() == tr("Video Game"))
-	type = "Video Game";
+      auto item = new QTableWidgetItem(m_ui.add_scan_type->currentText());
 
       m_ui.add_table->setRowCount(row + 1);
-
-      auto item = new QTableWidgetItem(type);
-
       item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable);
       m_ui.add_table->setItem
 	(row, static_cast<int> (AddTableColumns::CATEGORY_COLUMN), item);

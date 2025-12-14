@@ -96,37 +96,12 @@
                </item>
                <item>
                 <property name="text">
-                 <string>CD</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>DVD</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Grey Literature</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
                  <string>Journal</string>
                 </property>
                </item>
                <item>
                 <property name="text">
                  <string>Magazine</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Photograph Collection</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Video Game</string>
                 </property>
                </item>
               </widget>

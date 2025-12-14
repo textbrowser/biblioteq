@@ -1063,6 +1063,36 @@ void biblioteq::slotCreateItemPanel(const QString &identifier,
 	      book,
 	      SLOT(slotDatabaseEnumerationsCommitted(void)));
     }
+  else if(type == tr("Journal"))
+    {
+      m_idCt += 1;
+
+      auto journal = new biblioteq_journal
+	(this, QString("insert_%1").arg(m_idCt), QModelIndex());
+
+      addItemWindowToTab(journal);
+      journal->insert();
+      journal->setIdentifier(identifier);
+      connect(this,
+	      SIGNAL(databaseEnumerationsCommitted(void)),
+	      journal,
+	      SLOT(slotDatabaseEnumerationsCommitted(void)));
+    }
+  else if(type == tr("Magazine"))
+    {
+      m_idCt += 1;
+
+      auto magazine = new biblioteq_magazine
+	(this, QString("insert_%1").arg(m_idCt), QModelIndex(), "magazine");
+
+      addItemWindowToTab(magazine);
+      magazine->insert();
+      magazine->setIdentifier(identifier);
+      connect(this,
+	      SIGNAL(databaseEnumerationsCommitted(void)),
+	      magazine,
+	      SLOT(slotDatabaseEnumerationsCommitted(void)));
+    }
 }
 
 void biblioteq::slotCustomQuery(void)
