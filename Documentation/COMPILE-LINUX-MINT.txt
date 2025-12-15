@@ -1,0 +1,30 @@
+Building BiblioteQ from github.com source on Linux Mint.
+
+Package names are at the Linux Mint 22.2 (Zara) version.
+
+1 - Install Prerequisite Packages
+sudo apt install build-essential
+sudo apt install git
+sudo apt install libpoppler-cpp-dev
+sudo apt install libqt5multimedia5-plugins
+sudo apt install libsqlite3-dev
+sudo apt install libyazpp-dev
+sudo apt install qtbase5-dev
+sudo apt install qtmultimedia5-dev
+sudo apt install qtpdf5-dev
+sudo ldconfig
+
+2 - Download BiblioteQ
+git clone https://github.com/textbrowser/biblioteq.git
+
+3 - Compile BiblioteQ
+(Specifying the "-j" option below allows multi-threading.)
+cd biblioteq
+qmake -o Makefile biblioteq.pro
+make -j 4
+
+4 - Create Distribution Package
+./Distributions/build_debian_amd64.bash
+
+5 - Install BiblioteQ
+sudo captain BiblioteQ-YYYY.MM.DD_amd64.deb
