@@ -61,6 +61,7 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
   }
 
   Ui_magDialog dialog(void) const;
+  void delayedQuery(const QString &querySystem);
   void duplicate(const QString &p_oid, const int state);
   void insert(void);
   void modify(const int);

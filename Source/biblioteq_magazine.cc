@@ -605,6 +605,13 @@ void biblioteq_magazine::createSRUDialog(void)
 	  SLOT(slotSRUCanceled(void)));
 }
 
+void biblioteq_magazine::delayedQuery(const QString &querySystem)
+{
+  if(querySystem == tr("SRU Query"))
+    {
+    }
+}
+
 void biblioteq_magazine::duplicate(const QString &p_oid, const int state)
 {
   m_duplicate = true;

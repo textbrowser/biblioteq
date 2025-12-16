@@ -95,7 +95,8 @@ QWidget *biblioteq_batch_activities_item_delegate::createEditor
 		    SIGNAL(activated(int)),
 		    this,
 		    SLOT(slotCurrentIndexChanged(int)));
-	    list << tr("Open Library");
+	    list << tr("Open Library")
+		 << tr("SRU Query");
 	    std::sort(list.begin(), list.end());
 	    editor->addItems(list);
 	    editor->setSizeAdjustPolicy(QComboBox::AdjustToContents);

@@ -944,6 +944,11 @@ void biblioteq_book::delayedQuery(const QString &querySystem)
       QTimer::singleShot(1500, this, SLOT(slotOpenLibraryQuery(void)));
       m_doNotShowDialogs = true;
     }
+  else if(querySystem == tr("SRU Query"))
+    {
+      QTimer::singleShot(1500, this, SLOT(slotSRUQuery(void)));
+      m_doNotShowDialogs = true;
+    }
 }
 
 void biblioteq_book::downloadFinished(void)
@@ -1501,16 +1506,20 @@ void biblioteq_book::openLibraryDownloadFinished(void)
   else
     {
       if(!m_doNotShowDialogs)
-	if(QMessageBox::question(this,
-				 tr("BiblioteQ: Question"),
-				 tr("Replace existing values with those "
-				    "retrieved from Open Library?"),
-				 QMessageBox::No | QMessageBox::Yes,
-				 QMessageBox::No) == QMessageBox::No)
-	  {
+	{
+	  if(QMessageBox::question(this,
+				   tr("BiblioteQ: Question"),
+				   tr("Replace existing values with those "
+				      "retrieved from Open Library?"),
+				   QMessageBox::No | QMessageBox::Yes,
+				   QMessageBox::No) == QMessageBox::No)
+	    {
+	      QApplication::processEvents();
+	      return;
+	    }
+	  else
 	    QApplication::processEvents();
-	    return;
-	  }
+	}
 
       populateAfterOpenLibrary();
     }
@@ -5443,12 +5452,16 @@ void biblioteq_book::slotSRUQuery(void)
   if(!(id.id->text().remove('-').trimmed().length() == 10 ||
        id.isbn13->text().remove('-').trimmed().length() == 13))
     {
-      QMessageBox::critical
-	(this,
-	 tr("BiblioteQ: User Error"),
-	 tr("In order to query an SRU site, "
-	    "ISBN-10 or ISBN-13 must be provided."));
-      QApplication::processEvents();
+      if(!m_doNotShowDialogs)
+	{
+	  QMessageBox::critical
+	    (this,
+	     tr("BiblioteQ: User Error"),
+	     tr("In order to query an SRU site, "
+		"ISBN-10 or ISBN-13 must be provided."));
+	  QApplication::processEvents();
+	}
+
       id.id->setFocus();
       return;
     }
@@ -5619,7 +5632,7 @@ void biblioteq_book::slotSRUQuery(void)
 
 void biblioteq_book::slotSRUQueryError(const QString &text)
 {
-  if(text.trimmed().isEmpty())
+  if(m_doNotShowDialogs || text.trimmed().isEmpty())
     return;
 
   QMessageBox::critical
@@ -5959,31 +5972,46 @@ void biblioteq_book::sruDownloadFinished(void)
 
   if(!m_sruResults.isEmpty())
     {
-      if(QMessageBox::question(this,
-			       tr("BiblioteQ: Question"),
-			       tr("Replace existing values with "
-				  "those retrieved from the SRU site?"),
-			       QMessageBox::No | QMessageBox::Yes,
-			       QMessageBox::No) == QMessageBox::Yes)
+      if(!m_doNotShowDialogs)
 	{
-	  QApplication::processEvents();
-	  populateAfterSRU("MARC21", m_sruResults);
-	}
+	  if(QMessageBox::question(this,
+				   tr("BiblioteQ: Question"),
+				   tr("Replace existing values with "
+				      "those retrieved from the SRU site?"),
+				   QMessageBox::No | QMessageBox::Yes,
+				   QMessageBox::No) == QMessageBox::Yes)
+	    {
+	      QApplication::processEvents();
+	      populateAfterSRU("MARC21", m_sruResults);
+	    }
 
-      QApplication::processEvents();
+	  QApplication::processEvents();
+	}
+      else
+	populateAfterSRU("MARC21", m_sruResults);	
     }
   else if(records == 0)
-    QMessageBox::critical
-      (this,
-       tr("BiblioteQ: SRU Query Error"),
-       tr("An SRU entry may not yet exist for the provided ISBN(s)."));
+    {
+      if(!m_doNotShowDialogs)
+	{
+	  QMessageBox::critical
+	    (this,
+	     tr("BiblioteQ: SRU Query Error"),
+	     tr("An SRU entry may not yet exist for the provided ISBN(s)."));
+	  QApplication::processEvents();
+	}
+    }
   else
-    QMessageBox::critical
-      (this,
-       tr("BiblioteQ: SRU Query Error"),
-       tr("The SRU query produced invalid results."));
-
-  QApplication::processEvents();
+    {
+      if(!m_doNotShowDialogs)
+	{
+	  QMessageBox::critical
+	    (this,
+	     tr("BiblioteQ: SRU Query Error"),
+	     tr("The SRU query produced invalid results."));
+	  QApplication::processEvents();
+	}
+    }
 }
 
 void biblioteq_book::updateWindow(const int state)
