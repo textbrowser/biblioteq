@@ -70,7 +70,8 @@ QWidget *biblioteq_batch_activities_item_delegate::createEditor
 		    SIGNAL(activated(int)),
 		    this,
 		    SLOT(slotCurrentIndexChanged(int)));
-	    list << tr("Book")
+	    list << tr("Automatic")
+		 << tr("Book")
 	      // << tr("CD")
 	      // << tr("DVD")
 	      // << tr("Grey Literature")
@@ -354,7 +355,15 @@ void biblioteq_batch_activities::add(void)
       if(!item1 || !item2 || !item3)
 	continue;
 
-      emit createItem(item1->text(), item2->text(), item3->text());
+      if(item3->text() == tr("Automatic"))
+	{
+	  if(item1->text().remove('-').trimmed().length() == 8)
+	    createItem(item1->text(), tr("SRU Query"), tr("Journal"));
+	  else
+	    createItem(item1->text(), tr("Open Library"), tr("Book"));
+	}
+      else
+	emit createItem(item1->text(), item2->text(), item3->text());
     }
 }
 

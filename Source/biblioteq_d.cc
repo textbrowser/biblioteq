@@ -1071,6 +1071,7 @@ void biblioteq::slotCreateItemPanel(const QString &identifier,
 	(this, QString("insert_%1").arg(m_idCt), QModelIndex());
 
       addItemWindowToTab(journal);
+      journal->delayedQuery(querySystem);
       journal->insert();
       journal->setIdentifier(identifier);
       connect(this,
@@ -1086,6 +1087,7 @@ void biblioteq::slotCreateItemPanel(const QString &identifier,
 	(this, QString("insert_%1").arg(m_idCt), QModelIndex(), "magazine");
 
       addItemWindowToTab(magazine);
+      magazine->delayedQuery(querySystem);
       magazine->insert();
       magazine->setIdentifier(identifier);
       connect(this,

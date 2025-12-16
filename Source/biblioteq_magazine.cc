@@ -57,6 +57,7 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
 				       const QString &subTypeArg):
   QMainWindow(), biblioteq_item(index)
 {
+  m_doNotShowDialogs = false;
   m_duplicate = false;
   m_sruWorking = nullptr;
   qmain = parentArg;
@@ -609,6 +610,8 @@ void biblioteq_magazine::delayedQuery(const QString &querySystem)
 {
   if(querySystem == tr("SRU Query"))
     {
+      QTimer::singleShot(1500, this, SLOT(slotSRUQuery(void)));
+      m_doNotShowDialogs = true;
     }
 }
 
@@ -2410,7 +2413,7 @@ void biblioteq_magazine::slotGo(void)
 
 	  QApplication::restoreOverrideCursor();
 
-	  if(newq < maxcopynumber)
+	  if(maxcopynumber > newq)
 	    {
 	      QMessageBox::critical
 		(this,
@@ -2422,7 +2425,7 @@ void biblioteq_magazine::slotGo(void)
 	      ma.quantity->setValue(m_oldq);
 	      return;
 	    }
-	  else if(newq > m_oldq)
+	  else if(m_oldq < newq)
 	    {
 	      if(QMessageBox::question
 		 (this,
@@ -3775,11 +3778,15 @@ void biblioteq_magazine::slotSRUQuery(void)
 
   if(ma.id->text().trimmed().isEmpty())
     {
-      QMessageBox::critical
-	(this,
-	 tr("BiblioteQ: User Error"),
-	 tr("In order to query an SRU site, the ISSN must be provided."));
-      QApplication::processEvents();
+      if(!m_doNotShowDialogs)
+	{
+	  QMessageBox::critical
+	    (this,
+	     tr("BiblioteQ: User Error"),
+	     tr("In order to query an SRU site, the ISSN must be provided."));
+	  QApplication::processEvents();
+	}
+
       ma.id->setFocus();
       return;
     }
@@ -3935,7 +3942,7 @@ void biblioteq_magazine::slotSRUQuery(void)
 
 void biblioteq_magazine::slotSRUQueryError(const QString &text)
 {
-  if(text.trimmed().isEmpty())
+  if(m_doNotShowDialogs || text.trimmed().isEmpty())
     return;
 
   QMessageBox::critical
@@ -4263,37 +4270,48 @@ void biblioteq_magazine::sruDownloadFinished(void)
 
   if(list.size() == 1)
     {
-      if(QMessageBox::question(this,
-			       tr("BiblioteQ: Question"),
-			       tr("Replace existing values with "
-				  "those retrieved from the SRU site?"),
-			       QMessageBox::No | QMessageBox::Yes,
-			       QMessageBox::No) == QMessageBox::Yes)
+      if(!m_doNotShowDialogs)
 	{
-	  QApplication::processEvents();
-	  populateDisplayAfterSRU(list[0]);
-	}
+	  if(QMessageBox::question(this,
+				   tr("BiblioteQ: Question"),
+				   tr("Replace existing values with "
+				      "those retrieved from the SRU site?"),
+				   QMessageBox::No | QMessageBox::Yes,
+				   QMessageBox::No) == QMessageBox::Yes)
+	    {
+	      QApplication::processEvents();
+	      populateDisplayAfterSRU(list[0]);
+	    }
 
-      QApplication::processEvents();
+	  QApplication::processEvents();
+	}
+      else
+	populateDisplayAfterSRU(list[0]);
     }
   else if(list.size() > 1)
     {
-      /*
-      ** Display a selection dialog. Destroyed on close.
-      */
+      if(!m_doNotShowDialogs)
+	/*
+	** Display a selection dialog. Destroyed on close.
+	*/
 
-      new biblioteq_sruresults
-	(qobject_cast<QWidget *> (this), list, this, font());
+	new biblioteq_sruresults
+	  (qobject_cast<QWidget *> (this), list, this, font());
+      else
+	populateDisplayAfterSRU(list[0]);
     }
   else
     {
-      QMessageBox::critical
-	(this,
-	 tr("BiblioteQ: SRU Query Error"),
-	 tr("An SRU entry may not yet exist for ") +
-	 ma.id->text().trimmed() +
-	 tr(" or a network error occurred."));
-      QApplication::processEvents();
+      if(!m_doNotShowDialogs)
+	{
+	  QMessageBox::critical
+	    (this,
+	     tr("BiblioteQ: SRU Query Error"),
+	     tr("An SRU entry may not yet exist for ") +
+	     ma.id->text().trimmed() +
+	     tr(" or a network error occurred."));
+	  QApplication::processEvents();
+	}
     }
 }
 

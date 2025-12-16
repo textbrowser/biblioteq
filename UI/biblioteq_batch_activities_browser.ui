@@ -87,8 +87,13 @@
              <item>
               <widget class="QComboBox" name="add_scan_type">
                <property name="currentText">
-                <string>Book</string>
+                <string>Automatic</string>
                </property>
+               <item>
+                <property name="text">
+                 <string>Automatic</string>
+                </property>
+               </item>
                <item>
                 <property name="text">
                  <string>Book</string>
