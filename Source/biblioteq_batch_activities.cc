@@ -66,6 +66,10 @@ QWidget *biblioteq_batch_activities_item_delegate::createEditor
 	    QStringList list;
 	    auto editor = new QComboBox(parent);
 
+	    connect(editor,
+		    SIGNAL(activated(int)),
+		    this,
+		    SLOT(slotCurrentIndexChanged(int)));
 	    list << tr("Book")
 	      // << tr("CD")
 	      // << tr("DVD")
@@ -87,6 +91,10 @@ QWidget *biblioteq_batch_activities_item_delegate::createEditor
 	    QStringList list;
 	    auto editor = new QComboBox(parent);
 
+	    connect(editor,
+		    SIGNAL(activated(int)),
+		    this,
+		    SLOT(slotCurrentIndexChanged(int)));
 	    list << tr("Open Library");
 	    std::sort(list.begin(), list.end());
 	    editor->addItems(list);
@@ -136,16 +144,41 @@ setModelData(QWidget *editor,
 	     QAbstractItemModel *model,
 	     const QModelIndex &index) const
 {
-  auto date = qobject_cast<QDateEdit *> (editor);
-
-  if(date && model)
+  if(model)
     {
-      model->setData
-	(index, QLocale().toString(date->date(), QLocale::LongFormat));
-      return;
+      auto comboBox = qobject_cast<QComboBox *> (editor);
+
+      if(comboBox)
+	{
+	  model->setData(index, comboBox->currentText());
+	  return;
+	}
+
+      auto date = qobject_cast<QDateEdit *> (editor);
+
+      if(date)
+	{
+	  model->setData
+	    (index, QLocale().toString(date->date(), QLocale::LongFormat));
+	  return;
+	}
     }
 
   QStyledItemDelegate::setModelData(editor, model, index);
+}
+
+void biblioteq_batch_activities_item_delegate::
+slotCurrentIndexChanged(int index)
+{
+  Q_UNUSED(index);
+
+  auto comboBox = qobject_cast<QComboBox *> (sender());
+
+  if(comboBox)
+    {
+      emit commitData(comboBox);
+      emit closeEditor(comboBox); // Order is crucial.
+    }
 }
 
 biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):

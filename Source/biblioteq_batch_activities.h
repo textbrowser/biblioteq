@@ -169,6 +169,9 @@ class biblioteq_batch_activities_item_delegate: public QStyledItemDelegate
   void setModelData(QWidget *editor,
 		    QAbstractItemModel *model,
 		    const QModelIndex &index) const;
+
+ private slots:
+  void slotCurrentIndexChanged(int index);
 };
 
 #endif
