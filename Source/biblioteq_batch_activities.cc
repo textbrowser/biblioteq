@@ -70,8 +70,7 @@ QWidget *biblioteq_batch_activities_item_delegate::createEditor
 		    SIGNAL(activated(int)),
 		    this,
 		    SLOT(slotCurrentIndexChanged(int)));
-	    list << tr("Automatic")
-		 << tr("Book")
+	    list << tr("Book")
 	      // << tr("CD")
 	      // << tr("DVD")
 	      // << tr("Grey Literature")
@@ -352,17 +351,7 @@ void biblioteq_batch_activities::add(void)
       auto item3 = m_ui.add_table->item
 	(i, static_cast<int> (AddTableColumns::CATEGORY_COLUMN));
 
-      if(!item1 || !item2 || !item3)
-	continue;
-
-      if(item3->text() == tr("Automatic"))
-	{
-	  if(item1->text().remove('-').trimmed().length() == 8)
-	    createItem(item1->text(), tr("SRU Query"), tr("Journal"));
-	  else
-	    createItem(item1->text(), tr("Open Library"), tr("Book"));
-	}
-      else
+      if(item1 && item2 && item3)
 	emit createItem(item1->text(), item2->text(), item3->text());
     }
 }
@@ -2283,18 +2272,36 @@ void biblioteq_batch_activities::slotScanAddingTimerTimeout(void)
 {
   if(!m_ui.add_scan->text().trimmed().isEmpty())
     {
+      auto category(m_ui.add_scan_type->currentText());
+      auto const identifier(m_ui.add_scan->text().trimmed());
       auto const row = m_ui.add_table->rowCount();
-      auto item = new QTableWidgetItem(m_ui.add_scan_type->currentText());
+      auto item = new QTableWidgetItem();
+      auto querySystem(tr("Open Library"));
+
+      if(category == tr("Automatic"))
+	{
+	  if(QString(identifier).remove('-').length() == 8)
+	    {
+	      category = tr("Journal");
+	      querySystem = tr("SRU Query");
+	    }
+	  else
+	    {
+	      category = tr("Book");
+	      querySystem = tr("Open Library");
+	    }
+	}
 
       m_ui.add_table->setRowCount(row + 1);
       item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable);
+      item->setText(category);
       m_ui.add_table->setItem
 	(row, static_cast<int> (AddTableColumns::CATEGORY_COLUMN), item);
-      item = new QTableWidgetItem(m_ui.add_scan->text().trimmed());
+      item = new QTableWidgetItem(identifier);
       item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable);
       m_ui.add_table->setItem
 	(row, static_cast<int> (AddTableColumns::IDENTIFIER_COLUMN), item);
-      item = new QTableWidgetItem(tr("Open Library"));
+      item = new QTableWidgetItem(querySystem);
       item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable);
       m_ui.add_table->setItem
 	(row, static_cast<int> (AddTableColumns::QUERY_SYSTEM_COLUMN), item);
