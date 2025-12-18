@@ -189,7 +189,14 @@ int main(int argc, char *argv[])
   biblioteq biblioteq;
 
   biblioteq.showMain();
-  return static_cast<int> (qapplication.exec());
+
+  auto const rc = static_cast<int> (qapplication.exec());
+
+  delete biblioteq::s_appTranslator;
+  biblioteq::s_appTranslator = nullptr;
+  delete biblioteq::s_qtTranslator;
+  biblioteq::s_qtTranslator = nullptr;
+  return rc;
 }
 
 biblioteq::biblioteq(void):QMainWindow()
