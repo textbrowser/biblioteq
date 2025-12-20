@@ -90,14 +90,26 @@ QWidget *biblioteq_batch_activities_item_delegate::createEditor
 	  {
 	    QStringList list;
 	    auto editor = new QComboBox(parent);
+	    auto const sibling
+	      (index.sibling(index.row(),
+			     static_cast<int> (biblioteq_batch_activities::
+					       AddTableColumns::
+					       CATEGORY_COLUMN)));
 
 	    connect(editor,
 		    SIGNAL(activated(int)),
 		    this,
 		    SLOT(slotCurrentIndexChanged(int)));
-	    list << tr("Open Library")
-		 << tr("SRU Query");
-	    std::sort(list.begin(), list.end());
+
+	    if(sibling.data().toString() == tr("Book"))
+	      {
+		list << tr("Open Library")
+		     << tr("SRU Query");
+		std::sort(list.begin(), list.end());
+	      }
+	    else
+	      list << tr("SRU Query");
+
 	    editor->addItems(list);
 	    editor->setSizeAdjustPolicy(QComboBox::AdjustToContents);
 	    editor->setSizePolicy

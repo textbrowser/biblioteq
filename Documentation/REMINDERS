@@ -666,6 +666,7 @@ Completed Items
 335. If possible, adjust the number of columns in Icons Mode based
      on the size of the view.
 336. Editable file Description columns instead of input dialogs.
+337. Batch Activities: disable Open Library for non-book query.
 
 Remaining Items
 
@@ -678,4 +679,3 @@ Remaining Items
 7.   Test Android and correct.
 8.   PostgreSQL notifications: PostgreSQL::notify() and
      QSqlDriver::subscribeToNotification().
-9.   Batch Activities: disable Open Library for non-book query.

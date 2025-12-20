@@ -613,6 +613,11 @@ void biblioteq_magazine::delayedQuery(const QString &querySystem)
       QTimer::singleShot(1500, this, SLOT(slotSRUQuery(void)));
       m_doNotShowDialogs = true;
     }
+  else
+    {
+      QTimer::singleShot(1500, this, SLOT(slotSRUQuery(void)));
+      m_doNotShowDialogs = true;
+    }
 }
 
 void biblioteq_magazine::duplicate(const QString &p_oid, const int state)
