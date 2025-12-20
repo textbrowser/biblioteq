@@ -164,6 +164,21 @@ setModelData(QWidget *editor,
       if(comboBox)
 	{
 	  model->setData(index, comboBox->currentText());
+
+	  if(index.column() ==
+	     static_cast<int> (biblioteq_batch_activities::AddTableColumns::
+			       CATEGORY_COLUMN) &&
+	     index.data().toString() != tr("Book"))
+	    {
+	      auto const sibling
+		(index.sibling(index.row(),
+			       static_cast<int> (biblioteq_batch_activities::
+						 AddTableColumns::
+						 QUERY_SYSTEM_COLUMN)));
+
+	      model->setData(sibling, tr("SRU Query"));
+	    }
+
 	  return;
 	}
 
