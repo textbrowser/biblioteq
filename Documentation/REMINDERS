@@ -675,7 +675,7 @@ Remaining Items
 3.   Special Unimarc import.
 4.   Preserve order of columns in the main table. Nearly impossible.
 5.   Create unique myoid values on SQLite merge.
-6.   Copy editor item status database table.
+6.   Copy-editor item status database table.
 7.   Test Android and correct.
 8.   PostgreSQL notifications: PostgreSQL::notify() and
      QSqlDriver::subscribeToNotification().
