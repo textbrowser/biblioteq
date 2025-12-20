@@ -101,7 +101,7 @@ QWidget *biblioteq_batch_activities_item_delegate::createEditor
 		    this,
 		    SLOT(slotCurrentIndexChanged(int)));
 
-	    if(sibling.data().toString() == tr("Book"))
+	    if(sibling.data().toString() == tr("Book") && sibling.isValid())
 	      {
 		list << tr("Open Library")
 		     << tr("SRU Query");
@@ -176,7 +176,8 @@ setModelData(QWidget *editor,
 						 AddTableColumns::
 						 QUERY_SYSTEM_COLUMN)));
 
-	      model->setData(sibling, tr("SRU Query"));
+	      if(sibling.isValid())
+		model->setData(sibling, tr("SRU Query"));
 	    }
 
 	  return;
