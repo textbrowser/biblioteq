@@ -941,11 +941,13 @@ void biblioteq_book::delayedQuery(const QString &querySystem)
 {
   if(querySystem == tr("Open Library"))
     {
+      QTimer::singleShot(750, this, SLOT(slotDownloadImage(void)));
       QTimer::singleShot(1500, this, SLOT(slotOpenLibraryQuery(void)));
       m_doNotShowDialogs = true;
     }
   else if(querySystem == tr("SRU Query"))
     {
+      QTimer::singleShot(750, this, SLOT(slotDownloadImage(void)));
       QTimer::singleShot(1500, this, SLOT(slotSRUQuery(void)));
       m_doNotShowDialogs = true;
     }
@@ -964,11 +966,16 @@ void biblioteq_book::downloadFinished(void)
       if(m_imageBuffer.data().size() < 1000)
 	{
 	  m_imageBuffer.close();
-	  QMessageBox::warning
-	    (this,
-	     tr("BiblioteQ: HTTP Warning"),
-	     tr("The front cover image for the specified ISBN may not exist."));
-	  QApplication::processEvents();
+
+	  if(!m_doNotShowDialogs)
+	    {
+	      QMessageBox::warning
+		(this,
+		 tr("BiblioteQ: HTTP Warning"),
+		 tr("The front cover image for the specified ISBN "
+		    "may not exist."));
+	      QApplication::processEvents();
+	    }
 	}
     }
   else
@@ -982,11 +989,16 @@ void biblioteq_book::downloadFinished(void)
       if(m_imageBuffer.data().size() < 1000)
 	{
 	  m_imageBuffer.close();
-	  QMessageBox::warning
-	    (this,
-	     tr("BiblioteQ: HTTP Warning"),
-	     tr("The back cover image for the specified ISBN may not exist."));
-	  QApplication::processEvents();
+
+	  if(!m_doNotShowDialogs)
+	    {
+	      QMessageBox::warning
+		(this,
+		 tr("BiblioteQ: HTTP Warning"),
+		 tr("The back cover image for the specified ISBN "
+		    "may not exist."));
+	      QApplication::processEvents();
+	    }
 	}
     }
 
@@ -2752,12 +2764,13 @@ void biblioteq_book::slotDownloadImage(void)
   if(m_imageManager->findChild<QNetworkReply *> ())
     return;
 
+  QString downloadType("");
   auto action = qobject_cast<QAction *> (sender());
 
-  if(!action)
-    return;
-
-  auto const downloadType(action->property("download_type").toString());
+  if(action)
+    downloadType = action->property("download_type").toString();
+  else
+    downloadType = "open_library_front";
 
   if(downloadType.contains("amazon") || downloadType.contains("open"))
     {
@@ -2777,12 +2790,16 @@ void biblioteq_book::slotDownloadImage(void)
 
       if(!ok)
 	{
-	  QMessageBox::critical
-	    (this,
-	     tr("BiblioteQ: User Error"),
-	     tr("In order to download a cover image, "
-		"Alternate Identifier or ISBN-10 must be provided."));
-	  QApplication::processEvents();
+	  if(!m_doNotShowDialogs)
+	    {
+	      QMessageBox::critical
+		(this,
+		 tr("BiblioteQ: User Error"),
+		 tr("In order to download a cover image, "
+		    "Alternate Identifier or ISBN-10 must be provided."));
+	      QApplication::processEvents();
+	    }
+
 	  id.id->setFocus();
 	  return;
 	}
@@ -2796,12 +2813,16 @@ void biblioteq_book::slotDownloadImage(void)
 
       if(!ok)
 	{
-	  QMessageBox::critical
-	    (this,
-	     tr("BiblioteQ: User Error"),
-	     tr("In order to download a cover image, "
-		"Alternate Identifier must be provided."));
-	  QApplication::processEvents();
+	  if(!m_doNotShowDialogs)
+	    {
+	      QMessageBox::critical
+		(this,
+		 tr("BiblioteQ: User Error"),
+		 tr("In order to download a cover image, "
+		    "Alternate Identifier must be provided."));
+	      QApplication::processEvents();
+	    }
+
 	  id.id->setFocus();
 	  return;
 	}
@@ -3068,7 +3089,13 @@ void biblioteq_book::slotDownloadImage(void)
       return;
     }
 
-  auto reply = m_imageManager->get(QNetworkRequest(url));
+  auto request = QNetworkRequest(url);
+
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
+  request.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
+#endif
+
+  auto reply = m_imageManager->get(request);
 
   if(!reply)
     {
