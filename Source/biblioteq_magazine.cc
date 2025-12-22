@@ -3711,6 +3711,11 @@ void biblioteq_magazine::slotReset(void)
     }
 }
 
+void biblioteq_magazine::slotResetAfterAutomated(void)
+{
+  m_doNotShowDialogs = false;
+}
+
 void biblioteq_magazine::slotSRUCanceled(void)
 {
   auto reply = m_sruManager->findChild<QNetworkReply *> ();

@@ -134,6 +134,7 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
 				       QAuthenticator *authenticator);
   void slotPublicationDateEnabled(bool state);
   void slotReset(void);
+  void slotResetAfterAutomated(void);
   void slotSRUCanceled(void);
   void slotSRUDownloadFinished(bool error);
   void slotSRUDownloadFinished(void);
