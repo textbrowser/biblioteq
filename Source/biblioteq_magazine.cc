@@ -162,6 +162,10 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
   connect(ma.sruQueryButton,
 	  SIGNAL(clicked(void)),
 	  this,
+	  SLOT(slotResetAfterAutomated(void)));
+  connect(ma.sruQueryButton,
+	  SIGNAL(clicked(void)),
+	  this,
 	  SLOT(slotSRUQuery(void)));
 #if defined(BIBLIOTEQ_LINKED_WITH_POPPLER) || \
     defined(BIBLIOTEQ_QT_PDF_SUPPORTED)
