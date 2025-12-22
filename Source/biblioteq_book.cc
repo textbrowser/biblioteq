@@ -5434,6 +5434,11 @@ void biblioteq_book::slotReset(void)
 
 void biblioteq_book::slotResetAfterAutomated(void)
 {
+  /*
+  ** Reset some variables after automated queries. See Batch Activities
+  ** Browser.
+  */
+
   m_doNotShowDialogs = false;
 }
 

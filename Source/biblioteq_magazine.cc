@@ -3717,6 +3717,11 @@ void biblioteq_magazine::slotReset(void)
 
 void biblioteq_magazine::slotResetAfterAutomated(void)
 {
+  /*
+  ** Reset some variables after automated queries. See Batch Activities
+  ** Browser.
+  */
+
   m_doNotShowDialogs = false;
 }
 
