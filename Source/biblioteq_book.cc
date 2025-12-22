@@ -117,6 +117,10 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotPasteImage(void)));
+  connect(id.action_front,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotResetAfterAutomated(void)));
   connect(id.attach_files,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -171,6 +175,10 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotOpenLibraryQuery(void)));
+  connect(id.openLibraryQuery,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotResetAfterAutomated(void)));
   connect(id.parse_marc_tags,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -183,6 +191,10 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotShowUsers(void)));
+  connect(id.sruQueryButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotResetAfterAutomated(void)));
   connect(id.sruQueryButton,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -555,6 +567,10 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	      SIGNAL(triggered(void)),
 	      this,
 	      SLOT(slotDownloadImage(void)));
+      connect(action,
+	      SIGNAL(triggered(void)),
+	      this,
+	      SLOT(slotResetAfterAutomated(void)));
     }
 
   for(int i = 1; i <= 2; i++)
@@ -589,18 +605,28 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
      this,
      SLOT(slotSelectImage(void)))->setProperty("type", "back");
   id.action_front->menu()->addSeparator();
-  id.action_front->menu()->addAction
+
+  auto action = id.action_front->menu()->addAction
     (tr("&Paste Image"),
      this,
-     SLOT(slotPasteImage(void)))->setProperty("type", "front");
+     SLOT(slotPasteImage(void)));
+
+  action->setProperty("type", "front");
+  connect(action,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotResetAfterAutomated(void)));
   id.action_front->menu()->addSeparator();
-  id.action_front->menu()->addAction
+  action = id.action_front->menu()->addAction
     (tr("&Select Image..."),
      this,
-     SLOT(slotSelectImage(void)))->setProperty("type", "front");
-
-  auto action = new QAction(tr("All..."), this);
-
+     SLOT(slotSelectImage(void)));
+  action->setProperty("type", "front");
+  connect(action,
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotResetAfterAutomated(void)));
+  action = new QAction(tr("All..."), this);
   connect(action,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -5404,6 +5430,11 @@ void biblioteq_book::slotReset(void)
       id.volume_number->clear();
       resetQueryHighlights();
     }
+}
+
+void biblioteq_book::slotResetAfterAutomated(void)
+{
+  m_doNotShowDialogs = false;
 }
 
 void biblioteq_book::slotSRUCanceled(void)

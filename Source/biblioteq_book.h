@@ -166,6 +166,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
   void slotPublicationDateEnabled(bool state);
   void slotReadyRead(void);
   void slotReset(void);
+  void slotResetAfterAutomated(void);
   void slotSRUCanceled(void);
   void slotSRUDownloadFinished(bool error);
   void slotSRUDownloadFinished(void);
