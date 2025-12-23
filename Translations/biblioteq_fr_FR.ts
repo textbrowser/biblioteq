@@ -4543,7 +4543,6 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
         <translation>Requête SRU</translation>
     </message>
     <message>
->>>>>>> 4f8ed9bf147189672bbe61178e2eb174e0cfd189
         <location filename="../Source/biblioteq_book.cc" line="1000"/>
         <location filename="../Source/biblioteq_book.cc" line="1023"/>
         <source>BiblioteQ: HTTP Warning</source>
