@@ -1084,18 +1084,18 @@
     <message>
         <location filename="../UI/biblioteq_batch_activities_browser.ui" line="72"/>
         <source>Add</source>
-        <translation type="unfinished">Ajouter</translation>
+        <translation>Ajouter</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_batch_activities_browser.ui" line="78"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;After the &lt;span style=&quot; font-weight:600;&quot;&gt;Go&lt;/span&gt; button is pressed, &lt;span style=&quot; font-weight:600;&quot;&gt;item panels will be created&lt;/span&gt; and if necessary the suggested systems will be queried for populating the panels.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Après avoir appuyé sur le bouton &lt;span style=&quot; font-weight:600;&quot;&gt;Go&lt;/span&gt; &lt;span style=&quot; font-weight:600;&quot;&gt;des panneaux d&apos;éléments seront créés&lt;/span&gt; et si nécessaire, les systèmes proposés seront interrogés pour remplir les panneaux.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_batch_activities_browser.ui" line="90"/>
         <location filename="../UI/biblioteq_batch_activities_browser.ui" line="94"/>
         <source>Automatic</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatique</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_batch_activities_browser.ui" line="120"/>
@@ -1108,7 +1108,7 @@
     <message>
         <location filename="../UI/biblioteq_batch_activities_browser.ui" line="189"/>
         <source>Query System</source>
-        <translation type="unfinished"></translation>
+        <translation>Système de requêtes</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_batch_activities_browser.ui" line="278"/>
@@ -3846,22 +3846,22 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../Source/biblioteq_d.cc" line="992"/>
         <source>&lt;html&gt;&lt;b&gt;The following people have made BiblioteQ beautiful. If your name is not mentioned, please submit a ticket at https://github.com/textbrowser/biblioteq/issues. Thank You!&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ana Monteiro&lt;br&gt;Arti&lt;br&gt;Bill Burns&lt;br&gt;Ceres&lt;br&gt;Csanád Baksay&lt;br&gt;Fares Othman&lt;br&gt;Frans&lt;br&gt;Fátima Dias&lt;br&gt;J. Cornavin&lt;br&gt;Jeepee&lt;br&gt;Lazaros S.&lt;br&gt;Leif-W&lt;br&gt;Marty&lt;br&gt;Nick&lt;br&gt;Nicola&lt;br&gt;ResetFlag&lt;br&gt;Safranil&lt;br&gt;SigmaX&lt;br&gt;a12554&lt;br&gt;azc100&lt;br&gt;caalma&lt;br&gt;coldacid&lt;br&gt;duhow&lt;br&gt;fmra357&lt;br&gt;jerzyPL&lt;br&gt;jferby&lt;br&gt;luismontilla&lt;br&gt;meteos77&lt;br&gt;numibesi&lt;br&gt;ozgurcan&lt;br&gt;robindegen&lt;br&gt;sidheban&lt;br&gt;sit42&lt;br&gt;sunyuyangg555&lt;br&gt;tamascz&lt;br&gt;wohali&lt;br&gt;yasbean&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;b&gt;Les personnes suivantes ont contribué à la beauté de BiblioteQ. Si votre nom n&apos;apparaît pas, veuillez envoyer un ticket à https://github.com/textbrowser/biblioteq/issues. Thank You!&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ana Monteiro&lt;br&gt;Arti&lt;br&gt;Bill Burns&lt;br&gt;Ceres&lt;br&gt;Csanád Baksay&lt;br&gt;Fares Othman&lt;br&gt;Frans&lt;br&gt;Fátima Dias&lt;br&gt;J. Cornavin&lt;br&gt;Jeepee&lt;br&gt;Lazaros S.&lt;br&gt;Leif-W&lt;br&gt;Marty&lt;br&gt;Nick&lt;br&gt;Nicola&lt;br&gt;ResetFlag&lt;br&gt;Safranil&lt;br&gt;SigmaX&lt;br&gt;a12554&lt;br&gt;azc100&lt;br&gt;caalma&lt;br&gt;coldacid&lt;br&gt;duhow&lt;br&gt;fmra357&lt;br&gt;jerzyPL&lt;br&gt;jferby&lt;br&gt;luismontilla&lt;br&gt;meteos77&lt;br&gt;numibesi&lt;br&gt;ozgurcan&lt;br&gt;robindegen&lt;br&gt;sidheban&lt;br&gt;sit42&lt;br&gt;sunyuyangg555&lt;br&gt;tamascz&lt;br&gt;wohali&lt;br&gt;yasbean&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_d.cc" line="1050"/>
         <source>Book</source>
-        <translation type="unfinished">Livre</translation>
+        <translation>Livre</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_d.cc" line="1066"/>
         <source>Journal</source>
-        <translation type="unfinished">Journal</translation>
+        <translation>Journal</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_d.cc" line="1082"/>
         <source>Magazine</source>
-        <translation type="unfinished">Magazine</translation>
+        <translation>Magazine</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_d.cc" line="1135"/>
@@ -4114,17 +4114,17 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
         <location filename="../Source/biblioteq_batch_activities.cc" line="2307"/>
         <location filename="../Source/biblioteq_batch_activities.cc" line="2319"/>
         <source>Open Library</source>
-        <translation type="unfinished">Open Library</translation>
+        <translation>Open Library</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_batch_activities.cc" line="2309"/>
         <source>Automatic</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatique</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_batch_activities.cc" line="2314"/>
         <source>SRU Query</source>
-        <translation type="unfinished"></translation>
+        <translation>Requête SRU</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_batch_activities.cc" line="2392"/>
@@ -4174,29 +4174,29 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
         <location filename="../Source/biblioteq_batch_activities.cc" line="104"/>
         <location filename="../Source/biblioteq_batch_activities.cc" line="171"/>
         <source>Book</source>
-        <translation type="unfinished">Livre</translation>
+        <translation>Livre</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_batch_activities.cc" line="77"/>
         <source>Journal</source>
-        <translation type="unfinished">Journal</translation>
+        <translation>Journal</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_batch_activities.cc" line="78"/>
         <source>Magazine</source>
-        <translation type="unfinished">Magazine</translation>
+        <translation>Magazine</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_batch_activities.cc" line="106"/>
         <source>Open Library</source>
-        <translation type="unfinished">Open Library</translation>
+        <translation>Open Library</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_batch_activities.cc" line="107"/>
         <location filename="../Source/biblioteq_batch_activities.cc" line="111"/>
         <location filename="../Source/biblioteq_batch_activities.cc" line="180"/>
         <source>SRU Query</source>
-        <translation type="unfinished"></translation>
+        <translation>Requête SRU</translation>
     </message>
 </context>
 <context>
@@ -4535,14 +4535,15 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../Source/biblioteq_book.cc" line="968"/>
         <source>Open Library</source>
-        <translation type="unfinished">Open Library</translation>
+        <translation>Open Library</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_book.cc" line="974"/>
         <source>SRU Query</source>
-        <translation type="unfinished"></translation>
+        <translation>Requête SRU</translation>
     </message>
     <message>
+>>>>>>> 4f8ed9bf147189672bbe61178e2eb174e0cfd189
         <location filename="../Source/biblioteq_book.cc" line="1000"/>
         <location filename="../Source/biblioteq_book.cc" line="1023"/>
         <source>BiblioteQ: HTTP Warning</source>
@@ -8451,7 +8452,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../Source/biblioteq_magazine.cc" line="615"/>
         <source>SRU Query</source>
-        <translation type="unfinished"></translation>
+        <translation>Requête SRU</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_magazine.cc" line="642"/>
@@ -9421,7 +9422,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../Source/biblioteq_otheroptions.cc" line="97"/>
         <source>BiblioteQ was created without a required SQLite file (sqlite3.h). This property is disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>BiblioteQ a été créé sans fichier SQLite requis (sqlite3.h). Cette propriété est désactivée.</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_otheroptions.cc" line="387"/>
