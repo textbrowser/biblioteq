@@ -81,55 +81,55 @@
     </message>
     <message>
         <source>Attach</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">إرفاق</translation>
     </message>
     <message>
         <source>Import</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">استيراد</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">إغلاق</translation>
     </message>
     <message>
         <source>Compute</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">حساب</translation>
     </message>
     <message>
         <source>Copies</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">التُسخ</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">حذف</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">تنزيل</translation>
     </message>
     <message>
         <source>Export</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">تصدير</translation>
     </message>
     <message>
         <source>From ISBN</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">من ردمك</translation>
     </message>
     <message>
         <source>Insert</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">إدراج</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">موافق</translation>
     </message>
     <message>
         <source>Print</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">طباعة</translation>
     </message>
     <message>
         <source>Reservation Status</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">حالة الحجز</translation>
     </message>
     <message>
         <source>Reset</source>
@@ -137,27 +137,27 @@
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">حفظ</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">بحث</translation>
     </message>
     <message>
         <source>Select</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">اختيار</translation>
     </message>
     <message>
         <source>Show Tracks</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">إظهار المسارات</translation>
     </message>
     <message>
         <source>BOOK</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">كتاب</translation>
     </message>
     <message>
         <source>CD</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">أقراص سيدي</translation>
     </message>
     <message>
         <source>DVD</source>
@@ -165,39 +165,23 @@
     </message>
     <message>
         <source>GREY LITERATURE</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">أدب رمادي</translation>
     </message>
     <message>
         <source>JOURNAL</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">دورية متخصصة</translation>
     </message>
     <message>
         <source>MAGAZINE</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">دورية عامة</translation>
     </message>
     <message>
         <source>VIDEO GAME</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">لعبة فيديو</translation>
     </message>
     <message>
         <source>(Empty)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The item is requested by another patron. Please set it aside.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The item %1 is requested by another patron. Please set it aside.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The item is requested by another patron (%1). Please set it aside.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The item %1 is requested by another patron (%2). Please set it aside.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">فارغ</translation>
     </message>
 </context>
 <context>
@@ -228,7 +212,7 @@
     </message>
     <message>
         <source>Last Name</source>
-        <translation type="unfinished">اسم العائلة أو الكنية ...</translation>
+        <translation type="unfinished">الكنية ...</translation>
     </message>
     <message>
         <source>Middle Initial</source>
@@ -790,7 +774,7 @@
     </message>
     <message>
         <source>Case Insensitive</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">حساسية الحروف</translation>
     </message>
     <message>
         <source>Setting is retained for future sessions.</source>
@@ -809,7 +793,7 @@
     </message>
     <message>
         <source>Audio</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ملف صوتي</translation>
     </message>
     <message>
         <source>Not retained fof future sessions.</source>
@@ -821,7 +805,7 @@
     </message>
     <message>
         <source>Borrow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">إعارة</translation>
     </message>
     <message>
         <source>Book</source>
@@ -829,7 +813,7 @@
     </message>
     <message>
         <source>CD</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">أقراص سيدي</translation>
     </message>
     <message>
         <source>DVD</source>
@@ -985,15 +969,15 @@
     </message>
     <message>
         <source>Accession Number</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">رقم الاشتراك</translation>
     </message>
     <message>
         <source>Member Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">اسم المشترك</translation>
     </message>
     <message>
         <source>Administrator</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">المدير</translation>
     </message>
     <message>
         <source>Type</source>
@@ -1009,26 +993,6 @@
     </message>
     <message>
         <source>Set All New Return Dates!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SQLite Reminder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation type="unfinished">إضافة</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;After the &lt;span style=&quot; font-weight:600;&quot;&gt;Go&lt;/span&gt; button is pressed, &lt;span style=&quot; font-weight:600;&quot;&gt;item panels will be created&lt;/span&gt; and if necessary the suggested systems will be queried for populating the panels.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Query System</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Automatic</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2436,11 +2400,12 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Disabled for custom queries.</source>
+        <translatorcomment>تمكين الاستعلامات المُخصصة</translatorcomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>BiblioteQ: Export Patrons As CSV</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">تصدير المشتركين لبرمجية الأكسل</translation>
     </message>
     <message>
         <source>City</source>
@@ -2532,7 +2497,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ: Contributors</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">المُساهمون</translation>
     </message>
     <message>
         <source>PNG (*.png)</source>
@@ -2540,7 +2505,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ: Export Icons View As PNG</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">تصدير عرض الأيقونات كصور</translation>
     </message>
     <message>
         <source>BiblioteQ: Release Notes</source>
@@ -2560,7 +2525,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ: Export Table View As CSV</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">تصدير الجدول لبرمجية الأكسل</translation>
     </message>
     <message>
         <source>Generate Letter</source>
@@ -2620,6 +2585,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>The current PostgreSQL schema must be updated. Please execute the statement(s) in %1 for version %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;b&gt;The following people have made BiblioteQ beautiful. If your name is not mentioned, please submit a ticket at https://github.com/textbrowser/biblioteq/issues. Thank You!&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ana Monteiro&lt;br&gt;Arti&lt;br&gt;Bill Burns&lt;br&gt;Ceres&lt;br&gt;Csanád Baksay&lt;br&gt;Fares Othman&lt;br&gt;Fátima Dias&lt;br&gt;Frans&lt;br&gt;J. Cornavin&lt;br&gt;Jeepee&lt;br&gt;Lazaros S.&lt;br&gt;Leif-W&lt;br&gt;Marty&lt;br&gt;Nick&lt;br&gt;Nicola&lt;br&gt;ResetFlag&lt;br&gt;Safranil&lt;br&gt;SigmaX&lt;br&gt;a12554&lt;br&gt;caalma&lt;br&gt;coldacid&lt;br&gt;duhow&lt;br&gt;fmra357&lt;br&gt;jerzyPL&lt;br&gt;jferby&lt;br&gt;luismontilla&lt;br&gt;meteos77&lt;br&gt;numibesi&lt;br&gt;ozgurcan&lt;br&gt;robindegen&lt;br&gt;sidheban&lt;br&gt;sit42&lt;br&gt;sunyuyangg555&lt;br&gt;tamascz&lt;br&gt;wohali&lt;br&gt;yasbean&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2780,7 +2749,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Close All</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">إغلاق الكل</translation>
     </message>
     <message>
         <source>A new official version %1 of BiblioteQ is available!</source>
@@ -2831,6 +2800,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>The item &lt;b&gt;%1&lt;/b&gt; is requested by another patron. Please set it aside.&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The item &lt;b&gt;%1&lt;/b&gt; is requested by another patron (&lt;b&gt;%2&lt;/b&gt;). Please set it aside.&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>&lt;html&gt;This dialog will be shown persistently unless this option is enabled or all overdue items have been returned.&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2840,30 +2817,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Please review All Overdue items. There are at least &lt;b&gt;%1 item(s)&lt;/b&gt; which must be returned. &lt;a href=&quot;all_overdue&quot;&gt;Please click to display the All Overdue category in the main window.&lt;/a&gt; This dialog will be shown persistently unless it&apos;s hidden for this session or all overdue items have been returned.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SQLite Create Function</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The function sqlite3_create_function_v2(REGEXP) failed.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Book</source>
-        <translation type="unfinished">الكتب</translation>
-    </message>
-    <message>
-        <source>Journal</source>
-        <translation type="unfinished">الدوريات المتخصصة</translation>
-    </message>
-    <message>
-        <source>Magazine</source>
-        <translation type="unfinished">الدوريات العامة</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;b&gt;The following people have made BiblioteQ beautiful. If your name is not mentioned, please submit a ticket at https://github.com/textbrowser/biblioteq/issues. Thank You!&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ana Monteiro&lt;br&gt;Arti&lt;br&gt;Bill Burns&lt;br&gt;Ceres&lt;br&gt;Csanád Baksay&lt;br&gt;Fares Othman&lt;br&gt;Frans&lt;br&gt;Fátima Dias&lt;br&gt;J. Cornavin&lt;br&gt;Jeepee&lt;br&gt;Lazaros S.&lt;br&gt;Leif-W&lt;br&gt;Marty&lt;br&gt;Nick&lt;br&gt;Nicola&lt;br&gt;ResetFlag&lt;br&gt;Safranil&lt;br&gt;SigmaX&lt;br&gt;a12554&lt;br&gt;azc100&lt;br&gt;caalma&lt;br&gt;coldacid&lt;br&gt;duhow&lt;br&gt;fmra357&lt;br&gt;jerzyPL&lt;br&gt;jferby&lt;br&gt;luismontilla&lt;br&gt;meteos77&lt;br&gt;numibesi&lt;br&gt;ozgurcan&lt;br&gt;robindegen&lt;br&gt;sidheban&lt;br&gt;sit42&lt;br&gt;sunyuyangg555&lt;br&gt;tamascz&lt;br&gt;wohali&lt;br&gt;yasbean&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3019,41 +2972,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ was not created with multimedia libraries.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Open Library</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Automatic</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SRU Query</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>biblioteq_batch_activities_item_delegate</name>
-    <message>
-        <source>Book</source>
-        <translation type="unfinished">الكتب</translation>
-    </message>
-    <message>
-        <source>Journal</source>
-        <translation type="unfinished">الدوريات المتخصصة</translation>
-    </message>
-    <message>
-        <source>Magazine</source>
-        <translation type="unfinished">الدوريات العامة</translation>
-    </message>
-    <message>
-        <source>Open Library</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SRU Query</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3903,14 +3821,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Series Title:</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Open Library</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SRU Query</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>biblioteq_borrowers_editor</name>
@@ -4044,6 +3954,14 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>BiblioteQ: Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please set the item aside as another patron has requested it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please set the item aside as another patron (%1) has requested it.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5236,15 +5154,15 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Book Condition</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">أنواع الحالات</translation>
     </message>
     <message>
         <source>Book Originality</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">حالة أصلية أم نُسخة</translation>
     </message>
     <message>
         <source>Book Target Audience</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">الفئة المُستهدفة</translation>
     </message>
     <message>
         <source>Reservations Minimum Days</source>
@@ -5294,11 +5212,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <name>biblioteq_documentationwindow</name>
     <message>
         <source>BiblioteQ: Documentation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">التوثيق</translation>
     </message>
     <message>
         <source>Find</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">البحث</translation>
     </message>
     <message>
         <source>&amp;Next</source>
@@ -5318,7 +5236,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">إغلاق</translation>
     </message>
     <message>
         <source>Ctrl+W</source>
@@ -5334,7 +5252,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Print...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">طباعة</translation>
     </message>
 </context>
 <context>
@@ -7112,10 +7030,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>Unable to update the %1_files entry.</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>SRU Query</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>biblioteq_main_table</name>
@@ -7464,18 +7378,18 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Custom Query Favorite</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">الاستعلام المُخصص المرغوب</translation>
     </message>
     <message>
         <source>Reset Row</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Numeric</source>
+        <source>BiblioteQ was created without a required SQLite file (sqlite3.h).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>BiblioteQ was created without a required SQLite file (sqlite3.h). This property is disabled.</source>
+        <source>Numeric</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9049,7 +8963,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <name>dbEnumerations</name>
     <message>
         <source>BiblioteQ: Database Enumerations Browser</source>
-        <translation type="unfinished">ببليوتيك: متصفح تعدادات وقوائم قاعدة البيانات</translation>
+        <translation type="unfinished">ببليوتيك: متصفح الملفات الاستنادية في قاعدة البيانات</translation>
     </message>
     <message>
         <source>Book Binding Types</source>
@@ -9558,7 +9472,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source> Files Per Page</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">الملفات لكل صفحة</translation>
     </message>
     <message>
         <source>File</source>
@@ -9751,7 +9665,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     <name>importBrowser</name>
     <message>
         <source>BiblioteQ: CSV Import Browser</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">مُتصفح الاستيراد</translation>
     </message>
     <message>
         <source>1</source>
@@ -10959,7 +10873,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Database Enumerations</source>
-        <translation type="unfinished">تعدادات قاعدة البيانات</translation>
+        <translation type="unfinished">الملفات الاستنادية</translation>
     </message>
     <message>
         <source>Populate Database En&amp;umerations Browser on Display</source>
@@ -11095,11 +11009,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Online Documentation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;توثيق-الويب</translation>
     </message>
     <message>
         <source>&amp;Full Screen</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;كامل-الشاشة</translation>
     </message>
     <message>
         <source>F11</source>
@@ -11179,11 +11093,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Contributors...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">المُساهمون</translation>
     </message>
     <message>
         <source>&amp;Print Icons View...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">طباعة عرض الإيقونات</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If an item contains the specified text, the row housing it will be selected.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
@@ -11191,7 +11105,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Table Find</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">البحث - الجدول</translation>
     </message>
     <message>
         <source>&amp;Next</source>
@@ -11199,15 +11113,15 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Release Notes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ملاحظات-الاصدار</translation>
     </message>
     <message>
         <source>Custom Query</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">الاستعلام المُخصص</translation>
     </message>
     <message>
         <source>E&amp;ntries Per Page</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">المداخل لكل صفحة</translation>
     </message>
     <message>
         <source>P&amp;hotographs Per Page</source>
@@ -11215,7 +11129,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Re&amp;size Columns To Contents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">تغيير قياس الأعمدة ـ احتواء ـ</translation>
     </message>
     <message>
         <source>&amp;Populate View On Connect</source>
@@ -11243,11 +11157,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Populate Database En&amp;umerations Browser On Display</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">الملفات الاستنادية</translation>
     </message>
     <message>
         <source>&amp;Export Table View As CSV...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">تصدير الجدول لبرمجية الأكسل</translation>
     </message>
     <message>
         <source>&amp;Upgrade SQLite Schema (All)</source>
@@ -11271,7 +11185,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>External Applications</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">تطبيقات خارجية</translation>
     </message>
     <message>
         <source>Ctrl+B</source>
@@ -11303,11 +11217,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Primary Page</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">الصفحة الرئيسة</translation>
     </message>
     <message>
         <source>Item &amp;Pages</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">النوافذ</translation>
     </message>
     <message>
         <source>Tabbed Item Windows</source>
@@ -11319,7 +11233,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">اختيار الكل</translation>
     </message>
     <message>
         <source>Ctrl+A</source>
@@ -11327,15 +11241,15 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Batch Activities Browser...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">مُتصفح الفعاليات</translation>
     </message>
     <message>
         <source>&amp;Query History...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">أرشيف الاستعلام</translation>
     </message>
     <message>
         <source>Statistics...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">احصائيات</translation>
     </message>
     <message>
         <source>Display Tab Bar</source>
@@ -11498,7 +11412,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source> Members Per Page</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">المشتركون قي كل صفحة</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable speedy reservations. The first available copy will be reserved.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
@@ -11711,6 +11625,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Book Read Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Icons View Column Count</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11799,6 +11717,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please note that the date formats are applied to item details and the main window. Date formats are applied to all database fields whose names contain &amp;quot;date&amp;quot; or &amp;quot;membersince&amp;quot;. Please review Qt documentation for proper formats.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Date Format</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11823,6 +11745,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Five rows are allowed. Please note that inspecting table cells may burden BiblioteQ. Items are discovered via equality comparisons. Text values are trimmed. Please do not combine with other color monitors such as Availability Colors.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Cell Text</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11843,11 +11769,19 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Items which will produce reminders upon their return. SQLite only.&lt;/p&gt;&lt;p&gt;For example, &amp;quot;BOOK := 1234567890 member_identifier&amp;quot; (BOOK := Identifier[[:space:]]Member-Identifier). The member_identifier value is optional. For books, ISBNs are required. The type is recorded in English.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;One entry per line please.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;BOOK, CD, DVD, GREY LITERATURE, JOURNAL, MAGAZINE, VIDEO GAME&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>One entry per line please.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Scripts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Absolute file paths. Please place scripts on individual lines. BiblioteQ will replace %1 with the current SQLite database absolute file path. The scripts will be available in some places. Please enclose values with double-quotes if necessary. Be careful of lengthy content.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -11859,7 +11793,15 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set the environment variable QT_STYLE_OVERRIDE to the specified value. Please restart BiblioteQ if this value is modified.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>QT_STYLE_OVERRIDE</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The colors will be applied to new items only.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -11879,7 +11821,19 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The encoding is configured shortly after an SQLite database is &lt;span style=&quot; font-weight:600;&quot;&gt;created.&lt;/span&gt; Please &lt;span style=&quot; font-weight:600;&quot;&gt;be careful&lt;/span&gt; with this setting. Once an encoding has been set for a database, it may not be modified.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Reminders</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> Run-Time Loadable Extensions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Absolute file paths only! Extensions will be loaded after an SQLite database is opened. Please review the Error Log for information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -11888,46 +11842,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>&amp;Reset</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set the environment variable QT_STYLE_OVERRIDE to the specified value. Please restart BiblioteQ if this value is saved.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The colors will be applied to new item panels only.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Date formats are applied to item details and the main window. Date formats are applied to all database fields whose names contain &amp;quot;date&amp;quot; or &amp;quot;membersince&amp;quot;. Please review Qt documentation for proper formats.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Book Read Status (SQLite)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Five rows are allowed. Inspecting table cells may burden BiblioteQ. Items are discovered via equality comparisons. Text values are trimmed. Please do not combine with other color monitors such as Availability Colors.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The encoding is configured shortly after an SQLite database is &lt;span style=&quot; font-weight:600;&quot;&gt;created.&lt;/span&gt; Please &lt;span style=&quot; font-weight:600;&quot;&gt;be careful&lt;/span&gt; with this setting. Once an encoding has been prepared for a database, it may not be modified.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Items which will produce reminders upon their return. &lt;span style=&quot; font-weight:600;&quot;&gt;SQLite only.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;For example, &amp;quot;BOOK := 1234567890 member_identifier&amp;quot; (BOOK := Identifier[[:space:]]Member-Identifier). The member_identifier value is optional. For books, ISBNs are required. The type is recorded in English.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;One entry per line please.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;BOOK, CD, DVD, GREY LITERATURE, JOURNAL, MAGAZINE, VIDEO GAME&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SQLite Run-Time Loadable Extensions</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Absolute file paths&lt;/span&gt; only! Extensions will be loaded after an SQLite database is opened. Please review the Error Log for information.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Absolute file paths.&lt;/span&gt; Please place scripts on individual lines. BiblioteQ will replace %1 with the current &lt;span style=&quot; font-weight:600;&quot;&gt;SQLite&lt;/span&gt; database absolute file path. The scripts will be available in some places. Please enclose values with double-quotes if necessary. Be careful of lengthy content.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -12145,15 +12059,15 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Subject</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">الموضوع</translation>
     </message>
     <message>
         <source>Statistics</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">احصائيات</translation>
     </message>
     <message>
         <source>Select...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">اختيار</translation>
     </message>
     <message>
         <source>Select Images</source>
