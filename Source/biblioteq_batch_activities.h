@@ -121,6 +121,7 @@ class biblioteq_batch_activities: public QMainWindow
   void slotAudioEnabled(void);
   void slotBorrowItemChanged(QTableWidgetItem *item);
   void slotClose(void);
+  void slotDeleteAddingRow(void);
   void slotDeleteBorrowingRow(void);
   void slotDiscoverDreamy(void);
   void slotDiscoverMemberName(void);
@@ -146,12 +147,13 @@ class biblioteq_batch_activities: public QMainWindow
   void slotScannedDiscover(void);
   void slotScannedReturn(void);
   void slotSetGlobalFonts(const QFont &font);
+  void slotWidgetDestroyed(void);
 
  signals:
-  void listMembersReservedItems(const QString &id);
   void createItem(const QString &identifier,
 		  const QString &querySystem,
 		  const QString &type);
+  void listMembersReservedItems(const QString &id);
 };
 
 class biblioteq_batch_activities_item_delegate: public QStyledItemDelegate

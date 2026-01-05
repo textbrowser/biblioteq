@@ -1474,6 +1474,29 @@ void biblioteq_batch_activities::slotClose(void)
 #endif
 }
 
+void biblioteq_batch_activities::slotDeleteAddingRow(void)
+{
+  auto toolButton = qobject_cast<QToolButton *> (sender());
+
+  if(!toolButton)
+    return;
+
+  for(int i = 0; i < m_ui.add_table->rowCount(); i++)
+    {
+      auto widget = m_ui.add_table->cellWidget
+	(i, static_cast<int> (AddTableColumns::DELETE_COLUMN));
+
+      if(!widget)
+	continue;
+
+      if(toolButton == widget->findChild<QToolButton *> ())
+	{
+	  m_ui.add_table->removeRow(i);
+	  break;
+	}
+    }
+}
+
 void biblioteq_batch_activities::slotDeleteBorrowingRow(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -2336,6 +2359,10 @@ void biblioteq_batch_activities::slotScanAddingTimerTimeout(void)
 			 QSizePolicy::Expanding,
 			 QSizePolicy::Expanding));
       layout->setContentsMargins(0, 0, 0, 0);
+      connect(toolButton,
+	      SIGNAL(clicked(void)),
+	      this,
+	      SLOT(slotDeleteAddingRow(void)));
       m_ui.add_table->setRowCount(row + 1);
       m_ui.add_table->setCellWidget
 	(row, static_cast<int> (AddTableColumns::DELETE_COLUMN), widget);
@@ -2663,4 +2690,9 @@ void biblioteq_batch_activities::slotSetGlobalFonts(const QFont &font)
   m_ui.dreamy_table->resizeColumnsToContents();
   m_ui.return_table->resizeColumnsToContents();
   update();
+}
+
+void biblioteq_batch_activities::slotWidgetDestroyed(void)
+{
+  qDebug() << sender();
 }
