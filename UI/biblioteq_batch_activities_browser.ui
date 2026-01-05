@@ -176,6 +176,11 @@
              </attribute>
              <column>
               <property name="text">
+               <string>Delete</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
                <string>Category</string>
               </property>
              </column>

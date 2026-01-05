@@ -2300,11 +2300,13 @@ void biblioteq_batch_activities::slotScanAddingTimerTimeout(void)
 {
   if(!m_ui.add_scan->text().trimmed().isEmpty())
     {
+      QToolButton *toolButton = nullptr;
       auto category(m_ui.add_scan_type->currentText());
       auto const identifier(m_ui.add_scan->text().trimmed());
       auto const row = m_ui.add_table->rowCount();
       auto item = new QTableWidgetItem();
       auto querySystem(tr("Open Library"));
+      auto widget = new QWidget();
 
       if(category == tr("Automatic"))
 	{
@@ -2320,7 +2322,23 @@ void biblioteq_batch_activities::slotScanAddingTimerTimeout(void)
 	    }
 	}
 
+      auto layout = new QHBoxLayout(widget);
+
+      layout->addSpacerItem
+	(new QSpacerItem(40,
+			 20,
+			 QSizePolicy::Expanding,
+			 QSizePolicy::Expanding));
+      layout->addWidget(toolButton = new QToolButton(widget));
+      layout->addSpacerItem
+	(new QSpacerItem(40,
+			 20,
+			 QSizePolicy::Expanding,
+			 QSizePolicy::Expanding));
+      layout->setContentsMargins(0, 0, 0, 0);
       m_ui.add_table->setRowCount(row + 1);
+      m_ui.add_table->setCellWidget
+	(row, static_cast<int> (AddTableColumns::DELETE_COLUMN), widget);
       item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable);
       item->setText(category);
       m_ui.add_table->setItem
@@ -2333,6 +2351,8 @@ void biblioteq_batch_activities::slotScanAddingTimerTimeout(void)
       item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsEditable);
       m_ui.add_table->setItem
 	(row, static_cast<int> (AddTableColumns::QUERY_SYSTEM_COLUMN), item);
+      toolButton->setIcon
+	(QIcon::fromTheme("list-remove", QIcon(":/16x16/eraser.png")));
     }
 
   m_ui.add_scan->clear();

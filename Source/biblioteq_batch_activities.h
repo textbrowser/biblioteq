@@ -50,9 +50,10 @@ class biblioteq_batch_activities: public QMainWindow
  public:
   enum class AddTableColumns
     {
-      CATEGORY_COLUMN = 0,
-      IDENTIFIER_COLUMN = 1,
-      QUERY_SYSTEM_COLUMN = 2
+      CATEGORY_COLUMN = 1,
+      DELETE_COLUMN = 0,
+      IDENTIFIER_COLUMN = 2,
+      QUERY_SYSTEM_COLUMN = 3
     };
 
   enum class DreamyTableColumns
