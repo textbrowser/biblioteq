@@ -172,7 +172,7 @@ biblioteq_dbenumerations::biblioteq_dbenumerations(biblioteq *parent):
 	    SLOT(setGlobalFonts(const QFont &)));
 
   m_ui.locationsTable->setItemDelegateForColumn
-    (0, new biblioteq_dbenumerations_item_delegate(this));
+    (0, new biblioteq_dbenumerations_item_delegate(m_ui.locationsTable));
   m_ui.locationsTable->verticalHeader()->setSectionResizeMode
     (QHeaderView::Fixed);
   m_ui.minimumDaysTable->verticalHeader()->setSectionResizeMode

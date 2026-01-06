@@ -126,6 +126,9 @@ class biblioteq_dbenumerations_item_delegate: public QStyledItemDelegate
 	  if(comboBox->currentIndex() < 0)
 	    comboBox->setCurrentIndex(0); // Book?
 
+	  comboBox->setMinimumWidth
+	    (qobject_cast<QTableWidget *> (this->parent())->
+	     columnWidth(index.column()));
 	  comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
 	  return comboBox;
 	}
