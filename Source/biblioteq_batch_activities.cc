@@ -80,6 +80,9 @@ QWidget *biblioteq_batch_activities_item_delegate::createEditor
 	      // << tr("Video Game");
 	    std::sort(list.begin(), list.end());
 	    editor->addItems(list);
+	    editor->setMinimumWidth
+	      (qobject_cast<QTableWidget *> (this->parent())->
+	       columnWidth(index.column()));
 	    editor->setSizeAdjustPolicy(QComboBox::AdjustToContents);
 	    editor->setSizePolicy
 	      (QSizePolicy::Preferred, QSizePolicy::Minimum);
@@ -111,6 +114,9 @@ QWidget *biblioteq_batch_activities_item_delegate::createEditor
 	      list << tr("SRU Query");
 
 	    editor->addItems(list);
+	    editor->setMinimumWidth
+	      (qobject_cast<QTableWidget *> (this->parent())->
+	       columnWidth(index.column()));
 	    editor->setSizeAdjustPolicy(QComboBox::AdjustToContents);
 	    editor->setSizePolicy
 	      (QSizePolicy::Preferred, QSizePolicy::Minimum);
@@ -336,10 +342,12 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SLOT(slotPageIndexChanged(int)));
   m_ui.add_table->setItemDelegateForColumn
     (static_cast<int> (AddTableColumns::CATEGORY_COLUMN),
-     new biblioteq_batch_activities_item_delegate("add_table", this));
+     new biblioteq_batch_activities_item_delegate("add_table",
+						  m_ui.add_table));
   m_ui.add_table->setItemDelegateForColumn
     (static_cast<int> (AddTableColumns::QUERY_SYSTEM_COLUMN),
-     new biblioteq_batch_activities_item_delegate("add_table", this));
+     new biblioteq_batch_activities_item_delegate("add_table",
+						  m_ui.add_table));
   m_ui.dreamy_date->setDisplayFormat
     (QLocale().dateFormat(QLocale::LongFormat));
   m_ui.dreamy_table->horizontalHeader()->setSortIndicator
