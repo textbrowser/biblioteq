@@ -94,12 +94,13 @@ QStringList biblioteq::scripts(void) const
 {
   QMap<QString, char> map;
   auto const list
-    (QSettings().value("otheroptions/scripts", "").
-     toString().trimmed().split('\n') +
+    (QSettings().value("otheroptions/scripts", "").toString().trimmed().
+     split('\n') +
      m_specialExecutables.keys());
 
   foreach(auto const &str, list)
-    map[str] = 0;
+    if(!str.trimmed().isEmpty())
+      map[str.trimmed()] = 0;
 
   return map.keys();
 }
@@ -445,11 +446,13 @@ void biblioteq::prepareExternalApplicationsMenu(void)
   auto const list(scripts());
 
   for(int i = 0; i < list.size(); i++)
-    ui.menuExternal_Applications->addAction
-      (QIcon(m_specialExecutablesIcons.value(list.at(i))),
-       list.at(i),
-       this,
-       SLOT(slotSpecialApplication(void)));
+    if(!list.at(i).trimmed().isEmpty())
+      ui.menuExternal_Applications->addAction
+	(QIcon(m_specialExecutablesIcons.value(list.at(i))),
+	 list.at(i),
+	 this,
+	 SLOT(slotSpecialApplication(void)),
+	 Qt::QueuedConnection);
 
   if(ui.menuExternal_Applications->isEmpty())
     ui.menuExternal_Applications->addAction(s_empty);
@@ -1712,8 +1715,34 @@ void biblioteq::slotSpecialApplication(void)
 
   auto text(action->text());
 
-  text = m_db.driverName() == "QPSQL" ?
-    text : text.replace("%1", m_db.databaseName());
+  if(m_db.isOpen())
+    text = m_db.driverName() == "QPSQL" ?
+      text : text.replace("%1", m_db.databaseName());
+  else
+    text.replace("%1", "");
+
+  text = text.trimmed();
+
+  if(text.isEmpty())
+    {
+      ui.menuExternal_Applications->removeAction(action);
+      action->deleteLater();
+
+      if(ui.menuExternal_Applications->isEmpty())
+	ui.menuExternal_Applications->addAction(s_empty);
+
+      return;
+    }
+
+  if(QMessageBox::
+     question(this,
+	      tr("BiblioteQ: Question"),
+	      tr("Are you sure that you wish to "
+		 "launch the program %1?").arg(text),
+	      QMessageBox::No | QMessageBox::Yes,
+	      QMessageBox::No) == QMessageBox::No)
+    return;
+
   qputenv("BIBLIOTEQ_DATABASE_NAME", m_db.databaseName().toUtf8());
   QProcess::startDetached(text, QStringList());
   qunsetenv("BIBLIOTEQ_DATABASE_NAME");

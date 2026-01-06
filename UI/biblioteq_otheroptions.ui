@@ -1021,7 +1021,7 @@
             <item>
              <widget class="QLabel" name="label_19">
               <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Absolute file paths.&lt;/span&gt; Please place scripts on individual lines. BiblioteQ will replace %1 with the current &lt;span style=&quot; font-weight:600;&quot;&gt;SQLite&lt;/span&gt; database absolute file path. The scripts will be available in some places. Please enclose values with double-quotes if necessary. Be careful of lengthy content.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Absolute file paths.&lt;/span&gt; Please place scripts on individual lines. BiblioteQ will replace %1 with the current &lt;span style=&quot; font-weight:600;&quot;&gt;SQLite&lt;/span&gt; database absolute file path. The scripts will be available in some places. Please enclose values with double-quotes if necessary. Be careful of lengthy content. Paths will be trimmed of leading and trailing spaces.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="wordWrap">
                <bool>true</bool>
