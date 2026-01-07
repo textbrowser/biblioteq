@@ -2352,6 +2352,8 @@ void biblioteq_batch_activities::slotScanAddingTimerTimeout(void)
 	      querySystem = tr("Open Library");
 	    }
 	}
+      else if(category == tr("Journal") || category == tr("Magazine"))
+	querySystem = tr("SRU Query");
 
       auto layout = new QHBoxLayout(widget);
 
