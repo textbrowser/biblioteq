@@ -1030,54 +1030,54 @@
         <translation>Défilement en bas de page sur l&apos;ajout</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="198"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="203"/>
         <source>Borrow</source>
         <translation>Emprunter</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_batch_activities_browser.ui" line="99"/>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="206"/>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="210"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="211"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="215"/>
         <source>Book</source>
         <translation>Livre</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="215"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="220"/>
         <source>CD</source>
         <translation>CD</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="220"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="225"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="225"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="230"/>
         <source>Grey Literature</source>
         <translation>Littérature grise</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_batch_activities_browser.ui" line="104"/>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="230"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="235"/>
         <source>Journal</source>
         <translation>Journal</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_batch_activities_browser.ui" line="109"/>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="235"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="240"/>
         <source>Magazine</source>
         <translation>Magazine</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="240"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="245"/>
         <source>Video Game</source>
         <translation>Jeu vidéo</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_batch_activities_browser.ui" line="117"/>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="248"/>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="479"/>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="834"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="253"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="484"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="839"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click in this field and scan an item. A new row will be created with the scanned identifier value. Please wait until the text hint is visible before scanning an item. Of course, you may also type an identifier and press the Enter key.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cliquez dans ce champ et scannez un élément. Une nouvelle ligne sera créée avec la valeur de l&apos;identifiant scanné. Veuillez attendre que l&apos;indice de texte soit visible avant de numériser un article. Bien entendu, vous pouvez également taper un identifiant et appuyer sur la touche Entrée..&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -1099,119 +1099,124 @@
     </message>
     <message>
         <location filename="../UI/biblioteq_batch_activities_browser.ui" line="120"/>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="251"/>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="482"/>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="837"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="256"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="487"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="842"/>
         <source>Please scan an item.</source>
         <translation>Veuillez scanner un article.</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="189"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="179"/>
+        <source>Delete</source>
+        <translation>Supprimer</translation>
+    </message>
+    <message>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="194"/>
         <source>Query System</source>
         <translation>Système de requêtes</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="278"/>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="288"/>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="623"/>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="737"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="283"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="293"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="628"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="742"/>
         <source>Member ID</source>
         <translation>Identifiant du membre</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="298"/>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="646"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="303"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="651"/>
         <source>Discovered Name</source>
         <translation>Nom découvert</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="305"/>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="653"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="310"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="658"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A database query will be performed after editing of the Member ID has completed. For example, after Member ID has lost input focus.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Une interrogation de la base de données sera effectuée une fois l&apos;édition de l&apos;identifiant du membre terminée. Par exemple, après que l&apos;ID du membre a perdu le focus d&apos;entrée.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="315"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="320"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;List member&apos;s reserved items in the main window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Lister les articles empruntés du membre dans la fenêtre principale.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="337"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="342"/>
         <source>The Field column is completed by scanner queries.</source>
         <translation>La colonne Champ est complétée par des requêtes de scanners.</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="606"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="611"/>
         <source>SQLite Reminder</source>
         <translation>rappel SQLite</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="615"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="620"/>
         <source>Dream Extensions</source>
         <translation>Prolongation</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="630"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="635"/>
         <source>Please press Enter to filter.</source>
         <translation>Appuyez sur Entrée pour filtrer.</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="636"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="641"/>
         <source>Optional Member ID Filter</source>
         <translation>Filtre d&apos;identifiant membre facultatif</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="665"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="670"/>
         <source>A new return-date may not be a date which is less than the item&apos;s current return-date.</source>
         <translation>Une nouvelle date de retour ne peut être antérieure à la date de retour actuelle de l&apos;article.</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="712"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="717"/>
         <source>New Return Date</source>
         <translation>Nouvelle date de retour</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="717"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="722"/>
         <source>Reserved Date</source>
         <translation>Date de réservation</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="727"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="732"/>
         <source>Accession Number</source>
         <translation>Numéro d&apos;accès</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="742"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="747"/>
         <source>Member Name</source>
         <translation>Nom du membre</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="747"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="752"/>
         <source>Administrator</source>
         <translation>Administrateur</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="752"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="757"/>
         <source>Type</source>
         <translation>Type</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="757"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="762"/>
         <source>MYOID (Hidden)</source>
         <translation>MYOID (Hidden)</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="767"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="772"/>
         <source>Set All New Return Dates</source>
         <translation>Définir toutes les nouvelles dates de retour</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="787"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="792"/>
         <source>Set All New Return Dates!</source>
         <translation>Définissez toutes les nouvelles dates de retour !</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="862"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="867"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If items cannot be located, please consider the All Reserved category in the main window. Press the Go! button to list the discovered items in the main table. &lt;span style=&quot; font-weight:600;&quot;&gt;Press the Go! button to list the discovered items in the main window&apos;s table where you&apos;ll be able to complete the return(s).&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Si des éléments ne peuvent être localisés, veuillez considérer la catégorie Tous réservés dans la fenêtre principale. Appuyez sur le bouton « Go ! » pour afficher la liste des articles découverts dans le tableau principal. &lt;span style=&quot; font-weight:600;&quot;&gt;Appuyez sur le bouton Go ! pour dresser la liste des éléments découverts dans le tableau de la fenêtre principale où vous pourrez effectuer la/les restitution(s).&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -1220,51 +1225,51 @@
         <translation type="vanished">La colonne des champs est complétée par des requêtes de scanner.</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="179"/>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="378"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="184"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="383"/>
         <source>Category</source>
         <translation>Catégorie</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="184"/>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="383"/>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="591"/>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="722"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="189"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="388"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="596"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="727"/>
         <source>Identifier</source>
         <translation>Identifiant</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="388"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="393"/>
         <source>Copy Identifier</source>
         <translation>Identifiant de la copie</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="393"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="398"/>
         <source>Results</source>
         <translation>Résultats</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="398"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="403"/>
         <source>Field</source>
         <translation>Champ</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="427"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="432"/>
         <source>Add Row</source>
         <translation>Ajouter ligne</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="444"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="449"/>
         <source>Delete Row(s)</source>
         <translation>Effacer ligne</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="471"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="476"/>
         <source>Discover</source>
         <translation>Découvrir</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="505"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="510"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;List items in the main window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Liste des éléments de la fenêtre principale.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -1273,28 +1278,28 @@
         <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Liste des éléments découverts dans la fenêtre principale.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="528"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="533"/>
         <source>Export missing items.</source>
         <translation>Exporter les éléments manquants.</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="550"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="555"/>
         <source>The Title column will include the first discovered item if there are multiple categories.</source>
         <translation>La colonne Titre comprendra le premier élément découvert s&apos;il y a plusieurs catégories.</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="596"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="601"/>
         <source>Database Table Name(s)</source>
         <translation>Nom(s) de la table de la base de données</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="601"/>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="732"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="606"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="737"/>
         <source>Title</source>
         <translation>Titre</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="826"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="831"/>
         <source>Return</source>
         <translation>Retour</translation>
     </message>
@@ -1303,27 +1308,27 @@
         <translation type="vanished">Si des éléments ne peuvent être localisés, veuillez considérer la catégorie &quot;Tous réservés&quot; dans la fenêtre principale. Appuyez sur le bouton &quot;Go !&quot; pour afficher la liste des articles découverts dans le tableau principal.</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="918"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="923"/>
         <source>Go! (Current Page)</source>
         <translation>Go ! (Page actuelle)</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="948"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="953"/>
         <source>Reset Current Page</source>
         <translation>Réinitialiser la page actuelle</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="961"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="966"/>
         <source>Ctrl+R</source>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="984"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="989"/>
         <source>Close Browser</source>
         <translation>Fermer l&apos;explorateur</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="997"/>
+        <location filename="../UI/biblioteq_batch_activities_browser.ui" line="1002"/>
         <source>Ctrl+W</source>
         <translation>Ctrl+W</translation>
     </message>
@@ -2163,8 +2168,8 @@
         <location filename="../Source/biblioteq_c.cc" line="6234"/>
         <location filename="../Source/biblioteq_c.cc" line="6278"/>
         <location filename="../Source/biblioteq_c.cc" line="6824"/>
-        <location filename="../Source/biblioteq_d.cc" line="284"/>
-        <location filename="../Source/biblioteq_d.cc" line="304"/>
+        <location filename="../Source/biblioteq_d.cc" line="285"/>
+        <location filename="../Source/biblioteq_d.cc" line="305"/>
         <source>BiblioteQ: User Error</source>
         <translation>BiblioteQ : erreur de l&apos;utilisateur</translation>
     </message>
@@ -2249,8 +2254,8 @@
         <location filename="../Source/biblioteq_c.cc" line="6552"/>
         <location filename="../Source/biblioteq_c.cc" line="6574"/>
         <location filename="../Source/biblioteq_c.cc" line="7047"/>
-        <location filename="../Source/biblioteq_d.cc" line="1545"/>
-        <location filename="../Source/biblioteq_d.cc" line="1572"/>
+        <location filename="../Source/biblioteq_d.cc" line="1548"/>
+        <location filename="../Source/biblioteq_d.cc" line="1575"/>
         <source>Database Error</source>
         <translation>Erreur de la base de données</translation>
     </message>
@@ -2304,9 +2309,9 @@
         <location filename="../Source/biblioteq_c.cc" line="7057"/>
         <location filename="../Source/biblioteq_c.cc" line="7063"/>
         <location filename="../Source/biblioteq_c.cc" line="7069"/>
-        <location filename="../Source/biblioteq_d.cc" line="890"/>
-        <location filename="../Source/biblioteq_d.cc" line="898"/>
-        <location filename="../Source/biblioteq_d.cc" line="1552"/>
+        <location filename="../Source/biblioteq_d.cc" line="893"/>
+        <location filename="../Source/biblioteq_d.cc" line="901"/>
+        <location filename="../Source/biblioteq_d.cc" line="1555"/>
         <source>BiblioteQ: Database Error</source>
         <translation>BiblioteQ&#xa0;: erreur de la base de données</translation>
     </message>
@@ -2340,8 +2345,9 @@
         <location filename="../Source/biblioteq_c.cc" line="5256"/>
         <location filename="../Source/biblioteq_c.cc" line="5401"/>
         <location filename="../Source/biblioteq_c.cc" line="7253"/>
-        <location filename="../Source/biblioteq_d.cc" line="312"/>
-        <location filename="../Source/biblioteq_d.cc" line="332"/>
+        <location filename="../Source/biblioteq_d.cc" line="313"/>
+        <location filename="../Source/biblioteq_d.cc" line="333"/>
+        <location filename="../Source/biblioteq_d.cc" line="1739"/>
         <source>BiblioteQ: Question</source>
         <translation>Biblioteq : question</translation>
     </message>
@@ -2427,18 +2433,18 @@
         <translation>Impossible de déterminer le type de l&apos;article sélectionné.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="285"/>
+        <location filename="../Source/biblioteq_d.cc" line="286"/>
         <source>Please provide a valid SQL statement.</source>
         <translation>Veuillez indiquer une instruction SQL valide.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="305"/>
+        <location filename="../Source/biblioteq_d.cc" line="306"/>
         <source>Please provide a non-destructive SQL statement.</source>
         <translation>Veuillez indiquer une instruction SQL non destructive.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="313"/>
-        <location filename="../Source/biblioteq_d.cc" line="333"/>
+        <location filename="../Source/biblioteq_d.cc" line="314"/>
+        <location filename="../Source/biblioteq_d.cc" line="334"/>
         <source>Are you sure that you wish to execute the statement?</source>
         <translation>Êtes-vous sûr de vouloir exécuter la commande ?</translation>
     </message>
@@ -3771,7 +3777,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
         <translation>(Vide)</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="891"/>
+        <location filename="../Source/biblioteq_d.cc" line="894"/>
         <source>The current PostgreSQL schema must be updated. Please execute the statement(s) in %1 for version %2.</source>
         <translation>Le schéma PostgreSQL actuel doit être mis à jour. Veuillez exécuter la ou les déclarations dans %1 pour la version %2.</translation>
     </message>
@@ -3784,7 +3790,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
         <translation type="vanished">&lt;html&gt;&lt;b&gt;Les personnes suivantes ont rendu BiblioteQ magnifique. Merci !&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ana Monteiro&lt;br&gt;Arti&lt;br&gt;Bill Burns&lt;br&gt;Ceres&lt;br&gt;Csanád Baksay&lt;br&gt;Fares Othman&lt;br&gt;Fátima Dias&lt;br&gt;Frans&lt;br&gt;J. Cornavin&lt;br&gt;Jeepee&lt;br&gt;Lazaros S.&lt;br&gt;Leif-W&lt;br&gt;Marty&lt;br&gt;Nick&lt;br&gt;Nicola&lt;br&gt;ResetFlag&lt;br&gt;Safranil&lt;br&gt;SigmaX&lt;br&gt;a12554&lt;br&gt;caalma&lt;br&gt;coldacid&lt;br&gt;fmra357&lt;br&gt;jerzyPL&lt;br&gt;jferby&lt;br&gt;luismontilla&lt;br&gt;meteos77&lt;br&gt;numibesi&lt;br&gt;ozgurcan&lt;br&gt;robindegen&lt;br&gt;sidheban&lt;br&gt;sit42&lt;br&gt;sunyuyangg555&lt;br&gt;tamascz&lt;br&gt;wohali&lt;br&gt;yasbean&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="1035"/>
+        <location filename="../Source/biblioteq_d.cc" line="1038"/>
         <source>BiblioteQ: Contributors</source>
         <translation>BiblioteQ: Contributeurs</translation>
     </message>
@@ -3793,17 +3799,17 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
         <translation type="vanished">Êtes-vous sûr de vouloir supprimer le favori %1 ?</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="1188"/>
+        <location filename="../Source/biblioteq_d.cc" line="1191"/>
         <source>PNG (*.png)</source>
         <translation>PNG (*.png)</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="1190"/>
+        <location filename="../Source/biblioteq_d.cc" line="1193"/>
         <source>BiblioteQ: Export Icons View As PNG</source>
         <translation>BiblioteQ: Exporter la vue par icons vers PNG</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="1218"/>
+        <location filename="../Source/biblioteq_d.cc" line="1221"/>
         <source>BiblioteQ: Member&apos;s History As CSV</source>
         <translation>BiblioteQ : Historique des membres en CSV</translation>
     </message>
@@ -3820,8 +3826,8 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
         <translation type="vanished">Nom de la requête</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="251"/>
-        <location filename="../Source/biblioteq_d.cc" line="1270"/>
+        <location filename="../Source/biblioteq_d.cc" line="252"/>
+        <location filename="../Source/biblioteq_d.cc" line="1273"/>
         <source>Item</source>
         <translation>Article</translation>
     </message>
@@ -3830,12 +3836,12 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
         <translation type="vanished">Vide</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="758"/>
+        <location filename="../Source/biblioteq_d.cc" line="761"/>
         <source>&amp;Close All</source>
         <translation>&amp;Fermer Tout</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="899"/>
+        <location filename="../Source/biblioteq_d.cc" line="902"/>
         <source>The current SQLite schema must be updated. Tools -&gt; Upgrade SQLite Schema (Recent).</source>
         <translation>Le schéma SQLite actuel doit être mis à jour. Outils -&gt; Mettre à jour le schéma SQLite (récent).</translation>
     </message>
@@ -3844,53 +3850,53 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
         <translation type="vanished">&lt;html&gt;&lt;b&gt;Les personnes suivantes ont rendu BiblioteQ magnifique. Si votre nom n&apos;est pas mentionné, veuillez soumettre un ticket à https://github.com/textbrowser/biblioteq/issues. Nous vous remercions !&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ana Monteiro&lt;br&gt;Arti&lt;br&gt;Bill Burns&lt;br&gt;Ceres&lt;br&gt;Csanád Baksay&lt;br&gt;Fares Othman&lt;br&gt;Fátima Dias&lt;br&gt;Frans&lt;br&gt;J. Cornavin&lt;br&gt;Jeepee&lt;br&gt;Lazaros S.&lt;br&gt;Leif-W&lt;br&gt;Marty&lt;br&gt;Nick&lt;br&gt;Nicola&lt;br&gt;ResetFlag&lt;br&gt;Safranil&lt;br&gt;SigmaX&lt;br&gt;a12554&lt;br&gt;caalma&lt;br&gt;coldacid&lt;br&gt;duhow&lt;br&gt;fmra357&lt;br&gt;jerzyPL&lt;br&gt;jferby&lt;br&gt;luismontilla&lt;br&gt;meteos77&lt;br&gt;numibesi&lt;br&gt;ozgurcan&lt;br&gt;robindegen&lt;br&gt;sidheban&lt;br&gt;sit42&lt;br&gt;sunyuyangg555&lt;br&gt;tamascz&lt;br&gt;wohali&lt;br&gt;yasbean&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="992"/>
+        <location filename="../Source/biblioteq_d.cc" line="995"/>
         <source>&lt;html&gt;&lt;b&gt;The following people have made BiblioteQ beautiful. If your name is not mentioned, please submit a ticket at https://github.com/textbrowser/biblioteq/issues. Thank You!&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ana Monteiro&lt;br&gt;Arti&lt;br&gt;Bill Burns&lt;br&gt;Ceres&lt;br&gt;Csanád Baksay&lt;br&gt;Fares Othman&lt;br&gt;Frans&lt;br&gt;Fátima Dias&lt;br&gt;J. Cornavin&lt;br&gt;Jeepee&lt;br&gt;Lazaros S.&lt;br&gt;Leif-W&lt;br&gt;Marty&lt;br&gt;Nick&lt;br&gt;Nicola&lt;br&gt;ResetFlag&lt;br&gt;Safranil&lt;br&gt;SigmaX&lt;br&gt;a12554&lt;br&gt;azc100&lt;br&gt;caalma&lt;br&gt;coldacid&lt;br&gt;duhow&lt;br&gt;fmra357&lt;br&gt;jerzyPL&lt;br&gt;jferby&lt;br&gt;luismontilla&lt;br&gt;meteos77&lt;br&gt;numibesi&lt;br&gt;ozgurcan&lt;br&gt;robindegen&lt;br&gt;sidheban&lt;br&gt;sit42&lt;br&gt;sunyuyangg555&lt;br&gt;tamascz&lt;br&gt;wohali&lt;br&gt;yasbean&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;b&gt;Les personnes suivantes ont contribué à la beauté de BiblioteQ. Si votre nom n&apos;apparaît pas, veuillez envoyer un ticket à https://github.com/textbrowser/biblioteq/issues. Thank You!&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ana Monteiro&lt;br&gt;Arti&lt;br&gt;Bill Burns&lt;br&gt;Ceres&lt;br&gt;Csanád Baksay&lt;br&gt;Fares Othman&lt;br&gt;Frans&lt;br&gt;Fátima Dias&lt;br&gt;J. Cornavin&lt;br&gt;Jeepee&lt;br&gt;Lazaros S.&lt;br&gt;Leif-W&lt;br&gt;Marty&lt;br&gt;Nick&lt;br&gt;Nicola&lt;br&gt;ResetFlag&lt;br&gt;Safranil&lt;br&gt;SigmaX&lt;br&gt;a12554&lt;br&gt;azc100&lt;br&gt;caalma&lt;br&gt;coldacid&lt;br&gt;duhow&lt;br&gt;fmra357&lt;br&gt;jerzyPL&lt;br&gt;jferby&lt;br&gt;luismontilla&lt;br&gt;meteos77&lt;br&gt;numibesi&lt;br&gt;ozgurcan&lt;br&gt;robindegen&lt;br&gt;sidheban&lt;br&gt;sit42&lt;br&gt;sunyuyangg555&lt;br&gt;tamascz&lt;br&gt;wohali&lt;br&gt;yasbean&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="1050"/>
+        <location filename="../Source/biblioteq_d.cc" line="1053"/>
         <source>Book</source>
         <translation>Livre</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="1066"/>
+        <location filename="../Source/biblioteq_d.cc" line="1069"/>
         <source>Journal</source>
         <translation>Journal</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="1082"/>
+        <location filename="../Source/biblioteq_d.cc" line="1085"/>
         <source>Magazine</source>
         <translation>Magazine</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="1135"/>
-        <location filename="../Source/biblioteq_d.cc" line="1144"/>
+        <location filename="../Source/biblioteq_d.cc" line="1138"/>
+        <location filename="../Source/biblioteq_d.cc" line="1147"/>
         <source>BiblioteQ: Configuration Error</source>
         <translation>BiblioteQ : Erreur de configuration</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="1136"/>
+        <location filename="../Source/biblioteq_d.cc" line="1139"/>
         <source>The PostgreSQL library %1 cannot be read. PostgreSQL services will not be functional.</source>
         <translation>La bibliothèque PostgreSQL %1 ne peut pas être lue. Les services PostgreSQL ne seront pas fonctionnels.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="1145"/>
+        <location filename="../Source/biblioteq_d.cc" line="1148"/>
         <source>The PostgreSQL library cannot be read. PostgreSQL services will not be functional.</source>
         <translation>La bibliothèque PostgreSQL ne peut pas être lue. Les services PostgreSQL ne seront pas fonctionnels.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="1348"/>
+        <location filename="../Source/biblioteq_d.cc" line="1351"/>
         <source>&lt;html&gt;This dialog will be shown persistently unless this option is enabled or all overdue items have been returned.&lt;/html&gt;</source>
         <translation>&lt;html&gt;Cette boîte de dialogue s&apos;affichera en permanence tant que cette option n&apos;est pas activée ou que tous les articles en retard n&apos;ont pas été rendus..&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="1364"/>
+        <location filename="../Source/biblioteq_d.cc" line="1367"/>
         <source>BiblioteQ: Overdue Items Notification</source>
         <translation>BiblioteQ : Notification des articles en retard</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="1387"/>
+        <location filename="../Source/biblioteq_d.cc" line="1390"/>
         <source>Please review All Overdue items. There are at least &lt;b&gt;%1 item(s)&lt;/b&gt; which must be returned. &lt;a href=&quot;all_overdue&quot;&gt;Please click to display the All Overdue category in the main window.&lt;/a&gt; This dialog will be shown persistently unless it&apos;s hidden for this session or all overdue items have been returned.</source>
         <translation>Veuillez vérifier tous les articles en retard. Il y en a au moins &lt;b&gt;%1 article(s)&lt;/b&gt; qui doit être retourné. &lt;a href=&quot;all_overdue&quot;&gt;Veuillez cliquer pour afficher la catégorie « Tous les retards » dans la fenêtre principale.&lt;/a&gt; Cette boîte de dialogue restera affichée jusqu&apos;à ce qu&apos;elle soit masquée pour cette session ou que tous les articles en retard aient été rendus.</translation>
     </message>
@@ -3899,33 +3905,38 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
         <translation type="vanished">Veuillez vérifier tous les articles en retard. Il y en a au moins &lt;b&gt;%1 article(s)&lt;/b&gt; qui doit être retourné. &lt;a href=&quot;all_overdue&quot;&gt;Veuillez cliquer pour afficher la catégorie « Tous les retards » dans la fenêtre principale..&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="1520"/>
+        <location filename="../Source/biblioteq_d.cc" line="1523"/>
         <source>BiblioteQ: Set Membership Dues</source>
         <translation>BiblioteQ : Fixer les cotisations des membres</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="1521"/>
+        <location filename="../Source/biblioteq_d.cc" line="1524"/>
         <source>Membership Dues</source>
         <translation>Cotisations des membres</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="1546"/>
-        <location filename="../Source/biblioteq_d.cc" line="1553"/>
+        <location filename="../Source/biblioteq_d.cc" line="1549"/>
+        <location filename="../Source/biblioteq_d.cc" line="1556"/>
         <source>Unable to update the entries.</source>
         <translation>Impossible de mettre à jour les entrées.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="1573"/>
+        <location filename="../Source/biblioteq_d.cc" line="1576"/>
         <source>Unable to update the entry %1.</source>
         <translation>Impossible de mettre à jour l&apos;entrés %1.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="1681"/>
+        <location filename="../Source/biblioteq_d.cc" line="1684"/>
         <source>BiblioteQ: Release Notes</source>
         <translation>BiblioteQ :  notes de publication</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_d.cc" line="1871"/>
+        <location filename="../Source/biblioteq_d.cc" line="1740"/>
+        <source>Are you sure that you wish to launch the program %1?</source>
+        <translation>Êtes-vous sûr de vouloir lancer le programme %1 ?</translation>
+    </message>
+    <message>
+        <location filename="../Source/biblioteq_d.cc" line="1900"/>
         <source>A new official version %1 of BiblioteQ is available!</source>
         <translation>Une nouvelle version officielle %1 de BiblioteQ est disponible !</translation>
     </message>
@@ -3941,228 +3952,228 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
 <context>
     <name>biblioteq_batch_activities</name>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="222"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="228"/>
         <source>BiblioteQ was not created with multimedia libraries.</source>
         <translation>BiblioteQ n&apos;a pas été créé avec des bibliothèques multimédias.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="232"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="238"/>
         <source>List Discovered Items</source>
         <translation>Liste des éléments découverts</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="235"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="241"/>
         <source>List Other Items</source>
         <translation>Liste des autres éléments</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="395"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="403"/>
         <source>Please provide the patron&apos;s identifier.</source>
         <translation>Veuillez indiquer l&apos;identifiant de l&apos;usager.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="401"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="409"/>
         <source>Borrowing item(s)...</source>
         <translation>Emprunt d&apos;article(s)...</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="408"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="416"/>
         <source>BiblioteQ: Progress Dialog</source>
         <translation>BiblioteQ : dialogue de progression</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="448"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="456"/>
         <source>Critical error! Missing table item(s).</source>
         <translation>Erreur critique ! Elément(s) de table manquant(s).</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="464"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="472"/>
         <source>Membership has expired.</source>
         <translation>L&apos;adhésion a expiré.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="466"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="474"/>
         <source>Cannot locate member (%1).</source>
         <translation>Impossible de localiser le membre (%1).</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="475"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="483"/>
         <source>Empty copy identifier.</source>
         <translation>Identifiant de copie vide.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="482"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="490"/>
         <source>Empty identifier.</source>
         <translation>Identifiant vide.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="490"/>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="1402"/>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="2318"/>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="2356"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="498"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="1410"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="2351"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="2411"/>
         <source>Book</source>
         <translation>Livre</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="492"/>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="1403"/>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="2358"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="500"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="1411"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="2413"/>
         <source>CD</source>
         <translation>CD</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="494"/>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="1404"/>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="2360"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="502"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="1412"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="2415"/>
         <source>DVD</source>
         <translation>DVD</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="496"/>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="1405"/>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="2362"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="504"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="1413"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="2417"/>
         <source>Grey Literature</source>
         <translation>Littérature grise</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="498"/>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="1406"/>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="2313"/>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="2364"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="506"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="1414"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="2346"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="2419"/>
         <source>Journal</source>
         <translation>Journal</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="500"/>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="1407"/>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="2366"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="508"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="1415"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="2421"/>
         <source>Magazine</source>
         <translation>Magazine</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="502"/>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="1408"/>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="2368"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="510"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="1416"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="2423"/>
         <source>Video Game</source>
         <translation>Jeu vidéo</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="517"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="525"/>
         <source>Item is not available for reservation.</source>
         <translation>L&apos;article n&apos;est pas disponible pour l&apos;emprunt.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="520"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="528"/>
         <source>Item is not available (%1) for reservation.</source>
         <translation>L&apos;article n&apos;est pas disponible (%1) pour la réservation.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="536"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="544"/>
         <source>Maximum (%1) number of reserved (%2) items exceeded.</source>
         <translation>Le nombre maximum (%1) d&apos;éléments empruntables (%2) est dépassé.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="558"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="566"/>
         <source>Error retrieving copy number.</source>
         <translation>Erreur de récupération du numéro de copie.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="590"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="598"/>
         <source>Reserved!</source>
         <translation>Emprunté!</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="611"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="619"/>
         <source>Reservation problem (%1).</source>
         <translation>Problème avec l&apos;emprunt (%1).</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="643"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="651"/>
         <source>Database Error</source>
         <translation>Erreur de la base de données</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="644"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="652"/>
         <source>Unable to create a member_history entry.</source>
         <translation>Impossible de créer une entrée member_history.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="1736"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="1767"/>
         <source>CSV (*.csv)</source>
         <translation>CSV (*.csv)</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="1738"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="1769"/>
         <source>BiblioteQ: Export As CSV</source>
         <translation>BiblioteQ : Exporter en CSV</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="2221"/>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="2241"/>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="2273"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="2252"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="2272"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="2304"/>
         <source>BiblioteQ: Question</source>
         <translation>Biblioteq : question</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="2222"/>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="2242"/>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="2274"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="2253"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="2273"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="2305"/>
         <source>Are you sure that you wish to reset?</source>
         <translation>Êtes-vous sûr de vouloir réinitialiser ?</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="2307"/>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="2319"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="2339"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="2352"/>
         <source>Open Library</source>
         <translation>Open Library</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="2309"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="2342"/>
         <source>Automatic</source>
         <translation>Automatique</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="2314"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="2347"/>
         <source>SRU Query</source>
         <translation>Requête SRU</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="2392"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="2447"/>
         <source>A copy is not available.</source>
         <translation>Une copie n&apos;est pas disponible.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="2395"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="2450"/>
         <source>A copy is not available (%1).</source>
         <translation>Aucune copie n&apos;est disponible (%1).</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="2541"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="2596"/>
         <source>Copy ID</source>
         <translation>Copie ID</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="2542"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="2597"/>
         <source>Member ID</source>
         <translation>Identifiant du membre</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="2543"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="2598"/>
         <source>Member Information</source>
         <translation>Information du membre</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="2544"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="2599"/>
         <source>Reservation Date</source>
         <translation>Date d&apos;emprunt</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="2545"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="2600"/>
         <source>Due Date</source>
         <translation>Date limite</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="2546"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="2601"/>
         <source>Item OID</source>
         <translation>ID de l&apos;article</translation>
     </message>
@@ -4171,8 +4182,8 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <name>biblioteq_batch_activities_item_delegate</name>
     <message>
         <location filename="../Source/biblioteq_batch_activities.cc" line="73"/>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="104"/>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="171"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="107"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="177"/>
         <source>Book</source>
         <translation>Livre</translation>
     </message>
@@ -4187,14 +4198,14 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
         <translation>Magazine</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="106"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="109"/>
         <source>Open Library</source>
         <translation>Open Library</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="107"/>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="111"/>
-        <location filename="../Source/biblioteq_batch_activities.cc" line="180"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="110"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="114"/>
+        <location filename="../Source/biblioteq_batch_activities.cc" line="186"/>
         <source>SRU Query</source>
         <translation>Requête SRU</translation>
     </message>
@@ -14809,9 +14820,8 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Chemins d&apos;accès absolus aux fichiers&lt;/span&gt; Seulement ! Les extensions seront chargées après l&apos;ouverture d&apos;une base de données SQLite. Veuillez consulter le journal des erreurs pour plus d&apos;informations.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../UI/biblioteq_otheroptions.ui" line="1024"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Absolute file paths.&lt;/span&gt; Please place scripts on individual lines. BiblioteQ will replace %1 with the current &lt;span style=&quot; font-weight:600;&quot;&gt;SQLite&lt;/span&gt; database absolute file path. The scripts will be available in some places. Please enclose values with double-quotes if necessary. Be careful of lengthy content.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Chemins d&apos;accès absolus aux fichiers.&lt;/span&gt; Veuillez placer les scripts sur des lignes individuelles. BiblioteQ remplacera %1 par la valeur actuelle &lt;span style=&quot; font-weight:600;&quot;&gt;SQLite&lt;/span&gt; Chemin d&apos;accès absolu au fichier de base de données. Les scripts seront disponibles à certains endroits. Veuillez mettre les valeurs entre guillemets doubles si nécessaire. Faites attention aux contenus trop longs.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Chemins d&apos;accès absolus aux fichiers.&lt;/span&gt; Veuillez placer les scripts sur des lignes individuelles. BiblioteQ remplacera %1 par la valeur actuelle &lt;span style=&quot; font-weight:600;&quot;&gt;SQLite&lt;/span&gt; Chemin d&apos;accès absolu au fichier de base de données. Les scripts seront disponibles à certains endroits. Veuillez mettre les valeurs entre guillemets doubles si nécessaire. Faites attention aux contenus trop longs.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_otheroptions.ui" line="1042"/>
@@ -14913,6 +14923,11 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
         <location filename="../UI/biblioteq_otheroptions.ui" line="959"/>
         <source>Reminders</source>
         <translation>Rappels</translation>
+    </message>
+    <message>
+        <location filename="../UI/biblioteq_otheroptions.ui" line="1024"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Absolute file paths.&lt;/span&gt; Please place scripts on individual lines. BiblioteQ will replace %1 with the current &lt;span style=&quot; font-weight:600;&quot;&gt;SQLite&lt;/span&gt; database absolute file path. The scripts will be available in some places. Please enclose values with double-quotes if necessary. Be careful of lengthy content. Paths will be trimmed of leading and trailing spaces.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Chemins d&apos;accès absolus aux fichiers.&lt;/span&gt; Veuillez placer les scripts sur des lignes individuelles. BiblioteQ remplacera %1  par le chemin d&apos;accès absolu actuel à la base de données &lt;span style=&quot; font-weight:600;&quot;&gt;SQLite&lt;/span&gt;. Les scripts seront disponibles à certains endroits. Veuillez mettre les valeurs entre guillemets doubles si nécessaire. Faites attention aux contenus trop longs. Les espaces au début et à la fin des chemins d&apos;accès seront supprimés.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_otheroptions.ui" line="1285"/>
