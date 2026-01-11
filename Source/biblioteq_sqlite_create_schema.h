@@ -505,6 +505,8 @@ CREATE TABLE member							\
     general_registration_number TEXT,					\
     last_name	                VARCHAR(128) NOT NULL,			\
     maximum_reserved_books      INTEGER NOT NULL DEFAULT 0,		\
+    maximum_reserved_item_type  TEXT NOT NULL DEFAULT 'N/A',		\
+    maximum_reserved_item_value INTEGER NOT NULL DEFAULT 0,		\
     memberclass                 TEXT,					\
     memberid	                VARCHAR(16) NOT NULL PRIMARY KEY	\
                                 DEFAULT 1,				\

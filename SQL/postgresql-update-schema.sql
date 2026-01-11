@@ -34,3 +34,8 @@ GRANT DELETE, SELECT ON item_borrower TO biblioteq_librarian;
 /* Version 2025.06.30 */
 
 ALTER TABLE book ADD series_title TEXT;
+
+/* Version 2026.00.00 */
+
+ALTER TABLE member ADD maximum_reserved_item_type TEXT NOT NULL DEFAULT 'N/A';
+ALTER TABLE member ADD maximum_reserved_item_value INTEGER NOT NULL DEFAULT 0;
