@@ -171,6 +171,30 @@ class userinfo_diag_class: public QDialog
        m_userinfo.maximum_reserved_books->text())
       list << "maximum_reserved_books";
 
+    if(m_memberProperties.value("maximum_reserved_cds") !=
+       m_userinfo.maximum_reserved_cds->text())
+      list << "maximum_reserved_cds";
+
+    if(m_memberProperties.value("maximum_reserved_dvds") !=
+       m_userinfo.maximum_reserved_dvds->text())
+      list << "maximum_reserved_dvds";
+
+    if(m_memberProperties.value("maximum_reserved_grey_literatures") !=
+       m_userinfo.maximum_reserved_grey_literatures->text())
+      list << "maximum_reserved_grey_literatures";
+
+    if(m_memberProperties.value("maximum_reserved_journals") !=
+       m_userinfo.maximum_reserved_journals->text())
+      list << "maximum_reserved_journals";
+
+    if(m_memberProperties.value("maximum_reserved_magazines") !=
+       m_userinfo.maximum_reserved_magazines->text())
+      list << "maximum_reserved_magazines";
+
+    if(m_memberProperties.value("maximum_reserved_video_games") !=
+       m_userinfo.maximum_reserved_video_games->text())
+      list << "maximum_reserved_video_games";
+
     if(m_memberProperties.value("memberclass") !=
        m_userinfo.memberclass->text().trimmed())
       list << "memberclass";
