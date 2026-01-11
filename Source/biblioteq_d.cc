@@ -883,15 +883,15 @@ void biblioteq::prepareUpgradeNotification(void)
   ** Display an error if the current database's schema is not current.
   */
 
-  auto const record(m_db.record("book"));
+  auto const record(m_db.record("member"));
 
-  if(!(record.indexOf("series_title") >= 0))
+  if(!(record.indexOf("maximum_reserved_item_type") >= 0))
     {
       if(m_db.driverName() == "QPSQL")
 	QMessageBox::critical
 	  (this,
 	   tr("BiblioteQ: Database Error"),
-	   tr("The current PostgreSQL schema must be updated. "
+	   tr("The current PostgreSQL schema is not current. "
 	      "Please execute the statement(s) in %1 for version %2.").
 	   arg("postgresql-update-schema.sql").
 	   arg(BIBLIOTEQ_VERSION));
@@ -899,8 +899,8 @@ void biblioteq::prepareUpgradeNotification(void)
 	QMessageBox::critical
 	  (this,
 	   tr("BiblioteQ: Database Error"),
-	   tr("The current SQLite schema must be updated. "
-	      "Tools -> Upgrade SQLite Schema (Recent)."));
+	   tr("The current SQLite schema is not current. "
+	      "Please visit Tools -> Upgrade SQLite Schema (Recent)."));
 
       QApplication::processEvents();
     }

@@ -26,8 +26,8 @@
 */
 
 /*
-** The sequence table is required for generating unique integers.
-** Please read biblioteq_misc_functions::getSqliteUniqueId().
+** The book_sequence and sequence tables are required for generating unique
+** integers. Please read biblioteq_misc_functions::getSqliteUniqueId().
 */
 
 const char *sqlite_create_schema_text = "\
