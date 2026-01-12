@@ -5749,9 +5749,17 @@ void biblioteq::slotUpgradeSqliteScheme(void)
   list.append("ALTER TABLE videogame_copy_info ADD notes TEXT");
   list.append("ALTER TABLE book ADD series_title TEXT");
  recent_label:
-  list.append("ALTER TABLE member ADD maximum_reserved_item_type "
-	      "TEXT NOT NULL DEFAULT 'N/A'");
-  list.append("ALTER TABLE member ADD maximum_reserved_item_value "
+  list.append("ALTER TABLE member ADD maximum_reserved_cds "
+	      "INTEGER NOT NULL DEFAULT 0");
+  list.append("ALTER TABLE member ADD maximum_reserved_dvds "
+	      "INTEGER NOT NULL DEFAULT 0");
+  list.append("ALTER TABLE member ADD maximum_reserved_grey_literatures "
+	      "INTEGER NOT NULL DEFAULT 0");
+  list.append("ALTER TABLE member ADD maximum_reserved_journals "
+	      "INTEGER NOT NULL DEFAULT 0");
+  list.append("ALTER TABLE member ADD maximum_reserved_magazines "
+	      "INTEGER NOT NULL DEFAULT 0");
+  list.append("ALTER TABLE member ADD maximum_reserved_video_games "
 	      "INTEGER NOT NULL DEFAULT 0");
 
   QString errors("<html>");

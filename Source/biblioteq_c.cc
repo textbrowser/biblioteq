@@ -4515,33 +4515,24 @@ void biblioteq::slotModifyBorrower(void)
 	  else if(fieldname == "maximum_reserved_books")
 	    userinfo_diag->m_userinfo.maximum_reserved_books->setValue
 	      (var.toInt());
-	  else if(fieldname == "maximum_reserved_item_type")
-	    {
-	      auto const str(query.value(i).toString().toLower().trimmed());
-
-	      if(str == "cd")
-		userinfo_diag->m_userinfo.maximum_reserved_cds->setValue
-		  (record.field("maximum_reserved_item_value").value().toInt());
-	      else if(str == "dvd")
-		userinfo_diag->m_userinfo.maximum_reserved_dvds->setValue
-		  (record.field("maximum_reserved_item_value").value().toInt());
-	      else if(str == "grey_literature")
-		userinfo_diag->m_userinfo.maximum_reserved_grey_literatures->
-		  setValue(record.field("maximum_reserved_item_value").
-			   value().toInt());
-	      else if(str == "journal")
-		userinfo_diag->m_userinfo.maximum_reserved_journals->
-		  setValue(record.field("maximum_reserved_item_value").
-			   value().toInt());
-	      else if(str == "magazine")
-		userinfo_diag->m_userinfo.maximum_reserved_magazines->
-		  setValue(record.field("maximum_reserved_item_value").
-			   value().toInt());
-	      else if(str == "video_game")
-		userinfo_diag->m_userinfo.maximum_reserved_video_games->
-		  setValue(record.field("maximum_reserved_item_value").
-			   value().toInt());
-	    }
+	  else if(fieldname == "maximum_reserved_cds")
+	    userinfo_diag->m_userinfo.maximum_reserved_cds->setValue
+	      (var.toInt());
+	  else if(fieldname == "maximum_reserved_dvds")
+	    userinfo_diag->m_userinfo.maximum_reserved_dvds->setValue
+	      (var.toInt());
+	  else if(fieldname == "maximum_reserved_grey_literatures")
+	    userinfo_diag->m_userinfo.maximum_reserved_grey_literatures->
+	      setValue(var.toInt());
+	  else if(fieldname == "maximum_reserved_journals")
+	    userinfo_diag->m_userinfo.maximum_reserved_journals->setValue
+	      (var.toInt());
+	  else if(fieldname == "maximum_reserved_magazines")
+	    userinfo_diag->m_userinfo.maximum_reserved_magazines->setValue
+	      (var.toInt());
+	  else if(fieldname == "maximum_reserved_video_games")
+	    userinfo_diag->m_userinfo.maximum_reserved_video_games->setValue
+	      (var.toInt());
 	  else if(fieldname == "memberclass")
 	    userinfo_diag->m_userinfo.memberclass->setText
 	      (var.toString().trimmed());

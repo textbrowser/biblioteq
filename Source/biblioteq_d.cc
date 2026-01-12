@@ -885,7 +885,7 @@ void biblioteq::prepareUpgradeNotification(void)
 
   auto const record(m_db.record("member"));
 
-  if(!(record.indexOf("maximum_reserved_item_type") >= 0))
+  if(!(record.indexOf("maximum_reserved_cds") >= 0))
     {
       if(m_db.driverName() == "QPSQL")
 	QMessageBox::critical

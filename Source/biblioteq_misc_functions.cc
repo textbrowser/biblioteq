@@ -1971,24 +1971,36 @@ int biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
 
 int biblioteq_misc_functions::maximumReserved(const QSqlDatabase &db,
 					      const QString &memberid,
-					      const QString &type)
+					      const QString &t)
 {
+  QString querystr("");
+  auto const type(t.toLower().trimmed());
+
+  if(type == "book")
+    querystr = "SELECT maximum_reserved_books FROM member WHERE memberid = ?";
+  else if(type == "cd")
+    querystr = "SELECT maximum_reserved_cds FROM member WHERE memberid = ?";
+  else if(type == "dvd")
+    querystr = "SELECT maximum_reserved_dvds FROM member WHERE memberid = ?";
+  else if(type == "grey_literature")
+    querystr = "SELECT maximum_reserved_grey_literatures FROM member "
+      "WHERE memberid = ?";
+  else if(type == "journal")
+    querystr = "SELECT maximum_reserved_journals FROM member "
+      "WHERE memberid = ?";
+  else if(type == "magazine")
+    querystr = "SELECT maximum_reserved_magazines FROM member "
+      "WHERE memberid = ?";
+  else if(type == "video_game")
+    querystr = "SELECT maximum_reserved_video_games FROM member "
+      "WHERE memberid = ?";
+  else
+    return 0;
+
   QSqlQuery query(db);
 
-  if(type.toLower().trimmed() == "book")
-    {
-      query.prepare
-	("SELECT maximum_reserved_books FROM member WHERE memberid = ?");
-      query.addBindValue(memberid);
-    }
-  else
-    {
-      query.prepare
-	("SELECT maximum_reserved_item_value FROM member "
-	 "WHERE maximum_reserved_item_type = ? and memberid = ?");
-      query.addBindValue(type.toLower().trimmed());
-      query.addBindValue(memberid);
-    }
+  query.prepare(querystr);
+  query.addBindValue(memberid);
 
   if(query.exec() && query.next())
     return query.value(0).toInt();
