@@ -4225,6 +4225,12 @@ void biblioteq::slotExportMembersAsCSV(void)
 			"general_registration_number, "
 			"last_name, "
 			"maximum_reserved_books, "
+			"maximum_reserved_cds, "
+			"maximum_reserved_dvds, "
+			"maximum_reserved_grey_literatures, "
+			"maximum_reserved_journals, "
+			"maximum_reserved_magazines, "
+			"maximum_reserved_video_games, "			
 			"memberclass, "
 			"memberid, "
 			"membersince, "
@@ -4588,6 +4594,25 @@ void biblioteq::slotModifyBorrower(void)
 	  else if(fieldname == "maximum_reserved_books")
 	    userinfo_diag->m_memberProperties[fieldname] =
 	      userinfo_diag->m_userinfo.maximum_reserved_books->text();
+	  else if(fieldname == "maximum_reserved_cds")
+	    userinfo_diag->m_memberProperties[fieldname] =
+	      userinfo_diag->m_userinfo.maximum_reserved_cds->text();
+	  else if(fieldname == "maximum_reserved_dvds")
+	    userinfo_diag->m_memberProperties[fieldname] =
+	      userinfo_diag->m_userinfo.maximum_reserved_dvds->text();
+	  else if(fieldname == "maximum_reserved_grey_literatures")
+	    userinfo_diag->m_memberProperties[fieldname] =
+	      userinfo_diag->m_userinfo.maximum_reserved_grey_literatures->
+	      text();
+	  else if(fieldname == "maximum_reserved_journals")
+	    userinfo_diag->m_memberProperties[fieldname] =
+	      userinfo_diag->m_userinfo.maximum_reserved_journals->text();
+	  else if(fieldname == "maximum_reserved_magazines")
+	    userinfo_diag->m_memberProperties[fieldname] =
+	      userinfo_diag->m_userinfo.maximum_reserved_magazines->text();
+	  else if(fieldname == "maximum_reserved_video_games")
+	    userinfo_diag->m_memberProperties[fieldname] =
+	      userinfo_diag->m_userinfo.maximum_reserved_video_games->text();
 	  else if(fieldname == "membership_fees")
 	    userinfo_diag->m_memberProperties[fieldname] =
 	      userinfo_diag->m_userinfo.membershipfees->text();
@@ -6339,6 +6364,12 @@ void biblioteq::slotSaveUser(void)
 		    "general_registration_number, "
 		    "memberclass, "
 		    "maximum_reserved_books, "
+		    "maximum_reserved_cds, "
+		    "maximum_reserved_dvds, "
+		    "maximum_reserved_grey_literatures, "
+		    "maximum_reserved_journals, "
+		    "maximum_reserved_magazines, "
+		    "maximum_reserved_video_games, "
 		    "membership_fees) "
 		    "VALUES "
 		    "(?, "
@@ -6360,36 +6391,55 @@ void biblioteq::slotSaveUser(void)
 		    "?, "
 		    "?, "
 		    "?, "
+		    "?, "
+		    "?, "
+		    "?, "
+		    "?, "
+		    "?, "
+		    "?, "
 		    "?)");
-      query.bindValue(0, userinfo_diag->m_userinfo.memberid->text().trimmed());
-      query.bindValue(1, userinfo_diag->m_userinfo.membersince->
-		      date().toString(s_databaseDateFormat));
-      query.bindValue(2, userinfo_diag->m_userinfo.dob->date().
-		      toString(s_databaseDateFormat));
-      query.bindValue(3, userinfo_diag->m_userinfo.sex->currentText());
-      query.bindValue(4, userinfo_diag->m_userinfo.firstName->text().trimmed());
-      query.bindValue(5, userinfo_diag->m_userinfo.middle->text().trimmed());
-      query.bindValue(6, userinfo_diag->m_userinfo.lastName->text().trimmed());
-      query.bindValue(7, userinfo_diag->m_userinfo.telephoneNumber->text());
-      query.bindValue(8, userinfo_diag->m_userinfo.street->text().trimmed());
-      query.bindValue(9, userinfo_diag->m_userinfo.city->text().trimmed());
-      query.bindValue(10, userinfo_diag->m_userinfo.state->currentText());
-      query.bindValue(11, userinfo_diag->m_userinfo.zip->text());
-      query.bindValue(12, userinfo_diag->m_userinfo.email->text().trimmed());
-      query.bindValue(13, userinfo_diag->m_userinfo.expirationdate->
-		      date().toString(s_databaseDateFormat));
-      query.bindValue(14, userinfo_diag->m_userinfo.overduefees->value());
-      query.bindValue
-	(15, userinfo_diag->m_userinfo.comments->toPlainText().trimmed());
-      query.bindValue
-	(16, userinfo_diag->m_userinfo.generalregistrationnumber->text().
-	 trimmed());
-      query.bindValue(17, userinfo_diag->m_userinfo.memberclass->text().
-		      trimmed());
-      query.bindValue
-	(18, userinfo_diag->m_userinfo.maximum_reserved_books->value());
-      query.bindValue
-	(19, userinfo_diag->m_userinfo.membershipfees->value());
+      query.addBindValue(userinfo_diag->m_userinfo.memberid->text().trimmed());
+      query.addBindValue
+	(userinfo_diag->m_userinfo.membersince->date().
+	 toString(s_databaseDateFormat));
+      query.addBindValue
+	(userinfo_diag->m_userinfo.dob->date().toString(s_databaseDateFormat));
+      query.addBindValue(userinfo_diag->m_userinfo.sex->currentText());
+      query.addBindValue
+	(userinfo_diag->m_userinfo.firstName->text().trimmed());
+      query.addBindValue(userinfo_diag->m_userinfo.middle->text().trimmed());
+      query.addBindValue(userinfo_diag->m_userinfo.lastName->text().trimmed());
+      query.addBindValue(userinfo_diag->m_userinfo.telephoneNumber->text());
+      query.addBindValue(userinfo_diag->m_userinfo.street->text().trimmed());
+      query.addBindValue(userinfo_diag->m_userinfo.city->text().trimmed());
+      query.addBindValue(userinfo_diag->m_userinfo.state->currentText());
+      query.addBindValue(userinfo_diag->m_userinfo.zip->text());
+      query.addBindValue(userinfo_diag->m_userinfo.email->text().trimmed());
+      query.addBindValue
+	(userinfo_diag->m_userinfo.expirationdate->date().
+	 toString(s_databaseDateFormat));
+      query.addBindValue(userinfo_diag->m_userinfo.overduefees->value());
+      query.addBindValue
+	(userinfo_diag->m_userinfo.comments->toPlainText().trimmed());
+      query.addBindValue
+	(userinfo_diag->m_userinfo.generalregistrationnumber->text().trimmed());
+      query.addBindValue
+	(userinfo_diag->m_userinfo.memberclass->text().trimmed());
+      query.addBindValue
+	(userinfo_diag->m_userinfo.maximum_reserved_books->value());
+      query.addBindValue
+	(userinfo_diag->m_userinfo.maximum_reserved_cds->value());
+      query.addBindValue
+	(userinfo_diag->m_userinfo.maximum_reserved_dvds->value());
+      query.addBindValue
+	(userinfo_diag->m_userinfo.maximum_reserved_grey_literatures->value());
+      query.addBindValue
+	(userinfo_diag->m_userinfo.maximum_reserved_journals->value());
+      query.addBindValue
+	(userinfo_diag->m_userinfo.maximum_reserved_magazines->value());
+      query.addBindValue
+	(userinfo_diag->m_userinfo.maximum_reserved_video_games->value());
+      query.addBindValue(userinfo_diag->m_userinfo.membershipfees->value());
     }
   else
     {
@@ -6412,38 +6462,56 @@ void biblioteq::slotSaveUser(void)
 		    "general_registration_number = ?, "
 		    "memberclass = ?, "
 		    "maximum_reserved_books = ?, "
+		    "maximum_reserved_cds = ?, "
+		    "maximum_reserved_dvds = ?, "
+		    "maximum_reserved_grey_literatures = ?, "
+		    "maximum_reserved_journals = ?, "
+		    "maximum_reserved_magazines = ?, "
+		    "maximum_reserved_video_games = ?, "			
 		    "membership_fees = ? "
 		    "WHERE memberid = ?");
-      query.bindValue(0, userinfo_diag->m_userinfo.membersince->date().
-		      toString(s_databaseDateFormat));
-      query.bindValue(1, userinfo_diag->m_userinfo.dob->date().
-		      toString(s_databaseDateFormat));
-      query.bindValue(2, userinfo_diag->m_userinfo.sex->currentText());
-      query.bindValue
-	(3, userinfo_diag->m_userinfo.firstName->text().trimmed());
-      query.bindValue(4, userinfo_diag->m_userinfo.middle->text().trimmed());
-      query.bindValue(5, userinfo_diag->m_userinfo.lastName->text().trimmed());
-      query.bindValue(6, userinfo_diag->m_userinfo.telephoneNumber->text());
-      query.bindValue(7, userinfo_diag->m_userinfo.street->text().trimmed());
-      query.bindValue(8, userinfo_diag->m_userinfo.city->text().trimmed());
-      query.bindValue(9, userinfo_diag->m_userinfo.state->currentText());
-      query.bindValue(10, userinfo_diag->m_userinfo.zip->text());
-      query.bindValue(11, userinfo_diag->m_userinfo.email->text().trimmed());
-      query.bindValue(12, userinfo_diag->m_userinfo.expirationdate->
-		      date().toString(s_databaseDateFormat));
-      query.bindValue(13, userinfo_diag->m_userinfo.overduefees->value());
-      query.bindValue(14, userinfo_diag->m_userinfo.comments->toPlainText().
-		      trimmed());
-      query.bindValue(15, userinfo_diag->m_userinfo.generalregistrationnumber->
-		      text().trimmed());
-      query.bindValue(16, userinfo_diag->m_userinfo.memberclass->text().
-		      trimmed());
-      query.bindValue
-	(17, userinfo_diag->m_userinfo.maximum_reserved_books->value());
-      query.bindValue
-	(18, userinfo_diag->m_userinfo.membershipfees->value());
-      query.bindValue
-	(19, userinfo_diag->m_userinfo.memberid->text().trimmed());
+      query.addBindValue
+	(userinfo_diag->m_userinfo.membersince->date().
+	 toString(s_databaseDateFormat));
+      query.addBindValue
+	(userinfo_diag->m_userinfo.dob->date().toString(s_databaseDateFormat));
+      query.addBindValue(userinfo_diag->m_userinfo.sex->currentText());
+      query.addBindValue
+	(userinfo_diag->m_userinfo.firstName->text().trimmed());
+      query.addBindValue(userinfo_diag->m_userinfo.middle->text().trimmed());
+      query.addBindValue(userinfo_diag->m_userinfo.lastName->text().trimmed());
+      query.addBindValue(userinfo_diag->m_userinfo.telephoneNumber->text());
+      query.addBindValue(userinfo_diag->m_userinfo.street->text().trimmed());
+      query.addBindValue(userinfo_diag->m_userinfo.city->text().trimmed());
+      query.addBindValue(userinfo_diag->m_userinfo.state->currentText());
+      query.addBindValue(userinfo_diag->m_userinfo.zip->text());
+      query.addBindValue(userinfo_diag->m_userinfo.email->text().trimmed());
+      query.addBindValue
+	(userinfo_diag->m_userinfo.expirationdate->date().
+	 toString(s_databaseDateFormat));
+      query.addBindValue(userinfo_diag->m_userinfo.overduefees->value());
+      query.addBindValue
+	(userinfo_diag->m_userinfo.comments->toPlainText().trimmed());
+      query.addBindValue
+	(userinfo_diag->m_userinfo.generalregistrationnumber->text().trimmed());
+      query.addBindValue
+	(userinfo_diag->m_userinfo.memberclass->text().trimmed());
+      query.addBindValue
+	(userinfo_diag->m_userinfo.maximum_reserved_books->value());
+      query.addBindValue
+	(userinfo_diag->m_userinfo.maximum_reserved_cds->value());
+      query.addBindValue
+	(userinfo_diag->m_userinfo.maximum_reserved_dvds->value());
+      query.addBindValue
+	(userinfo_diag->m_userinfo.maximum_reserved_grey_literatures->value());
+      query.addBindValue
+	(userinfo_diag->m_userinfo.maximum_reserved_journals->value());
+      query.addBindValue
+	(userinfo_diag->m_userinfo.maximum_reserved_magazines->value());
+      query.addBindValue
+	(userinfo_diag->m_userinfo.maximum_reserved_video_games->value());
+      query.addBindValue(userinfo_diag->m_userinfo.membershipfees->value());
+      query.addBindValue(userinfo_diag->m_userinfo.memberid->text().trimmed());
     }
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -6623,6 +6691,18 @@ void biblioteq::slotSaveUser(void)
 	userinfo_diag->m_userinfo.lastName->text().trimmed();
       userinfo_diag->m_memberProperties["maximum_reserved_books"] =
 	userinfo_diag->m_userinfo.maximum_reserved_books->text();
+      userinfo_diag->m_memberProperties["maximum_reserved_cds"] =
+	userinfo_diag->m_userinfo.maximum_reserved_cds->text();
+      userinfo_diag->m_memberProperties["maximum_reserved_dvds"] =
+	userinfo_diag->m_userinfo.maximum_reserved_dvds->text();
+      userinfo_diag->m_memberProperties["maximum_reserved_grey_literatures"] =
+	userinfo_diag->m_userinfo.maximum_reserved_grey_literatures->text();
+      userinfo_diag->m_memberProperties["maximum_reserved_journals"] =
+	userinfo_diag->m_userinfo.maximum_reserved_journals->text();
+      userinfo_diag->m_memberProperties["maximum_reserved_magazines"] =
+	userinfo_diag->m_userinfo.maximum_reserved_magazines->text();
+      userinfo_diag->m_memberProperties["maximum_reserved_video_games"] =
+	userinfo_diag->m_userinfo.maximum_reserved_video_games->text();
       userinfo_diag->m_memberProperties["memberclass"] =
 	userinfo_diag->m_userinfo.memberclass->text().trimmed();
       userinfo_diag->m_memberProperties["membership_fees"] =
