@@ -667,6 +667,9 @@ Completed Items
      on the size of the view.
 336. Editable file Description columns instead of input dialogs.
 337. Batch Activities: disable Open Library for non-book query.
+338. Maximum reservations:
+     biblioteq_c.cc
+     biblioteq_import.cc
 
 Remaining Items
 
@@ -680,6 +683,3 @@ Remaining Items
 8.   PostgreSQL notifications: PostgreSQL::notify() and
      QSqlDriver::subscribeToNotification().
 9.   Replace apt with snap.
-10.  Maximum reservations:
-     biblioteq_c.cc
-     biblioteq_import.cc
