@@ -4444,9 +4444,7 @@ void biblioteq::slotModifyBorrower(void)
     }
 
   QSqlQuery query(m_db);
-  QString fieldname = "";
-  QString str = "";
-  QVariant var;
+  QString str("");
   int i = 0;
 
   str = biblioteq_misc_functions::getColumnString
@@ -4487,9 +4485,8 @@ void biblioteq::slotModifyBorrower(void)
 
       for(i = 0; i < record.count(); i++)
 	{
-	  fieldname = record.fieldName(i);
-	  str = query.value(i).toString().trimmed();
-	  var = record.field(i).value();
+	  auto const fieldname = record.fieldName(i);
+	  auto const var = record.field(i).value();
 
 	  if(fieldname == "city")
 	    userinfo_diag->m_userinfo.city->setText(var.toString().trimmed());
@@ -4518,6 +4515,33 @@ void biblioteq::slotModifyBorrower(void)
 	  else if(fieldname == "maximum_reserved_books")
 	    userinfo_diag->m_userinfo.maximum_reserved_books->setValue
 	      (var.toInt());
+	  else if(fieldname == "maximum_reserved_item_type")
+	    {
+	      auto const str(query.value(i).toString().toLower().trimmed());
+
+	      if(str == "cd")
+		userinfo_diag->m_userinfo.maximum_reserved_cds->setValue
+		  (record.field("maximum_reserved_item_value").value().toInt());
+	      else if(str == "dvd")
+		userinfo_diag->m_userinfo.maximum_reserved_dvds->setValue
+		  (record.field("maximum_reserved_item_value").value().toInt());
+	      else if(str == "grey_literature")
+		userinfo_diag->m_userinfo.maximum_reserved_grey_literatures->
+		  setValue(record.field("maximum_reserved_item_value").
+			   value().toInt());
+	      else if(str == "journal")
+		userinfo_diag->m_userinfo.maximum_reserved_journals->
+		  setValue(record.field("maximum_reserved_item_value").
+			   value().toInt());
+	      else if(str == "magazine")
+		userinfo_diag->m_userinfo.maximum_reserved_magazines->
+		  setValue(record.field("maximum_reserved_item_value").
+			   value().toInt());
+	      else if(str == "video_game")
+		userinfo_diag->m_userinfo.maximum_reserved_video_games->
+		  setValue(record.field("maximum_reserved_item_value").
+			   value().toInt());
+	    }
 	  else if(fieldname == "memberclass")
 	    userinfo_diag->m_userinfo.memberclass->setText
 	      (var.toString().trimmed());

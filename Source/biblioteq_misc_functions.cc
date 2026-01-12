@@ -1973,17 +1973,22 @@ int biblioteq_misc_functions::maximumReserved(const QSqlDatabase &db,
 					      const QString &memberid,
 					      const QString &type)
 {
-  if(type.toLower() != "book")
-    return 0;
-
   QSqlQuery query(db);
-  QString querystr("");
 
-  if(type.toLower() == "book")
-    querystr = "SELECT maximum_reserved_books FROM member WHERE memberid = ?";
-
-  query.prepare(querystr);
-  query.addBindValue(memberid);
+  if(type.toLower().trimmed() == "book")
+    {
+      query.prepare
+	("SELECT maximum_reserved_books FROM member WHERE memberid = ?");
+      query.addBindValue(memberid);
+    }
+  else
+    {
+      query.prepare
+	("SELECT maximum_reserved_item_value FROM member "
+	 "WHERE maximum_reserved_item_type = ? and memberid = ?");
+      query.addBindValue(type.toLower().trimmed());
+      query.addBindValue(memberid);
+    }
 
   if(query.exec() && query.next())
     return query.value(0).toInt();

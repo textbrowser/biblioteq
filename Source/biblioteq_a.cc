@@ -2875,6 +2875,12 @@ void biblioteq::slotAddBorrower(void)
   userinfo_diag->m_userinfo.generalregistrationnumber->clear();
   userinfo_diag->m_userinfo.lastName->clear();
   userinfo_diag->m_userinfo.maximum_reserved_books->setValue(0);
+  userinfo_diag->m_userinfo.maximum_reserved_cds->setValue(0);
+  userinfo_diag->m_userinfo.maximum_reserved_dvds->setValue(0);
+  userinfo_diag->m_userinfo.maximum_reserved_grey_literatures->setValue(0);
+  userinfo_diag->m_userinfo.maximum_reserved_journals->setValue(0);
+  userinfo_diag->m_userinfo.maximum_reserved_magazines->setValue(0);
+  userinfo_diag->m_userinfo.maximum_reserved_video_games->setValue(0);
   userinfo_diag->m_userinfo.memberclass->clear();
   userinfo_diag->m_userinfo.memberid->setReadOnly(false);
   userinfo_diag->m_userinfo.memberid->setText
@@ -2896,6 +2902,18 @@ void biblioteq::slotAddBorrower(void)
     userinfo_diag->m_userinfo.expirationdate->date().toString(Qt::ISODate);
   userinfo_diag->m_memberProperties["maximum_reserved_books"] =
     userinfo_diag->m_userinfo.maximum_reserved_books->text();
+  userinfo_diag->m_memberProperties["maximum_reserved_cds"] =
+    userinfo_diag->m_userinfo.maximum_reserved_cds->text();
+  userinfo_diag->m_memberProperties["maximum_reserved_dvds"] =
+    userinfo_diag->m_userinfo.maximum_reserved_dvds->text();
+  userinfo_diag->m_memberProperties["maximum_reserved_grey_literatures"] =
+    userinfo_diag->m_userinfo.maximum_reserved_grey_literatures->text();
+  userinfo_diag->m_memberProperties["maximum_reserved_journals"] =
+    userinfo_diag->m_userinfo.maximum_reserved_journals->text();
+  userinfo_diag->m_memberProperties["maximum_reserved_magazines"] =
+    userinfo_diag->m_userinfo.maximum_reserved_magazines->text();
+  userinfo_diag->m_memberProperties["maximum_reserved_video_games"] =
+    userinfo_diag->m_userinfo.maximum_reserved_video_games->text();
   userinfo_diag->m_memberProperties["membership_fees"] =
     userinfo_diag->m_userinfo.membershipfees->text();
   userinfo_diag->m_memberProperties["membersince"] =
