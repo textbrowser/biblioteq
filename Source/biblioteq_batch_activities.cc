@@ -543,8 +543,8 @@ void biblioteq_batch_activities::borrow(void)
 	    {
 	      results->setBackground(s_notSoOkColor);
 	      results->setText
-		(tr("Maximum (%1) number of reserved (%2) items exceeded.").
-		 arg(maximumReserved).arg(totalReserved));
+		(tr("Maximum (%1) number of reserved (%2) %3 items exceeded.").
+		 arg(maximumReserved).arg(totalReserved).arg(type.toLower()));
 	      results->setToolTip(results->text());
 	      continue;
 	    }
