@@ -2736,8 +2736,10 @@ void biblioteq::slotCheckout(void)
 
       if(maximumReserved > 0)
 	{
-	  auto const totalReserved = biblioteq_misc_functions::
-	    getItemsReservedCounts(m_db, memberid, errorstr).value("numbooks");
+	  auto const totalReserved = static_cast<int>
+	    (biblioteq_misc_functions::
+	     getItemsReservedCounts(m_db, memberid, errorstr).
+	     value("numbooks"));
 
 	  if(maximumReserved <= totalReserved)
 	    {

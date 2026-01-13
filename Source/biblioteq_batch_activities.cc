@@ -420,8 +420,6 @@ void biblioteq_batch_activities::borrow(void)
   QString error("");
   auto const expired = biblioteq_misc_functions::hasMemberExpired
     (m_qmain->getDB(), memberId, error);
-  auto const maximumReserved = biblioteq_misc_functions::maximumReserved
-    (m_qmain->getDB(), memberId, "book"); // Only books offer maximums.
 
   for(int i = 0; i < m_ui.borrow_table->rowCount(); i++)
     {
@@ -531,11 +529,16 @@ void biblioteq_batch_activities::borrow(void)
 	  continue;
 	}
 
+      auto const maximumReserved = biblioteq_misc_functions::maximumReserved
+	(m_qmain->getDB(), memberId, type);
+
       if(maximumReserved > 0)
 	{
-	  auto const totalReserved = biblioteq_misc_functions::
-	    getItemsReservedCounts(m_qmain->getDB(), memberId, error).
-	    value("numbooks");
+	  auto const totalReserved =
+	    static_cast<int>
+	    (biblioteq_misc_functions::
+	     getItemsReservedCounts(m_qmain->getDB(), memberId, error).
+	     value(QString("num%1s").arg(type.remove(' ').toLower())));
 
 	  if(maximumReserved <= totalReserved)
 	    {

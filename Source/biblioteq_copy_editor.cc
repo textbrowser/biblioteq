@@ -308,7 +308,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 			 qmain->getBBColumnIndexes().indexOf("Member ID")));
       auto duedate = QDate::currentDate();
       int maximumReserved = 0;
-      qint64 totalReserved = 0;
+      int totalReserved = 0;
 
       QApplication::setOverrideCursor(Qt::WaitCursor);
       duedate = duedate.addDays
@@ -318,15 +318,19 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 	(qmain->getDB(), memberid, m_itemType);
 
       if(m_itemType == "Book")
-	totalReserved = biblioteq_misc_functions::getItemsReservedCounts
-	  (qmain->getDB(), memberid, errorstr2).value("numbooks");
+	totalReserved = static_cast<int>
+	  (biblioteq_misc_functions::
+	   getItemsReservedCounts(qmain->getDB(), memberid, errorstr2).
+	   value("numbooks"));
       else
 	{
 	  auto type(QString("num%1s").arg(m_itemType.toLower()));
 
 	  type = type.remove(' ').remove('_');
-	  totalReserved = biblioteq_misc_functions::getItemsReservedCounts
-	    (qmain->getDB(), memberid, errorstr2).value(type);
+	  totalReserved = static_cast<int>
+	    (biblioteq_misc_functions::
+	     getItemsReservedCounts(qmain->getDB(), memberid, errorstr2).
+	     value(type));
 	}
 
       QApplication::restoreOverrideCursor();
