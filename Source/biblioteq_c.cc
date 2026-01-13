@@ -2732,14 +2732,33 @@ void biblioteq::slotCheckout(void)
       QApplication::setOverrideCursor(Qt::WaitCursor);
 
       auto const maximumReserved = biblioteq_misc_functions::maximumReserved
-	(m_db, memberid, "book"); // Only books offer maximums.
+	(m_db, memberid, type);
 
       if(maximumReserved > 0)
 	{
-	  auto const totalReserved = static_cast<int>
-	    (biblioteq_misc_functions::
-	     getItemsReservedCounts(m_db, memberid, errorstr).
-	     value("numbooks"));
+	  int totalReserved = 0;
+
+	  if(type == "Book")
+	    totalReserved = biblioteq_misc_functions::getItemsReservedCounts
+	      (m_db, memberid, errorstr).value("numbooks");
+	  else if(type == "CD")
+	    totalReserved = biblioteq_misc_functions::getItemsReservedCounts
+	      (m_db, memberid, errorstr).value("numcds");
+	  else if(type == "DVD")
+	    totalReserved = biblioteq_misc_functions::getItemsReservedCounts
+	      (m_db, memberid, errorstr).value("numdvds");
+	  else if(type == "Grey Literature")
+	    totalReserved = biblioteq_misc_functions::getItemsReservedCounts
+	      (m_db, memberid, errorstr).value("numgreyliteratures");
+	  else if(type == "Journal")
+	    totalReserved = biblioteq_misc_functions::getItemsReservedCounts
+	      (m_db, memberid, errorstr).value("numjournals");
+	  else if(type == "Magazine")
+	    totalReserved = biblioteq_misc_functions::getItemsReservedCounts
+	      (m_db, memberid, errorstr).value("nummagazines");
+	  else if(type == "Video Game")
+	    totalReserved = biblioteq_misc_functions::getItemsReservedCounts
+	      (m_db, memberid, errorstr).value("numvideogames");
 
 	  if(maximumReserved <= totalReserved)
 	    {

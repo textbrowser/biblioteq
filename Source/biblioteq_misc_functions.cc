@@ -1974,7 +1974,7 @@ int biblioteq_misc_functions::maximumReserved(const QSqlDatabase &db,
 					      const QString &t)
 {
   QString querystr("");
-  auto const type(t.toLower().trimmed());
+  auto const type(QString(t).remove(' ').remove('_').toLower().trimmed());
 
   if(type == "book")
     querystr = "SELECT maximum_reserved_books FROM member WHERE memberid = ?";
@@ -1982,7 +1982,7 @@ int biblioteq_misc_functions::maximumReserved(const QSqlDatabase &db,
     querystr = "SELECT maximum_reserved_cds FROM member WHERE memberid = ?";
   else if(type == "dvd")
     querystr = "SELECT maximum_reserved_dvds FROM member WHERE memberid = ?";
-  else if(type == "grey_literature")
+  else if(type == "greyliterature")
     querystr = "SELECT maximum_reserved_grey_literatures FROM member "
       "WHERE memberid = ?";
   else if(type == "journal")
@@ -1991,7 +1991,7 @@ int biblioteq_misc_functions::maximumReserved(const QSqlDatabase &db,
   else if(type == "magazine")
     querystr = "SELECT maximum_reserved_magazines FROM member "
       "WHERE memberid = ?";
-  else if(type == "video_game")
+  else if(type == "videogame")
     querystr = "SELECT maximum_reserved_video_games FROM member "
       "WHERE memberid = ?";
   else

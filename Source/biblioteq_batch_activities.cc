@@ -534,8 +534,7 @@ void biblioteq_batch_activities::borrow(void)
 
       if(maximumReserved > 0)
 	{
-	  auto const totalReserved =
-	    static_cast<int>
+	  auto const totalReserved = static_cast<int>
 	    (biblioteq_misc_functions::
 	     getItemsReservedCounts(m_qmain->getDB(), memberId, error).
 	     value(QString("num%1s").arg(type.remove(' ').toLower())));

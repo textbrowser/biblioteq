@@ -324,9 +324,9 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 	   value("numbooks"));
       else
 	{
-	  auto type(QString("num%1s").arg(m_itemType.toLower()));
+	  auto type(QString("num%1s").arg(m_itemType));
 
-	  type = type.remove(' ').remove('_');
+	  type = type.remove(' ').remove('_').toLower();
 	  totalReserved = static_cast<int>
 	    (biblioteq_misc_functions::
 	     getItemsReservedCounts(qmain->getDB(), memberid, errorstr2).
