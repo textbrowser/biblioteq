@@ -2766,8 +2766,8 @@ void biblioteq::slotCheckout(void)
 	      QMessageBox::critical
 		(m_members_diag,
 		 tr("BiblioteQ: User Error"),
-		 tr("Too many (%1) items reserved (%2).").
-		 arg(maximumReserved).arg(totalReserved));
+		 tr("Too many (%1) %2 items reserved (%3).").
+		 arg(maximumReserved).arg(type.toLower()).arg(totalReserved));
 	      QApplication::processEvents();
 	      return;
 	    }
