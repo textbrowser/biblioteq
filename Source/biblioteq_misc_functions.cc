@@ -1921,31 +1921,28 @@ int biblioteq_misc_functions::getCopyNumber(const QSqlDatabase &db,
 
 int biblioteq_misc_functions::getMaxCopyNumber(const QSqlDatabase &db,
 					       const QString &oid,
-					       const QString &itemTypeArg,
+					       const QString &itemType,
 					       QString &errorstr)
 {
   QSqlQuery query(db);
-  QString itemType("");
-  int copy_number = -1;
+  int copyNumber = -1;
 
   errorstr = "";
-  itemType = itemTypeArg;
   query.prepare("SELECT MAX(copy_number) FROM item_borrower "
 		"WHERE item_oid = ? AND type = ?");
-  query.bindValue(0, oid);
-  query.bindValue(1, itemType);
+  query.addBindValue(oid);
+  query.addBindValue(itemType);
 
-  if(query.exec())
-    if(query.next())
-      copy_number = query.value(0).toInt();
+  if(query.exec() && query.next())
+    copyNumber = query.value(0).toInt();
 
   if(query.lastError().isValid())
     {
-      copy_number = -1;
+      copyNumber = -1;
       errorstr = query.lastError().text();
     }
 
-  return copy_number;
+  return copyNumber;
 }
 
 int biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
@@ -1953,20 +1950,19 @@ int biblioteq_misc_functions::getMinimumDays(const QSqlDatabase &db,
 					     QString &errorstr)
 {
   QSqlQuery query(db);
-  int minimumdays = 1;
+  int minimumDays = 1;
 
   errorstr = "";
   query.prepare("SELECT days FROM minimum_days WHERE LOWER(type) = ?");
-  query.bindValue(0, type.toLower().trimmed());
+  query.addBindValue(type.toLower().trimmed());
 
-  if(query.exec())
-    if(query.next())
-      minimumdays = query.value(0).toInt();
+  if(query.exec() && query.next())
+    minimumDays = qMax(minimumDays, query.value(0).toInt());
 
   if(query.lastError().isValid())
     errorstr = query.lastError().text();
 
-  return minimumdays;
+  return minimumDays;
 }
 
 int biblioteq_misc_functions::maximumReserved(const QSqlDatabase &db,
@@ -2003,7 +1999,7 @@ int biblioteq_misc_functions::maximumReserved(const QSqlDatabase &db,
   query.addBindValue(memberid);
 
   if(query.exec() && query.next())
-    return query.value(0).toInt();
+    return qAbs(query.value(0).toInt());
 
   return 0;
 }
