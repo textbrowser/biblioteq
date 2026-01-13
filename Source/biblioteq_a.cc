@@ -245,8 +245,6 @@ biblioteq::biblioteq(void):QMainWindow()
   m_history_diag = new QMainWindow(this);
 #else
   m_history_diag = new QMainWindow();
-  m_history_diag->setWindowFlags
-    (Qt::WindowStaysOnTopHint | m_history_diag->windowFlags());
 #endif
   m_idCt = 0;
   m_import = new biblioteq_import(this);
@@ -257,8 +255,6 @@ biblioteq::biblioteq(void):QMainWindow()
   m_members_diag = new QMainWindow(this);
 #else
   m_members_diag = new QMainWindow();
-  m_members_diag->setWindowFlags
-    (Qt::WindowStaysOnTopHint | m_members_diag->windowFlags());
 #endif
   m_menuCategoryActionGroup = new QActionGroup(this);
   m_menuCategoryActionGroup->setExclusive(true);

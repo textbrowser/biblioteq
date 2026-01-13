@@ -30,16 +30,6 @@
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="label_2">
-      <property name="text">
-       <string>This window will attempt to remain on top of other windows.</string>
-      </property>
-      <property name="wordWrap">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item>
      <widget class="QFrame" name="frame">
       <layout class="QVBoxLayout">
        <item>
