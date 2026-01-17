@@ -1972,22 +1972,22 @@ int biblioteq_misc_functions::maximumReserved(const QSqlDatabase &db,
   QString querystr("");
   auto const type(QString(t).remove(' ').remove('_').toLower().trimmed());
 
-  if(type == "book")
+  if(type.contains("book"))
     querystr = "SELECT maximum_reserved_books FROM member WHERE memberid = ?";
-  else if(type == "cd")
+  else if(type.contains("cd"))
     querystr = "SELECT maximum_reserved_cds FROM member WHERE memberid = ?";
-  else if(type == "dvd")
+  else if(type.contains("dvd"))
     querystr = "SELECT maximum_reserved_dvds FROM member WHERE memberid = ?";
-  else if(type == "greyliterature")
+  else if(type.contains("greyliterature"))
     querystr = "SELECT maximum_reserved_grey_literatures FROM member "
       "WHERE memberid = ?";
-  else if(type == "journal")
+  else if(type.contains("journal"))
     querystr = "SELECT maximum_reserved_journals FROM member "
       "WHERE memberid = ?";
-  else if(type == "magazine")
+  else if(type.contains("magazine"))
     querystr = "SELECT maximum_reserved_magazines FROM member "
       "WHERE memberid = ?";
-  else if(type == "videogame")
+  else if(type.contains("videogame"))
     querystr = "SELECT maximum_reserved_video_games FROM member "
       "WHERE memberid = ?";
   else
