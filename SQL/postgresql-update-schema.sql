@@ -35,7 +35,7 @@ GRANT DELETE, SELECT ON item_borrower TO biblioteq_librarian;
 
 ALTER TABLE book ADD series_title TEXT;
 
-/* Version 2026.00.00 */
+/* Version 2026.01.20 */
 
 ALTER TABLE member ADD maximum_reserved_cds INTEGER NOT NULL DEFAULT 0;
 ALTER TABLE member ADD maximum_reserved_dvds INTEGER NOT NULL DEFAULT 0;
