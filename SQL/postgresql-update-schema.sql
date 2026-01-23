@@ -35,7 +35,7 @@ GRANT DELETE, SELECT ON item_borrower TO biblioteq_librarian;
 
 ALTER TABLE book ADD series_title TEXT;
 
-/* Version 2026.01.20 */
+/* Version 2026.01.25 */
 
 ALTER TABLE member ADD maximum_reserved_cds INTEGER NOT NULL DEFAULT 0;
 ALTER TABLE member ADD maximum_reserved_dvds INTEGER NOT NULL DEFAULT 0;
@@ -45,3 +45,21 @@ ALTER TABLE member ADD maximum_reserved_journals INTEGER NOT NULL DEFAULT 0;
 ALTER TABLE member ADD maximum_reserved_magazines INTEGER NOT NULL DEFAULT 0;
 ALTER TABLE member ADD maximum_reserved_video_games INTEGER NOT NULL
       	    DEFAULT 0;
+CREATE TABLE book_statistics
+(
+    author		TEXT NOT NULL,
+    id			VARCHAR(32),
+    isbn13		VARCHAR(32),
+    keyword		TEXT,
+    location		TEXT NOT NULL,
+    originality		TEXT,
+    reserved_date	TEXT NOT NULL,
+    target_audience	TEXT,
+    title		TEXT NOT NULL
+);
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_statistics TO
+      biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_statistics TO
+      biblioteq_circulation;
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_statistics TO
+      biblioteq_librarian;

@@ -75,6 +75,19 @@ CREATE TABLE book_files
 	PRIMARY KEY (file_digest, item_oid)
 );
 
+CREATE TABLE book_statistics
+(
+    author		TEXT NOT NULL,
+    id			VARCHAR(32),
+    isbn13		VARCHAR(32),
+    keyword		TEXT,
+    location		TEXT NOT NULL,
+    originality		TEXT,
+    reserved_date	TEXT NOT NULL,
+    target_audience	TEXT,
+    title		TEXT NOT NULL
+);
+
 CREATE TABLE cd
 (
 	accession_number TEXT,
@@ -646,6 +659,12 @@ GRANT DELETE, INSERT, SELECT, UPDATE ON book_conditions TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_originality TO
       biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_originality TO
+      biblioteq_librarian;
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_statistics TO
+      biblioteq_administrator;
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_statistics TO
+      biblioteq_circulation;
+GRANT DELETE, INSERT, SELECT, UPDATE ON book_statistics TO
       biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_target_audiences TO
       biblioteq_administrator;

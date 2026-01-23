@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS book_conditions;
 DROP TABLE IF EXISTS book_copy_info;
 DROP TABLE IF EXISTS book_files;
 DROP TABLE IF EXISTS book_originality;
+DROP TABLE IF EXISTS book_statistics;
 DROP TABLE IF EXISTS book_target_audiences;
 DROP TABLE IF EXISTS book;
 DROP TABLE IF EXISTS cd_copy_info;
@@ -47,9 +48,20 @@ DROP FUNCTION IF EXISTS delete_dvd();
 DROP FUNCTION IF EXISTS delete_grey_literature();
 DROP FUNCTION IF EXISTS delete_journal();
 DROP FUNCTION IF EXISTS delete_magazine();
-DROP FUNCTION IF EXISTS delete_request();
 DROP FUNCTION IF EXISTS delete_videogame();
 DROP DATABASE IF EXISTS xbook_db;
+DROP POLICY IF EXISTS item_borrower_biblioteq_patron_policy ON item_borrower
+     CASCADE;
+DROP POLICY IF EXISTS item_borrower_policy ON item_borrower CASCADE;
+DROP POLICY IF EXISTS item_request_biblioteq_patron_policy ON item_request
+     CASCADE;
+DROP POLICY IF EXISTS item_request_policy ON item_request CASCADE;
+DROP POLICY IF EXISTS member_history_biblioteq_patron_policy ON member_history
+     CASCADE;
+DROP POLICY IF EXISTS member_history_dnt_biblioteq_patron_policy ON
+     member_history CASCADE;
+DROP POLICY IF EXISTS member_history_dnt_policy ON member_history_dnt CASCADE;
+DROP POLICY IF EXISTS member_history_policy ON member_history CASCADE;
 DROP ROLE IF EXISTS biblioteq_administrator;
 DROP ROLE IF EXISTS biblioteq_circulation;
 DROP ROLE IF EXISTS biblioteq_circulation_librarian;
@@ -60,5 +72,12 @@ DROP ROLE IF EXISTS biblioteq_librarian;
 DROP ROLE IF EXISTS biblioteq_librarian_membership;
 DROP ROLE IF EXISTS biblioteq_membership;
 DROP ROLE IF EXISTS biblioteq_patron;
+DROP TRIGGER IF EXISTS book_trigger ON book CASCADE;
+DROP TRIGGER IF EXISTS cd_trigger ON cd CASCADE;
+DROP TRIGGER IF EXISTS dvd_trigger ON dvd CASCADE;
+DROP TRIGGER IF EXISTS grey_literature_trigger ON grey_literature CASCADE;
+DROP TRIGGER IF EXISTS journal_trigger ON journal CASCADE;
+DROP TRIGGER IF EXISTS magazine_trigger ON magazine CASCADE;
+DROP TRIGGER IF EXISTS videogame_trigger ON videogame CASCADE;
 DROP USER IF EXISTS xbook_admin;
 DROP USER IF EXISTS xbook_guest;
