@@ -57,6 +57,34 @@ CREATE TABLE book_statistics
     target_audience	TEXT,
     title		TEXT NOT NULL
 );
+CREATE TRIGGER book_statistics_after_item_borrower_insert
+AFTER INSERT ON item_borrower
+BEGIN
+INSERT INTO book_statistics
+       (author,
+	isbn13,
+	keyword,
+	location,
+	originality,
+	reserved_date,
+	target_audience,
+        title)
+SELECT
+	book.author,
+	book.isbn13,
+	book.keyword,
+	book.location,
+	book.originality,
+	SUBSTR(NEW.reserved_date, 7, 4) ||
+	'-' ||
+	SUBSTR(NEW.reserved_date, 1, 2) ||
+	'-' ||
+	SUBSTR(NEW.reserved_date, 4, 2),
+	book.target_audience,
+	book.title
+FROM book
+WHERE book.myoid = NEW.item_oid;
+END;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_statistics TO
       biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_statistics TO

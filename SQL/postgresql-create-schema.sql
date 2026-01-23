@@ -482,6 +482,7 @@ BEGIN
 	RETURN NULL;
 END;
 ' LANGUAGE plpgsql;
+
 CREATE TRIGGER book_trigger AFTER DELETE ON book
 FOR EACH row EXECUTE PROCEDURE delete_book();
 
@@ -493,6 +494,7 @@ BEGIN
 	RETURN NULL;
 END;
 ' LANGUAGE 'plpgsql';
+
 CREATE TRIGGER cd_trigger AFTER DELETE ON cd
 FOR EACH row EXECUTE PROCEDURE delete_cd();
 
@@ -504,6 +506,7 @@ BEGIN
 	RETURN NULL;
 END;
 ' LANGUAGE 'plpgsql';
+
 CREATE TRIGGER dvd_trigger AFTER DELETE ON dvd
 FOR EACH row EXECUTE PROCEDURE delete_dvd();
 
@@ -515,6 +518,7 @@ BEGIN
 	RETURN NULL;
 END;
 ' LANGUAGE plpgsql;
+
 CREATE TRIGGER grey_literature_trigger AFTER DELETE ON grey_literature
 FOR EACH row EXECUTE PROCEDURE delete_grey_literature();
 
@@ -526,6 +530,7 @@ BEGIN
 	RETURN NULL;
 END;
 ' LANGUAGE 'plpgsql';
+
 CREATE TRIGGER journal_trigger AFTER DELETE ON journal
 FOR EACH row EXECUTE PROCEDURE delete_journal();
 
@@ -537,6 +542,7 @@ BEGIN
 	RETURN NULL;
 END;
 ' LANGUAGE 'plpgsql';
+
 CREATE TRIGGER magazine_trigger AFTER DELETE ON magazine
 FOR EACH row EXECUTE PROCEDURE delete_magazine();
 
@@ -548,6 +554,7 @@ BEGIN
 	RETURN NULL;
 END;
 ' LANGUAGE 'plpgsql';
+
 CREATE TRIGGER videogame_trigger AFTER DELETE ON videogame
 FOR EACH row EXECUTE PROCEDURE delete_videogame();
 
@@ -628,6 +635,35 @@ CREATE TABLE videogame_ratings
 (
 	videogame_rating TEXT NOT NULL PRIMARY KEY
 );
+
+CREATE TRIGGER book_statistics_after_item_borrower_insert
+AFTER INSERT ON item_borrower
+BEGIN
+INSERT INTO book_statistics
+       (author,
+	isbn13,
+	keyword,
+	location,
+	originality,
+	reserved_date,
+	target_audience,
+        title)
+SELECT
+	book.author,
+	book.isbn13,
+	book.keyword,
+	book.location,
+	book.originality,
+	SUBSTR(NEW.reserved_date, 7, 4) ||
+	'-' ||
+	SUBSTR(NEW.reserved_date, 1, 2) ||
+	'-' ||
+	SUBSTR(NEW.reserved_date, 4, 2),
+	book.target_audience,
+	book.title
+FROM book
+WHERE book.myoid = NEW.item_oid;
+END;
 
 CREATE ROLE biblioteq_administrator INHERIT SUPERUSER;
 CREATE ROLE biblioteq_circulation INHERIT;
