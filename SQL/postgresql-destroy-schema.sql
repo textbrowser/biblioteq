@@ -6,7 +6,6 @@ DROP TABLE IF EXISTS book_conditions;
 DROP TABLE IF EXISTS book_copy_info;
 DROP TABLE IF EXISTS book_files;
 DROP TABLE IF EXISTS book_originality;
-DROP TABLE IF EXISTS book_statistics;
 DROP TABLE IF EXISTS book_target_audiences;
 DROP TABLE IF EXISTS book;
 DROP TABLE IF EXISTS cd_copy_info;

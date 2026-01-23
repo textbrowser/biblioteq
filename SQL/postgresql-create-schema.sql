@@ -75,19 +75,6 @@ CREATE TABLE book_files
 	PRIMARY KEY (file_digest, item_oid)
 );
 
-CREATE TABLE book_statistics
-(
-    author		TEXT NOT NULL,
-    id			VARCHAR(32),
-    isbn13		VARCHAR(32),
-    keyword		TEXT,
-    location		TEXT NOT NULL,
-    originality		TEXT,
-    reserved_date	TEXT NOT NULL,
-    target_audience	TEXT,
-    title		TEXT NOT NULL
-);
-
 CREATE TABLE cd
 (
 	accession_number TEXT,
@@ -636,35 +623,6 @@ CREATE TABLE videogame_ratings
 	videogame_rating TEXT NOT NULL PRIMARY KEY
 );
 
-CREATE TRIGGER book_statistics_after_item_borrower_insert
-AFTER INSERT ON item_borrower
-BEGIN
-INSERT INTO book_statistics
-       (author,
-	isbn13,
-	keyword,
-	location,
-	originality,
-	reserved_date,
-	target_audience,
-        title)
-SELECT
-	book.author,
-	book.isbn13,
-	book.keyword,
-	book.location,
-	book.originality,
-	SUBSTR(NEW.reserved_date, 7, 4) ||
-	'-' ||
-	SUBSTR(NEW.reserved_date, 1, 2) ||
-	'-' ||
-	SUBSTR(NEW.reserved_date, 4, 2),
-	book.target_audience,
-	book.title
-FROM book
-WHERE book.myoid = NEW.item_oid;
-END;
-
 CREATE ROLE biblioteq_administrator INHERIT SUPERUSER;
 CREATE ROLE biblioteq_circulation INHERIT;
 CREATE ROLE biblioteq_circulation_librarian INHERIT;
@@ -695,12 +653,6 @@ GRANT DELETE, INSERT, SELECT, UPDATE ON book_conditions TO biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_originality TO
       biblioteq_administrator;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_originality TO
-      biblioteq_librarian;
-GRANT DELETE, INSERT, SELECT, UPDATE ON book_statistics TO
-      biblioteq_administrator;
-GRANT DELETE, INSERT, SELECT, UPDATE ON book_statistics TO
-      biblioteq_circulation;
-GRANT DELETE, INSERT, SELECT, UPDATE ON book_statistics TO
       biblioteq_librarian;
 GRANT DELETE, INSERT, SELECT, UPDATE ON book_target_audiences TO
       biblioteq_administrator;
