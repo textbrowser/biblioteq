@@ -5761,15 +5761,16 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "INTEGER NOT NULL DEFAULT 0");
   list.append("ALTER TABLE member ADD maximum_reserved_video_games "
 	      "INTEGER NOT NULL DEFAULT 0");
-  list.append("CREATE TABLE book_history "
-	      "("
-	      "accession_number TEXT,"
-	      "author           TEXT NOT NULL,"
-	      "deleted_date     TEXT NOT NULL,"
-	      "isbn13           VARCHAR(32),"
-	      "myoid            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
-	      "title            TEXT NOT NULL"
-	      ")");
+  list.append
+    ("CREATE TABLE book_history "
+     "("
+     "accession_number TEXT,"
+     "author           TEXT NOT NULL,"
+     "deleted_date     DATE NOT NULL DEFAULT CURRENT_DATETEXT NOT NULL,"
+     "isbn13           VARCHAR(32),"
+     "myoid            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
+     "title            TEXT NOT NULL"
+     ")");
   list.append("CREATE TABLE book_statistics"
 	      "("
 	      "author          TEXT NOT NULL,"

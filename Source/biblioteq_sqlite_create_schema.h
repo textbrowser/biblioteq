@@ -103,7 +103,7 @@ CREATE TABLE book_history						\
 (									\
     accession_number TEXT,						\
     author           TEXT NOT NULL,					\
-    deleted_date     TEXT NOT NULL,					\
+    deleted_date     DATE NOT NULL DEFAULT CURRENT_DATETEXT NOT NULL,	\
     isbn13           VARCHAR(32),					\
     myoid            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,	\
     title            TEXT NOT NULL					\
