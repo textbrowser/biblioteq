@@ -99,6 +99,16 @@ CREATE TABLE book_files							\
     PRIMARY KEY(file_digest, item_oid)					\
 );									\
 									\
+CREATE TABLE book_history						\
+(									\
+    accession_number TEXT,						\
+    author           TEXT NOT NULL,					\
+    deleted_date     TEXT NOT NULL,					\
+    isbn13           VARCHAR(32),					\
+    myoid            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,	\
+    title            TEXT NOT NULL					\
+);									\
+									\
 CREATE TABLE book_sequence						\
 (									\
     value INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT			\
