@@ -5768,7 +5768,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "isbn13          VARCHAR(32),"
 	      "keyword         TEXT,"
 	      "location        TEXT NOT NULL,"
-	      "myoid           INTEGER NOT NULL AUTOINCREMENT,"
+	      "myoid           INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
 	      "originality     TEXT,"
 	      "reserved_date   TEXT NOT NULL,"
 	      "target_audience TEXT,"
