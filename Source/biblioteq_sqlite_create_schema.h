@@ -107,10 +107,10 @@ CREATE TABLE book_sequence						\
 CREATE TABLE book_statistics						\
 (									\
     author          TEXT NOT NULL,					\
-    id              VARCHAR(32),					\
     isbn13          VARCHAR(32),					\
     keyword         TEXT,						\
     location        TEXT NOT NULL,					\
+    myoid           INTEGER NOT NULL AUTOINCREMENT,			\
     originality     TEXT,						\
     reserved_date   TEXT NOT NULL,					\
     target_audience TEXT,						\
