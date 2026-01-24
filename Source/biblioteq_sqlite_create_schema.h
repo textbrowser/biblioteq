@@ -662,7 +662,22 @@ CREATE TABLE videogame_ratings						\
     videogame_rating TEXT NOT NULL PRIMARY KEY				\
 );                                                                      \
 									\
-CREATE TRIGGER book_statistics_after_item_borrower_insert		\
+CREATE TRIGGER book_history_after_book_delete_trigger			\
+AFTER DELETE ON book							\
+BEGIN									\
+    INSERT INTO book_history						\
+    (accession_number,							\
+     author,								\
+     isbn13,								\
+     title)								\
+    VALUES								\
+    (OLD.accession_number,						\
+     OLD.author,							\
+     OLD.isbn13,							\
+     OLD.title);							\
+END;									\
+									\
+CREATE TRIGGER book_statistics_after_item_borrower_insert_trigger	\
 AFTER INSERT ON item_borrower						\
 BEGIN									\
     INSERT INTO book_statistics						\
