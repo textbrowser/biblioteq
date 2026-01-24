@@ -670,11 +670,7 @@ BEGIN									\
     book.keyword,							\
     book.location,							\
     book.originality,							\
-    SUBSTR(NEW.reserved_date, 7, 4) ||					\
-    '-' ||								\
-    SUBSTR(NEW.reserved_date, 1, 2) ||					\
-    '-' ||								\
-    SUBSTR(NEW.reserved_date, 4, 2),					\
+    NEW.reserved_date,							\
     book.target_audience,						\
     book.title								\
     FROM book								\

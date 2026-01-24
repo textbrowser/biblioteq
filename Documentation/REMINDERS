@@ -683,3 +683,4 @@ Remaining Items
 8.   PostgreSQL notifications: PostgreSQL::notify() and
      QSqlDriver::subscribeToNotification().
 9.   Replace apt with snap.
+10.  Add a format option for reserved_date.
