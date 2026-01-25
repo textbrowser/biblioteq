@@ -123,6 +123,7 @@ CREATE TABLE book_statistics						\
     myoid           INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,		\
     originality     TEXT,						\
     reserved_date   TEXT NOT NULL,					\
+    reserved_date_i DATE NOT NULL DEFAULT CURRENT_DATE NOT NULL,	\
     target_audience TEXT,						\
     title           TEXT NOT NULL					\
 );									\
@@ -687,6 +688,7 @@ BEGIN									\
      location,								\
      originality,							\
      reserved_date,							\
+    reserved_date_i,						\
      target_audience,							\
      title)								\
     SELECT								\
@@ -696,6 +698,7 @@ BEGIN									\
     book.location,							\
     book.originality,							\
     NEW.reserved_date,							\
+    SUBSTR(NEW.reserved_date, 7, 4) || '-' || SUBSTR(NEW.reserved_date, 1, 2) || '-' || SUBSTR(NEW.reserved_date, 4, 2),	\
     book.target_audience,						\
     book.title								\
     FROM book								\
