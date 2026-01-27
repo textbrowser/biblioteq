@@ -5769,6 +5769,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
      "deleted_date     DATE NOT NULL DEFAULT CURRENT_DATE NOT NULL,"
      "isbn13           VARCHAR(32),"
      "myoid            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
+     "originality     TEXT,"
      "title            TEXT NOT NULL"
      ")");
   list.append("CREATE TABLE book_statistics"
@@ -5790,11 +5791,13 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "(accession_number,"
 	      "author,"
 	      "isbn13,"
+	      "originality,"
 	      "title) "
 	      "VALUES "
 	      "(OLD.accession_number,"
 	      "OLD.author,"
 	      "OLD.isbn13,"
+	      "OLD.originality,"
 	      "OLD.title);"
 	      "END;");
   list.append("CREATE TRIGGER book_statistics_after_item_borrower_insert "

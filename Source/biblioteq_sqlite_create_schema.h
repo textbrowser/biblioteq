@@ -106,6 +106,7 @@ CREATE TABLE book_history						\
     deleted_date     DATE NOT NULL DEFAULT CURRENT_DATE NOT NULL,	\
     isbn13           VARCHAR(32),					\
     myoid            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,	\
+    originality      TEXT,							\
     title            TEXT NOT NULL					\
 );									\
 									\
@@ -669,11 +670,13 @@ BEGIN									\
     (accession_number,							\
      author,								\
      isbn13,								\
+     originality,							\
      title)								\
     VALUES								\
     (OLD.accession_number,						\
      OLD.author,							\
      OLD.isbn13,							\
+     OLD.originality,						\
      OLD.title);							\
 END;									\
 									\
