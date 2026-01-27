@@ -5769,7 +5769,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
      "deleted_date     DATE NOT NULL DEFAULT CURRENT_DATE NOT NULL,"
      "isbn13           VARCHAR(32),"
      "myoid            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
-     "originality     TEXT,"
+     "originality      TEXT,"
      "title            TEXT NOT NULL"
      ")");
   list.append("CREATE TABLE book_statistics"
