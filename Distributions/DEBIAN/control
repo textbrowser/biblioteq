@@ -1,17 +1,15 @@
 Architecture: amd64
 Depends: libpq5,
-	 libqt5core5a,
-	 libqt5gui5,
-	 libqt5multimedia5,
-	 libqt5multimedia5-plugins,
-	 libqt5network5,
-	 libqt5pdf5,
-	 libqt5pdfwidgets5,
-	 libqt5printsupport5,
-	 libqt5sql5,
-	 libqt5sql5-psql,
-	 libqt5sql5-sqlite,
-	 libqt5widgets5,
+	 libqt6core6t64,
+	 libqt6gui6t64,
+	 libqt6multimedia6,
+	 libqt6network6t64,
+	 libqt6pdf6,
+	 libqt6pdfwidgets6,
+	 libqt6printsupport6t64,
+	 libqt6sql6t64,
+	 libqt6widgets6t64,
+	 libsqlite3-0,
 	 libyaz5
 Maintainer: f83043e79dc03a0abfbcbc376879a97d66f2cacb@protonmail.ch
 Package: BiblioteQ
