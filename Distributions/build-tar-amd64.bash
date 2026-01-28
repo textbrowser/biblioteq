@@ -16,7 +16,7 @@ make distclean 2>/dev/null
 mkdir -p ./biblioteq/Documentation
 mkdir -p ./biblioteq/Lib
 mkdir -p ./biblioteq/SQL
-qmake -o Makefile biblioteq.pro
+qmake6 -o Makefile biblioteq.pro
 lupdate biblioteq.pro 2>/dev/null
 lrelease biblioteq.pro 2>/dev/null
 make -j $(nproc)
