@@ -121,6 +121,7 @@ CREATE TABLE book_statistics						\
     isbn13          VARCHAR(32),					\
     keyword         TEXT,						\
     location        TEXT NOT NULL,					\
+    memberclass     TEXT,						\
     myoid           INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,		\
     originality     TEXT,						\
     reserved_date   TEXT NOT NULL,					\
@@ -688,6 +689,7 @@ BEGIN									\
      isbn13,								\
      keyword,								\
      location,								\
+     memberclass,							\
      originality,							\
      reserved_date,							\
      target_audience,							\
@@ -697,11 +699,13 @@ BEGIN									\
     book.isbn13,							\
     book.keyword,							\
     book.location,							\
+    member.memberclass,							\
     book.originality,							\
     NEW.reserved_date,							\
     book.target_audience,						\
     book.title								\
     FROM book								\
+    JOIN member ON member.memberid = NEW.memberid		\
     WHERE book.myoid = NEW.item_oid;					\
 END;									\
 ";
