@@ -705,7 +705,7 @@ BEGIN									\
     book.target_audience,						\
     book.title								\
     FROM book								\
-    JOIN member ON member.memberid = NEW.memberid		\
+    JOIN member ON member.memberid = NEW.memberid			\
     WHERE book.myoid = NEW.item_oid;					\
 END;									\
 ";
