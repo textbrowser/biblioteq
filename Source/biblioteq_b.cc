@@ -5801,6 +5801,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "OLD.originality,"
 	      "OLD.title);"
 	      "END;");
+  list.append("DROP TRIGGER book_statistics_after_item_borrower_insert");
   list.append("CREATE TRIGGER book_statistics_after_item_borrower_insert "
 	      "AFTER INSERT ON item_borrower "
 	      "BEGIN "
