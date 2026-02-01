@@ -1689,7 +1689,7 @@
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="1762"/>
-        <location filename="../Source/biblioteq_b.cc" line="5821"/>
+        <location filename="../Source/biblioteq_b.cc" line="5889"/>
         <location filename="../Source/biblioteq_c.cc" line="5723"/>
         <location filename="../Source/biblioteq_c.cc" line="6073"/>
         <location filename="../Source/biblioteq_c.cc" line="6811"/>
@@ -2966,32 +2966,32 @@
         <translation type="vanished">Vous êtes sur le point de mettre à niveau la base de données SQLite %1. Veuillez vérifier que vous avez fait une copie de cette base de données. Êtes-vous sûr de vouloir continuer ?</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="5768"/>
+        <location filename="../Source/biblioteq_b.cc" line="5836"/>
         <source>Executing %1 statement(s).&lt;br&gt;&lt;br&gt;</source>
         <translation>Exécution de(s) %1 instruction(s).&lt;br&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="5782"/>
+        <location filename="../Source/biblioteq_b.cc" line="5850"/>
         <source>&lt;font color=&apos;red&apos;&gt;Error %1: %2. Statement: %3.&lt;/font&gt;</source>
         <translation>&lt;font color=&apos;red&apos;&gt;Erreur %1 : %2. Déclaration : %3.&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="5812"/>
+        <location filename="../Source/biblioteq_b.cc" line="5880"/>
         <source>BiblioteQ: Upgrade SQLite Schema Results</source>
         <translation>BiblioteQ : Mise à jour  résultats des schémas SQLite</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="5822"/>
+        <location filename="../Source/biblioteq_b.cc" line="5890"/>
         <source>The database %1 was upgraded successfully.</source>
         <translation>La base de données %1 a été mise à niveau avec succès.</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="5868"/>
+        <location filename="../Source/biblioteq_b.cc" line="5936"/>
         <source>&amp;Full Screen</source>
         <translation>&amp;Plein écran</translation>
     </message>
     <message>
-        <location filename="../Source/biblioteq_b.cc" line="5873"/>
+        <location filename="../Source/biblioteq_b.cc" line="5941"/>
         <source>&amp;Normal Screen</source>
         <translation>Écran &amp;normal</translation>
     </message>

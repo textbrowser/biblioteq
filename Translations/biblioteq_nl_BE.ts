@@ -562,6 +562,30 @@
         <source>Ctrl+Right</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Maximum Reserved CDs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum Reserved DVDs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum Reserved Grey Literatures</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum Reserved Journals</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum Reserved Magazines</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum Reserved Video Games</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>adminBrowser</name>
@@ -1013,6 +1037,10 @@
     </message>
     <message>
         <source>Automatic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2469,19 +2497,11 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Too many (%1) items reserved (%2).</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>The option is only available for PostgreSQL patrons.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>(Empty)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The current SQLite schema must be updated. Tools -&gt; Upgrade SQLite Schema (Recent).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2502,10 +2522,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Unable to update the entry %1.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The current PostgreSQL schema must be updated. Please execute the statement(s) in %1 for version %2.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2752,6 +2768,46 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <source>&lt;html&gt;&lt;b&gt;The following people have made BiblioteQ beautiful. If your name is not mentioned, please submit a ticket at https://github.com/textbrowser/biblioteq/issues. Thank You!&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ana Monteiro&lt;br&gt;Arti&lt;br&gt;Bill Burns&lt;br&gt;Ceres&lt;br&gt;Csanád Baksay&lt;br&gt;Fares Othman&lt;br&gt;Frans&lt;br&gt;Fátima Dias&lt;br&gt;J. Cornavin&lt;br&gt;Jeepee&lt;br&gt;Lazaros S.&lt;br&gt;Leif-W&lt;br&gt;Marty&lt;br&gt;Nick&lt;br&gt;Nicola&lt;br&gt;ResetFlag&lt;br&gt;Safranil&lt;br&gt;SigmaX&lt;br&gt;a12554&lt;br&gt;azc100&lt;br&gt;caalma&lt;br&gt;coldacid&lt;br&gt;duhow&lt;br&gt;fmra357&lt;br&gt;jerzyPL&lt;br&gt;jferby&lt;br&gt;luismontilla&lt;br&gt;meteos77&lt;br&gt;numibesi&lt;br&gt;ozgurcan&lt;br&gt;robindegen&lt;br&gt;sidheban&lt;br&gt;sit42&lt;br&gt;sunyuyangg555&lt;br&gt;tamascz&lt;br&gt;wohali&lt;br&gt;yasbean&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Too many (%1) %2 items reserved (%3).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum Reserved CDs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum Reserved DVDs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum Reserved Grey Literatures</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum Reserved Journals</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum Reserved Magazines</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum Reserved Video Games</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The current PostgreSQL schema is not current. Please execute the statement(s) in %1 for version %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The current SQLite schema is not current. Please visit Tools -&gt; Upgrade SQLite Schema (Recent).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure that you wish to launch the program %1?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_batch_activities</name>
@@ -2829,10 +2885,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>Item is not available (%1) for reservation.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Maximum (%1) number of reserved (%2) items exceeded.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2917,6 +2969,10 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>SRU Query</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum (%1) number of reserved (%2) %3 items exceeded.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9946,10 +10002,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished">&amp;Bestand</translation>
     </message>
     <message>
-        <source>This window will attempt to remain on top of other windows.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Ctrl+Left</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11935,10 +11987,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This window will attempt to remain on top of other windows.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Assign all of the patrons to the biblioteq_patron PostgreSQL role. The role is required for accessing database tables. This widget is considered a relic because a newly-created patron is granted the required permissions.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -12301,7 +12349,7 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Absolute file paths.&lt;/span&gt; Please place scripts on individual lines. BiblioteQ will replace %1 with the current &lt;span style=&quot; font-weight:600;&quot;&gt;SQLite&lt;/span&gt; database absolute file path. The scripts will be available in some places. Please enclose values with double-quotes if necessary. Be careful of lengthy content.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Absolute file paths.&lt;/span&gt; Please place scripts on individual lines. BiblioteQ will replace %1 with the current &lt;span style=&quot; font-weight:600;&quot;&gt;SQLite&lt;/span&gt; database absolute file path. The scripts will be available in some places. Please enclose values with double-quotes if necessary. Be careful of lengthy content. Paths will be trimmed of leading and trailing spaces.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -16235,10 +16283,6 @@ The file qt.conf is present in BiblioteQ&apos;s current working directory. Perha
     </message>
     <message>
         <source>If an item is double-clicked, BiblioteQ will attempt to execute its query. Please note that some queries may not be executable.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This window will attempt to remain on top of other windows.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

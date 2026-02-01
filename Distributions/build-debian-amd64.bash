@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Alexis Megas.
+# Please pass any argument for creating a bundle with Qt 5.
 
 if [ ! -x /usr/bin/dpkg-deb ]
 then
@@ -20,6 +21,13 @@ then
     exit 1
 fi
 
+qt5=""
+
+if [ ! -z "$1" ]
+then
+    qt5="-QT5"
+fi
+
 VERSION=$(grep -oP '(?<=BIBLIOTEQ_VERSION ").*(?=")' Source/biblioteq.h)
 
 # Preparing ./opt/biblioteq:
@@ -27,7 +35,14 @@ VERSION=$(grep -oP '(?<=BIBLIOTEQ_VERSION ").*(?=")' Source/biblioteq.h)
 make distclean 2>/dev/null
 mkdir -p ./opt/biblioteq/Documentation
 mkdir -p ./opt/biblioteq/SQL
-qmake6 -o Makefile biblioteq.pro
+
+if [ ! -z "$qt5" ]
+then
+    qmake -o Makefile biblioteq.pro
+else
+    qmake6 -o Makefile biblioteq.pro
+fi
+
 lupdate biblioteq.pro 2>/dev/null
 lrelease biblioteq.pro 2>/dev/null
 make -j $(nproc)
@@ -46,7 +61,7 @@ mkdir -p biblioteq-debian/opt
 mkdir -p biblioteq-debian/usr/share/applications
 cp -p ./Distributions/biblioteq.desktop \
    biblioteq-debian/usr/share/applications/.
-cp -pr ./Distributions/DEBIAN biblioteq-debian/.
+cp -pr "./Distributions/DEBIAN$qt5" biblioteq-debian/DEBIAN
 cp -r ./opt/biblioteq biblioteq-debian/opt/.
 fakeroot dpkg-deb --build biblioteq-debian BiblioteQ-${VERSION}_amd64.deb
 make distclean
