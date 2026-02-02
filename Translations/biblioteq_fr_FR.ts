@@ -1548,12 +1548,12 @@
     <message>
         <location filename="../Source/biblioteq_a.cc" line="1255"/>
         <source>Dutch (Belgium)</source>
-        <translation>Allemand(Belgique)</translation>
+        <translation>Allemand (Belgique)</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="1258"/>
         <source>Dutch (Netherlands)</source>
-        <translation>Allemand(Pays-Bas)</translation>
+        <translation>Allemand (Pays Bas)</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="1261"/>
@@ -1573,7 +1573,7 @@
     <message>
         <location filename="../Source/biblioteq_a.cc" line="1270"/>
         <source>Greek</source>
-        <translation>Grecque</translation>
+        <translation>Grec</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="1273"/>
@@ -1593,7 +1593,7 @@
     <message>
         <location filename="../Source/biblioteq_a.cc" line="1282"/>
         <source>Portuguese</source>
-        <translation>Portugaise</translation>
+        <translation>Portugais</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="1288"/>
@@ -2064,7 +2064,7 @@
     <message>
         <location filename="../Source/biblioteq_a.cc" line="3716"/>
         <source>Duplicating item %1 of %2.</source>
-        <translation>Duplication de l&apos;élément %1 de %2.</translation>
+        <translation>Duplication de l&apos;élément %1 sur %2.</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="3887"/>
@@ -2080,7 +2080,7 @@
         <location filename="../Source/biblioteq_a.cc" line="4185"/>
         <location filename="../Source/biblioteq_a.cc" line="5953"/>
         <source>Retrieving item %1 of %2.</source>
-        <translation>Récupération de l&apos;élément %1 de %2.</translation>
+        <translation>Récupération de l&apos;élément %1 sur %2.</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="5226"/>
@@ -2506,7 +2506,7 @@
     <message>
         <location filename="../Source/biblioteq_a.cc" line="3924"/>
         <source>Create Books</source>
-        <translation>Créaion de livres</translation>
+        <translation>Créer des livres</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_a.cc" line="4091"/>
@@ -3495,7 +3495,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../Source/biblioteq_c.cc" line="5550"/>
         <source>(unknown title)</source>
-        <translation>titre inconnu</translation>
+        <translation>(titre inconnu)</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_c.cc" line="5617"/>
@@ -3966,7 +3966,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../Source/biblioteq_d.cc" line="1351"/>
         <source>&lt;html&gt;This dialog will be shown persistently unless this option is enabled or all overdue items have been returned.&lt;/html&gt;</source>
-        <translation>&lt;html&gt;Cette boîte de dialogue s&apos;affichera en permanence tant que cette option n&apos;est pas activée ou que tous les articles en retard n&apos;ont pas été rendus..&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;Cette boîte de dialogue s&apos;affichera de manière persistante tant que cette option n&apos;est pas activée ou que tous les articles en retard n&apos;ont pas été rendus.&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_d.cc" line="1367"/>
@@ -7463,7 +7463,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
         <location filename="../Source/biblioteq_files.cc" line="258"/>
         <location filename="../Source/biblioteq_files.cc" line="269"/>
         <source>Function requires administrator or librarian permissions.</source>
-        <translation>La fonction nécessite des autorisations d&apos;administrateur ou de bibliothécaire.</translation>
+        <translation>Cette fonction nécessite des autorisations d&apos;administrateur ou de bibliothécaire.</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_files.cc" line="77"/>
@@ -8250,7 +8250,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../Source/biblioteq_import.cc" line="1386"/>
         <source>Imported: %1. Not imported: %2. Elapsed second(s): %3.</source>
-        <translation>Importé : %1. Non importé : %2. Seconde(s) écoulée(s) : %3.</translation>
+        <translation>Importé : %1. Non importé : %2. Secondes écoulées : %3.</translation>
     </message>
     <message>
         <source>Imported: %1. Not imported: %2.
@@ -9577,7 +9577,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../Source/biblioteq_otheroptions.cc" line="942"/>
         <source>Reset Row</source>
-        <translation>Réinitialisation de la ligne</translation>
+        <translation>Réinitialiser la ligne</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_otheroptions.cc" line="1139"/>
@@ -9594,7 +9594,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../Source/biblioteq_otheroptions.h" line="139"/>
         <source>Reset Row</source>
-        <translation>Réinitialisation de la ligne</translation>
+        <translation>Réinitialiser la ligne</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_otheroptions.h" line="160"/>
@@ -9763,7 +9763,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../Source/biblioteq_photographcollection.cc" line="264"/>
         <source>0 Images</source>
-        <translation>0 Images</translation>
+        <translation>0 Image</translation>
     </message>
     <message>
         <location filename="../Source/biblioteq_photographcollection.cc" line="296"/>
@@ -11398,12 +11398,12 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_customquery.ui" line="28"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This panel is intended for advanced users who have an intimate knowledge of SQL and the database layout of BiblioteQ. &lt;span style=&quot; font-weight:600;&quot;&gt;Please note that retrieving image information (front_cover, back_cover) will burden the query.&lt;/span&gt; Please include &lt;span style=&quot; font-weight:600;&quot;&gt;myoid&lt;/span&gt; and &lt;span style=&quot; font-weight:600;&quot;&gt;type&lt;/span&gt; fields as these fields are required by BiblioteQ for item editing.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ce panel est destiné aux utilisateurs avancés qui ont une connaissance approfondie de SQL et de la structure de la base de données de BiblioteQ. &lt;span style=&quot; font-weight:600;&quot;&gt;Veuillez noter que l&apos;extraction des informations relatives aux images (couverture avant, couverture arrière) alourdira la requête..&lt;/span&gt; Veuillez inclure&lt;span style=&quot; font-weight:600;&quot;&gt;myoid&lt;/span&gt; and &lt;span style=&quot; font-weight:600;&quot;&gt;type&lt;/span&gt;car ces champs sont requis par BiblioteQ pour l&apos;édition des articles.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ce panneau est destiné aux utilisateurs avancés qui ont une connaissance approfondie du langage SQL et de la structure de la base de données de BiblioteQ. &lt;span style=&quot; font-weight:600;&quot;&gt;Veuillez noter que la récupération des informations relatives aux images (front_cover, back_cover) alourdira la requête.&lt;/span&gt; Veuillez inclure les champs &lt;span style=&quot; font-weight:600;&quot;&gt;myoid&lt;/span&gt; et &lt;span style=&quot; font-weight:600;&quot;&gt;type&lt;/span&gt; obligatoirement requis par BiblioteQ pour la modification des éléments.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_customquery.ui" line="38"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;show_other_options&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;C-style comments are allowed in the Query paragraph.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;show_other_options&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;/* This is a C-style comment. It may span multiple lines. */ &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;show_other_options&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Les commentaires de style C sont autorisés dans le paragraphe « Requête »..&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;show_other_options&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;/* Il s&apos;agit d&apos;un commentaire de style C. Il peut s&apos;étendre sur plusieurs lignes. */ &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;show_other_options&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Les commentaires de style C sont autorisés dans le paragraphe.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;show_other_options&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;/* Il s&apos;agit d&apos;un commentaire de style C. Il peut s&apos;étendre sur plusieurs lignes. */ &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_customquery.ui" line="48"/>
@@ -12862,12 +12862,12 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_bookinfo.ui" line="868"/>
         <source>Keywords completer. Accepted value will be appended.</source>
-        <translation>Compléteur de mots-clés. La valeur acceptée sera ajoutée.</translation>
+        <translation>Complétion des mots-clés. La valeur acceptée sera ajoutée.</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_bookinfo.ui" line="871"/>
         <source>Keywords Completer (Append)</source>
-        <translation>Mots clés Compléteur (Ajouter)</translation>
+        <translation>Complétion de mots-clés (Ajouter)</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_bookinfo.ui" line="923"/>
@@ -13316,12 +13316,12 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_magic.ui" line="14"/>
         <source>BiblioteQ: Magic</source>
-        <translation>BiblioteQ: Magic</translation>
+        <translation>BiblioteQ : Magique</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_magic.ui" line="43"/>
         <source>Download Front Cover Images</source>
-        <translation>Télécharger les images de la couverture</translation>
+        <translation>Télécharger les images de couverture</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_magic.ui" line="49"/>
@@ -13346,7 +13346,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_magic.ui" line="108"/>
         <source>Abort!</source>
-        <translation>Abandonner !</translation>
+        <translation>Abandonnez !</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_magic.ui" line="121"/>
@@ -13570,7 +13570,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="828"/>
         <source>Re&amp;size Columns To Contents</source>
-        <translation>Redimen&amp;sionner les colonnes en fonction des contenus</translation>
+        <translation>Redimen&amp;sionner les colonnes en fonction du contenu</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="848"/>
@@ -13625,7 +13625,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="1430"/>
         <source>Export Icons View As PNG...</source>
-        <translation>Exporter la vue par icônes vers PNG...</translation>
+        <translation>Exporter les icônes au format PNG...</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="1461"/>
@@ -13640,12 +13640,12 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="1485"/>
         <source>Magic...</source>
-        <translation>Magic...</translation>
+        <translation>Magique...</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="1490"/>
         <source>&amp;Query History...</source>
-        <translation>Histori&amp;que des requêtes...</translation>
+        <translation>Histori&amp;Que des requêtes...</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_mainwindow.ui" line="1552"/>
@@ -14583,7 +14583,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_otheroptions.ui" line="139"/>
         <source>Display</source>
-        <translation>Affichage</translation>
+        <translation>Afficher</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_otheroptions.ui" line="147"/>
@@ -14603,7 +14603,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_otheroptions.ui" line="188"/>
         <source>&amp;Style Override</source>
-        <translation>&amp;Remplacement du style</translation>
+        <translation>&amp;Remplacement de style</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set the environment variable QT_STYLE_OVERRIDE to the specified value. Please restart BiblioteQ if this value is modified.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
@@ -14809,7 +14809,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_otheroptions.ui" line="790"/>
         <source>Cell Text</source>
-        <translation>Texte de la cellule</translation>
+        <translation>Texte de cellule</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_otheroptions.ui" line="795"/>
@@ -14895,7 +14895,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_otheroptions.ui" line="988"/>
         <source>SQLite Run-Time Loadable Extensions</source>
-        <translation>Extension chargeable à l&apos;exécution de SQLite</translation>
+        <translation>Extensions chargeables à l&apos;exécution SQLite</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_otheroptions.ui" line="994"/>
@@ -14959,7 +14959,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_otheroptions.ui" line="1229"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Finalize with Save!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Finaliser avec Enregistrer !&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Terminez en cliquant sur Enregistrer !&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_otheroptions.ui" line="1232"/>
@@ -15294,7 +15294,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_photographinfo.ui" line="808"/>
         <source>Select Images</source>
-        <translation>Sélectionner les images</translation>
+        <translation>Sélectionner l&apos;image</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_photographinfo.ui" line="821"/>
@@ -15661,7 +15661,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_query_history.ui" line="20"/>
         <source>If an item is double-clicked, BiblioteQ will attempt to execute its query. Please note that some queries may not be executable.</source>
-        <translation>Si un article est double-cliqué, BiblioteQ tentera d&apos;exécuter sa requête. Veuillez noter que certaines requêtes peuvent ne pas être exécutables.</translation>
+        <translation>Si vous double-cliquez sur un élément, BiblioteQ tentera d&apos;exécuter sa requête. Veuillez noter que certaines requêtes peuvent ne pas être exécutables.</translation>
     </message>
     <message>
         <source>This window will attempt to remain on top of other windows.</source>
@@ -15670,7 +15670,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_query_history.ui" line="67"/>
         <source>Execution Time</source>
-        <translation>Temps d&apos;exécution</translation>
+        <translation>Temp d&apos;exécution</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_query_history.ui" line="72"/>
@@ -15766,7 +15766,7 @@ Le fichier qt.conf est présent dans le répertoire de travail actuel de Bibliot
     <message>
         <location filename="../UI/biblioteq_statistics.ui" line="102"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;show_other_options&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;C-style comments are allowed in the Query paragraph.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;show_other_options&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;/* This is a C-style comment. It may span multiple lines. */ &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;show_other_options&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Les commentaires de style C sont autorisés dans le paragraphe « Requête »..&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;show_other_options&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;/* Il s&apos;agit d&apos;un commentaire de style C. Il peut s&apos;étendre sur plusieurs lignes. */ &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;show_other_options&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Les commentaires de style C sont autorisés dans le paragraphe.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;show_other_options&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;/* Il s&apos;agit d&apos;un commentaire de style C. Il peut s&apos;étendre sur plusieurs lignes. */ &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../UI/biblioteq_statistics.ui" line="116"/>
