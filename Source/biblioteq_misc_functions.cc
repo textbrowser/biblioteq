@@ -1639,7 +1639,7 @@ bool biblioteq_misc_functions::isEnvironmentSet(const char *name)
   if(!name)
     return false;
   else
-    return !qgetenv(name).isNull();
+    return qEnvironmentVariableIsSet(name);
 }
 
 bool biblioteq_misc_functions::isItemAvailable
