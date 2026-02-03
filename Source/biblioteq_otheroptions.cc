@@ -608,6 +608,7 @@ void biblioteq_otheroptions::prepareSQLKeywords(void)
        << "OR"
        << "ORDER BY"
        << "OUTER JOIN"
+       << "REGEXP"
        << "RIGHT JOIN"
        << "ROWNUM"
        << "SELECT"
