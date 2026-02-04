@@ -1138,8 +1138,8 @@ biblioteq::biblioteq(void):QMainWindow()
   QSettings settings;
   QString typefilter("");
 
-  typefilter = m_lastCategory =
-    settings.value("last_category", "All").toString();
+  m_lastCategory = typefilter = settings.value
+    ("last_category", "All").toString();
   typefilter.replace(" ", "_");
   ui.actionCenter_Child_Windows->setChecked
     (settings.value("center_child_windows", true).toBool());
