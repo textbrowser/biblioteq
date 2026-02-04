@@ -720,6 +720,7 @@ class biblioteq: public QMainWindow
   void slotSaveDnt(bool state);
   void slotSaveGeneralSearchCaseSensitivity(bool state);
   void slotSavePassword(void);
+  void slotSaveSearchCaseSensitivity(bool state);
   void slotSaveUser(void);
   void slotSceneSelectionChanged(void);
   void slotSearch(void);

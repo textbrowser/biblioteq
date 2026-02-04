@@ -1483,6 +1483,11 @@ void biblioteq::slotSaveGeneralSearchCaseSensitivity(bool state)
   QSettings().setValue("generalSearchCaseSensitivity", state);
 }
 
+void biblioteq::slotSaveSearchCaseSensitivity(bool state)
+{
+  QSettings().setValue("search_case_sensitivity", state);
+}
+
 void biblioteq::slotSelectAll(void)
 {
   QPainterPath path;

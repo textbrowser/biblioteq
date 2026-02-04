@@ -898,6 +898,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotDisplayNewSqliteDialog(void)));
+  connect(ui.case_insensitive,
+	  SIGNAL(toggled(bool)),
+	  this,
+	  SLOT(slotSaveSearchCaseSensitivity(bool)));
   connect(ui.configTool,
 	  SIGNAL(triggered(void)),
 	  this,
@@ -1146,6 +1150,8 @@ biblioteq::biblioteq(void):QMainWindow()
     (settings.value("overdue_items_notification", false).toBool());
   ui.actionTearOffMenus->setChecked
     (settings.value("tear_off_menus", true).toBool());
+  ui.case_insensitive->setChecked
+    (settings.value("search_case_sensitivity", false).toBool());
   ui.graphicsView->scene()->clear();
   ui.summary->setVisible(false);
   ui.tab->tabBar()->setVisible(ui.actionDisplay_Tab_Bar->isChecked());
