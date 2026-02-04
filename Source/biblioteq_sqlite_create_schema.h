@@ -26,6 +26,12 @@
 */
 
 /*
+** Please review the following files if adding new database tables:
+** biblioteq_custom_query.cc,
+** biblioteq_sqlite_merge_databases.cc.
+*/
+
+/*
 ** The book_sequence and sequence tables are required for generating unique
 ** integers. Please read biblioteq_misc_functions::getSqliteUniqueId().
 */
@@ -677,7 +683,7 @@ BEGIN									\
     (OLD.accession_number,						\
      OLD.author,							\
      OLD.isbn13,							\
-     OLD.originality,						\
+     OLD.originality,							\
      OLD.title);							\
 END;									\
 									\
