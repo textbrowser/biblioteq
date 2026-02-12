@@ -201,6 +201,19 @@ int main(int argc, char *argv[])
 
 biblioteq::biblioteq(void):QMainWindow()
 {
+  auto const list(QApplication::arguments());
+
+  for(int i = 0; i < list.size(); i++)
+    if(list.at(i) == "--configuration-file")
+      {
+	i += 1;
+
+	if(i < list.size())
+	  m_configurationFile = QFileInfo(list.at(i));
+
+	break;
+      }
+
   m_swifty = new swifty
     (BIBLIOTEQ_VERSION,
      "#define BIBLIOTEQ_VERSION_LTS",
@@ -2578,7 +2591,7 @@ void biblioteq::showMain(void)
 			   QDir::separator() +
 			   "biblioteq.conf");
 #else
-  QFileInfo const fileInfo(BIBLIOTEQ_CONFIGURATION_FILE);
+  QFileInfo const fileInfo(m_configurationFile);
 #endif
 
   if(!fileInfo.isReadable())
@@ -2617,8 +2630,11 @@ void biblioteq::showMain(void)
       auto openDatabase = false;
 
       for(int i = 0; i < list.size(); i++)
-	if(list.at(i) == "--help")
+	if(list.at(i) == "--configuration-file")
+	  i += 1;
+	else if(list.at(i) == "--help")
 	  std::cout << "BiblioteQ:" << std::endl
+		    << " [--configuration-file]" << std::endl
 		    << " [--help]" << std::endl
 		    << " [--open-postgresql-database]" << std::endl
 		    << " [--open-sqlite-database]" << std::endl

@@ -62,6 +62,7 @@
 #include "ui_biblioteq_password.h"
 #include "ui_biblioteq_userinfo.h"
 
+#include <QFileInfo>
 #include <QMessageBox>
 #include <QTimer>
 
@@ -498,6 +499,7 @@ class biblioteq: public QMainWindow
   QActionGroup *m_menuCategoryActionGroup;
   QDialog *m_branch_diag;
   QDialog *m_pass_diag;
+  QFileInfo m_configurationFile;
   QHash<QAction *, QPointer<biblioteq_documentationwindow> > m_documentation;
   QHash<QAction *, QPointer<biblioteq_documentationwindow> > m_releaseNotes;
   QHash<QString, QString> m_amazonImages;

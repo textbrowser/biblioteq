@@ -1787,7 +1787,8 @@ void biblioteq::readGlobalConfiguration(void)
 		     "biblioteq.conf",
 		     QSettings::IniFormat);
 #else
-  QSettings settings(BIBLIOTEQ_CONFIGURATION_FILE, QSettings::IniFormat);
+  QSettings settings
+    (m_configurationFile.absoluteFilePath(), QSettings::IniFormat);
 #endif
 
   m_amazonImages.clear();

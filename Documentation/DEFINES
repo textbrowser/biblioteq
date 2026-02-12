@@ -11,7 +11,8 @@ Display text in biblioteq_callnum_table_item.cc.
 
 BIBLIOTEQ_CONFIGURATION_FILE
 
-Name of BiblioteQ's configuration file.
+Name of BiblioteQ's configuration file. Please use
+the terminal option --configuration-file instead.
 
 BIBLIOTEQ_ESCAPE_SINGLE_QUOTE
 

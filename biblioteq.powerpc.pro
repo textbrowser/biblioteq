@@ -4,7 +4,7 @@ include(biblioteq-source.pro)
 purge.commands = find . -name \'*~*\' -exec rm -f {} \;
 
 CONFIG	 += copy_dir_files qt release warn_on
-DEFINES	 += BIBLIOTEQ_CONFIGURATION_FILE="'\"biblioteq.conf\"'"
+DEFINES	 +=
 LANGUAGE = C++
 QT	 += gui network printsupport sql widgets
 QT	 -= webkit

@@ -41,7 +41,8 @@ if [ -r /opt/biblioteq/BiblioteQ ] && [ -x /opt/biblioteq/BiblioteQ ]
 then
     echo "Launching an official BiblioteQ."
     set_qt_qpa_platformtheme "/opt/biblioteq/BiblioteQ"
-    cd /opt/biblioteq && ./BiblioteQ "$@"
+    /opt/biblioteq/BiblioteQ \
+	--configuration-file /opt/biblioteq/biblioteq.conf "$@"
     exit $?
 fi
 
@@ -50,7 +51,8 @@ if [ -r /usr/local/biblioteq/BiblioteQ ] &&
 then
     echo "Launching an official BiblioteQ."
     set_qt_qpa_platformtheme "/usr/local/biblioteq/BiblioteQ"
-    cd /usr/local/biblioteq && ./BiblioteQ "$@"
+    /usr/local/biblioteq/BiblioteQ \
+	--configuration-file /usr/local/biblioteq/biblioteq.conf "$@"
     exit $?
 fi
 
