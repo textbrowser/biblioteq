@@ -63,3 +63,10 @@ Continue if the migration was successful!
 9. Delete PostgreSQL 14.
 
 > brew uninstall --zap postgresql@14
+
+10. Update pg_hba.conf and postgresql.conf in /opt/homebrew/var/postgresql@18.
+
+11. Restart the new PostgreSQL 18 service.
+
+> brew services restart postgresql@18
+> brew services
