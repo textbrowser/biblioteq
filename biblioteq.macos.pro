@@ -69,17 +69,16 @@ doc1.files	= Documentation/*.html \
                   Documentation/*.pdf \
                   Documentation/REMINDERS
 doc1.path	= BiblioteQ.d/Documentation
-doc2.files	= Documentation/Contributed/*.docx \
-                  Documentation/Contributed/*.html \
-                  Documentation/Contributed/*.pdf
-doc2.path	 = BiblioteQ.d/Documentation/Contributed
+doc2.files	= Documentation/Contributed/*/*.html \
+                  Documentation/Contributed/*/*.pdf
+doc2.path	= BiblioteQ.d/Documentation/Contributed
 
 exists(/opt/homebrew/opt/libpq/lib/libpq.dylib) {
-installnametool1.extra   = install_name_tool -change /Applications/Postgres.app/Contents/Versions/14/lib/libpq.5.dylib /opt/homebrew/opt/libpq/lib/libpq.dylib ./BiblioteQ.d/BiblioteQ.app/Contents/PlugIns/sqldrivers/libqsqlpsql.dylib
+installnametool1.extra = install_name_tool -change /Applications/Postgres.app/Contents/Versions/14/lib/libpq.5.dylib /opt/homebrew/opt/libpq/lib/libpq.dylib ./BiblioteQ.d/BiblioteQ.app/Contents/PlugIns/sqldrivers/libqsqlpsql.dylib
 }
 
 exists(/usr/local/opt/libpq/lib/libpq.dylib) {
-installnametool1.extra   = install_name_tool -change /Applications/Postgres.app/Contents/Versions/14/lib/libpq.5.dylib /usr/local/opt/libpq/lib/libpq.dylib ./BiblioteQ.d/BiblioteQ.app/Contents/PlugIns/sqldrivers/libqsqlpsql.dylib
+installnametool1.extra = install_name_tool -change /Applications/Postgres.app/Contents/Versions/14/lib/libpq.5.dylib /usr/local/opt/libpq/lib/libpq.dylib ./BiblioteQ.d/BiblioteQ.app/Contents/PlugIns/sqldrivers/libqsqlpsql.dylib
 }
 
 installnametool1.path = .
