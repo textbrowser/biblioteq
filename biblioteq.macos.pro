@@ -67,7 +67,6 @@ data.files	= Data/*
 data.path	= BiblioteQ.d/Data
 doc1.files	= Documentation/*.html \
                   Documentation/*.pdf \
-                  Documentation/*.txt \
                   Documentation/REMINDERS
 doc1.path	= BiblioteQ.d/Documentation
 doc2.files	= Documentation/Contributed/*.docx \
