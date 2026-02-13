@@ -1,0 +1,65 @@
+This document details the upgrade process of PostgreSQL on MacOS
+via Brew.
+
+In the following statements, we'll be working with PostgreSQL 14
+and PostgreSQL 18.
+
+1. Install PostgreSQL 18.
+
+> brew install postgresql@18
+
+2. Stop PostgreSQL 14.
+
+> brew services stop postgresql@14
+
+3. Test the migration process with pg_upgrade.
+
+> $(brew --prefix)/opt/postgresql@18/bin/pg_upgrade \
+  -b $(brew --prefix)/opt/postgresql@14/bin \
+  -B $(brew --prefix)/opt/postgresql@18/bin \
+  -d $(brew --prefix)/var/postgresql@14 \
+  -D $(brew --prefix)/var/postgresql@18 \
+  --check
+
+If the command fails on "Checking cluster versions", please perform
+the following.
+
+> rm -fr /opt/homebrew/var/postgresql@18
+> /opt/homebrew/opt/postgresql@18/bin/initdb \
+  -D /opt/homebrew/var/postgresql@18 --no-data-checksums
+
+Execute the migration test (#3) again. It should complete correctly.
+
+4. Perform the migration.
+
+> $(brew --prefix)/opt/postgresql@18/bin/pg_upgrade \
+  -b $(brew --prefix)/opt/postgresql@14/bin \
+  -B $(brew --prefix)/opt/postgresql@18/bin \
+  -d $(brew --prefix)/var/postgresql@14 \
+  -D $(brew --prefix)/var/postgresql@18
+
+Continue if the migration was successful!
+
+5. Delete the PostgreSQL 14 cluster.
+
+> ./delete_old_cluster.sh
+
+6. Unlink PostgreSQL 14 and link PostgreSQL 18 in paths.
+
+> brew unlink postgresql@14
+> brew link postgresql@18
+
+7. Start the new PostgreSQL 18 service.
+
+> brew services restart postgresql@18
+> brew services
+
+8. Execute two commands as recommended by Brew.
+
+> /opt/homebrew/opt/postgresql@18/bin/vacuumdb \
+  --all --analyze-in-stages --missing-stats-only
+> /opt/homebrew/opt/postgresql@18/bin/vacuumdb --all --analyze-only
+
+9. Delete PostgreSQL 14.
+
+> brew uninstall --zap postgresql@14
