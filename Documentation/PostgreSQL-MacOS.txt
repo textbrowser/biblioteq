@@ -21,8 +21,8 @@ and PostgreSQL 18.
   -D $(brew --prefix)/var/postgresql@18 \
   --check
 
-If the command fails on "Checking cluster versions", please perform
-the following.
+If the command fails on "checking cluster versions", please issue
+the following commands.
 
 > rm -fr /opt/homebrew/var/postgresql@18
 > /opt/homebrew/opt/postgresql@18/bin/initdb \
@@ -54,7 +54,7 @@ Continue if the migration was successful!
 > brew services restart postgresql@18
 > brew services
 
-8. Execute two commands as recommended by Brew.
+8. Execute the following two commands as recommended by Brew.
 
 > /opt/homebrew/opt/postgresql@18/bin/vacuumdb \
   --all --analyze-in-stages --missing-stats-only
