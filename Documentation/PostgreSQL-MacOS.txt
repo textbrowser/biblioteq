@@ -1,8 +1,7 @@
-This document details the upgrade process of PostgreSQL on MacOS
-via Brew.
+PostgreSQL Migration
 
-In the following statements, we'll be working with PostgreSQL 14
-and PostgreSQL 18.
+In the following statements, we'll be migrating PostgreSQL 14
+to PostgreSQL 18.
 
 1. Install PostgreSQL 18.
 
