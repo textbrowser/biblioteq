@@ -2596,12 +2596,20 @@ void biblioteq::showMain(void)
 
   if(!fileInfo.isReadable())
     {
-      QMessageBox::warning
-	(this,
-	 tr("BiblioteQ: Warning"),
-	 tr("BiblioteQ was not able to discover the biblioteq.conf "
-	    "file. Default values will be assumed. The expected absolute "
-	    "path of biblioteq.conf is %1.").arg(fileInfo.absolutePath()));
+      if(fileInfo.absoluteFilePath().trimmed().isEmpty())
+	QMessageBox::warning
+	  (this,
+	   tr("BiblioteQ: Warning"),
+	   tr("BiblioteQ was not able to discover the biblioteq.conf "
+	      "file. Default values will be assumed."));
+      else
+	QMessageBox::warning
+	  (this,
+	   tr("BiblioteQ: Warning"),
+	   tr("BiblioteQ was not able to discover the biblioteq.conf "
+	      "file. Default values will be assumed. The expected absolute "
+	      "path of biblioteq.conf is %1.").arg(fileInfo.absolutePath()));
+
       QApplication::processEvents();
     }
 

@@ -4781,7 +4781,6 @@ void biblioteq::slotReloadBiblioteqConf(void)
 
 void biblioteq::slotResetAllSearch(void)
 {
-  ui.case_insensitive->setChecked(false);
   ui.case_insensitive->setEnabled(true);
   ui.search->clear();
   ui.search->setEnabled(true);

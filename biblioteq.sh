@@ -33,7 +33,7 @@ then
     fi
 
     set_qt_qpa_platformtheme "./BiblioteQ"
-    ./BiblioteQ "$@"
+    ./BiblioteQ --configuration-file biblioteq.conf "$@"
     exit $?
 fi
 
