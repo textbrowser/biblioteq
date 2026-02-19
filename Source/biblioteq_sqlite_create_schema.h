@@ -113,7 +113,7 @@ CREATE TABLE book_history						\
     isbn13           VARCHAR(32),					\
     myoid            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,	\
     originality      TEXT,						\
-    target_audience      TEXT,						\
+    target_audience  TEXT,						\
     title            TEXT NOT NULL					\
 );									\
 									\
@@ -679,7 +679,7 @@ BEGIN									\
      author,								\
      isbn13,								\
      originality,							\
-     target_audience,						\
+     target_audience,							\
      title)								\
     VALUES								\
     (OLD.accession_number,						\
