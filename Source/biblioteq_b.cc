@@ -5769,6 +5769,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
      "isbn13           VARCHAR(32),"
      "myoid            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
      "originality      TEXT,"
+     "target_audience  TEXT,"
      "title            TEXT NOT NULL"
      ")");
   list.append("CREATE TABLE book_statistics"
@@ -5784,6 +5785,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "target_audience TEXT,"
 	      "title           TEXT NOT NULL"
 	      ")");
+  list.append("DROP TRIGGER book_history_after_book_delete_trigger");
   list.append("CREATE TRIGGER book_history_after_book_delete_trigger "
 	      "AFTER DELETE ON book "
 	      "BEGIN "
@@ -5792,12 +5794,14 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "author,"
 	      "isbn13,"
 	      "originality,"
+	      "target_audience,"
 	      "title) "
 	      "VALUES "
 	      "(OLD.accession_number,"
 	      "OLD.author,"
 	      "OLD.isbn13,"
 	      "OLD.originality,"
+	      "OLD.target_audience,"
 	      "OLD.title);"
 	      "END;");
   list.append("DROP TRIGGER book_statistics_after_item_borrower_insert");
@@ -5828,6 +5832,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "JOIN member ON member.memberid = NEW.memberid "
 	      "WHERE book.myoid = NEW.item_oid;"
 	      "END;");
+  list.append("ALTER TABLE book_history ADD target_audience TEXT");
 
   QString errors("<html>");
   int ct = 1;
