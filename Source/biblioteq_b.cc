@@ -5374,6 +5374,9 @@ void biblioteq::slotUpgradeSqliteScheme(void)
   if(sender() == ui.action_Upgrade_SQLite_SchemaRecent)
     goto recent_label;
 
+  list.append("DROP TRIGGER IF EXISTS book_history_after_book_delete_trigger");
+  list.append
+    ("DROP TRIGGER IF EXISTS book_statistics_after_item_borrower_insert");
   list.append("CREATE TABLE IF NOT EXISTS book_files"
 	      "("
 	      "description	TEXT,"
@@ -5726,9 +5729,9 @@ void biblioteq::slotUpgradeSqliteScheme(void)
   list.append("ALTER TABLE book ADD target_audience TEXT");
   list.append("CREATE TABLE IF NOT EXISTS book_target_audiences "
 	      "(target_audience TEXT NOT NULL PRIMARY KEY)");
-  list.append("CREATE TABLE book_conditions "
+  list.append("CREATE TABLE IF NOT EXISTS book_conditions "
 	      "(condition TEXT NOT NULL PRIMARY KEY)");
-  list.append("CREATE TABLE book_originality "
+  list.append("CREATE TABLE IF NOT EXISTS book_originality "
 	      "(originality TEXT NOT NULL PRIMARY KEY)");
   list.append("ALTER TABLE book ADD volume_number TEXT");
   list.append("CREATE TRIGGER IF NOT EXISTS "
@@ -5761,7 +5764,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
   list.append("ALTER TABLE member ADD maximum_reserved_video_games "
 	      "INTEGER NOT NULL DEFAULT 0");
   list.append
-    ("CREATE TABLE book_history "
+    ("CREATE TABLE IF NOT EXISTS book_history "
      "("
      "accession_number TEXT,"
      "author           TEXT NOT NULL,"
@@ -5772,7 +5775,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
      "target_audience  TEXT,"
      "title            TEXT NOT NULL"
      ")");
-  list.append("CREATE TABLE book_statistics"
+  list.append("CREATE TABLE IF NOT EXISTS book_statistics"
 	      "("
 	      "author          TEXT NOT NULL,"
 	      "isbn13          VARCHAR(32),"
@@ -5785,7 +5788,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "target_audience TEXT,"
 	      "title           TEXT NOT NULL"
 	      ")");
-  list.append("DROP TRIGGER book_history_after_book_delete_trigger");
+  list.append("DROP TRIGGER IF EXISTS book_history_after_book_delete_trigger");
   list.append("CREATE TRIGGER book_history_after_book_delete_trigger "
 	      "AFTER DELETE ON book "
 	      "BEGIN "
@@ -5804,7 +5807,8 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "OLD.target_audience,"
 	      "OLD.title);"
 	      "END;");
-  list.append("DROP TRIGGER book_statistics_after_item_borrower_insert");
+  list.append
+    ("DROP TRIGGER IF EXISTS book_statistics_after_item_borrower_insert");
   list.append("CREATE TRIGGER book_statistics_after_item_borrower_insert "
 	      "AFTER INSERT ON item_borrower "
 	      "BEGIN "
