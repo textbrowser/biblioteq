@@ -9,7 +9,7 @@ LANGUAGE = C++
 QT	 += gui network printsupport sql widgets
 QT	 -= webkit
 
-QMAKE_CLEAN	+= BiblioteQ
+QMAKE_CLEAN	       += BiblioteQ
 QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wcast-align \
                           -Wcast-qual \
@@ -29,8 +29,8 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -pedantic \
                           -pie \
                           -std=c++11
-QMAKE_DISTCLEAN     += -r .qmake.cache .qmake.stash Temporary
-QMAKE_EXTRA_TARGETS = purge
+QMAKE_DISTCLEAN        += -r .qmake.cache .qmake.stash Temporary
+QMAKE_EXTRA_TARGETS    = purge
 
 ICON	    = Icons/book.png
 INCLUDEPATH += Source

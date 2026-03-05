@@ -38,14 +38,14 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -fwrapv \
                           -pedantic \
                           -std=c++17
-QMAKE_DISTCLEAN += -r \
-                   .qmake.cache \
-                   .qmake.stash \
-                   BiblioteQ \
-                   BiblioteQ.d \
-                   Temporary
+QMAKE_DISTCLEAN        += -r \
+                          .qmake.cache \
+                          .qmake.stash \
+                          BiblioteQ \
+                          BiblioteQ.d \
+                          Temporary
 
-QMAKE_EXTRA_TARGETS           = dmg purge
+QMAKE_EXTRA_TARGETS            = dmg purge
 QMAKE_MACOSX_DEPLOYMENT_TARGET = 13.0
 
 ICON	    = Icons/book.icns
