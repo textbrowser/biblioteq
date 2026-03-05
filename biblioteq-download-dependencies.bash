@@ -2,7 +2,7 @@
 
 # Alexis Megas.
 
-# Must be executed in the top-level source directory.
+# Must be executed in the root source directory.
 
 if [ "$(which wget)" = "" ]
 then
@@ -18,7 +18,7 @@ postgresql="postgresql.zip"
 
 rm -f "$postgresql"
 
-filename="/postgresql/postgresql-16.12-1-windows-x64-binaries.zip"
+filename="/postgresql/postgresql-16.13-1-windows-x64-binaries.zip"
 host="https://get.enterprisedb.com"
 
 wget --output-document="$postgresql" --progress=bar "$host$filename"
