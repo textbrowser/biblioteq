@@ -5690,34 +5690,70 @@ void biblioteq::slotShowMenu(void)
 	      SIGNAL(triggered(void)),
 	      this,
 	      SLOT(slotInsertBook(void)));
-      connect(menu.addAction(tr("Add &DVD...")),
-	      SIGNAL(triggered(void)),
-	      this,
-	      SLOT(slotInsertDVD(void)));
-      connect(menu.addAction(tr("Add &Grey Literature...")),
-	      SIGNAL(triggered(void)),
-	      this,
-	      SLOT(slotInsertGreyLiterature(void)));
-      connect(menu.addAction(tr("Add &Journal...")),
-	      SIGNAL(triggered(void)),
-	      this,
-	      SLOT(slotInsertJourn(void)));
-      connect(menu.addAction(tr("Add &Magazine...")),
-	      SIGNAL(triggered(void)),
-	      this,
-	      SLOT(slotInsertMag(void)));
-      connect(menu.addAction(tr("Add Music &CD...")),
-	      SIGNAL(triggered(void)),
-	      this,
-	      SLOT(slotInsertCD(void)));
-      connect(menu.addAction(tr("Add &Photograph Collection...")),
-	      SIGNAL(triggered(void)),
-	      this,
-	      SLOT(slotInsertPhotograph(void)));
-      connect(menu.addAction(tr("Add &Video Game...")),
-	      SIGNAL(triggered(void)),
-	      this,
-	      SLOT(slotInsertVideoGame(void)));
+
+      if(ui.actionTabbed_Item_Windows->isChecked())
+	{
+	  connect(menu.addAction(tr("Add &DVD")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotInsertDVD(void)));
+	  connect(menu.addAction(tr("Add &Grey Literature")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotInsertGreyLiterature(void)));
+	  connect(menu.addAction(tr("Add &Journal")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotInsertJourn(void)));
+	  connect(menu.addAction(tr("Add &Magazine")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotInsertMag(void)));
+	  connect(menu.addAction(tr("Add Music &CD")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotInsertCD(void)));
+	  connect(menu.addAction(tr("Add &Photograph Collection")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotInsertPhotograph(void)));
+	  connect(menu.addAction(tr("Add &Video Game")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotInsertVideoGame(void)));
+	}
+      else
+	{
+	  connect(menu.addAction(tr("Add &DVD...")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotInsertDVD(void)));
+	  connect(menu.addAction(tr("Add &Grey Literature...")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotInsertGreyLiterature(void)));
+	  connect(menu.addAction(tr("Add &Journal...")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotInsertJourn(void)));
+	  connect(menu.addAction(tr("Add &Magazine...")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotInsertMag(void)));
+	  connect(menu.addAction(tr("Add Music &CD...")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotInsertCD(void)));
+	  connect(menu.addAction(tr("Add &Photograph Collection...")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotInsertPhotograph(void)));
+	  connect(menu.addAction(tr("Add &Video Game...")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotInsertVideoGame(void)));
+	}
+
       menu.exec(point);
     }
   else if(sender() == ui.printTool)
