@@ -979,6 +979,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(aboutToShow(void)),
 	  this,
 	  SLOT(slotAboutToShowMenuEdit(void)));
+  connect(ui.menu_View,
+	  SIGNAL(aboutToShow(void)),
+	  this,
+	  SLOT(slotAboutToShowMenuView(void)));
   connect(ui.modifyTool,
 	  SIGNAL(triggered(void)),
 	  this,

@@ -614,6 +614,7 @@ class biblioteq: public QMainWindow
   void slotAboutToShowItemsPagesMenu(void);
   void slotAboutToShowMenuAddItem(void);
   void slotAboutToShowMenuEdit(void);
+  void slotAboutToShowMenuView(void);
   void slotActionToggled(void);
   void slotAddAdmin(void);
   void slotAddBorrower(void);

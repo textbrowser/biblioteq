@@ -983,6 +983,24 @@ void biblioteq::slotAboutToShowMenuEdit(void)
     }
 }
 
+void biblioteq::slotAboutToShowMenuView(void)
+{
+  if(ui.actionTabbed_Item_Windows->isChecked())
+    {
+      ui.actionViewDetails->setText
+	(ui.actionViewDetails->text().remove(tr("...")));
+      ui.actionViewDetails->setText
+	(ui.actionViewDetails->text().remove(tr("...")));
+    }
+  else
+    {
+      ui.actionViewDetails->setText
+	(ui.actionViewDetails->text().remove(tr("...")));
+      ui.actionViewDetails->setText
+	(tr("%1...").arg(ui.actionViewDetails->text()));
+    }
+}
+
 void biblioteq::slotActionToggled(void)
 {
   auto action = qobject_cast<QAction *> (sender());

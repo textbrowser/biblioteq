@@ -4364,15 +4364,29 @@ void biblioteq::prepareContextMenus()
 	  m_menu->addSeparator();
 	}
 
-      m_menu->addAction(tr("Delete Selected Item(s)"),
+      m_menu->addAction(tr("Delete Selected Item(s)..."),
 			this,
 			SLOT(slotDelete(void)));
-      m_menu->addAction(tr("Duplicate Selected Item(s)..."),
-			this,
-			SLOT(slotDuplicate(void)));
-      m_menu->addAction(tr("Modify Selected Item(s)..."),
-			this,
-			SLOT(slotModify(void)));
+
+      if(ui.actionTabbed_Item_Windows->isChecked())
+	{
+	  m_menu->addAction(tr("Duplicate Selected Item(s)"),
+			    this,
+			    SLOT(slotDuplicate(void)));
+	  m_menu->addAction(tr("Modify Selected Item(s)"),
+			    this,
+			    SLOT(slotModify(void)));
+	}
+      else
+	{
+	  m_menu->addAction(tr("Duplicate Selected Item(s)..."),
+			    this,
+			    SLOT(slotDuplicate(void)));
+	  m_menu->addAction(tr("Modify Selected Item(s)..."),
+			    this,
+			    SLOT(slotModify(void)));
+	}
+
       m_menu->addSeparator();
       m_menu->addAction(tr("Print Current View..."),
 			this,
