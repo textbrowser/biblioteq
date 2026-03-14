@@ -37,47 +37,47 @@ YAZ_EXPORT int z_ESDestination(ODR o, Z_ESDestination **p, int opt, const char *
 extern "C" {
 #endif
 struct Z_ESExportSpecificationEsRequest {
-	Z_ESOriginPartToKeep *toKeep;
-	Odr_null *notToKeep;
+        Z_ESOriginPartToKeep *toKeep;
+        Odr_null *notToKeep;
 };
 
 struct Z_ESExportSpecificationTaskPackage {
-	Z_ESOriginPartToKeep *originPart;
-	Odr_null *targetPart;
+        Z_ESOriginPartToKeep *originPart;
+        Odr_null *targetPart;
 };
 
 struct Z_ESExportSpecification {
-	int which;
-	union {
-		Z_ESExportSpecificationEsRequest *esRequest;
-		Z_ESExportSpecificationTaskPackage *taskPackage;
+        int which;
+        union {
+                Z_ESExportSpecificationEsRequest *esRequest;
+                Z_ESExportSpecificationTaskPackage *taskPackage;
 #define Z_ESExportSpecification_esRequest 1
 #define Z_ESExportSpecification_taskPackage 2
-	} u;
+        } u;
 };
 
 struct Z_ESOriginPartToKeep {
-	Z_CompSpec *composition;
-	Z_ESDestination *exportDestination;
+        Z_CompSpec *composition;
+        Z_ESDestination *exportDestination;
 };
 
 struct Z_ESDestinationOther {
-	Z_InternationalString *vehicle; /* OPT */
-	Z_InternationalString *destination;
+        Z_InternationalString *vehicle; /* OPT */
+        Z_InternationalString *destination;
 };
 
 struct Z_ESDestination {
-	int which;
-	union {
-		Z_InternationalString *phoneNumber;
-		Z_InternationalString *faxNumber;
-		Z_InternationalString *x400address;
-		Z_InternationalString *emailAddress;
-		Z_InternationalString *pagerNumber;
-		Z_InternationalString *ftpAddress;
-		Z_InternationalString *ftamAddress;
-		Z_InternationalString *printerAddress;
-		Z_ESDestinationOther *other;
+        int which;
+        union {
+                Z_InternationalString *phoneNumber;
+                Z_InternationalString *faxNumber;
+                Z_InternationalString *x400address;
+                Z_InternationalString *emailAddress;
+                Z_InternationalString *pagerNumber;
+                Z_InternationalString *ftpAddress;
+                Z_InternationalString *ftamAddress;
+                Z_InternationalString *printerAddress;
+                Z_ESDestinationOther *other;
 #define Z_ESDestination_phoneNumber 1
 #define Z_ESDestination_faxNumber 2
 #define Z_ESDestination_x400address 3
@@ -87,7 +87,7 @@ struct Z_ESDestination {
 #define Z_ESDestination_ftamAddress 7
 #define Z_ESDestination_printerAddress 8
 #define Z_ESDestination_other 9
-	} u;
+        } u;
 };
 
 #ifdef __cplusplus

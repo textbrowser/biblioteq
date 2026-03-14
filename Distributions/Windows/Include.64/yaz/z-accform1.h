@@ -43,65 +43,65 @@ YAZ_EXPORT int z_Encryption(ODR o, Z_Encryption **p, int opt, const char *name);
 extern "C" {
 #endif
 struct Z_PromptObject1 {
-	int which;
-	union {
-		Z_Challenge1 *challenge;
-		Z_Response1 *response;
+        int which;
+        union {
+                Z_Challenge1 *challenge;
+                Z_Response1 *response;
 #define Z_PromptObject1_challenge 1
 #define Z_PromptObject1_response 2
-	} u;
+        } u;
 };
 
 struct Z_ChallengeUnit1 {
-	Z_PromptId *promptId;
-	Z_InternationalString *defaultResponse; /* OPT */
-	int which;
-	union {
-		Z_InternationalString *character;
-		Z_Encryption *encrypted;
+        Z_PromptId *promptId;
+        Z_InternationalString *defaultResponse; /* OPT */
+        int which;
+        union {
+                Z_InternationalString *character;
+                Z_Encryption *encrypted;
 #define Z_ChallengeUnit1_character 1
 #define Z_ChallengeUnit1_encrypted 2
-	} u; /* OPT */
-	Z_InternationalString *regExpr; /* OPT */
-	Odr_null *responseRequired; /* OPT */
-	int num_allowedValues;
-	Z_InternationalString **allowedValues; /* OPT */
-	Odr_null *shouldSave; /* OPT */
+        } u; /* OPT */
+        Z_InternationalString *regExpr; /* OPT */
+        Odr_null *responseRequired; /* OPT */
+        int num_allowedValues;
+        Z_InternationalString **allowedValues; /* OPT */
+        Odr_null *shouldSave; /* OPT */
 #define Z_ChallengeUnit1_integer 1
 #define Z_ChallengeUnit1_date 2
 #define Z_ChallengeUnit1_float 3
 #define Z_ChallengeUnit1_alphaNumeric 4
 #define Z_ChallengeUnit1_url_urn 5
 #define Z_ChallengeUnit1_boolean 6
-	Odr_int *dataType; /* OPT */
-	Z_External *diagnostic; /* OPT */
+        Odr_int *dataType; /* OPT */
+        Z_External *diagnostic; /* OPT */
 };
 
 struct Z_Challenge1 {
-	int num;
-	Z_ChallengeUnit1 **elements;
+        int num;
+        Z_ChallengeUnit1 **elements;
 };
 
 struct Z_ResponseUnit1 {
-	Z_PromptId *promptId;
-	int which;
-	union {
-		Z_InternationalString *string;
-		Odr_bool *accept;
-		Odr_null *acknowledge;
-		Z_DiagRec *diagnostic;
-		Z_Encryption *encrypted;
+        Z_PromptId *promptId;
+        int which;
+        union {
+                Z_InternationalString *string;
+                Odr_bool *accept;
+                Odr_null *acknowledge;
+                Z_DiagRec *diagnostic;
+                Z_Encryption *encrypted;
 #define Z_ResponseUnit1_string 1
 #define Z_ResponseUnit1_accept 2
 #define Z_ResponseUnit1_acknowledge 3
 #define Z_ResponseUnit1_diagnostic 4
 #define Z_ResponseUnit1_encrypted 5
-	} u;
+        } u;
 };
 
 struct Z_Response1 {
-	int num;
-	Z_ResponseUnit1 **elements;
+        int num;
+        Z_ResponseUnit1 **elements;
 };
 
 struct Z_PromptIdEnumeratedPrompt {
@@ -111,24 +111,24 @@ struct Z_PromptIdEnumeratedPrompt {
 #define Z_PromptIdEnumeratedPrompt_newPassword 3
 #define Z_PromptIdEnumeratedPrompt_copyright 4
 #define Z_PromptIdEnumeratedPrompt_sessionId 5
-	Odr_int *type;
-	Z_InternationalString *suggestedString; /* OPT */
+        Odr_int *type;
+        Z_InternationalString *suggestedString; /* OPT */
 };
 
 struct Z_PromptId {
-	int which;
-	union {
-		Z_PromptIdEnumeratedPrompt *enumeratedPrompt;
-		Z_InternationalString *nonEnumeratedPrompt;
+        int which;
+        union {
+                Z_PromptIdEnumeratedPrompt *enumeratedPrompt;
+                Z_InternationalString *nonEnumeratedPrompt;
 #define Z_PromptId_enumeratedPrompt 1
 #define Z_PromptId_nonEnumeratedPrompt 2
-	} u;
+        } u;
 };
 
 struct Z_Encryption {
-	Odr_oct *cryptType; /* OPT */
-	Odr_oct *credential; /* OPT */
-	Odr_oct *data;
+        Odr_oct *cryptType; /* OPT */
+        Odr_oct *credential; /* OPT */
+        Odr_oct *data;
 };
 
 #ifdef __cplusplus

@@ -97,6 +97,13 @@ YAZ_EXPORT void wrbuf_vp_puts(const char *buf, void *client_data);
  */
 YAZ_EXPORT void wrbuf_xmlputs_n(WRBUF b, const char *cp, size_t size);
 
+/** \brief writes buffer of certain size to WRBUF and strips non-allowed XML chars
+    \param b WRBUF
+    \param cp CDATA
+    \param size size of CDATA
+ */
+YAZ_EXPORT void wrbuf_xml_strip(WRBUF b, const char *cp, size_t size);
+
 /** \brief writes C-String to WRBUF and XML encode (as CDATA)
     \param b WRBUF
     \param cp CDATA buffer (0-terminated)
@@ -160,6 +167,18 @@ YAZ_EXPORT void wrbuf_printf(WRBUF b, const char *fmt, ...)
 int wrbuf_iconv_write2(WRBUF b, yaz_iconv_t cd, const char *buf,
                        size_t size,
                        void (*wfunc)(WRBUF, const char *, size_t));
+
+/** \brief General writer of string using iconv and cdata
+    \param b WRBUF
+    \param cd iconv handle (0 for no conversion)
+    \param buf buffer, 0 terminated
+    \param wfunc write handler (that takes WRBUF only)
+    \returns -1 if invalid sequence was encountered (truncation in effect)
+    \returns 0 if buffer could be converted and written
+*/
+int wrbuf_iconv_puts2(WRBUF b, yaz_iconv_t cd, const char *buf,
+                      void (*wfunc)(WRBUF, const char *, size_t));
+
 
 /** \brief writer of string using iconv and cdata
 

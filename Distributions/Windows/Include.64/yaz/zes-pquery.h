@@ -37,39 +37,39 @@ YAZ_EXPORT int z_PQueryTargetPart(ODR o, Z_PQueryTargetPart **p, int opt, const 
 extern "C" {
 #endif
 struct Z_PQueryPersistentQueryEsRequest {
-	Z_PQueryOriginPartToKeep *toKeep; /* OPT */
-	Z_PQueryOriginPartNotToKeep *notToKeep;
+        Z_PQueryOriginPartToKeep *toKeep; /* OPT */
+        Z_PQueryOriginPartNotToKeep *notToKeep;
 };
 
 struct Z_PQueryPersistentQueryTaskPackage {
-	Z_PQueryOriginPartToKeep *originPart; /* OPT */
-	Z_PQueryTargetPart *targetPart;
+        Z_PQueryOriginPartToKeep *originPart; /* OPT */
+        Z_PQueryTargetPart *targetPart;
 };
 
 struct Z_PQueryPersistentQuery {
-	int which;
-	union {
-		Z_PQueryPersistentQueryEsRequest *esRequest;
-		Z_PQueryPersistentQueryTaskPackage *taskPackage;
+        int which;
+        union {
+                Z_PQueryPersistentQueryEsRequest *esRequest;
+                Z_PQueryPersistentQueryTaskPackage *taskPackage;
 #define Z_PQueryPersistentQuery_esRequest 1
 #define Z_PQueryPersistentQuery_taskPackage 2
-	} u;
+        } u;
 };
 
 struct Z_PQueryOriginPartToKeep {
-	int num_dbNames;
-	Z_InternationalString **dbNames; /* OPT */
-	Z_OtherInformation *additionalSearchInfo; /* OPT */
+        int num_dbNames;
+        Z_InternationalString **dbNames; /* OPT */
+        Z_OtherInformation *additionalSearchInfo; /* OPT */
 };
 
 struct Z_PQueryOriginPartNotToKeep {
-	int which;
-	union {
-		Z_InternationalString *package;
-		Z_Query *query;
+        int which;
+        union {
+                Z_InternationalString *package;
+                Z_Query *query;
 #define Z_PQueryOriginPartNotToKeep_package 1
 #define Z_PQueryOriginPartNotToKeep_query 2
-	} u;
+        } u;
 };
 
 

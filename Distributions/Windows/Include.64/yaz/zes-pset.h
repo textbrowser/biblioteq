@@ -34,35 +34,35 @@ YAZ_EXPORT int z_PRTargetPart(ODR o, Z_PRTargetPart **p, int opt, const char *na
 extern "C" {
 #endif
 struct Z_PRPersistentResultSetEsRequest {
-	Odr_null *toKeep;
-	Z_PROriginPartNotToKeep *notToKeep; /* OPT */
+        Odr_null *toKeep;
+        Z_PROriginPartNotToKeep *notToKeep; /* OPT */
 };
 
 struct Z_PRPersistentResultSetTaskPackage {
-	Odr_null *originPart;
-	Z_PRTargetPart *targetPart; /* OPT */
+        Odr_null *originPart;
+        Z_PRTargetPart *targetPart; /* OPT */
 };
 
 struct Z_PRPersistentResultSet {
-	int which;
-	union {
-		Z_PRPersistentResultSetEsRequest *esRequest;
-		Z_PRPersistentResultSetTaskPackage *taskPackage;
+        int which;
+        union {
+                Z_PRPersistentResultSetEsRequest *esRequest;
+                Z_PRPersistentResultSetTaskPackage *taskPackage;
 #define Z_PRPersistentResultSet_esRequest 1
 #define Z_PRPersistentResultSet_taskPackage 2
-	} u;
+        } u;
 };
 
 struct Z_PROriginPartNotToKeep {
-	Z_InternationalString *originSuppliedResultSet; /* OPT */
+        Z_InternationalString *originSuppliedResultSet; /* OPT */
 #define Z_PROriginPartNotToKeep_replace 1
 #define Z_PROriginPartNotToKeep_append 2
-	Odr_int *replaceOrAppend; /* OPT */
+        Odr_int *replaceOrAppend; /* OPT */
 };
 
 struct Z_PRTargetPart {
-	Z_InternationalString *targetSuppliedResultSet; /* OPT */
-	Odr_int *numberOfRecords; /* OPT */
+        Z_InternationalString *targetSuppliedResultSet; /* OPT */
+        Odr_int *numberOfRecords; /* OPT */
 };
 
 #ifdef __cplusplus

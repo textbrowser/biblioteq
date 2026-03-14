@@ -58,112 +58,112 @@ YAZ_EXPORT int z_Iso10646(ODR o, Z_Iso10646 **p, int opt, const char *name);
 extern "C" {
 #endif
 struct Z_CharSetandLanguageNegotiation {
-	int which;
-	union {
-		Z_OriginProposal *proposal;
-		Z_TargetResponse *response;
+        int which;
+        union {
+                Z_OriginProposal *proposal;
+                Z_TargetResponse *response;
 #define Z_CharSetandLanguageNegotiation_proposal 1
 #define Z_CharSetandLanguageNegotiation_response 2
-	} u;
+        } u;
 };
 
 struct Z_OriginProposal_0 {
-	int which;
-	union {
-		Z_Iso2022 *iso2022;
-		Z_Iso10646 *iso10646;
-		Z_PrivateCharacterSet *zprivate;
+        int which;
+        union {
+                Z_Iso2022 *iso2022;
+                Z_Iso10646 *iso10646;
+                Z_PrivateCharacterSet *zprivate;
 #define Z_OriginProposal_0_iso2022 1
 #define Z_OriginProposal_0_iso10646 2
 #define Z_OriginProposal_0_private 3
-	} u;
+        } u;
 };
 
 struct Z_OriginProposal {
-	int num_proposedCharSets;
-	Z_OriginProposal_0 **proposedCharSets; /* OPT */
-	int num_proposedlanguages;
-	Z_LanguageCode **proposedlanguages; /* OPT */
-	Odr_bool *recordsInSelectedCharSets; /* OPT */
+        int num_proposedCharSets;
+        Z_OriginProposal_0 **proposedCharSets; /* OPT */
+        int num_proposedlanguages;
+        Z_LanguageCode **proposedlanguages; /* OPT */
+        Odr_bool *recordsInSelectedCharSets; /* OPT */
 };
 
 struct Z_TargetResponse {
-	int which;
-	union {
-		Z_Iso2022 *iso2022;
-		Z_Iso10646 *iso10646;
-		Z_PrivateCharacterSet *zprivate;
-		Odr_null *none;
+        int which;
+        union {
+                Z_Iso2022 *iso2022;
+                Z_Iso10646 *iso10646;
+                Z_PrivateCharacterSet *zprivate;
+                Odr_null *none;
 #define Z_TargetResponse_iso2022 1
 #define Z_TargetResponse_iso10646 2
 #define Z_TargetResponse_private 3
 #define Z_TargetResponse_none 4
-	} u; /* OPT */
-	Z_LanguageCode *selectedLanguage; /* OPT */
-	Odr_bool *recordsInSelectedCharSets; /* OPT */
+        } u; /* OPT */
+        Z_LanguageCode *selectedLanguage; /* OPT */
+        Odr_bool *recordsInSelectedCharSets; /* OPT */
 };
 
 struct Z_PrivateCharacterSetViaOid {
-	int num;
-	Odr_oid **elements;
+        int num;
+        Odr_oid **elements;
 };
 
 struct Z_PrivateCharacterSet {
-	int which;
-	union {
-		Z_PrivateCharacterSetViaOid *viaOid;
-		Z_External *externallySpecified;
-		Odr_null *previouslyAgreedUpon;
+        int which;
+        union {
+                Z_PrivateCharacterSetViaOid *viaOid;
+                Z_External *externallySpecified;
+                Odr_null *previouslyAgreedUpon;
 #define Z_PrivateCharacterSet_viaOid 1
 #define Z_PrivateCharacterSet_externallySpecified 2
 #define Z_PrivateCharacterSet_previouslyAgreedUpon 3
-	} u;
+        } u;
 };
 
 struct Z_Iso2022OriginProposal {
-	Z_Environment *proposedEnvironment; /* OPT */
-	int num_proposedSets;
-	Odr_int **proposedSets;
-	int num_proposedInitialSets;
-	Z_InitialSet **proposedInitialSets;
-	Z_LeftAndRight *proposedLeftAndRight;
+        Z_Environment *proposedEnvironment; /* OPT */
+        int num_proposedSets;
+        Odr_int **proposedSets;
+        int num_proposedInitialSets;
+        Z_InitialSet **proposedInitialSets;
+        Z_LeftAndRight *proposedLeftAndRight;
 };
 
 struct Z_Iso2022TargetResponse {
-	Z_Environment *selectedEnvironment;
-	int num_selectedSets;
-	Odr_int **selectedSets;
-	Z_InitialSet *selectedinitialSet;
-	Z_LeftAndRight *selectedLeftAndRight;
+        Z_Environment *selectedEnvironment;
+        int num_selectedSets;
+        Odr_int **selectedSets;
+        Z_InitialSet *selectedinitialSet;
+        Z_LeftAndRight *selectedLeftAndRight;
 };
 
 struct Z_Iso2022 {
-	int which;
-	union {
-		Z_Iso2022OriginProposal *originProposal;
-		Z_Iso2022TargetResponse *targetResponse;
+        int which;
+        union {
+                Z_Iso2022OriginProposal *originProposal;
+                Z_Iso2022TargetResponse *targetResponse;
 #define Z_Iso2022_originProposal 1
 #define Z_Iso2022_targetResponse 2
-	} u;
+        } u;
 };
 
 struct Z_Environment {
-	int which;
-	union {
-		Odr_null *sevenBit;
-		Odr_null *eightBit;
+        int which;
+        union {
+                Odr_null *sevenBit;
+                Odr_null *eightBit;
 #define Z_Environment_sevenBit 1
 #define Z_Environment_eightBit 2
-	} u;
+        } u;
 };
 
 struct Z_InitialSet {
-	Odr_int *g0; /* OPT */
-	Odr_int *g1; /* OPT */
-	Odr_int *g2; /* OPT */
-	Odr_int *g3; /* OPT */
-	Odr_int *c0;
-	Odr_int *c1; /* OPT */
+        Odr_int *g0; /* OPT */
+        Odr_int *g1; /* OPT */
+        Odr_int *g2; /* OPT */
+        Odr_int *g3; /* OPT */
+        Odr_int *c0;
+        Odr_int *c1; /* OPT */
 };
 
 struct Z_LeftAndRight {
@@ -171,16 +171,16 @@ struct Z_LeftAndRight {
 #define Z_LeftAndRight_g1 1
 #define Z_LeftAndRight_g2 2
 #define Z_LeftAndRight_g3 3
-	Odr_int *gLeft;
+        Odr_int *gLeft;
 #define Z_LeftAndRight_g1 1
 #define Z_LeftAndRight_g2 2
 #define Z_LeftAndRight_g3 3
-	Odr_int *gRight; /* OPT */
+        Odr_int *gRight; /* OPT */
 };
 
 struct Z_Iso10646 {
-	Odr_oid *collections; /* OPT */
-	Odr_oid *encodingLevel;
+        Odr_oid *collections; /* OPT */
+        Odr_oid *encodingLevel;
 };
 
 #ifdef __cplusplus

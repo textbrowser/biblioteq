@@ -53,90 +53,90 @@ YAZ_EXPORT int z_Occurrences(ODR o, Z_Occurrences **p, int opt, const char *name
 extern "C" {
 #endif
 struct Z_Espec1 {
-	int num_elementSetNames;
-	Z_InternationalString **elementSetNames; /* OPT */
-	Odr_oid *defaultVariantSetId; /* OPT */
-	Z_Variant *defaultVariantRequest; /* OPT */
-	Odr_int *defaultTagType; /* OPT */
-	int num_elements;
-	Z_ElementRequest **elements; /* OPT */
+        int num_elementSetNames;
+        Z_InternationalString **elementSetNames; /* OPT */
+        Odr_oid *defaultVariantSetId; /* OPT */
+        Z_Variant *defaultVariantRequest; /* OPT */
+        Odr_int *defaultTagType; /* OPT */
+        int num_elements;
+        Z_ElementRequest **elements; /* OPT */
 };
 
 struct Z_ElementRequestCompositeElementPrimitives {
-	int num;
-	Z_InternationalString **elements;
+        int num;
+        Z_InternationalString **elements;
 };
 
 struct Z_ElementRequestCompositeElementSpecs {
-	int num;
-	Z_SimpleElement **elements;
+        int num;
+        Z_SimpleElement **elements;
 };
 
 struct Z_ElementRequestCompositeElement {
-	int which;
-	union {
-		Z_ElementRequestCompositeElementPrimitives *primitives;
-		Z_ElementRequestCompositeElementSpecs *specs;
+        int which;
+        union {
+                Z_ElementRequestCompositeElementPrimitives *primitives;
+                Z_ElementRequestCompositeElementSpecs *specs;
 #define Z_ElementRequestCompositeElement_primitives 1
 #define Z_ElementRequestCompositeElement_specs 2
-	} u;
-	Z_ETagPath *deliveryTag;
-	Z_Variant *variantRequest; /* OPT */
+        } u;
+        Z_ETagPath *deliveryTag;
+        Z_Variant *variantRequest; /* OPT */
 };
 
 struct Z_ElementRequest {
-	int which;
-	union {
-		Z_SimpleElement *simpleElement;
-		Z_ElementRequestCompositeElement *compositeElement;
+        int which;
+        union {
+                Z_SimpleElement *simpleElement;
+                Z_ElementRequestCompositeElement *compositeElement;
 #define Z_ERequest_simpleElement 1
 #define Z_ERequest_compositeElement 2
-	} u;
+        } u;
 };
 
 struct Z_SimpleElement {
-	Z_ETagPath *path;
-	Z_Variant *variantRequest; /* OPT */
+        Z_ETagPath *path;
+        Z_Variant *variantRequest; /* OPT */
 };
 
 struct Z_SpecificTag {
-	Odr_int *tagType; /* OPT */
-	Z_StringOrNumeric *tagValue;
-	Z_Occurrences *occurrences; /* OPT */
+        Odr_int *tagType; /* OPT */
+        Z_StringOrNumeric *tagValue;
+        Z_Occurrences *occurrences; /* OPT */
 };
 
 struct Z_ETagUnit {
-	int which;
-	union {
-		Z_SpecificTag *specificTag;
-		Z_Occurrences *wildThing;
-		Odr_null *wildPath;
+        int which;
+        union {
+                Z_SpecificTag *specificTag;
+                Z_Occurrences *wildThing;
+                Odr_null *wildPath;
 #define Z_ETagUnit_specificTag 1
 #define Z_ETagUnit_wildThing 2
 #define Z_ETagUnit_wildPath 3
-	} u;
+        } u;
 };
 
 struct Z_ETagPath {
-	int num_tags;
-	Z_ETagUnit **tags;
+        int num_tags;
+        Z_ETagUnit **tags;
 };
 
 struct Z_OccurValues {
-	Odr_int *start;
-	Odr_int *howMany; /* OPT */
+        Odr_int *start;
+        Odr_int *howMany; /* OPT */
 };
 
 struct Z_Occurrences {
-	int which;
-	union {
-		Odr_null *all;
-		Odr_null *last;
-		Z_OccurValues *values;
+        int which;
+        union {
+                Odr_null *all;
+                Odr_null *last;
+                Z_OccurValues *values;
 #define Z_Occurrences_all 1
 #define Z_Occurrences_last 2
 #define Z_Occurrences_values 3
-	} u;
+        } u;
 };
 
 #ifdef __cplusplus

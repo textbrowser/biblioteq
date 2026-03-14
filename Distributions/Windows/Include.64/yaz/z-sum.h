@@ -25,27 +25,27 @@ YAZ_EXPORT int z_FormatSpec(ODR o, Z_FormatSpec **p, int opt, const char *name);
 extern "C" {
 #endif
 struct Z_BriefBib {
-	Z_InternationalString *title;
-	Z_InternationalString *author; /* OPT */
-	Z_InternationalString *callNumber; /* OPT */
-	Z_InternationalString *recordType; /* OPT */
-	Z_InternationalString *bibliographicLevel; /* OPT */
-	int num_format;
-	Z_FormatSpec **format; /* OPT */
-	Z_InternationalString *publicationPlace; /* OPT */
-	Z_InternationalString *publicationDate; /* OPT */
-	Z_InternationalString *targetSystemKey; /* OPT */
-	Z_InternationalString *satisfyingElement; /* OPT */
-	Odr_int *rank; /* OPT */
-	Z_InternationalString *documentId; /* OPT */
-	Z_InternationalString *abstract; /* OPT */
-	Z_OtherInformation *otherInfo; /* OPT */
+        Z_InternationalString *title;
+        Z_InternationalString *author; /* OPT */
+        Z_InternationalString *callNumber; /* OPT */
+        Z_InternationalString *recordType; /* OPT */
+        Z_InternationalString *bibliographicLevel; /* OPT */
+        int num_format;
+        Z_FormatSpec **format; /* OPT */
+        Z_InternationalString *publicationPlace; /* OPT */
+        Z_InternationalString *publicationDate; /* OPT */
+        Z_InternationalString *targetSystemKey; /* OPT */
+        Z_InternationalString *satisfyingElement; /* OPT */
+        Odr_int *rank; /* OPT */
+        Z_InternationalString *documentId; /* OPT */
+        Z_InternationalString *abstract; /* OPT */
+        Z_OtherInformation *otherInfo; /* OPT */
 };
 
 struct Z_FormatSpec {
-	Z_InternationalString *type;
-	Odr_int *size; /* OPT */
-	Odr_int *bestPosn; /* OPT */
+        Z_InternationalString *type;
+        Odr_int *size; /* OPT */
+        Odr_int *bestPosn; /* OPT */
 };
 
 #ifdef __cplusplus

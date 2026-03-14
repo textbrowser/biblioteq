@@ -40,37 +40,37 @@ YAZ_EXPORT int z_ImportParameters(ODR o, Z_ImportParameters **p, int opt, const 
 extern "C" {
 #endif
 struct Z_AdminEsRequest {
-	Z_ESAdminOriginPartToKeep *toKeep;
-	Z_ESAdminOriginPartNotToKeep *notToKeep;
+        Z_ESAdminOriginPartToKeep *toKeep;
+        Z_ESAdminOriginPartNotToKeep *notToKeep;
 };
 
 struct Z_AdminTaskPackage {
-	Z_ESAdminOriginPartToKeep *originPart;
-	Z_ESAdminTargetPart *targetPart;
+        Z_ESAdminOriginPartToKeep *originPart;
+        Z_ESAdminTargetPart *targetPart;
 };
 
 struct Z_Admin {
-	int which;
-	union {
-		Z_AdminEsRequest *esRequest;
-		Z_AdminTaskPackage *taskPackage;
+        int which;
+        union {
+                Z_AdminEsRequest *esRequest;
+                Z_AdminTaskPackage *taskPackage;
 #define Z_Admin_esRequest 1
 #define Z_Admin_taskPackage 2
-	} u;
+        } u;
 };
 
 struct Z_ESAdminOriginPartToKeep {
-	int which;
-	union {
-		Odr_null *reIndex;
-		Odr_null *truncate;
-		Odr_null *drop;
-		Odr_null *create;
-		Z_ImportParameters *import;
-		Odr_null *refresh;
-		Odr_null *commit;
-		Odr_null *shutdown;
-		Odr_null *start;
+        int which;
+        union {
+                Odr_null *reIndex;
+                Odr_null *truncate;
+                Odr_null *drop;
+                Odr_null *create;
+                Z_ImportParameters *import;
+                Odr_null *refresh;
+                Odr_null *commit;
+                Odr_null *shutdown;
+                Odr_null *start;
 #define Z_ESAdminOriginPartToKeep_reIndex 1
 #define Z_ESAdminOriginPartToKeep_truncate 2
 #define Z_ESAdminOriginPartToKeep_drop 3
@@ -80,31 +80,31 @@ struct Z_ESAdminOriginPartToKeep {
 #define Z_ESAdminOriginPartToKeep_commit 7
 #define Z_ESAdminOriginPartToKeep_shutdown 8
 #define Z_ESAdminOriginPartToKeep_start 9
-	} u;
-	Z_InternationalString *databaseName; /* OPT */
+        } u;
+        Z_InternationalString *databaseName; /* OPT */
 };
 
 struct Z_ESAdminOriginPartNotToKeep {
-	int which;
-	union {
-		Z_Segment *records;
-		Odr_null *recordsWillFollow;
+        int which;
+        union {
+                Z_Segment *records;
+                Odr_null *recordsWillFollow;
 #define Z_ESAdminOriginPartNotToKeep_records 1
 #define Z_ESAdminOriginPartNotToKeep_recordsWillFollow 2
-	} u;
+        } u;
 };
 
 struct Z_ESAdminTargetPart {
 #define Z_ESAdminTargetPart_success 1
 #define Z_ESAdminTargetPart_partial 2
 #define Z_ESAdminTargetPart_failure 3
-	Odr_int *updateStatus;
-	int num_globalDiagnostics;
-	Z_DiagRec **globalDiagnostics; /* OPT */
+        Odr_int *updateStatus;
+        int num_globalDiagnostics;
+        Z_DiagRec **globalDiagnostics; /* OPT */
 };
 
 struct Z_ImportParameters {
-	Z_InternationalString *recordType;
+        Z_InternationalString *recordType;
 };
 
 #ifdef __cplusplus

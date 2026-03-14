@@ -28,19 +28,19 @@ YAZ_EXPORT int z_FacetTerm(ODR o, Z_FacetTerm **p, int opt, const char *name);
 extern "C" {
 #endif
 struct Z_FacetList {
-	int num;
-	Z_FacetField **elements;
+        int num;
+        Z_FacetField **elements;
 };
 
 struct Z_FacetField {
-	Z_AttributeList *attributes;
-	int num_terms;
-	Z_FacetTerm **terms; /* OPT */
+        Z_AttributeList *attributes;
+        int num_terms;
+        Z_FacetTerm **terms; /* OPT */
 };
 
 struct Z_FacetTerm {
-	Z_Term *term;
-	Odr_int *count;
+        Z_Term *term;
+        Odr_int *count;
 };
 
 #ifdef __cplusplus

@@ -297,7 +297,7 @@ typedef struct cql_transform_t_ *cql_transform_t;
 YAZ_EXPORT
 cql_transform_t cql_transform_create(void);
 
-/** \brief creates a CQL transform handle from am opened file handle
+/** \brief creates a CQL transform handle from an opened file handle
     \param f file where transformation spec is read
     \returns transform handle or NULL for failure
 
@@ -325,6 +325,22 @@ YAZ_EXPORT
 int cql_transform_define_pattern(cql_transform_t ct, const char *pattern,
                                  const char *value);
 
+
+/** \brief extends transform from a file
+    \param fname name of where transformation spec is read
+    \returns transform handle or NULL for failure
+*/
+YAZ_EXPORT
+int cql_transform_define_fname(cql_transform_t ct, const char *fname);
+
+
+/** \brief extends transform from opened file
+    \param ct CQL transform handle
+    \param f file where transformation spec is read
+    \returns 0 for success; -1 for failure
+*/
+YAZ_EXPORT
+int cql_transform_define_FILE(cql_transform_t ct, FILE *f);
 
 
 /** \brief destroys a CQL transform handle

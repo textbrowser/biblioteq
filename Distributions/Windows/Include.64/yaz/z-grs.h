@@ -52,35 +52,35 @@ YAZ_EXPORT int z_Variant(ODR o, Z_Variant **p, int opt, const char *name);
 extern "C" {
 #endif
 struct Z_GenericRecord {
-	int num_elements;
-	Z_TaggedElement **elements;
+        int num_elements;
+        Z_TaggedElement **elements;
 };
 
 struct Z_TaggedElement {
-	Odr_int *tagType; /* OPT */
-	Z_StringOrNumeric *tagValue;
-	Odr_int *tagOccurrence; /* OPT */
-	Z_ElementData *content;
-	Z_ElementMetaData *metaData; /* OPT */
-	Z_Variant *appliedVariant; /* OPT */
+        Odr_int *tagType; /* OPT */
+        Z_StringOrNumeric *tagValue;
+        Odr_int *tagOccurrence; /* OPT */
+        Z_ElementData *content;
+        Z_ElementMetaData *metaData; /* OPT */
+        Z_Variant *appliedVariant; /* OPT */
 };
 
 struct Z_ElementData {
-	int which;
-	union {
-		Odr_oct *octets;
-		Odr_int *numeric;
-		char *date;
-		Z_External *ext;
-		Z_InternationalString *string;
-		Odr_bool *trueOrFalse;
-		Odr_oid *oid;
-		Z_IntUnit *intUnit;
-		Odr_null *elementNotThere;
-		Odr_null *elementEmpty;
-		Odr_null *noDataRequested;
-		Z_External *diagnostic;
-		Z_GenericRecord *subtree;
+        int which;
+        union {
+                Odr_oct *octets;
+                Odr_int *numeric;
+                char *date;
+                Z_External *ext;
+                Z_InternationalString *string;
+                Odr_bool *trueOrFalse;
+                Odr_oid *oid;
+                Z_IntUnit *intUnit;
+                Odr_null *elementNotThere;
+                Odr_null *elementEmpty;
+                Odr_null *noDataRequested;
+                Z_External *diagnostic;
+                Z_GenericRecord *subtree;
 #define Z_ElementData_octets 1
 #define Z_ElementData_numeric 2
 #define Z_ElementData_date 3
@@ -94,70 +94,70 @@ struct Z_ElementData {
 #define Z_ElementData_noDataRequested 11
 #define Z_ElementData_diagnostic 12
 #define Z_ElementData_subtree 13
-	} u;
+        } u;
 };
 
 struct Z_ElementMetaData {
-	Z_Order *seriesOrder; /* OPT */
-	Z_Usage *usageRight; /* OPT */
-	int num_hits;
-	Z_HitVector **hits; /* OPT */
-	Z_InternationalString *displayName; /* OPT */
-	int num_supportedVariants;
-	Z_Variant **supportedVariants; /* OPT */
-	Z_InternationalString *message; /* OPT */
-	Odr_oct *elementDescriptor; /* OPT */
-	Z_TagPath *surrogateFor; /* OPT */
-	Z_TagPath *surrogateElement; /* OPT */
-	Z_External *other; /* OPT */
+        Z_Order *seriesOrder; /* OPT */
+        Z_Usage *usageRight; /* OPT */
+        int num_hits;
+        Z_HitVector **hits; /* OPT */
+        Z_InternationalString *displayName; /* OPT */
+        int num_supportedVariants;
+        Z_Variant **supportedVariants; /* OPT */
+        Z_InternationalString *message; /* OPT */
+        Odr_oct *elementDescriptor; /* OPT */
+        Z_TagPath *surrogateFor; /* OPT */
+        Z_TagPath *surrogateElement; /* OPT */
+        Z_External *other; /* OPT */
 };
 
 struct Z_TagPath_s {
-	Odr_int *tagType; /* OPT */
-	Z_StringOrNumeric *tagValue;
-	Odr_int *tagOccurrence; /* OPT */
+        Odr_int *tagType; /* OPT */
+        Z_StringOrNumeric *tagValue;
+        Odr_int *tagOccurrence; /* OPT */
 };
 
 struct Z_TagPath {
-	int num;
-	Z_TagPath_s **elements;
+        int num;
+        Z_TagPath_s **elements;
 };
 
 struct Z_Order {
-	Odr_bool *ascending;
-	Odr_int *order;
+        Odr_bool *ascending;
+        Odr_int *order;
 };
 
 struct Z_Usage {
 #define Z_Usage_redistributable 1
 #define Z_Usage_restricted 2
 #define Z_Usage_licensePointer 3
-	Odr_int *type;
-	Z_InternationalString *restriction; /* OPT */
+        Odr_int *type;
+        Z_InternationalString *restriction; /* OPT */
 };
 
 struct Z_HitVector {
-	Z_Term *satisfier; /* OPT */
-	Z_IntUnit *offsetIntoElement; /* OPT */
-	Z_IntUnit *length; /* OPT */
-	Odr_int *hitRank; /* OPT */
-	Odr_oct *targetToken; /* OPT */
+        Z_Term *satisfier; /* OPT */
+        Z_IntUnit *offsetIntoElement; /* OPT */
+        Z_IntUnit *length; /* OPT */
+        Odr_int *hitRank; /* OPT */
+        Odr_oct *targetToken; /* OPT */
 };
 
 struct Z_Triple {
-	Odr_oid *variantSetId; /* OPT */
-	Odr_int *zclass;
-	Odr_int *type;
-	int which;
-	union {
-		Odr_int *integer;
-		Z_InternationalString *internationalString;
-		Odr_oct *octetString;
-		Odr_oid *objectIdentifier;
-		Odr_bool *boolean;
-		Odr_null *null;
-		Z_Unit *unit;
-		Z_IntUnit *valueAndUnit;
+        Odr_oid *variantSetId; /* OPT */
+        Odr_int *zclass;
+        Odr_int *type;
+        int which;
+        union {
+                Odr_int *integer;
+                Z_InternationalString *internationalString;
+                Odr_oct *octetString;
+                Odr_oid *objectIdentifier;
+                Odr_bool *boolean;
+                Odr_null *null;
+                Z_Unit *unit;
+                Z_IntUnit *valueAndUnit;
 #define Z_Triple_integer 1
 #define Z_Triple_internationalString 2
 #define Z_Triple_octetString 3
@@ -166,13 +166,13 @@ struct Z_Triple {
 #define Z_Triple_null 6
 #define Z_Triple_unit 7
 #define Z_Triple_valueAndUnit 8
-	} value;
+        } value;
 };
 
 struct Z_Variant {
-	Odr_oid *globalVariantSetId; /* OPT */
-	int num_triples;
-	Z_Triple **triples;
+        Odr_oid *globalVariantSetId; /* OPT */
+        int num_triples;
+        Z_Triple **triples;
 };
 
 #ifdef __cplusplus

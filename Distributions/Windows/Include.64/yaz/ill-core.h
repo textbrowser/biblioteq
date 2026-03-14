@@ -308,28 +308,28 @@ YAZ_EXPORT int ill_EDIFACTString(ODR o, ILL_EDIFACTString **p, int opt, const ch
 extern "C" {
 #endif
 struct ILL_APDU {
-	int which;
-	union {
-		ILL_Request *illRequest;
-		ILL_Forward_Notification *Forward_Notification;
-		ILL_Shipped *Shipped;
-		ILL_Answer *illAnswer;
-		ILL_Conditional_Reply *Conditional_Reply;
-		ILL_Cancel *Cancel;
-		ILL_Cancel_Reply *Cancel_Reply;
-		ILL_Received *Received;
-		ILL_Recall *Recall;
-		ILL_Returned *Returned;
-		ILL_Checked_In *Checked_In;
-		ILL_Overdue *Overdue;
-		ILL_Renew *Renew;
-		ILL_Renew_Answer *Renew_Answer;
-		ILL_Lost *Lost;
-		ILL_Damaged *Damaged;
-		ILL_Message *Message;
-		ILL_Status_Query *Status_Query;
-		ILL_Status_Or_Error_Report *Status_Or_Error_Report;
-		ILL_Expired *Expired;
+        int which;
+        union {
+                ILL_Request *illRequest;
+                ILL_Forward_Notification *Forward_Notification;
+                ILL_Shipped *Shipped;
+                ILL_Answer *illAnswer;
+                ILL_Conditional_Reply *Conditional_Reply;
+                ILL_Cancel *Cancel;
+                ILL_Cancel_Reply *Cancel_Reply;
+                ILL_Received *Received;
+                ILL_Recall *Recall;
+                ILL_Returned *Returned;
+                ILL_Checked_In *Checked_In;
+                ILL_Overdue *Overdue;
+                ILL_Renew *Renew;
+                ILL_Renew_Answer *Renew_Answer;
+                ILL_Lost *Lost;
+                ILL_Damaged *Damaged;
+                ILL_Message *Message;
+                ILL_Status_Query *Status_Query;
+                ILL_Status_Or_Error_Report *Status_Or_Error_Report;
+                ILL_Expired *Expired;
 #define ILL_APDU_ILL_Request 1
 #define ILL_APDU_Forward_Notification 2
 #define ILL_APDU_Shipped 3
@@ -350,99 +350,99 @@ struct ILL_APDU {
 #define ILL_APDU_Status_Query 18
 #define ILL_APDU_Status_Or_Error_Report 19
 #define ILL_APDU_Expired 20
-	} u;
+        } u;
 };
 
 struct ILL_Request {
 #define ILL_Request_version_1 1
 #define ILL_Request_version_2 2
-	Odr_int *protocol_version_num;
-	ILL_Transaction_Id *transaction_id;
-	ILL_Service_Date_Time *service_date_time;
-	ILL_System_Id *requester_id; /* OPT */
-	ILL_System_Id *responder_id; /* OPT */
-	ILL_Transaction_Type *transaction_type;
-	ILL_Delivery_Address *delivery_address; /* OPT */
-	ILL_Delivery_Service *delivery_service; /* OPT */
-	ILL_Delivery_Address *billing_address; /* OPT */
-	int num_iLL_service_type;
-	ILL_Service_Type **iLL_service_type;
-	Odr_external *responder_specific_service; /* OPT */
-	ILL_Requester_Optional_Messages_Type *requester_optional_messages;
-	ILL_Search_Type *search_type; /* OPT */
-	int num_supply_medium_info_type;
-	ILL_Supply_Medium_Info_Type **supply_medium_info_type; /* OPT */
-	ILL_Place_On_Hold_Type *place_on_hold;
-	ILL_Client_Id *client_id; /* OPT */
-	ILL_Item_Id *item_id;
-	ILL_Supplemental_Item_Description *supplemental_item_description; /* OPT */
-	ILL_Cost_Info_Type *cost_info_type; /* OPT */
-	ILL_String *copyright_compliance; /* OPT */
-	ILL_Third_Party_Info_Type *third_party_info_type; /* OPT */
-	Odr_bool *retry_flag;
-	Odr_bool *forward_flag;
-	ILL_String *requester_note; /* OPT */
-	ILL_String *forward_note; /* OPT */
-	int num_iLL_request_extensions;
-	ILL_Extension **iLL_request_extensions; /* OPT */
+        Odr_int *protocol_version_num;
+        ILL_Transaction_Id *transaction_id;
+        ILL_Service_Date_Time *service_date_time;
+        ILL_System_Id *requester_id; /* OPT */
+        ILL_System_Id *responder_id; /* OPT */
+        ILL_Transaction_Type *transaction_type;
+        ILL_Delivery_Address *delivery_address; /* OPT */
+        ILL_Delivery_Service *delivery_service; /* OPT */
+        ILL_Delivery_Address *billing_address; /* OPT */
+        int num_iLL_service_type;
+        ILL_Service_Type **iLL_service_type;
+        Odr_external *responder_specific_service; /* OPT */
+        ILL_Requester_Optional_Messages_Type *requester_optional_messages;
+        ILL_Search_Type *search_type; /* OPT */
+        int num_supply_medium_info_type;
+        ILL_Supply_Medium_Info_Type **supply_medium_info_type; /* OPT */
+        ILL_Place_On_Hold_Type *place_on_hold;
+        ILL_Client_Id *client_id; /* OPT */
+        ILL_Item_Id *item_id;
+        ILL_Supplemental_Item_Description *supplemental_item_description; /* OPT */
+        ILL_Cost_Info_Type *cost_info_type; /* OPT */
+        ILL_String *copyright_compliance; /* OPT */
+        ILL_Third_Party_Info_Type *third_party_info_type; /* OPT */
+        Odr_bool *retry_flag;
+        Odr_bool *forward_flag;
+        ILL_String *requester_note; /* OPT */
+        ILL_String *forward_note; /* OPT */
+        int num_iLL_request_extensions;
+        ILL_Extension **iLL_request_extensions; /* OPT */
 };
 
 struct ILL_Forward_Notification {
 #define ILL_Forward_Notification_version_1 1
 #define ILL_Forward_Notification_version_2 2
-	Odr_int *protocol_version_num;
-	ILL_Transaction_Id *transaction_id;
-	ILL_Service_Date_Time *service_date_time;
-	ILL_System_Id *requester_id; /* OPT */
-	ILL_System_Id *responder_id;
-	ILL_System_Address *responder_address; /* OPT */
-	ILL_System_Id *intermediary_id;
-	ILL_String *notification_note; /* OPT */
-	int num_forward_notification_extensions;
-	ILL_Extension **forward_notification_extensions; /* OPT */
+        Odr_int *protocol_version_num;
+        ILL_Transaction_Id *transaction_id;
+        ILL_Service_Date_Time *service_date_time;
+        ILL_System_Id *requester_id; /* OPT */
+        ILL_System_Id *responder_id;
+        ILL_System_Address *responder_address; /* OPT */
+        ILL_System_Id *intermediary_id;
+        ILL_String *notification_note; /* OPT */
+        int num_forward_notification_extensions;
+        ILL_Extension **forward_notification_extensions; /* OPT */
 };
 
 struct ILL_Shipped {
 #define ILL_Shipped_version_1 1
 #define ILL_Shipped_version_2 2
-	Odr_int *protocol_version_num;
-	ILL_Transaction_Id *transaction_id;
-	ILL_Service_Date_Time *service_date_time;
-	ILL_System_Id *requester_id; /* OPT */
-	ILL_System_Id *responder_id; /* OPT */
-	ILL_System_Address *responder_address; /* OPT */
-	ILL_System_Id *intermediary_id; /* OPT */
-	ILL_System_Id *supplier_id; /* OPT */
-	ILL_Client_Id *client_id; /* OPT */
-	ILL_Transaction_Type *transaction_type;
-	ILL_Supplemental_Item_Description *supplemental_item_description; /* OPT */
-	ILL_Shipped_Service_Type *shipped_service_type;
-	ILL_Responder_Optional_Messages_Type *responder_optional_messages; /* OPT */
-	ILL_Supply_Details *supply_details;
-	ILL_Postal_Address *return_to_address; /* OPT */
-	ILL_String *responder_note; /* OPT */
-	int num_shipped_extensions;
-	ILL_Extension **shipped_extensions; /* OPT */
+        Odr_int *protocol_version_num;
+        ILL_Transaction_Id *transaction_id;
+        ILL_Service_Date_Time *service_date_time;
+        ILL_System_Id *requester_id; /* OPT */
+        ILL_System_Id *responder_id; /* OPT */
+        ILL_System_Address *responder_address; /* OPT */
+        ILL_System_Id *intermediary_id; /* OPT */
+        ILL_System_Id *supplier_id; /* OPT */
+        ILL_Client_Id *client_id; /* OPT */
+        ILL_Transaction_Type *transaction_type;
+        ILL_Supplemental_Item_Description *supplemental_item_description; /* OPT */
+        ILL_Shipped_Service_Type *shipped_service_type;
+        ILL_Responder_Optional_Messages_Type *responder_optional_messages; /* OPT */
+        ILL_Supply_Details *supply_details;
+        ILL_Postal_Address *return_to_address; /* OPT */
+        ILL_String *responder_note; /* OPT */
+        int num_shipped_extensions;
+        ILL_Extension **shipped_extensions; /* OPT */
 };
 
 struct ILL_Answer {
 #define ILL_Answer_version_1 1
 #define ILL_Answer_version_2 2
-	Odr_int *protocol_version_num;
-	ILL_Transaction_Id *transaction_id;
-	ILL_Service_Date_Time *service_date_time;
-	ILL_System_Id *requester_id; /* OPT */
-	ILL_System_Id *responder_id; /* OPT */
-	ILL_Transaction_Results *transaction_results;
-	int which;
-	union {
-		ILL_Conditional_Results *conditional_results;
-		ILL_Retry_Results *retry_results;
-		ILL_Unfilled_Results *unfilled_results;
-		ILL_Locations_Results *locations_results;
-		ILL_Will_Supply_Results *will_supply_results;
-		ILL_Hold_Placed_Results *hold_placed_results;
-		ILL_Estimate_Results *estimate_results;
+        Odr_int *protocol_version_num;
+        ILL_Transaction_Id *transaction_id;
+        ILL_Service_Date_Time *service_date_time;
+        ILL_System_Id *requester_id; /* OPT */
+        ILL_System_Id *responder_id; /* OPT */
+        ILL_Transaction_Results *transaction_results;
+        int which;
+        union {
+                ILL_Conditional_Results *conditional_results;
+                ILL_Retry_Results *retry_results;
+                ILL_Unfilled_Results *unfilled_results;
+                ILL_Locations_Results *locations_results;
+                ILL_Will_Supply_Results *will_supply_results;
+                ILL_Hold_Placed_Results *hold_placed_results;
+                ILL_Estimate_Results *estimate_results;
 #define ILL_Answer_conditional_results 1
 #define ILL_Answer_retry_results 2
 #define ILL_Answer_unfilled_results 3
@@ -450,270 +450,270 @@ struct ILL_Answer {
 #define ILL_Answer_will_supply_results 5
 #define ILL_Answer_hold_placed_results 6
 #define ILL_Answer_estimate_results 7
-	} u; /* OPT */
-	Odr_external *responder_specific_results; /* OPT */
-	ILL_Supplemental_Item_Description *supplemental_item_description; /* OPT */
-	ILL_Send_To_List_Type *send_to_list; /* OPT */
-	ILL_Already_Tried_List_Type *already_tried_list; /* OPT */
-	ILL_Responder_Optional_Messages_Type *responder_optional_messages; /* OPT */
-	ILL_String *responder_note; /* OPT */
-	int num_ill_answer_extensions;
-	ILL_Extension **ill_answer_extensions; /* OPT */
+        } u; /* OPT */
+        Odr_external *responder_specific_results; /* OPT */
+        ILL_Supplemental_Item_Description *supplemental_item_description; /* OPT */
+        ILL_Send_To_List_Type *send_to_list; /* OPT */
+        ILL_Already_Tried_List_Type *already_tried_list; /* OPT */
+        ILL_Responder_Optional_Messages_Type *responder_optional_messages; /* OPT */
+        ILL_String *responder_note; /* OPT */
+        int num_ill_answer_extensions;
+        ILL_Extension **ill_answer_extensions; /* OPT */
 };
 
 struct ILL_Conditional_Reply {
 #define ILL_Conditional_Reply_version_1 1
 #define ILL_Conditional_Reply_version_2 2
-	Odr_int *protocol_version_num;
-	ILL_Transaction_Id *transaction_id;
-	ILL_Service_Date_Time *service_date_time;
-	ILL_System_Id *requester_id; /* OPT */
-	ILL_System_Id *responder_id; /* OPT */
-	Odr_bool *answer;
-	ILL_String *requester_note; /* OPT */
-	int num_conditional_reply_extensions;
-	ILL_Extension **conditional_reply_extensions; /* OPT */
+        Odr_int *protocol_version_num;
+        ILL_Transaction_Id *transaction_id;
+        ILL_Service_Date_Time *service_date_time;
+        ILL_System_Id *requester_id; /* OPT */
+        ILL_System_Id *responder_id; /* OPT */
+        Odr_bool *answer;
+        ILL_String *requester_note; /* OPT */
+        int num_conditional_reply_extensions;
+        ILL_Extension **conditional_reply_extensions; /* OPT */
 };
 
 struct ILL_Cancel {
 #define ILL_Cancel_version_1 1
 #define ILL_Cancel_version_2 2
-	Odr_int *protocol_version_num;
-	ILL_Transaction_Id *transaction_id;
-	ILL_Service_Date_Time *service_date_time;
-	ILL_System_Id *requester_id; /* OPT */
-	ILL_System_Id *responder_id; /* OPT */
-	ILL_String *requester_note; /* OPT */
-	int num_cancel_extensions;
-	ILL_Extension **cancel_extensions; /* OPT */
+        Odr_int *protocol_version_num;
+        ILL_Transaction_Id *transaction_id;
+        ILL_Service_Date_Time *service_date_time;
+        ILL_System_Id *requester_id; /* OPT */
+        ILL_System_Id *responder_id; /* OPT */
+        ILL_String *requester_note; /* OPT */
+        int num_cancel_extensions;
+        ILL_Extension **cancel_extensions; /* OPT */
 };
 
 struct ILL_Cancel_Reply {
 #define ILL_Cancel_Reply_version_1 1
 #define ILL_Cancel_Reply_version_2 2
-	Odr_int *protocol_version_num;
-	ILL_Transaction_Id *transaction_id;
-	ILL_Service_Date_Time *service_date_time;
-	ILL_System_Id *requester_id; /* OPT */
-	ILL_System_Id *responder_id; /* OPT */
-	Odr_bool *answer;
-	ILL_String *responder_note; /* OPT */
-	int num_cancel_reply_extensions;
-	ILL_Extension **cancel_reply_extensions; /* OPT */
+        Odr_int *protocol_version_num;
+        ILL_Transaction_Id *transaction_id;
+        ILL_Service_Date_Time *service_date_time;
+        ILL_System_Id *requester_id; /* OPT */
+        ILL_System_Id *responder_id; /* OPT */
+        Odr_bool *answer;
+        ILL_String *responder_note; /* OPT */
+        int num_cancel_reply_extensions;
+        ILL_Extension **cancel_reply_extensions; /* OPT */
 };
 
 struct ILL_Received {
 #define ILL_Received_version_1 1
 #define ILL_Received_version_2 2
-	Odr_int *protocol_version_num;
-	ILL_Transaction_Id *transaction_id;
-	ILL_Service_Date_Time *service_date_time;
-	ILL_System_Id *requester_id; /* OPT */
-	ILL_System_Id *responder_id; /* OPT */
-	ILL_System_Id *supplier_id; /* OPT */
-	ILL_Supplemental_Item_Description *supplemental_item_description; /* OPT */
-	ILL_ISO_Date *date_received;
-	ILL_Shipped_Service_Type *shipped_service_type;
-	ILL_String *requester_note; /* OPT */
-	int num_received_extensions;
-	ILL_Extension **received_extensions; /* OPT */
+        Odr_int *protocol_version_num;
+        ILL_Transaction_Id *transaction_id;
+        ILL_Service_Date_Time *service_date_time;
+        ILL_System_Id *requester_id; /* OPT */
+        ILL_System_Id *responder_id; /* OPT */
+        ILL_System_Id *supplier_id; /* OPT */
+        ILL_Supplemental_Item_Description *supplemental_item_description; /* OPT */
+        ILL_ISO_Date *date_received;
+        ILL_Shipped_Service_Type *shipped_service_type;
+        ILL_String *requester_note; /* OPT */
+        int num_received_extensions;
+        ILL_Extension **received_extensions; /* OPT */
 };
 
 struct ILL_Recall {
 #define ILL_Recall_version_1 1
 #define ILL_Recall_version_2 2
-	Odr_int *protocol_version_num;
-	ILL_Transaction_Id *transaction_id;
-	ILL_Service_Date_Time *service_date_time;
-	ILL_System_Id *requester_id; /* OPT */
-	ILL_System_Id *responder_id; /* OPT */
-	ILL_String *responder_note; /* OPT */
-	int num_recall_extensions;
-	ILL_Extension **recall_extensions; /* OPT */
+        Odr_int *protocol_version_num;
+        ILL_Transaction_Id *transaction_id;
+        ILL_Service_Date_Time *service_date_time;
+        ILL_System_Id *requester_id; /* OPT */
+        ILL_System_Id *responder_id; /* OPT */
+        ILL_String *responder_note; /* OPT */
+        int num_recall_extensions;
+        ILL_Extension **recall_extensions; /* OPT */
 };
 
 struct ILL_Returned {
 #define ILL_Returned_version_1 1
 #define ILL_Returned_version_2 2
-	Odr_int *protocol_version_num;
-	ILL_Transaction_Id *transaction_id;
-	ILL_Service_Date_Time *service_date_time;
-	ILL_System_Id *requester_id; /* OPT */
-	ILL_System_Id *responder_id; /* OPT */
-	ILL_Supplemental_Item_Description *supplemental_item_description; /* OPT */
-	ILL_ISO_Date *date_returned;
-	ILL_Transportation_Mode *returned_via; /* OPT */
-	ILL_Amount *insured_for; /* OPT */
-	ILL_String *requester_note; /* OPT */
-	int num_returned_extensions;
-	ILL_Extension **returned_extensions; /* OPT */
+        Odr_int *protocol_version_num;
+        ILL_Transaction_Id *transaction_id;
+        ILL_Service_Date_Time *service_date_time;
+        ILL_System_Id *requester_id; /* OPT */
+        ILL_System_Id *responder_id; /* OPT */
+        ILL_Supplemental_Item_Description *supplemental_item_description; /* OPT */
+        ILL_ISO_Date *date_returned;
+        ILL_Transportation_Mode *returned_via; /* OPT */
+        ILL_Amount *insured_for; /* OPT */
+        ILL_String *requester_note; /* OPT */
+        int num_returned_extensions;
+        ILL_Extension **returned_extensions; /* OPT */
 };
 
 struct ILL_Checked_In {
 #define ILL_Checked_In_version_1 1
 #define ILL_Checked_In_version_2 2
-	Odr_int *protocol_version_num;
-	ILL_Transaction_Id *transaction_id;
-	ILL_Service_Date_Time *service_date_time;
-	ILL_System_Id *requester_id; /* OPT */
-	ILL_System_Id *responder_id; /* OPT */
-	ILL_ISO_Date *date_checked_in;
-	ILL_String *responder_note; /* OPT */
-	int num_checked_in_extensions;
-	ILL_Extension **checked_in_extensions; /* OPT */
+        Odr_int *protocol_version_num;
+        ILL_Transaction_Id *transaction_id;
+        ILL_Service_Date_Time *service_date_time;
+        ILL_System_Id *requester_id; /* OPT */
+        ILL_System_Id *responder_id; /* OPT */
+        ILL_ISO_Date *date_checked_in;
+        ILL_String *responder_note; /* OPT */
+        int num_checked_in_extensions;
+        ILL_Extension **checked_in_extensions; /* OPT */
 };
 
 struct ILL_Overdue_ExtensionS {
-	int num;
-	ILL_Extension **elements;
+        int num;
+        ILL_Extension **elements;
 };
 
 struct ILL_Overdue {
 #define ILL_Overdue_version_1 1
 #define ILL_Overdue_version_2 2
-	Odr_int *protocol_version_num;
-	ILL_Transaction_Id *transaction_id;
-	ILL_Service_Date_Time *service_date_time;
-	ILL_System_Id *requester_id; /* OPT */
-	ILL_System_Id *responder_id; /* OPT */
-	ILL_Date_Due *date_due;
-	ILL_String *responder_note; /* OPT */
-	ILL_Overdue_ExtensionS *overdue_extensions; /* OPT */
+        Odr_int *protocol_version_num;
+        ILL_Transaction_Id *transaction_id;
+        ILL_Service_Date_Time *service_date_time;
+        ILL_System_Id *requester_id; /* OPT */
+        ILL_System_Id *responder_id; /* OPT */
+        ILL_Date_Due *date_due;
+        ILL_String *responder_note; /* OPT */
+        ILL_Overdue_ExtensionS *overdue_extensions; /* OPT */
 };
 
 struct ILL_Renew {
 #define ILL_Renew_version_1 1
 #define ILL_Renew_version_2 2
-	Odr_int *protocol_version_num;
-	ILL_Transaction_Id *transaction_id;
-	ILL_Service_Date_Time *service_date_time;
-	ILL_System_Id *requester_id; /* OPT */
-	ILL_System_Id *responder_id; /* OPT */
-	ILL_ISO_Date *desired_due_date; /* OPT */
-	ILL_String *requester_note; /* OPT */
-	int num_renew_extensions;
-	ILL_Extension **renew_extensions; /* OPT */
+        Odr_int *protocol_version_num;
+        ILL_Transaction_Id *transaction_id;
+        ILL_Service_Date_Time *service_date_time;
+        ILL_System_Id *requester_id; /* OPT */
+        ILL_System_Id *responder_id; /* OPT */
+        ILL_ISO_Date *desired_due_date; /* OPT */
+        ILL_String *requester_note; /* OPT */
+        int num_renew_extensions;
+        ILL_Extension **renew_extensions; /* OPT */
 };
 
 struct ILL_Renew_Answer {
 #define ILL_Renew_Answer_version_1 1
 #define ILL_Renew_Answer_version_2 2
-	Odr_int *protocol_version_num;
-	ILL_Transaction_Id *transaction_id;
-	ILL_Service_Date_Time *service_date_time;
-	ILL_System_Id *requester_id; /* OPT */
-	ILL_System_Id *responder_id; /* OPT */
-	Odr_bool *answer;
-	ILL_Date_Due *date_due; /* OPT */
-	ILL_String *responder_note; /* OPT */
-	int num_renew_answer_extensions;
-	ILL_Extension **renew_answer_extensions; /* OPT */
+        Odr_int *protocol_version_num;
+        ILL_Transaction_Id *transaction_id;
+        ILL_Service_Date_Time *service_date_time;
+        ILL_System_Id *requester_id; /* OPT */
+        ILL_System_Id *responder_id; /* OPT */
+        Odr_bool *answer;
+        ILL_Date_Due *date_due; /* OPT */
+        ILL_String *responder_note; /* OPT */
+        int num_renew_answer_extensions;
+        ILL_Extension **renew_answer_extensions; /* OPT */
 };
 
 struct ILL_Lost {
 #define ILL_Lost_version_1 1
 #define ILL_Lost_version_2 2
-	Odr_int *protocol_version_num;
-	ILL_Transaction_Id *transaction_id;
-	ILL_Service_Date_Time *service_date_time;
-	ILL_System_Id *requester_id; /* OPT */
-	ILL_System_Id *responder_id; /* OPT */
-	ILL_String *note; /* OPT */
-	int num_lost_extensions;
-	ILL_Extension **lost_extensions; /* OPT */
+        Odr_int *protocol_version_num;
+        ILL_Transaction_Id *transaction_id;
+        ILL_Service_Date_Time *service_date_time;
+        ILL_System_Id *requester_id; /* OPT */
+        ILL_System_Id *responder_id; /* OPT */
+        ILL_String *note; /* OPT */
+        int num_lost_extensions;
+        ILL_Extension **lost_extensions; /* OPT */
 };
 
 struct ILL_Damaged {
 #define ILL_Damaged_version_1 1
 #define ILL_Damaged_version_2 2
-	Odr_int *protocol_version_num;
-	ILL_Transaction_Id *transaction_id;
-	ILL_Service_Date_Time *service_date_time;
-	ILL_System_Id *requester_id; /* OPT */
-	ILL_System_Id *responder_id; /* OPT */
-	ILL_Damaged_Details *damaged_details; /* OPT */
-	ILL_String *note; /* OPT */
-	int num_damaged_extensions;
-	ILL_Extension **damaged_extensions; /* OPT */
+        Odr_int *protocol_version_num;
+        ILL_Transaction_Id *transaction_id;
+        ILL_Service_Date_Time *service_date_time;
+        ILL_System_Id *requester_id; /* OPT */
+        ILL_System_Id *responder_id; /* OPT */
+        ILL_Damaged_Details *damaged_details; /* OPT */
+        ILL_String *note; /* OPT */
+        int num_damaged_extensions;
+        ILL_Extension **damaged_extensions; /* OPT */
 };
 
 struct ILL_Message {
 #define ILL_Message_version_1 1
 #define ILL_Message_version_2 2
-	Odr_int *protocol_version_num;
-	ILL_Transaction_Id *transaction_id;
-	ILL_Service_Date_Time *service_date_time;
-	ILL_System_Id *requester_id; /* OPT */
-	ILL_System_Id *responder_id; /* OPT */
-	ILL_String *note;
-	int num_message_extensions;
-	ILL_Extension **message_extensions; /* OPT */
+        Odr_int *protocol_version_num;
+        ILL_Transaction_Id *transaction_id;
+        ILL_Service_Date_Time *service_date_time;
+        ILL_System_Id *requester_id; /* OPT */
+        ILL_System_Id *responder_id; /* OPT */
+        ILL_String *note;
+        int num_message_extensions;
+        ILL_Extension **message_extensions; /* OPT */
 };
 
 struct ILL_Status_Query {
 #define ILL_Status_Query_version_1 1
 #define ILL_Status_Query_version_2 2
-	Odr_int *protocol_version_num;
-	ILL_Transaction_Id *transaction_id;
-	ILL_Service_Date_Time *service_date_time;
-	ILL_System_Id *requester_id; /* OPT */
-	ILL_System_Id *responder_id; /* OPT */
-	ILL_String *note; /* OPT */
-	int num_status_query_extensions;
-	ILL_Extension **status_query_extensions; /* OPT */
+        Odr_int *protocol_version_num;
+        ILL_Transaction_Id *transaction_id;
+        ILL_Service_Date_Time *service_date_time;
+        ILL_System_Id *requester_id; /* OPT */
+        ILL_System_Id *responder_id; /* OPT */
+        ILL_String *note; /* OPT */
+        int num_status_query_extensions;
+        ILL_Extension **status_query_extensions; /* OPT */
 };
 
 struct ILL_Status_Or_Error_Report {
 #define ILL_Status_Or_Error_Report_version_1 1
 #define ILL_Status_Or_Error_Report_version_2 2
-	Odr_int *protocol_version_num;
-	ILL_Transaction_Id *transaction_id;
-	ILL_Service_Date_Time *service_date_time;
-	ILL_System_Id *requester_id; /* OPT */
-	ILL_System_Id *responder_id; /* OPT */
-	ILL_Reason_No_Report *reason_no_report; /* OPT */
-	ILL_Status_Report *status_report; /* OPT */
-	ILL_Error_Report *error_report; /* OPT */
-	ILL_String *note; /* OPT */
-	int num_status_or_error_report_extensions;
-	ILL_Extension **status_or_error_report_extensions; /* OPT */
+        Odr_int *protocol_version_num;
+        ILL_Transaction_Id *transaction_id;
+        ILL_Service_Date_Time *service_date_time;
+        ILL_System_Id *requester_id; /* OPT */
+        ILL_System_Id *responder_id; /* OPT */
+        ILL_Reason_No_Report *reason_no_report; /* OPT */
+        ILL_Status_Report *status_report; /* OPT */
+        ILL_Error_Report *error_report; /* OPT */
+        ILL_String *note; /* OPT */
+        int num_status_or_error_report_extensions;
+        ILL_Extension **status_or_error_report_extensions; /* OPT */
 };
 
 struct ILL_Expired {
 #define ILL_Expired_version_1 1
 #define ILL_Expired_version_2 2
-	Odr_int *protocol_version_num;
-	ILL_Transaction_Id *transaction_id;
-	ILL_Service_Date_Time *service_date_time;
-	ILL_System_Id *requester_id; /* OPT */
-	ILL_System_Id *responder_id; /* OPT */
-	int num_expired_extensions;
-	ILL_Extension **expired_extensions; /* OPT */
+        Odr_int *protocol_version_num;
+        ILL_Transaction_Id *transaction_id;
+        ILL_Service_Date_Time *service_date_time;
+        ILL_System_Id *requester_id; /* OPT */
+        ILL_System_Id *responder_id; /* OPT */
+        int num_expired_extensions;
+        ILL_Extension **expired_extensions; /* OPT */
 };
 
 
 
 struct ILL_Already_Forwarded {
-	ILL_System_Id *responder_id;
-	ILL_System_Address *responder_address; /* OPT */
+        ILL_System_Id *responder_id;
+        ILL_System_Address *responder_address; /* OPT */
 };
 
 struct ILL_Already_Tried_List_Type {
-	int num;
-	ILL_System_Id **elements;
+        int num;
+        ILL_System_Id **elements;
 };
 
 struct ILL_Amount {
-	char *currency_code; /* OPT */
-	ILL_AmountString *monetary_value;
+        char *currency_code; /* OPT */
+        ILL_AmountString *monetary_value;
 };
 
 
 
 struct ILL_Client_Id {
-	ILL_String *client_name; /* OPT */
-	ILL_String *client_status; /* OPT */
-	ILL_String *client_identifier; /* OPT */
+        ILL_String *client_name; /* OPT */
+        ILL_String *client_status; /* OPT */
+        ILL_String *client_identifier; /* OPT */
 };
 
 struct ILL_Conditional_Results {
@@ -728,19 +728,19 @@ struct ILL_Conditional_Results {
 #define ILL_Conditional_Results_other 27
 #define ILL_Conditional_Results_responder_specific 28
 #define ILL_Conditional_Results_proposed_delivery_service 30
-	Odr_int *conditions;
-	ILL_ISO_Date *date_for_reply; /* OPT */
-	int num_locations;
-	ILL_Location_Info **locations; /* OPT */
-	ILL_Delivery_Service *proposed_delivery_service; /* OPT */
+        Odr_int *conditions;
+        ILL_ISO_Date *date_for_reply; /* OPT */
+        int num_locations;
+        ILL_Location_Info **locations; /* OPT */
+        ILL_Delivery_Service *proposed_delivery_service; /* OPT */
 };
 
 struct ILL_Cost_Info_Type {
-	ILL_Account_Number *account_number; /* OPT */
-	ILL_Amount *maximum_cost; /* OPT */
-	Odr_bool *reciprocal_agreement;
-	Odr_bool *will_pay_fee;
-	Odr_bool *payment_provided;
+        ILL_Account_Number *account_number; /* OPT */
+        ILL_Amount *maximum_cost; /* OPT */
+        Odr_bool *reciprocal_agreement;
+        Odr_bool *will_pay_fee;
+        Odr_bool *payment_provided;
 };
 
 #define ILL_Current_State_nOT_SUPPLIED 1
@@ -763,88 +763,88 @@ struct ILL_Cost_Info_Type {
 #define ILL_Current_State_uNKNOWN 18
 
 struct ILL_Damaged_DetailsSpecific_units {
-	int num;
-	Odr_int **elements;
+        int num;
+        Odr_int **elements;
 };
 
 struct ILL_Damaged_Details {
-	Odr_oid *document_type_id; /* OPT */
-	int which;
-	union {
-		Odr_null *complete_document;
-		ILL_Damaged_DetailsSpecific_units *specific_units;
+        Odr_oid *document_type_id; /* OPT */
+        int which;
+        union {
+                Odr_null *complete_document;
+                ILL_Damaged_DetailsSpecific_units *specific_units;
 #define ILL_Damaged_Details_complete_document 1
 #define ILL_Damaged_Details_specific_units 2
-	} u;
+        } u;
 };
 
 struct ILL_Date_Due {
-	ILL_ISO_Date *date_due_field;
-	Odr_bool *renewable;
+        ILL_ISO_Date *date_due_field;
+        Odr_bool *renewable;
 };
 
 struct ILL_Delivery_Address {
-	ILL_Postal_Address *postal_address; /* OPT */
-	ILL_System_Address *electronic_address; /* OPT */
+        ILL_Postal_Address *postal_address; /* OPT */
+        ILL_System_Address *electronic_address; /* OPT */
 };
 
 struct ILL_Delivery_ServiceElectronic_delivery {
-	int num;
-	ILL_Electronic_Delivery_Service **elements;
+        int num;
+        ILL_Electronic_Delivery_Service **elements;
 };
 
 struct ILL_Delivery_Service {
-	int which;
-	union {
-		ILL_Transportation_Mode *physical_delivery;
-		ILL_Delivery_ServiceElectronic_delivery *electronic_delivery;
+        int which;
+        union {
+                ILL_Transportation_Mode *physical_delivery;
+                ILL_Delivery_ServiceElectronic_delivery *electronic_delivery;
 #define ILL_Delivery_Service_physical_delivery 1
 #define ILL_Delivery_Service_electronic_delivery 2
-	} u;
+        } u;
 };
 
 struct ILL_Electronic_Delivery_Service_0 {
-	Odr_oid *e_delivery_mode;
-	Odr_any *e_delivery_parameters;
+        Odr_oid *e_delivery_mode;
+        Odr_any *e_delivery_parameters;
 };
 
 struct ILL_Electronic_Delivery_Service_1 {
-	Odr_oid *document_type_id;
-	Odr_any *document_type_parameters;
+        Odr_oid *document_type_id;
+        Odr_any *document_type_parameters;
 };
 
 struct ILL_Electronic_Delivery_Service {
-	ILL_Electronic_Delivery_Service_0 *e_delivery_service; /* OPT */
-	ILL_Electronic_Delivery_Service_1 *document_type; /* OPT */
-	ILL_String *e_delivery_description; /* OPT */
-	int which;
-	union {
-		ILL_System_Address *e_delivery_address;
-		ILL_System_Id *e_delivery_id;
+        ILL_Electronic_Delivery_Service_0 *e_delivery_service; /* OPT */
+        ILL_Electronic_Delivery_Service_1 *document_type; /* OPT */
+        ILL_String *e_delivery_description; /* OPT */
+        int which;
+        union {
+                ILL_System_Address *e_delivery_address;
+                ILL_System_Id *e_delivery_id;
 #define ILL_Electronic_Delivery_Service_e_delivery_address 1
 #define ILL_Electronic_Delivery_Service_e_delivery_id 2
-	} u;
-	ILL_String *name_or_code; /* OPT */
-	ILL_ISO_Time *delivery_time; /* OPT */
+        } u;
+        ILL_String *name_or_code; /* OPT */
+        ILL_ISO_Time *delivery_time; /* OPT */
 };
 
 struct ILL_Error_Report {
-	ILL_String *correlation_information;
-	ILL_Report_Source *report_source;
-	ILL_User_Error_Report *user_error_report; /* OPT */
-	ILL_Provider_Error_Report *provider_error_report; /* OPT */
+        ILL_String *correlation_information;
+        ILL_Report_Source *report_source;
+        ILL_User_Error_Report *user_error_report; /* OPT */
+        ILL_Provider_Error_Report *provider_error_report; /* OPT */
 };
 
 struct ILL_Estimate_Results {
-	ILL_String *cost_estimate;
-	int num_locations;
-	ILL_Location_Info **locations; /* OPT */
+        ILL_String *cost_estimate;
+        int num_locations;
+        ILL_Location_Info **locations; /* OPT */
 };
 
 struct ILL_Extension {
-	Odr_int *identifier;
-	Odr_bool *critical;
-	Odr_any *item;
+        Odr_int *identifier;
+        Odr_bool *critical;
+        Odr_any *item;
 };
 
 #define ILL_General_Problem_unrecognized_APDU 1
@@ -854,12 +854,12 @@ struct ILL_Extension {
 #define ILL_General_Problem_other 5
 
 struct ILL_History_Report {
-	ILL_ISO_Date *date_requested; /* OPT */
-	ILL_String *author; /* OPT */
-	ILL_String *title; /* OPT */
-	ILL_String *author_of_article; /* OPT */
-	ILL_String *title_of_article; /* OPT */
-	ILL_ISO_Date *date_of_last_transition;
+        ILL_ISO_Date *date_requested; /* OPT */
+        ILL_String *author; /* OPT */
+        ILL_String *title; /* OPT */
+        ILL_String *author_of_article; /* OPT */
+        ILL_String *title_of_article; /* OPT */
+        ILL_ISO_Date *date_of_last_transition;
 #define ILL_History_Report_iLL_REQUEST 1
 #define ILL_History_Report_fORWARD 21
 #define ILL_History_Report_fORWARD_NOTIFICATION 2
@@ -879,19 +879,19 @@ struct ILL_History_Report {
 #define ILL_History_Report_sTATUS_QUERY 18
 #define ILL_History_Report_sTATUS_OR_ERROR_REPORT 19
 #define ILL_History_Report_eXPIRED 20
-	Odr_int *most_recent_service;
-	ILL_ISO_Date *date_of_most_recent_service;
-	ILL_System_Id *initiator_of_most_recent_service;
-	ILL_Shipped_Service_Type *shipped_service_type; /* OPT */
-	ILL_Transaction_Results *transaction_results; /* OPT */
-	ILL_String *most_recent_service_note; /* OPT */
+        Odr_int *most_recent_service;
+        ILL_ISO_Date *date_of_most_recent_service;
+        ILL_System_Id *initiator_of_most_recent_service;
+        ILL_Shipped_Service_Type *shipped_service_type; /* OPT */
+        ILL_Transaction_Results *transaction_results; /* OPT */
+        ILL_String *most_recent_service_note; /* OPT */
 };
 
 struct ILL_Hold_Placed_Results {
-	ILL_ISO_Date *estimated_date_available;
-	ILL_Medium_Type *hold_placed_medium_type; /* OPT */
-	int num_locations;
-	ILL_Location_Info **locations; /* OPT */
+        ILL_ISO_Date *estimated_date_available;
+        ILL_Medium_Type *hold_placed_medium_type; /* OPT */
+        int num_locations;
+        ILL_Location_Info **locations; /* OPT */
 };
 
 #define ILL_APDU_Type_iLL_REQUEST 1
@@ -922,13 +922,13 @@ struct ILL_Hold_Placed_Results {
 #define ILL_Service_Type_responder_specific 5
 
 struct ILL_String {
-	int which;
-	union {
-		char *GeneralString;
-		ILL_EDIFACTString *EDIFACTString;
+        int which;
+        union {
+                char *GeneralString;
+                ILL_EDIFACTString *EDIFACTString;
 #define ILL_String_GeneralString 1
 #define ILL_String_EDIFACTString 2
-	} u;
+        } u;
 };
 
 #define ILL_Intermediary_Problem_cannot_send_onward 1
@@ -941,41 +941,41 @@ struct ILL_Item_Id {
 #define ILL_Item_Id_monograph 1
 #define ILL_Item_Id_serial 2
 #define ILL_Item_Id_other 3
-	Odr_int *item_type; /* OPT */
-	ILL_Medium_Type *held_medium_type; /* OPT */
-	ILL_String *call_number; /* OPT */
-	ILL_String *author; /* OPT */
-	ILL_String *title; /* OPT */
-	ILL_String *sub_title; /* OPT */
-	ILL_String *sponsoring_body; /* OPT */
-	ILL_String *place_of_publication; /* OPT */
-	ILL_String *publisher; /* OPT */
-	ILL_String *series_title_number; /* OPT */
-	ILL_String *volume_issue; /* OPT */
-	ILL_String *edition; /* OPT */
-	ILL_String *publication_date; /* OPT */
-	ILL_String *publication_date_of_component; /* OPT */
-	ILL_String *author_of_article; /* OPT */
-	ILL_String *title_of_article; /* OPT */
-	ILL_String *pagination; /* OPT */
-	Odr_external *national_bibliography_no; /* OPT */
-	ILL_String *iSBN; /* OPT */
-	ILL_String *iSSN; /* OPT */
-	Odr_external *system_no; /* OPT */
-	ILL_String *additional_no_letters; /* OPT */
-	ILL_String *verification_reference_source; /* OPT */
+        Odr_int *item_type; /* OPT */
+        ILL_Medium_Type *held_medium_type; /* OPT */
+        ILL_String *call_number; /* OPT */
+        ILL_String *author; /* OPT */
+        ILL_String *title; /* OPT */
+        ILL_String *sub_title; /* OPT */
+        ILL_String *sponsoring_body; /* OPT */
+        ILL_String *place_of_publication; /* OPT */
+        ILL_String *publisher; /* OPT */
+        ILL_String *series_title_number; /* OPT */
+        ILL_String *volume_issue; /* OPT */
+        ILL_String *edition; /* OPT */
+        ILL_String *publication_date; /* OPT */
+        ILL_String *publication_date_of_component; /* OPT */
+        ILL_String *author_of_article; /* OPT */
+        ILL_String *title_of_article; /* OPT */
+        ILL_String *pagination; /* OPT */
+        Odr_external *national_bibliography_no; /* OPT */
+        ILL_String *iSBN; /* OPT */
+        ILL_String *iSSN; /* OPT */
+        Odr_external *system_no; /* OPT */
+        ILL_String *additional_no_letters; /* OPT */
+        ILL_String *verification_reference_source; /* OPT */
 };
 
 struct ILL_Location_Info {
-	ILL_System_Id *location_id;
-	ILL_System_Address *location_address; /* OPT */
-	ILL_String *location_note; /* OPT */
+        ILL_System_Id *location_id;
+        ILL_System_Address *location_address; /* OPT */
+        ILL_String *location_note; /* OPT */
 };
 
 struct ILL_Locations_Results {
-	ILL_Reason_Locs_Provided *reason_locs_provided; /* OPT */
-	int num_locations;
-	ILL_Location_Info **locations;
+        ILL_Reason_Locs_Provided *reason_locs_provided; /* OPT */
+        int num_locations;
+        ILL_Location_Info **locations;
 };
 
 #define ILL_Medium_Type_printed 1
@@ -986,23 +986,23 @@ struct ILL_Locations_Results {
 #define ILL_Medium_Type_other 7
 
 struct ILL_Name_Of_Person_Or_Institution {
-	int which;
-	union {
-		ILL_String *name_of_person;
-		ILL_String *name_of_institution;
+        int which;
+        union {
+                ILL_String *name_of_person;
+                ILL_String *name_of_institution;
 #define ILL_Name_Of_Person_Or_Institution_name_of_person 1
 #define ILL_Name_Of_Person_Or_Institution_name_of_institution 2
-	} u;
+        } u;
 };
 
 struct ILL_Person_Or_Institution_Symbol {
-	int which;
-	union {
-		ILL_String *person_symbol;
-		ILL_String *institution_symbol;
+        int which;
+        union {
+                ILL_String *person_symbol;
+                ILL_String *institution_symbol;
 #define ILL_Person_Or_Institution_Symbol_person_symbol 1
 #define ILL_Person_Or_Institution_Symbol_institution_symbol 2
-	} u;
+        } u;
 };
 
 #define ILL_Place_On_Hold_Type_yes 1
@@ -1010,26 +1010,26 @@ struct ILL_Person_Or_Institution_Symbol {
 #define ILL_Place_On_Hold_Type_according_to_responder_policy 3
 
 struct ILL_Postal_Address {
-	ILL_Name_Of_Person_Or_Institution *name_of_person_or_institution; /* OPT */
-	ILL_String *extended_postal_delivery_address; /* OPT */
-	ILL_String *street_and_number; /* OPT */
-	ILL_String *post_office_box; /* OPT */
-	ILL_String *city; /* OPT */
-	ILL_String *region; /* OPT */
-	ILL_String *country; /* OPT */
-	ILL_String *postal_code; /* OPT */
+        ILL_Name_Of_Person_Or_Institution *name_of_person_or_institution; /* OPT */
+        ILL_String *extended_postal_delivery_address; /* OPT */
+        ILL_String *street_and_number; /* OPT */
+        ILL_String *post_office_box; /* OPT */
+        ILL_String *city; /* OPT */
+        ILL_String *region; /* OPT */
+        ILL_String *country; /* OPT */
+        ILL_String *postal_code; /* OPT */
 };
 
 struct ILL_Provider_Error_Report {
-	int which;
-	union {
-		ILL_General_Problem *general_problem;
-		ILL_Transaction_Id_Problem *transaction_id_problem;
-		ILL_State_Transition_Prohibited *state_transition_prohibited;
+        int which;
+        union {
+                ILL_General_Problem *general_problem;
+                ILL_Transaction_Id_Problem *transaction_id_problem;
+                ILL_State_Transition_Prohibited *state_transition_prohibited;
 #define ILL_Provider_Error_Report_general_problem 1
 #define ILL_Provider_Error_Report_transaction_id_problem 2
 #define ILL_Provider_Error_Report_state_transition_prohibited 3
-	} u;
+        } u;
 };
 
 #define ILL_Reason_Locs_Provided_in_use_on_loan 1
@@ -1083,29 +1083,29 @@ struct ILL_Provider_Error_Report {
 #define ILL_Report_Source_provider 2
 
 struct ILL_Requester_Optional_Messages_Type {
-	Odr_bool *can_send_RECEIVED;
-	Odr_bool *can_send_RETURNED;
+        Odr_bool *can_send_RECEIVED;
+        Odr_bool *can_send_RETURNED;
 #define ILL_Requester_Optional_Messages_Type_requires 1
 #define ILL_Requester_Optional_Messages_Type_desires 2
 #define ILL_Requester_Optional_Messages_Type_neither 3
-	Odr_int *requester_SHIPPED;
+        Odr_int *requester_SHIPPED;
 #define ILL_Requester_Optional_Messages_Type_requires 1
 #define ILL_Requester_Optional_Messages_Type_desires 2
 #define ILL_Requester_Optional_Messages_Type_neither 3
-	Odr_int *requester_CHECKED_IN;
+        Odr_int *requester_CHECKED_IN;
 };
 
 struct ILL_Responder_Optional_Messages_Type {
-	Odr_bool *can_send_SHIPPED;
-	Odr_bool *can_send_CHECKED_IN;
+        Odr_bool *can_send_SHIPPED;
+        Odr_bool *can_send_CHECKED_IN;
 #define ILL_Responder_Optional_Messages_Type_requires 1
 #define ILL_Responder_Optional_Messages_Type_desires 2
 #define ILL_Responder_Optional_Messages_Type_neither 3
-	Odr_int *responder_RECEIVED;
+        Odr_int *responder_RECEIVED;
 #define ILL_Responder_Optional_Messages_Type_requires 1
 #define ILL_Responder_Optional_Messages_Type_desires 2
 #define ILL_Responder_Optional_Messages_Type_neither 3
-	Odr_int *responder_RETURNED;
+        Odr_int *responder_RETURNED;
 };
 
 struct ILL_Retry_Results {
@@ -1122,94 +1122,94 @@ struct ILL_Retry_Results {
 #define ILL_Retry_Results_on_hold 19
 #define ILL_Retry_Results_other 27
 #define ILL_Retry_Results_responder_specific 28
-	Odr_int *reason_not_available; /* OPT */
-	ILL_ISO_Date *retry_date; /* OPT */
-	int num_locations;
-	ILL_Location_Info **locations; /* OPT */
+        Odr_int *reason_not_available; /* OPT */
+        ILL_ISO_Date *retry_date; /* OPT */
+        int num_locations;
+        ILL_Location_Info **locations; /* OPT */
 };
 
 struct ILL_Search_Type {
-	ILL_String *level_of_service; /* OPT */
-	ILL_ISO_Date *need_before_date; /* OPT */
+        ILL_String *level_of_service; /* OPT */
+        ILL_ISO_Date *need_before_date; /* OPT */
 #define ILL_Search_Type_need_Before_Date 1
 #define ILL_Search_Type_other_Date 2
 #define ILL_Search_Type_no_Expiry 3
-	Odr_int *expiry_flag;
-	ILL_ISO_Date *expiry_date; /* OPT */
+        Odr_int *expiry_flag;
+        ILL_ISO_Date *expiry_date; /* OPT */
 };
 
 
 
 struct ILL_Send_To_List_Type_s {
-	ILL_System_Id *system_id;
-	ILL_Account_Number *account_number; /* OPT */
-	ILL_System_Address *system_address; /* OPT */
+        ILL_System_Id *system_id;
+        ILL_Account_Number *account_number; /* OPT */
+        ILL_System_Address *system_address; /* OPT */
 };
 
 struct ILL_Send_To_List_Type {
-	int num;
-	ILL_Send_To_List_Type_s **elements;
+        int num;
+        ILL_Send_To_List_Type_s **elements;
 };
 
 struct ILL_Service_Date_this {
-	ILL_ISO_Date *date;
-	ILL_ISO_Time *time; /* OPT */
+        ILL_ISO_Date *date;
+        ILL_ISO_Time *time; /* OPT */
 };
 
 struct ILL_Service_Date_original {
-	ILL_ISO_Date *date;
-	ILL_ISO_Time *time; /* OPT */
+        ILL_ISO_Date *date;
+        ILL_ISO_Time *time; /* OPT */
 };
 
 struct ILL_Service_Date_Time {
-	ILL_Service_Date_this *date_time_of_this_service;
-	ILL_Service_Date_original *date_time_of_original_service; /* OPT */
+        ILL_Service_Date_this *date_time_of_this_service;
+        ILL_Service_Date_original *date_time_of_original_service; /* OPT */
 };
 
 
 
 struct ILL_State_Transition_Prohibited {
-	ILL_APDU_Type *aPDU_type;
-	ILL_Current_State *current_state;
+        ILL_APDU_Type *aPDU_type;
+        ILL_Current_State *current_state;
 };
 
 struct ILL_Status_Report {
-	ILL_History_Report *user_status_report;
-	ILL_Current_State *provider_status_report;
+        ILL_History_Report *user_status_report;
+        ILL_Current_State *provider_status_report;
 };
 
 struct ILL_Supplemental_Item_Description {
-	int num;
-	Odr_external **elements;
+        int num;
+        Odr_external **elements;
 };
 
 struct ILL_Supply_Details {
-	ILL_ISO_Date *date_shipped; /* OPT */
-	ILL_Date_Due *date_due; /* OPT */
-	Odr_int *chargeable_units; /* OPT */
-	ILL_Amount *cost; /* OPT */
+        ILL_ISO_Date *date_shipped; /* OPT */
+        ILL_Date_Due *date_due; /* OPT */
+        Odr_int *chargeable_units; /* OPT */
+        ILL_Amount *cost; /* OPT */
 #define ILL_Supply_Details_library_use_only 22
 #define ILL_Supply_Details_no_reproduction 23
 #define ILL_Supply_Details_client_signature_required 24
 #define ILL_Supply_Details_special_collections_supervision_required 25
 #define ILL_Supply_Details_other 27
-	Odr_int *shipped_conditions; /* OPT */
-	int which;
-	union {
-		ILL_Transportation_Mode *physical_delivery;
-		ILL_Electronic_Delivery_Service *electronic_delivery;
+        Odr_int *shipped_conditions; /* OPT */
+        int which;
+        union {
+                ILL_Transportation_Mode *physical_delivery;
+                ILL_Electronic_Delivery_Service *electronic_delivery;
 #define ILL_Supply_Details_physical_delivery 1
 #define ILL_Supply_Details_electronic_delivery 2
-	} u; /* OPT */
-	ILL_Amount *insured_for; /* OPT */
-	ILL_Amount *return_insurance_require; /* OPT */
-	int num_no_of_units_per_medium;
-	ILL_Units_Per_Medium_Type **no_of_units_per_medium; /* OPT */
+        } u; /* OPT */
+        ILL_Amount *insured_for; /* OPT */
+        ILL_Amount *return_insurance_require; /* OPT */
+        int num_no_of_units_per_medium;
+        ILL_Units_Per_Medium_Type **no_of_units_per_medium; /* OPT */
 };
 
 struct ILL_Supply_Medium_Info_Type {
-	ILL_Supply_Medium_Type *supply_medium_type;
-	ILL_String *medium_characteristics; /* OPT */
+        ILL_Supply_Medium_Type *supply_medium_type;
+        ILL_String *medium_characteristics; /* OPT */
 };
 
 #define ILL_Supply_Medium_Type_printed 1
@@ -1221,33 +1221,33 @@ struct ILL_Supply_Medium_Info_Type {
 #define ILL_Supply_Medium_Type_other 7
 
 struct ILL_System_Address {
-	ILL_String *telecom_service_identifier; /* OPT */
-	ILL_String *telecom_service_address; /* OPT */
+        ILL_String *telecom_service_identifier; /* OPT */
+        ILL_String *telecom_service_address; /* OPT */
 };
 
 struct ILL_System_Id {
-	ILL_Person_Or_Institution_Symbol *person_or_institution_symbol; /* OPT */
-	ILL_Name_Of_Person_Or_Institution *name_of_person_or_institution; /* OPT */
+        ILL_Person_Or_Institution_Symbol *person_or_institution_symbol; /* OPT */
+        ILL_Name_Of_Person_Or_Institution *name_of_person_or_institution; /* OPT */
 };
 
 struct ILL_Third_Party_Info_Type {
-	Odr_bool *permission_to_forward;
-	Odr_bool *permission_to_chain;
-	Odr_bool *permission_to_partition;
-	Odr_bool *permission_to_change_send_to_list;
-	ILL_System_Address *initial_requester_address; /* OPT */
+        Odr_bool *permission_to_forward;
+        Odr_bool *permission_to_chain;
+        Odr_bool *permission_to_partition;
+        Odr_bool *permission_to_change_send_to_list;
+        ILL_System_Address *initial_requester_address; /* OPT */
 #define ILL_Third_Party_Info_Type_ordered 1
 #define ILL_Third_Party_Info_Type_unordered 2
-	Odr_int *preference;
-	ILL_Send_To_List_Type *send_to_list; /* OPT */
-	ILL_Already_Tried_List_Type *already_tried_list; /* OPT */
+        Odr_int *preference;
+        ILL_Send_To_List_Type *send_to_list; /* OPT */
+        ILL_Already_Tried_List_Type *already_tried_list; /* OPT */
 };
 
 struct ILL_Transaction_Id {
-	ILL_System_Id *initial_requester_id; /* OPT */
-	ILL_String *transaction_group_qualifier;
-	ILL_String *transaction_qualifier;
-	ILL_String *sub_transaction_qualifier; /* OPT */
+        ILL_System_Id *initial_requester_id; /* OPT */
+        ILL_String *transaction_group_qualifier;
+        ILL_String *transaction_qualifier;
+        ILL_String *sub_transaction_qualifier; /* OPT */
 };
 
 #define ILL_Transaction_Id_Problem_duplicate_transaction_id 1
@@ -1273,28 +1273,28 @@ struct ILL_Transaction_Id {
 #define ILL_Unable_To_Perform_other 3
 
 struct ILL_Unfilled_Results {
-	ILL_Reason_Unfilled *reason_unfilled;
-	int num_locations;
-	ILL_Location_Info **locations; /* OPT */
+        ILL_Reason_Unfilled *reason_unfilled;
+        int num_locations;
+        ILL_Location_Info **locations; /* OPT */
 };
 
 struct ILL_Units_Per_Medium_Type {
-	ILL_Supply_Medium_Type *medium;
-	Odr_int *no_of_units;
+        ILL_Supply_Medium_Type *medium;
+        Odr_int *no_of_units;
 };
 
 struct ILL_User_Error_Report {
-	int which;
-	union {
-		ILL_Already_Forwarded *already_forwarded;
-		ILL_Intermediary_Problem *intermediary_problem;
-		ILL_Security_Problem *security_problem;
-		ILL_Unable_To_Perform *unable_to_perform;
+        int which;
+        union {
+                ILL_Already_Forwarded *already_forwarded;
+                ILL_Intermediary_Problem *intermediary_problem;
+                ILL_Security_Problem *security_problem;
+                ILL_Unable_To_Perform *unable_to_perform;
 #define ILL_User_Error_Report_already_forwarded 1
 #define ILL_User_Error_Report_intermediary_problem 2
 #define ILL_User_Error_Report_security_problem 3
 #define ILL_User_Error_Report_unable_to_perform 4
-	} u;
+        } u;
 };
 
 struct ILL_Will_Supply_Results {
@@ -1307,12 +1307,12 @@ struct ILL_Will_Supply_Results {
 #define ILL_Will_Supply_Results_other 27
 #define ILL_Will_Supply_Results_responder_specific 28
 #define ILL_Will_Supply_Results_electronic_delivery 30
-	Odr_int *reason_will_supply;
-	ILL_ISO_Date *supply_date; /* OPT */
-	ILL_Postal_Address *return_to_address; /* OPT */
-	int num_locations;
-	ILL_Location_Info **locations; /* OPT */
-	ILL_Electronic_Delivery_Service *electronic_delivery_service; /* OPT */
+        Odr_int *reason_will_supply;
+        ILL_ISO_Date *supply_date; /* OPT */
+        ILL_Postal_Address *return_to_address; /* OPT */
+        int num_locations;
+        ILL_Location_Info **locations; /* OPT */
+        ILL_Electronic_Delivery_Service *electronic_delivery_service; /* OPT */
 };
 
 

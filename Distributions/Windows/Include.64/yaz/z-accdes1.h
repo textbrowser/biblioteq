@@ -24,19 +24,19 @@ YAZ_EXPORT int z_DRNType(ODR o, Z_DRNType **p, int opt, const char *name);
 extern "C" {
 #endif
 struct Z_DES_RN_Object {
-	int which;
-	union {
-		Z_DRNType *challenge;
-		Z_DRNType *response;
+        int which;
+        union {
+                Z_DRNType *challenge;
+                Z_DRNType *response;
 #define Z_DES_RN_Object_challenge 1
 #define Z_DES_RN_Object_response 2
-	} u;
+        } u;
 };
 
 struct Z_DRNType {
-	Odr_oct *userId; /* OPT */
-	Odr_oct *salt; /* OPT */
-	Odr_oct *randomNumber;
+        Odr_oct *userId; /* OPT */
+        Odr_oct *salt; /* OPT */
+        Odr_oct *randomNumber;
 };
 
 #ifdef __cplusplus

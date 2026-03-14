@@ -44,62 +44,62 @@ YAZ_EXPORT int z_EITargetPart(ODR o, Z_EITargetPart **p, int opt, const char *na
 extern "C" {
 #endif
 struct Z_EIExportInvocationEsRequest {
-	Z_EIOriginPartToKeep *toKeep;
-	Z_EIOriginPartNotToKeep *notToKeep;
+        Z_EIOriginPartToKeep *toKeep;
+        Z_EIOriginPartNotToKeep *notToKeep;
 };
 
 struct Z_EIExportInvocationTaskPackage {
-	Z_EIOriginPartToKeep *originPart;
-	Z_EITargetPart *targetPart; /* OPT */
+        Z_EIOriginPartToKeep *originPart;
+        Z_EITargetPart *targetPart; /* OPT */
 };
 
 struct Z_EIExportInvocation {
-	int which;
-	union {
-		Z_EIExportInvocationEsRequest *esRequest;
-		Z_EIExportInvocationTaskPackage *taskPackage;
+        int which;
+        union {
+                Z_EIExportInvocationEsRequest *esRequest;
+                Z_EIExportInvocationTaskPackage *taskPackage;
 #define Z_EIExportInvocation_esRequest 1
 #define Z_EIExportInvocation_taskPackage 2
-	} u;
+        } u;
 };
 
 struct Z_EIOriginPartToKeep {
-	int which;
-	union {
-		Z_InternationalString *packageName;
-		Z_ESExportSpecification *packageSpec;
+        int which;
+        union {
+                Z_InternationalString *packageName;
+                Z_ESExportSpecification *packageSpec;
 #define Z_EIOriginPartToKeep_packageName 1
 #define Z_EIOriginPartToKeep_packageSpec 2
-	} u;
-	Odr_int *numberOfCopies;
+        } u;
+        Odr_int *numberOfCopies;
 };
 
 struct Z_EIOriginPartNotToKeepRanges_s {
-	Odr_int *start;
-	Odr_int *count; /* OPT */
+        Odr_int *start;
+        Odr_int *count; /* OPT */
 };
 
 struct Z_EIOriginPartNotToKeepRanges {
-	int num;
-	Z_EIOriginPartNotToKeepRanges_s **elements;
+        int num;
+        Z_EIOriginPartNotToKeepRanges_s **elements;
 };
 
 struct Z_EIOriginPartNotToKeep {
-	Z_InternationalString *resultSetId;
-	int which;
-	union {
-		Odr_null *all;
-		Z_EIOriginPartNotToKeepRanges *ranges;
+        Z_InternationalString *resultSetId;
+        int which;
+        union {
+                Odr_null *all;
+                Z_EIOriginPartNotToKeepRanges *ranges;
 #define Z_EIOriginPartNotToKeep_all 1
 #define Z_EIOriginPartNotToKeep_ranges 2
-	} u;
+        } u;
 };
 
 struct Z_EITargetPart {
-	Z_IntUnit *estimatedQuantity; /* OPT */
-	Z_IntUnit *quantitySoFar; /* OPT */
-	Z_IntUnit *estimatedCost; /* OPT */
-	Z_IntUnit *costSoFar; /* OPT */
+        Z_IntUnit *estimatedQuantity; /* OPT */
+        Z_IntUnit *quantitySoFar; /* OPT */
+        Z_IntUnit *estimatedCost; /* OPT */
+        Z_IntUnit *costSoFar; /* OPT */
 };
 
 #ifdef __cplusplus

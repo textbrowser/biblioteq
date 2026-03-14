@@ -319,33 +319,33 @@ YAZ_EXPORT int z_StringOrNumeric(ODR o, Z_StringOrNumeric **p, int opt, const ch
 extern "C" {
 #endif
 struct Z_APDU {
-	int which;
-	union {
-		Z_InitRequest *initRequest;
-		Z_InitResponse *initResponse;
-		Z_SearchRequest *searchRequest;
-		Z_SearchResponse *searchResponse;
-		Z_PresentRequest *presentRequest;
-		Z_PresentResponse *presentResponse;
-		Z_DeleteResultSetRequest *deleteResultSetRequest;
-		Z_DeleteResultSetResponse *deleteResultSetResponse;
-		Z_AccessControlRequest *accessControlRequest;
-		Z_AccessControlResponse *accessControlResponse;
-		Z_ResourceControlRequest *resourceControlRequest;
-		Z_ResourceControlResponse *resourceControlResponse;
-		Z_TriggerResourceControlRequest *triggerResourceControlRequest;
-		Z_ResourceReportRequest *resourceReportRequest;
-		Z_ResourceReportResponse *resourceReportResponse;
-		Z_ScanRequest *scanRequest;
-		Z_ScanResponse *scanResponse;
-		Z_SortRequest *sortRequest;
-		Z_SortResponse *sortResponse;
-		Z_Segment *segmentRequest;
-		Z_ExtendedServicesRequest *extendedServicesRequest;
-		Z_ExtendedServicesResponse *extendedServicesResponse;
-		Z_Close *close;
-		Z_DuplicateDetectionRequest *duplicateDetectionRequest;
-		Z_DuplicateDetectionResponse *duplicateDetectionResponse;
+        int which;
+        union {
+                Z_InitRequest *initRequest;
+                Z_InitResponse *initResponse;
+                Z_SearchRequest *searchRequest;
+                Z_SearchResponse *searchResponse;
+                Z_PresentRequest *presentRequest;
+                Z_PresentResponse *presentResponse;
+                Z_DeleteResultSetRequest *deleteResultSetRequest;
+                Z_DeleteResultSetResponse *deleteResultSetResponse;
+                Z_AccessControlRequest *accessControlRequest;
+                Z_AccessControlResponse *accessControlResponse;
+                Z_ResourceControlRequest *resourceControlRequest;
+                Z_ResourceControlResponse *resourceControlResponse;
+                Z_TriggerResourceControlRequest *triggerResourceControlRequest;
+                Z_ResourceReportRequest *resourceReportRequest;
+                Z_ResourceReportResponse *resourceReportResponse;
+                Z_ScanRequest *scanRequest;
+                Z_ScanResponse *scanResponse;
+                Z_SortRequest *sortRequest;
+                Z_SortResponse *sortResponse;
+                Z_Segment *segmentRequest;
+                Z_ExtendedServicesRequest *extendedServicesRequest;
+                Z_ExtendedServicesResponse *extendedServicesResponse;
+                Z_Close *close;
+                Z_DuplicateDetectionRequest *duplicateDetectionRequest;
+                Z_DuplicateDetectionResponse *duplicateDetectionResponse;
 #define Z_APDU_initRequest 1
 #define Z_APDU_initResponse 2
 #define Z_APDU_searchRequest 3
@@ -371,55 +371,55 @@ struct Z_APDU {
 #define Z_APDU_close 23
 #define Z_APDU_duplicateDetectionRequest 24
 #define Z_APDU_duplicateDetectionResponse 25
-	} u;
+        } u;
 };
 
 struct Z_InitRequest {
-	Z_ReferenceId *referenceId; /* OPT */
-	Z_ProtocolVersion *protocolVersion;
-	Z_Options *options;
-	Odr_int *preferredMessageSize;
-	Odr_int *maximumRecordSize;
-	Z_IdAuthentication *idAuthentication; /* OPT */
-	Z_InternationalString *implementationId; /* OPT */
-	Z_InternationalString *implementationName; /* OPT */
-	Z_InternationalString *implementationVersion; /* OPT */
-	Z_External *userInformationField; /* OPT */
-	Z_OtherInformation *otherInfo; /* OPT */
+        Z_ReferenceId *referenceId; /* OPT */
+        Z_ProtocolVersion *protocolVersion;
+        Z_Options *options;
+        Odr_int *preferredMessageSize;
+        Odr_int *maximumRecordSize;
+        Z_IdAuthentication *idAuthentication; /* OPT */
+        Z_InternationalString *implementationId; /* OPT */
+        Z_InternationalString *implementationName; /* OPT */
+        Z_InternationalString *implementationVersion; /* OPT */
+        Z_External *userInformationField; /* OPT */
+        Z_OtherInformation *otherInfo; /* OPT */
 };
 
 struct Z_IdPass {
-	Z_InternationalString *groupId; /* OPT */
-	Z_InternationalString *userId; /* OPT */
-	Z_InternationalString *password; /* OPT */
+        Z_InternationalString *groupId; /* OPT */
+        Z_InternationalString *userId; /* OPT */
+        Z_InternationalString *password; /* OPT */
 };
 
 struct Z_IdAuthentication {
-	int which;
-	union {
-		char *open;
-		Z_IdPass *idPass;
-		Odr_null *anonymous;
-		Z_External *other;
+        int which;
+        union {
+                char *open;
+                Z_IdPass *idPass;
+                Odr_null *anonymous;
+                Z_External *other;
 #define Z_IdAuthentication_open 1
 #define Z_IdAuthentication_idPass 2
 #define Z_IdAuthentication_anonymous 3
 #define Z_IdAuthentication_other 4
-	} u;
+        } u;
 };
 
 struct Z_InitResponse {
-	Z_ReferenceId *referenceId; /* OPT */
-	Z_ProtocolVersion *protocolVersion;
-	Z_Options *options;
-	Odr_int *preferredMessageSize;
-	Odr_int *maximumRecordSize;
-	Odr_bool *result;
-	Z_InternationalString *implementationId; /* OPT */
-	Z_InternationalString *implementationName; /* OPT */
-	Z_InternationalString *implementationVersion; /* OPT */
-	Z_External *userInformationField; /* OPT */
-	Z_OtherInformation *otherInfo; /* OPT */
+        Z_ReferenceId *referenceId; /* OPT */
+        Z_ProtocolVersion *protocolVersion;
+        Z_Options *options;
+        Odr_int *preferredMessageSize;
+        Odr_int *maximumRecordSize;
+        Odr_bool *result;
+        Z_InternationalString *implementationId; /* OPT */
+        Z_InternationalString *implementationName; /* OPT */
+        Z_InternationalString *implementationVersion; /* OPT */
+        Z_External *userInformationField; /* OPT */
+        Z_OtherInformation *otherInfo; /* OPT */
 };
 
 #define Z_ProtocolVersion_1 0
@@ -449,32 +449,32 @@ struct Z_InitResponse {
 #define Z_Options_stringSchema 21
 
 struct Z_SearchRequest {
-	Z_ReferenceId *referenceId; /* OPT */
-	Odr_int *smallSetUpperBound;
-	Odr_int *largeSetLowerBound;
-	Odr_int *mediumSetPresentNumber;
-	Odr_bool *replaceIndicator;
-	Z_InternationalString *resultSetName;
-	int num_databaseNames;
-	Z_DatabaseName **databaseNames;
-	Z_ElementSetNames *smallSetElementSetNames; /* OPT */
-	Z_ElementSetNames *mediumSetElementSetNames; /* OPT */
-	Odr_oid *preferredRecordSyntax; /* OPT */
-	Z_Query *query;
-	Z_OtherInformation *additionalSearchInfo; /* OPT */
-	Z_OtherInformation *otherInfo; /* OPT */
+        Z_ReferenceId *referenceId; /* OPT */
+        Odr_int *smallSetUpperBound;
+        Odr_int *largeSetLowerBound;
+        Odr_int *mediumSetPresentNumber;
+        Odr_bool *replaceIndicator;
+        Z_InternationalString *resultSetName;
+        int num_databaseNames;
+        Z_DatabaseName **databaseNames;
+        Z_ElementSetNames *smallSetElementSetNames; /* OPT */
+        Z_ElementSetNames *mediumSetElementSetNames; /* OPT */
+        Odr_oid *preferredRecordSyntax; /* OPT */
+        Z_Query *query;
+        Z_OtherInformation *additionalSearchInfo; /* OPT */
+        Z_OtherInformation *otherInfo; /* OPT */
 };
 
 struct Z_Query {
-	int which;
-	union {
-		void *type_0;
-		Z_RPNQuery *type_1;
-		Odr_oct *type_2;
-		Odr_oct *type_100;
-		Z_RPNQuery *type_101;
-		Odr_oct *type_102;
-		Z_External *type_104;
+        int which;
+        union {
+                void *type_0;
+                Z_RPNQuery *type_1;
+                Odr_oct *type_2;
+                Odr_oct *type_100;
+                Z_RPNQuery *type_101;
+                Odr_oct *type_102;
+                Z_External *type_104;
 #define Z_Query_type_0 1
 #define Z_Query_type_1 2
 #define Z_Query_type_2 3
@@ -482,68 +482,68 @@ struct Z_Query {
 #define Z_Query_type_101 5
 #define Z_Query_type_102 6
 #define Z_Query_type_104 7
-	} u;
+        } u;
 };
 
 struct Z_RPNQuery {
-	Z_AttributeSetId *attributeSetId;
-	Z_RPNStructure *RPNStructure;
+        Z_AttributeSetId *attributeSetId;
+        Z_RPNStructure *RPNStructure;
 };
 
 struct Z_Complex {
-	Z_RPNStructure *s1;
-	Z_RPNStructure *s2;
-	Z_Operator *roperator;
+        Z_RPNStructure *s1;
+        Z_RPNStructure *s2;
+        Z_Operator *roperator;
 };
 
 struct Z_RPNStructure {
-	int which;
-	union {
-		Z_Operand *simple;
-		Z_Complex *complex;
+        int which;
+        union {
+                Z_Operand *simple;
+                Z_Complex *complex;
 #define Z_RPNStructure_simple 1
 #define Z_RPNStructure_complex 2
-	} u;
+        } u;
 };
 
 struct Z_Operand {
-	int which;
-	union {
-		Z_AttributesPlusTerm *attributesPlusTerm;
-		Z_ResultSetId *resultSetId;
-		Z_ResultSetPlusAttributes *resultAttr;
+        int which;
+        union {
+                Z_AttributesPlusTerm *attributesPlusTerm;
+                Z_ResultSetId *resultSetId;
+                Z_ResultSetPlusAttributes *resultAttr;
 #define Z_Operand_APT 1
 #define Z_Operand_resultSetId 2
 #define Z_Operand_resultAttr 3
-	} u;
+        } u;
 };
 
 struct Z_AttributesPlusTerm {
-	Z_AttributeList *attributes;
-	Z_Term *term;
+        Z_AttributeList *attributes;
+        Z_Term *term;
 };
 
 struct Z_ResultSetPlusAttributes {
-	Z_ResultSetId *resultSet;
-	Z_AttributeList *attributes;
+        Z_ResultSetId *resultSet;
+        Z_AttributeList *attributes;
 };
 
 struct Z_AttributeList {
-	int num_attributes;
-	Z_AttributeElement **attributes;
+        int num_attributes;
+        Z_AttributeElement **attributes;
 };
 
 struct Z_Term {
-	int which;
-	union {
-		Odr_oct *general;
-		Odr_int *numeric;
-		Z_InternationalString *characterString;
-		Odr_oid *oid;
-		char *dateTime;
-		Z_External *external;
-		Z_IntUnit *integerAndUnit;
-		Odr_null *null;
+        int which;
+        union {
+                Odr_oct *general;
+                Odr_int *numeric;
+                Z_InternationalString *characterString;
+                Odr_oid *oid;
+                char *dateTime;
+                Z_External *external;
+                Z_IntUnit *integerAndUnit;
+                Odr_null *null;
 #define Z_Term_general 1
 #define Z_Term_numeric 2
 #define Z_Term_characterString 3
@@ -552,60 +552,60 @@ struct Z_Term {
 #define Z_Term_external 6
 #define Z_Term_integerAndUnit 7
 #define Z_Term_null 8
-	} u;
+        } u;
 };
 
 struct Z_Operator {
-	int which;
-	union {
-		Odr_null *op_and;
-		Odr_null *op_or;
-		Odr_null *and_not;
-		Z_ProximityOperator *prox;
+        int which;
+        union {
+                Odr_null *op_and;
+                Odr_null *op_or;
+                Odr_null *and_not;
+                Z_ProximityOperator *prox;
 #define Z_Operator_and 1
 #define Z_Operator_or 2
 #define Z_Operator_and_not 3
 #define Z_Operator_prox 4
-	} u;
+        } u;
 };
 
 struct Z_ComplexAttribute {
-	int num_list;
-	Z_StringOrNumeric **list;
-	int num_semanticAction;
-	Odr_int **semanticAction; /* OPT */
+        int num_list;
+        Z_StringOrNumeric **list;
+        int num_semanticAction;
+        Odr_int **semanticAction; /* OPT */
 };
 
 struct Z_AttributeElement {
-	Z_AttributeSetId *attributeSet; /* OPT */
-	Odr_int *attributeType;
-	int which;
-	union {
-		Odr_int *numeric;
-		Z_ComplexAttribute *complex;
+        Z_AttributeSetId *attributeSet; /* OPT */
+        Odr_int *attributeType;
+        int which;
+        union {
+                Odr_int *numeric;
+                Z_ComplexAttribute *complex;
 #define Z_AttributeValue_numeric 1
 #define Z_AttributeValue_complex 2
-	} value;
+        } value;
 };
 
 struct Z_ProximityOperator {
-	Odr_bool *exclusion; /* OPT */
-	Odr_int *distance;
-	Odr_bool *ordered;
+        Odr_bool *exclusion; /* OPT */
+        Odr_int *distance;
+        Odr_bool *ordered;
 #define Z_ProximityOperator_Prox_lessThan 1
 #define Z_ProximityOperator_Prox_lessThanOrEqual 2
 #define Z_ProximityOperator_Prox_equal 3
 #define Z_ProximityOperator_Prox_greaterThanOrEqual 4
 #define Z_ProximityOperator_Prox_greaterThan 5
 #define Z_ProximityOperator_Prox_notEqual 6
-	Odr_int *relationType;
-	int which;
-	union {
-		Z_ProxUnit *known;
-		Odr_int *zprivate;
+        Odr_int *relationType;
+        int which;
+        union {
+                Z_ProxUnit *known;
+                Odr_int *zprivate;
 #define Z_ProximityOperator_known 1
 #define Z_ProximityOperator_private 2
-	} u;
+        } u;
 };
 
 #define Z_ProxUnit_character 1
@@ -621,158 +621,158 @@ struct Z_ProximityOperator {
 #define Z_ProxUnit_byte 11
 
 struct Z_SearchResponse {
-	Z_ReferenceId *referenceId; /* OPT */
-	Odr_int *resultCount;
-	Odr_int *numberOfRecordsReturned;
-	Odr_int *nextResultSetPosition;
-	Odr_bool *searchStatus;
+        Z_ReferenceId *referenceId; /* OPT */
+        Odr_int *resultCount;
+        Odr_int *numberOfRecordsReturned;
+        Odr_int *nextResultSetPosition;
+        Odr_bool *searchStatus;
 #define Z_SearchResponse_subset 1
 #define Z_SearchResponse_interim 2
 #define Z_SearchResponse_none 3
 #define Z_SearchResponse_estimate 4
-	Odr_int *resultSetStatus; /* OPT */
-	Z_PresentStatus *presentStatus; /* OPT */
-	Z_Records *records; /* OPT */
-	Z_OtherInformation *additionalSearchInfo; /* OPT */
-	Z_OtherInformation *otherInfo; /* OPT */
+        Odr_int *resultSetStatus; /* OPT */
+        Z_PresentStatus *presentStatus; /* OPT */
+        Z_Records *records; /* OPT */
+        Z_OtherInformation *additionalSearchInfo; /* OPT */
+        Z_OtherInformation *otherInfo; /* OPT */
 };
 
 struct Z_RecordComposition {
-	int which;
-	union {
-		Z_ElementSetNames *simple;
-		Z_CompSpec *complex;
+        int which;
+        union {
+                Z_ElementSetNames *simple;
+                Z_CompSpec *complex;
 #define Z_RecordComp_simple 1
 #define Z_RecordComp_complex 2
-	} u;
+        } u;
 };
 
 struct Z_PresentRequest {
-	Z_ReferenceId *referenceId; /* OPT */
-	Z_ResultSetId *resultSetId;
-	Odr_int *resultSetStartPoint;
-	Odr_int *numberOfRecordsRequested;
-	int num_ranges;
-	Z_Range **additionalRanges; /* OPT */
-	Z_RecordComposition *recordComposition; /* OPT */
-	Odr_oid *preferredRecordSyntax; /* OPT */
-	Odr_int *maxSegmentCount; /* OPT */
-	Odr_int *maxRecordSize; /* OPT */
-	Odr_int *maxSegmentSize; /* OPT */
-	Z_OtherInformation *otherInfo; /* OPT */
+        Z_ReferenceId *referenceId; /* OPT */
+        Z_ResultSetId *resultSetId;
+        Odr_int *resultSetStartPoint;
+        Odr_int *numberOfRecordsRequested;
+        int num_ranges;
+        Z_Range **additionalRanges; /* OPT */
+        Z_RecordComposition *recordComposition; /* OPT */
+        Odr_oid *preferredRecordSyntax; /* OPT */
+        Odr_int *maxSegmentCount; /* OPT */
+        Odr_int *maxRecordSize; /* OPT */
+        Odr_int *maxSegmentSize; /* OPT */
+        Z_OtherInformation *otherInfo; /* OPT */
 };
 
 struct Z_Segment {
-	Z_ReferenceId *referenceId; /* OPT */
-	Odr_int *numberOfRecordsReturned;
-	int num_segmentRecords;
-	Z_NamePlusRecord **segmentRecords;
-	Z_OtherInformation *otherInfo; /* OPT */
+        Z_ReferenceId *referenceId; /* OPT */
+        Odr_int *numberOfRecordsReturned;
+        int num_segmentRecords;
+        Z_NamePlusRecord **segmentRecords;
+        Z_OtherInformation *otherInfo; /* OPT */
 };
 
 struct Z_PresentResponse {
-	Z_ReferenceId *referenceId; /* OPT */
-	Odr_int *numberOfRecordsReturned;
-	Odr_int *nextResultSetPosition;
-	Z_PresentStatus *presentStatus;
-	Z_Records *records; /* OPT */
-	Z_OtherInformation *otherInfo; /* OPT */
+        Z_ReferenceId *referenceId; /* OPT */
+        Odr_int *numberOfRecordsReturned;
+        Odr_int *nextResultSetPosition;
+        Z_PresentStatus *presentStatus;
+        Z_Records *records; /* OPT */
+        Z_OtherInformation *otherInfo; /* OPT */
 };
 
 struct Z_NamePlusRecordList {
-	int num_records;
-	Z_NamePlusRecord **records;
+        int num_records;
+        Z_NamePlusRecord **records;
 };
 
 struct Z_DiagRecs {
-	int num_diagRecs;
-	Z_DiagRec **diagRecs;
+        int num_diagRecs;
+        Z_DiagRec **diagRecs;
 };
 
 struct Z_Records {
-	int which;
-	union {
-		Z_NamePlusRecordList *databaseOrSurDiagnostics;
-		Z_DefaultDiagFormat *nonSurrogateDiagnostic;
-		Z_DiagRecs *multipleNonSurDiagnostics;
+        int which;
+        union {
+                Z_NamePlusRecordList *databaseOrSurDiagnostics;
+                Z_DefaultDiagFormat *nonSurrogateDiagnostic;
+                Z_DiagRecs *multipleNonSurDiagnostics;
 #define Z_Records_DBOSD 1
 #define Z_Records_NSD 2
 #define Z_Records_multipleNSD 3
-	} u;
+        } u;
 };
 
 struct Z_NamePlusRecord {
-	Z_DatabaseName *databaseName; /* OPT */
-	int which;
-	union {
-		Z_External *databaseRecord;
-		Z_DiagRec *surrogateDiagnostic;
-		Z_FragmentSyntax *startingFragment;
-		Z_FragmentSyntax *intermediateFragment;
-		Z_FragmentSyntax *finalFragment;
+        Z_DatabaseName *databaseName; /* OPT */
+        int which;
+        union {
+                Z_External *databaseRecord;
+                Z_DiagRec *surrogateDiagnostic;
+                Z_FragmentSyntax *startingFragment;
+                Z_FragmentSyntax *intermediateFragment;
+                Z_FragmentSyntax *finalFragment;
 #define Z_NamePlusRecord_databaseRecord 1
 #define Z_NamePlusRecord_surrogateDiagnostic 2
 #define Z_NamePlusRecord_startingFragment 3
 #define Z_NamePlusRecord_intermediateFragment 4
 #define Z_NamePlusRecord_finalFragment 5
-	} u;
+        } u;
 };
 
 struct Z_FragmentSyntax {
-	int which;
-	union {
-		Z_External *externallyTagged;
-		Odr_oct *notExternallyTagged;
+        int which;
+        union {
+                Z_External *externallyTagged;
+                Odr_oct *notExternallyTagged;
 #define Z_FragmentSyntax_externallyTagged 1
 #define Z_FragmentSyntax_notExternallyTagged 2
-	} u;
+        } u;
 };
 
 struct Z_DiagRec {
-	int which;
-	union {
-		Z_DefaultDiagFormat *defaultFormat;
-		Z_External *externallyDefined;
+        int which;
+        union {
+                Z_DefaultDiagFormat *defaultFormat;
+                Z_External *externallyDefined;
 #define Z_DiagRec_defaultFormat 1
 #define Z_DiagRec_externallyDefined 2
-	} u;
+        } u;
 };
 
 struct Z_DefaultDiagFormat {
-	Odr_oid *diagnosticSetId;
-	Odr_int *condition;
-	int which;
-	union {
-		char *v2Addinfo;
-		Z_InternationalString *v3Addinfo;
+        Odr_oid *diagnosticSetId;
+        Odr_int *condition;
+        int which;
+        union {
+                char *v2Addinfo;
+                Z_InternationalString *v3Addinfo;
 #define Z_DefaultDiagFormat_v2Addinfo 1
 #define Z_DefaultDiagFormat_v3Addinfo 2
-	} u;
+        } u;
 };
 
 struct Z_Range {
-	Odr_int *startingPosition;
-	Odr_int *numberOfRecords;
+        Odr_int *startingPosition;
+        Odr_int *numberOfRecords;
 };
 
 struct Z_DatabaseSpecificUnit {
-	Z_DatabaseName *dbName;
-	Z_ElementSetName *esn;
+        Z_DatabaseName *dbName;
+        Z_ElementSetName *esn;
 };
 
 struct Z_DatabaseSpecific {
-	int num;
-	Z_DatabaseSpecificUnit **elements;
+        int num;
+        Z_DatabaseSpecificUnit **elements;
 };
 
 struct Z_ElementSetNames {
-	int which;
-	union {
-		Z_InternationalString *generic;
-		Z_DatabaseSpecific *databaseSpecific;
+        int which;
+        union {
+                Z_InternationalString *generic;
+                Z_DatabaseSpecific *databaseSpecific;
 #define Z_ElementSetNames_generic 1
 #define Z_ElementSetNames_databaseSpecific 2
-	} u;
+        } u;
 };
 
 #define Z_PresentStatus_success 0
@@ -783,68 +783,68 @@ struct Z_ElementSetNames {
 #define Z_PresentStatus_failure 5
 
 struct Z_DbSpecific {
-	Z_DatabaseName *db;
-	Z_Specification *spec;
+        Z_DatabaseName *db;
+        Z_Specification *spec;
 };
 
 struct Z_CompSpec {
-	Odr_bool *selectAlternativeSyntax;
-	Z_Specification *generic; /* OPT */
-	int num_dbSpecific;
-	Z_DbSpecific **dbSpecific; /* OPT */
-	int num_recordSyntax;
-	Odr_oid **recordSyntax; /* OPT */
+        Odr_bool *selectAlternativeSyntax;
+        Z_Specification *generic; /* OPT */
+        int num_dbSpecific;
+        Z_DbSpecific **dbSpecific; /* OPT */
+        int num_recordSyntax;
+        Odr_oid **recordSyntax; /* OPT */
 };
 
 struct Z_ElementSpec {
-	int which;
-	union {
-		Z_InternationalString *elementSetName;
-		Z_External *externalSpec;
+        int which;
+        union {
+                Z_InternationalString *elementSetName;
+                Z_External *externalSpec;
 #define Z_ElementSpec_elementSetName 1
 #define Z_ElementSpec_externalSpec 2
-	} u;
+        } u;
 };
 
 struct Z_Specification {
-	int which;
-	union {
-		Odr_oid *oid;
-		Z_InternationalString *uri;
+        int which;
+        union {
+                Odr_oid *oid;
+                Z_InternationalString *uri;
 #define Z_Schema_oid 1
 #define Z_Schema_uri 2
-	} schema; /* OPT */
-	Z_ElementSpec *elementSpec; /* OPT */
+        } schema; /* OPT */
+        Z_ElementSpec *elementSpec; /* OPT */
 };
 
 struct Z_DeleteResultSetRequest {
-	Z_ReferenceId *referenceId; /* OPT */
+        Z_ReferenceId *referenceId; /* OPT */
 #define Z_DeleteResultSetRequest_list 0
 #define Z_DeleteResultSetRequest_all 1
-	Odr_int *deleteFunction;
-	int num_resultSetList;
-	Z_ResultSetId **resultSetList; /* OPT */
-	Z_OtherInformation *otherInfo; /* OPT */
+        Odr_int *deleteFunction;
+        int num_resultSetList;
+        Z_ResultSetId **resultSetList; /* OPT */
+        Z_OtherInformation *otherInfo; /* OPT */
 };
 
 struct Z_DeleteResultSetResponse {
-	Z_ReferenceId *referenceId; /* OPT */
-	Z_DeleteStatus *deleteOperationStatus;
-	Z_ListStatuses *deleteListStatuses; /* OPT */
-	Odr_int *numberNotDeleted; /* OPT */
-	Z_ListStatuses *bulkStatuses; /* OPT */
-	Z_InternationalString *deleteMessage; /* OPT */
-	Z_OtherInformation *otherInfo; /* OPT */
+        Z_ReferenceId *referenceId; /* OPT */
+        Z_DeleteStatus *deleteOperationStatus;
+        Z_ListStatuses *deleteListStatuses; /* OPT */
+        Odr_int *numberNotDeleted; /* OPT */
+        Z_ListStatuses *bulkStatuses; /* OPT */
+        Z_InternationalString *deleteMessage; /* OPT */
+        Z_OtherInformation *otherInfo; /* OPT */
 };
 
 struct Z_ListStatus {
-	Z_ResultSetId *id;
-	Z_DeleteStatus *status;
+        Z_ResultSetId *id;
+        Z_DeleteStatus *status;
 };
 
 struct Z_ListStatuses {
-	int num;
-	Z_ListStatus **elements;
+        int num;
+        Z_ListStatus **elements;
 };
 
 #define Z_DeleteStatus_success 0
@@ -860,70 +860,70 @@ struct Z_ListStatuses {
 #define Z_DeleteStatus_resultSetInUse 10
 
 struct Z_AccessControlRequest {
-	Z_ReferenceId *referenceId; /* OPT */
-	int which;
-	union {
-		Odr_oct *simpleForm;
-		Z_External *externallyDefined;
+        Z_ReferenceId *referenceId; /* OPT */
+        int which;
+        union {
+                Odr_oct *simpleForm;
+                Z_External *externallyDefined;
 #define Z_AccessControlRequest_simpleForm 1
 #define Z_AccessControlRequest_externallyDefined 2
-	} u;
-	Z_OtherInformation *otherInfo; /* OPT */
+        } u;
+        Z_OtherInformation *otherInfo; /* OPT */
 };
 
 struct Z_AccessControlResponse {
-	Z_ReferenceId *referenceId; /* OPT */
-	int which;
-	union {
-		Odr_oct *simpleForm;
-		Z_External *externallyDefined;
+        Z_ReferenceId *referenceId; /* OPT */
+        int which;
+        union {
+                Odr_oct *simpleForm;
+                Z_External *externallyDefined;
 #define Z_AccessControlResponse_simpleForm 1
 #define Z_AccessControlResponse_externallyDefined 2
-	} u; /* OPT */
-	Z_DiagRec *diagnostic; /* OPT */
-	Z_OtherInformation *otherInfo; /* OPT */
+        } u; /* OPT */
+        Z_DiagRec *diagnostic; /* OPT */
+        Z_OtherInformation *otherInfo; /* OPT */
 };
 
 struct Z_ResourceControlRequest {
-	Z_ReferenceId *referenceId; /* OPT */
-	Odr_bool *suspendedFlag; /* OPT */
-	Z_ResourceReport *resourceReport; /* OPT */
+        Z_ReferenceId *referenceId; /* OPT */
+        Odr_bool *suspendedFlag; /* OPT */
+        Z_ResourceReport *resourceReport; /* OPT */
 #define Z_ResourceControlRequest_subset 1
 #define Z_ResourceControlRequest_interim 2
 #define Z_ResourceControlRequest_none 3
-	Odr_int *partialResultsAvailable; /* OPT */
-	Odr_bool *responseRequired;
-	Odr_bool *triggeredRequestFlag; /* OPT */
-	Z_OtherInformation *otherInfo; /* OPT */
+        Odr_int *partialResultsAvailable; /* OPT */
+        Odr_bool *responseRequired;
+        Odr_bool *triggeredRequestFlag; /* OPT */
+        Z_OtherInformation *otherInfo; /* OPT */
 };
 
 struct Z_ResourceControlResponse {
-	Z_ReferenceId *referenceId; /* OPT */
-	Odr_bool *continueFlag;
-	Odr_bool *resultSetWanted; /* OPT */
-	Z_OtherInformation *otherInfo; /* OPT */
+        Z_ReferenceId *referenceId; /* OPT */
+        Odr_bool *continueFlag;
+        Odr_bool *resultSetWanted; /* OPT */
+        Z_OtherInformation *otherInfo; /* OPT */
 };
 
 struct Z_TriggerResourceControlRequest {
-	Z_ReferenceId *referenceId; /* OPT */
+        Z_ReferenceId *referenceId; /* OPT */
 #define Z_TriggerResourceControlRequest_resourceReport 1
 #define Z_TriggerResourceControlRequest_resourceControl 2
 #define Z_TriggerResourceControlRequest_cancel 3
-	Odr_int *requestedAction;
-	Z_ResourceReportId *prefResourceReportFormat; /* OPT */
-	Odr_bool *resultSetWanted; /* OPT */
-	Z_OtherInformation *otherInfo; /* OPT */
+        Odr_int *requestedAction;
+        Z_ResourceReportId *prefResourceReportFormat; /* OPT */
+        Odr_bool *resultSetWanted; /* OPT */
+        Z_OtherInformation *otherInfo; /* OPT */
 };
 
 struct Z_ResourceReportRequest {
-	Z_ReferenceId *referenceId; /* OPT */
-	Z_ReferenceId *opId; /* OPT */
-	Z_ResourceReportId *prefResourceReportFormat; /* OPT */
-	Z_OtherInformation *otherInfo; /* OPT */
+        Z_ReferenceId *referenceId; /* OPT */
+        Z_ReferenceId *opId; /* OPT */
+        Z_ResourceReportId *prefResourceReportFormat; /* OPT */
+        Z_OtherInformation *otherInfo; /* OPT */
 };
 
 struct Z_ResourceReportResponse {
-	Z_ReferenceId *referenceId; /* OPT */
+        Z_ReferenceId *referenceId; /* OPT */
 #define Z_ResourceReportResponse_success 0
 #define Z_ResourceReportResponse_partial 1
 #define Z_ResourceReportResponse_failure_1 2
@@ -932,9 +932,9 @@ struct Z_ResourceReportResponse {
 #define Z_ResourceReportResponse_failure_4 5
 #define Z_ResourceReportResponse_failure_5 6
 #define Z_ResourceReportResponse_failure_6 7
-	Odr_int *resourceReportStatus;
-	Z_ResourceReport *resourceReport; /* OPT */
-	Z_OtherInformation *otherInfo; /* OPT */
+        Odr_int *resourceReportStatus;
+        Z_ResourceReport *resourceReport; /* OPT */
+        Z_OtherInformation *otherInfo; /* OPT */
 };
 
 
@@ -942,20 +942,20 @@ struct Z_ResourceReportResponse {
 
 
 struct Z_ScanRequest {
-	Z_ReferenceId *referenceId; /* OPT */
-	int num_databaseNames;
-	Z_DatabaseName **databaseNames;
-	Z_AttributeSetId *attributeSet; /* OPT */
-	Z_AttributesPlusTerm *termListAndStartPoint;
-	Odr_int *stepSize; /* OPT */
-	Odr_int *numberOfTermsRequested;
-	Odr_int *preferredPositionInResponse; /* OPT */
-	Z_OtherInformation *otherInfo; /* OPT */
+        Z_ReferenceId *referenceId; /* OPT */
+        int num_databaseNames;
+        Z_DatabaseName **databaseNames;
+        Z_AttributeSetId *attributeSet; /* OPT */
+        Z_AttributesPlusTerm *termListAndStartPoint;
+        Odr_int *stepSize; /* OPT */
+        Odr_int *numberOfTermsRequested;
+        Odr_int *preferredPositionInResponse; /* OPT */
+        Z_OtherInformation *otherInfo; /* OPT */
 };
 
 struct Z_ScanResponse {
-	Z_ReferenceId *referenceId; /* OPT */
-	Odr_int *stepSize; /* OPT */
+        Z_ReferenceId *referenceId; /* OPT */
+        Odr_int *stepSize; /* OPT */
 #define Z_Scan_success 0
 #define Z_Scan_partial_1 1
 #define Z_Scan_partial_2 2
@@ -963,216 +963,216 @@ struct Z_ScanResponse {
 #define Z_Scan_partial_4 4
 #define Z_Scan_partial_5 5
 #define Z_Scan_failure 6
-	Odr_int *scanStatus;
-	Odr_int *numberOfEntriesReturned;
-	Odr_int *positionOfTerm; /* OPT */
-	Z_ListEntries *entries; /* OPT */
-	Z_AttributeSetId *attributeSet; /* OPT */
-	Z_OtherInformation *otherInfo; /* OPT */
+        Odr_int *scanStatus;
+        Odr_int *numberOfEntriesReturned;
+        Odr_int *positionOfTerm; /* OPT */
+        Z_ListEntries *entries; /* OPT */
+        Z_AttributeSetId *attributeSet; /* OPT */
+        Z_OtherInformation *otherInfo; /* OPT */
 };
 
 struct Z_ListEntries {
-	int num_entries;
-	Z_Entry **entries; /* OPT */
-	int num_nonsurrogateDiagnostics;
-	Z_DiagRec **nonsurrogateDiagnostics; /* OPT */
+        int num_entries;
+        Z_Entry **entries; /* OPT */
+        int num_nonsurrogateDiagnostics;
+        Z_DiagRec **nonsurrogateDiagnostics; /* OPT */
 };
 
 struct Z_Entry {
-	int which;
-	union {
-		Z_TermInfo *termInfo;
-		Z_DiagRec *surrogateDiagnostic;
+        int which;
+        union {
+                Z_TermInfo *termInfo;
+                Z_DiagRec *surrogateDiagnostic;
 #define Z_Entry_termInfo 1
 #define Z_Entry_surrogateDiagnostic 2
-	} u;
+        } u;
 };
 
 struct Z_TermInfo {
-	Z_Term *term;
-	Z_InternationalString *displayTerm; /* OPT */
-	Z_AttributeList *suggestedAttributes; /* OPT */
-	int num_alternativeTerm;
-	Z_AttributesPlusTerm **alternativeTerm; /* OPT */
-	Odr_int *globalOccurrences; /* OPT */
-	Z_OccurrenceByAttributes *byAttributes; /* OPT */
-	Z_OtherInformation *otherTermInfo; /* OPT */
+        Z_Term *term;
+        Z_InternationalString *displayTerm; /* OPT */
+        Z_AttributeList *suggestedAttributes; /* OPT */
+        int num_alternativeTerm;
+        Z_AttributesPlusTerm **alternativeTerm; /* OPT */
+        Odr_int *globalOccurrences; /* OPT */
+        Z_OccurrenceByAttributes *byAttributes; /* OPT */
+        Z_OtherInformation *otherTermInfo; /* OPT */
 };
 
 struct Z_byDatabaseList_s {
-	Z_DatabaseName *db;
-	Odr_int *num; /* OPT */
-	Z_OtherInformation *otherDbInfo; /* OPT */
+        Z_DatabaseName *db;
+        Odr_int *num; /* OPT */
+        Z_OtherInformation *otherDbInfo; /* OPT */
 };
 
 struct Z_byDatabaseList {
-	int num;
-	Z_byDatabaseList_s **elements;
+        int num;
+        Z_byDatabaseList_s **elements;
 };
 
 struct Z_OccurrenceByAttributesElem {
-	Z_AttributeList *attributes;
-	int which;
-	union {
-		Odr_int *global;
-		Z_byDatabaseList *byDatabase;
+        Z_AttributeList *attributes;
+        int which;
+        union {
+                Odr_int *global;
+                Z_byDatabaseList *byDatabase;
 #define Z_OccurrenceByAttributesElem_global 1
 #define Z_OccurrenceByAttributesElem_byDatabase 2
-	} u; /* OPT */
-	Z_OtherInformation *otherOccurInfo; /* OPT */
+        } u; /* OPT */
+        Z_OtherInformation *otherOccurInfo; /* OPT */
 };
 
 struct Z_OccurrenceByAttributes {
-	int num;
-	Z_OccurrenceByAttributesElem **elements;
+        int num;
+        Z_OccurrenceByAttributesElem **elements;
 };
 
 struct Z_SortKeySpecList {
-	int num_specs;
-	Z_SortKeySpec **specs;
+        int num_specs;
+        Z_SortKeySpec **specs;
 };
 
 struct Z_SortRequest {
-	Z_ReferenceId *referenceId; /* OPT */
-	int num_inputResultSetNames;
-	Z_InternationalString **inputResultSetNames;
-	Z_InternationalString *sortedResultSetName;
-	Z_SortKeySpecList *sortSequence;
-	Z_OtherInformation *otherInfo; /* OPT */
+        Z_ReferenceId *referenceId; /* OPT */
+        int num_inputResultSetNames;
+        Z_InternationalString **inputResultSetNames;
+        Z_InternationalString *sortedResultSetName;
+        Z_SortKeySpecList *sortSequence;
+        Z_OtherInformation *otherInfo; /* OPT */
 };
 
 struct Z_SortResponse {
-	Z_ReferenceId *referenceId; /* OPT */
+        Z_ReferenceId *referenceId; /* OPT */
 #define Z_SortResponse_success 0
 #define Z_SortResponse_partial_1 1
 #define Z_SortResponse_failure 2
-	Odr_int *sortStatus;
+        Odr_int *sortStatus;
 #define Z_SortResponse_empty 1
 #define Z_SortResponse_interim 2
 #define Z_SortResponse_unchanged 3
 #define Z_SortResponse_none 4
-	Odr_int *resultSetStatus; /* OPT */
-	int num_diagnostics;
-	Z_DiagRec **diagnostics; /* OPT */
-	Odr_int *resultCount; /* OPT */
-	Z_OtherInformation *otherInfo; /* OPT */
+        Odr_int *resultSetStatus; /* OPT */
+        int num_diagnostics;
+        Z_DiagRec **diagnostics; /* OPT */
+        Odr_int *resultCount; /* OPT */
+        Z_OtherInformation *otherInfo; /* OPT */
 };
 
 struct Z_SortKeySpec {
-	Z_SortElement *sortElement;
+        Z_SortElement *sortElement;
 #define Z_SortKeySpec_ascending 0
 #define Z_SortKeySpec_descending 1
 #define Z_SortKeySpec_ascendingByFrequency 3
 #define Z_SortKeySpec_descendingByfrequency 4
-	Odr_int *sortRelation;
+        Odr_int *sortRelation;
 #define Z_SortKeySpec_caseSensitive 0
 #define Z_SortKeySpec_caseInsensitive 1
-	Odr_int *caseSensitivity;
-	int which;
-	union {
-		Odr_null *abort;
-		Odr_null *null;
-		Odr_oct *missingValueData;
+        Odr_int *caseSensitivity;
+        int which;
+        union {
+                Odr_null *abort;
+                Odr_null *null;
+                Odr_oct *missingValueData;
 #define Z_SortKeySpec_abort 1
 #define Z_SortKeySpec_null 2
 #define Z_SortKeySpec_missingValueData 3
-	} u; /* OPT */
+        } u; /* OPT */
 };
 
 struct Z_SortDbSpecificList_s {
-	Z_DatabaseName *databaseName;
-	Z_SortKey *dbSort;
+        Z_DatabaseName *databaseName;
+        Z_SortKey *dbSort;
 };
 
 struct Z_SortDbSpecificList {
-	int num;
-	Z_SortDbSpecificList_s **elements;
+        int num;
+        Z_SortDbSpecificList_s **elements;
 };
 
 struct Z_SortElement {
-	int which;
-	union {
-		Z_SortKey *generic;
-		Z_SortDbSpecificList *databaseSpecific;
+        int which;
+        union {
+                Z_SortKey *generic;
+                Z_SortDbSpecificList *databaseSpecific;
 #define Z_SortElement_generic 1
 #define Z_SortElement_databaseSpecific 2
-	} u;
+        } u;
 };
 
 struct Z_SortAttributes {
-	Z_AttributeSetId *id;
-	Z_AttributeList *list;
+        Z_AttributeSetId *id;
+        Z_AttributeList *list;
 };
 
 struct Z_SortKey {
-	int which;
-	union {
-		Z_InternationalString *sortField;
-		Z_Specification *elementSpec;
-		Z_SortAttributes *sortAttributes;
+        int which;
+        union {
+                Z_InternationalString *sortField;
+                Z_Specification *elementSpec;
+                Z_SortAttributes *sortAttributes;
 #define Z_SortKey_sortField 1
 #define Z_SortKey_elementSpec 2
 #define Z_SortKey_sortAttributes 3
-	} u;
+        } u;
 };
 
 struct Z_ExtendedServicesRequest {
-	Z_ReferenceId *referenceId; /* OPT */
+        Z_ReferenceId *referenceId; /* OPT */
 #define Z_ExtendedServicesRequest_create 1
 #define Z_ExtendedServicesRequest_delete 2
 #define Z_ExtendedServicesRequest_modify 3
-	Odr_int *function;
-	Odr_oid *packageType;
-	Z_InternationalString *packageName; /* OPT */
-	Z_InternationalString *userId; /* OPT */
-	Z_IntUnit *retentionTime; /* OPT */
-	Z_Permissions *permissions; /* OPT */
-	Z_InternationalString *description; /* OPT */
-	Z_External *taskSpecificParameters; /* OPT */
+        Odr_int *function;
+        Odr_oid *packageType;
+        Z_InternationalString *packageName; /* OPT */
+        Z_InternationalString *userId; /* OPT */
+        Z_IntUnit *retentionTime; /* OPT */
+        Z_Permissions *permissions; /* OPT */
+        Z_InternationalString *description; /* OPT */
+        Z_External *taskSpecificParameters; /* OPT */
 #define Z_ExtendedServicesRequest_wait 1
 #define Z_ExtendedServicesRequest_waitIfPossible 2
 #define Z_ExtendedServicesRequest_dontWait 3
 #define Z_ExtendedServicesRequest_dontReturnPackage 4
-	Odr_int *waitAction;
-	Z_ElementSetName *elements; /* OPT */
-	Z_OtherInformation *otherInfo; /* OPT */
+        Odr_int *waitAction;
+        Z_ElementSetName *elements; /* OPT */
+        Z_OtherInformation *otherInfo; /* OPT */
 };
 
 struct Z_ExtendedServicesResponse {
-	Z_ReferenceId *referenceId; /* OPT */
+        Z_ReferenceId *referenceId; /* OPT */
 #define Z_ExtendedServicesResponse_done 1
 #define Z_ExtendedServicesResponse_accepted 2
 #define Z_ExtendedServicesResponse_failure 3
-	Odr_int *operationStatus;
-	int num_diagnostics;
-	Z_DiagRec **diagnostics; /* OPT */
-	Z_External *taskPackage; /* OPT */
-	Z_OtherInformation *otherInfo; /* OPT */
+        Odr_int *operationStatus;
+        int num_diagnostics;
+        Z_DiagRec **diagnostics; /* OPT */
+        Z_External *taskPackage; /* OPT */
+        Z_OtherInformation *otherInfo; /* OPT */
 };
 
 struct Z_Permissions_s {
-	Z_InternationalString *userId; /* OPT */
+        Z_InternationalString *userId; /* OPT */
 #define Z_Permissions_s_delete 1
 #define Z_Permissions_s_modifyContents 2
 #define Z_Permissions_s_modifyPermissions 3
 #define Z_Permissions_s_present 4
 #define Z_Permissions_s_invoke 5
-	int num_allowableFunctions;
-	Odr_int **allowableFunctions;
+        int num_allowableFunctions;
+        Odr_int **allowableFunctions;
 };
 
 struct Z_Permissions {
-	int num;
-	Z_Permissions_s **elements;
+        int num;
+        Z_Permissions_s **elements;
 };
 
 struct Z_Close {
-	Z_ReferenceId *referenceId; /* OPT */
-	Z_CloseReason *closeReason;
-	Z_InternationalString *diagnosticInformation; /* OPT */
-	Z_ResourceReportId *resourceReportFormat; /* OPT */
-	Z_ResourceReport *resourceReport; /* OPT */
-	Z_OtherInformation *otherInfo; /* OPT */
+        Z_ReferenceId *referenceId; /* OPT */
+        Z_CloseReason *closeReason;
+        Z_InternationalString *diagnosticInformation; /* OPT */
+        Z_ResourceReportId *resourceReportFormat; /* OPT */
+        Z_ResourceReport *resourceReport; /* OPT */
+        Z_OtherInformation *otherInfo; /* OPT */
 };
 
 #define Z_Close_finished 0
@@ -1187,83 +1187,83 @@ struct Z_Close {
 #define Z_Close_unspecified 9
 
 struct Z_DuplicateDetectionRequest {
-	Z_ReferenceId *referenceId; /* OPT */
-	int num_inputResultSetIds;
-	Z_InternationalString **inputResultSetIds;
-	Z_InternationalString *outputResultSetName;
-	Z_External *applicablePortionOfRecord; /* OPT */
-	int num_duplicateDetectionCriteria;
-	Z_DuplicateDetectionCriterion **duplicateDetectionCriteria; /* OPT */
-	Odr_bool *clustering; /* OPT */
-	int num_retentionCriteria;
-	Z_RetentionCriterion **retentionCriteria;
-	int num_sortCriteria;
-	Z_SortCriterion **sortCriteria; /* OPT */
-	Z_OtherInformation *otherInfo; /* OPT */
+        Z_ReferenceId *referenceId; /* OPT */
+        int num_inputResultSetIds;
+        Z_InternationalString **inputResultSetIds;
+        Z_InternationalString *outputResultSetName;
+        Z_External *applicablePortionOfRecord; /* OPT */
+        int num_duplicateDetectionCriteria;
+        Z_DuplicateDetectionCriterion **duplicateDetectionCriteria; /* OPT */
+        Odr_bool *clustering; /* OPT */
+        int num_retentionCriteria;
+        Z_RetentionCriterion **retentionCriteria;
+        int num_sortCriteria;
+        Z_SortCriterion **sortCriteria; /* OPT */
+        Z_OtherInformation *otherInfo; /* OPT */
 };
 
 struct Z_DuplicateDetectionCriterion {
-	int which;
-	union {
-		Odr_int *levelOfMatch;
-		Odr_null *caseSensitive;
-		Odr_null *punctuationSensitive;
-		Z_External *regularExpression;
-		Odr_null *rsDuplicates;
+        int which;
+        union {
+                Odr_int *levelOfMatch;
+                Odr_null *caseSensitive;
+                Odr_null *punctuationSensitive;
+                Z_External *regularExpression;
+                Odr_null *rsDuplicates;
 #define Z_DuplicateDetectionCriterion_levelOfMatch 1
 #define Z_DuplicateDetectionCriterion_caseSensitive 2
 #define Z_DuplicateDetectionCriterion_punctuationSensitive 3
 #define Z_DuplicateDetectionCriterion_regularExpression 4
 #define Z_DuplicateDetectionCriterion_rsDuplicates 5
-	} u;
+        } u;
 };
 
 struct Z_RetentionCriterion {
-	int which;
-	union {
-		Odr_int *numberOfEntries;
-		Odr_int *percentOfEntries;
-		Odr_null *duplicatesOnly;
-		Odr_null *discardRsDuplicates;
+        int which;
+        union {
+                Odr_int *numberOfEntries;
+                Odr_int *percentOfEntries;
+                Odr_null *duplicatesOnly;
+                Odr_null *discardRsDuplicates;
 #define Z_RetentionCriterion_numberOfEntries 1
 #define Z_RetentionCriterion_percentOfEntries 2
 #define Z_RetentionCriterion_duplicatesOnly 3
 #define Z_RetentionCriterion_discardRsDuplicates 4
-	} u;
+        } u;
 };
 
 struct Z_SortCriterionPreferredDatabases {
-	int num;
-	Z_InternationalString **elements;
+        int num;
+        Z_InternationalString **elements;
 };
 
 struct Z_SortCriterion {
-	int which;
-	union {
-		Odr_null *mostComprehensive;
-		Odr_null *leastConmprehensive;
-		Odr_null *mostRecent;
-		Odr_null *oldest;
-		Odr_null *leastCost;
-		Z_SortCriterionPreferredDatabases *preferredDatabases;
+        int which;
+        union {
+                Odr_null *mostComprehensive;
+                Odr_null *leastConmprehensive;
+                Odr_null *mostRecent;
+                Odr_null *oldest;
+                Odr_null *leastCost;
+                Z_SortCriterionPreferredDatabases *preferredDatabases;
 #define Z_SortCriterion_mostComprehensive 1
 #define Z_SortCriterion_leastConmprehensive 2
 #define Z_SortCriterion_mostRecent 3
 #define Z_SortCriterion_oldest 4
 #define Z_SortCriterion_leastCost 5
 #define Z_SortCriterion_preferredDatabases 6
-	} u;
+        } u;
 };
 
 struct Z_DuplicateDetectionResponse {
-	Z_ReferenceId *referenceId; /* OPT */
+        Z_ReferenceId *referenceId; /* OPT */
 #define Z_DuplicateDetectionResponse_success 0
 #define Z_DuplicateDetectionResponse_failure 1
-	Odr_int *status;
-	Odr_int *resultSetCount; /* OPT */
-	int num_diagnostics;
-	Z_DiagRec **diagnostics; /* OPT */
-	Z_OtherInformation *otherInfo; /* OPT */
+        Odr_int *status;
+        Odr_int *resultSetCount; /* OPT */
+        int num_diagnostics;
+        Z_DiagRec **diagnostics; /* OPT */
+        Z_OtherInformation *otherInfo; /* OPT */
 };
 
 
@@ -1277,52 +1277,52 @@ struct Z_DuplicateDetectionResponse {
 
 
 struct Z_OtherInformationUnit {
-	Z_InfoCategory *category; /* OPT */
-	int which;
-	union {
-		Z_InternationalString *characterInfo;
-		Odr_oct *binaryInfo;
-		Z_External *externallyDefinedInfo;
-		Odr_oid *oid;
+        Z_InfoCategory *category; /* OPT */
+        int which;
+        union {
+                Z_InternationalString *characterInfo;
+                Odr_oct *binaryInfo;
+                Z_External *externallyDefinedInfo;
+                Odr_oid *oid;
 #define Z_OtherInfo_characterInfo 1
 #define Z_OtherInfo_binaryInfo 2
 #define Z_OtherInfo_externallyDefinedInfo 3
 #define Z_OtherInfo_oid 4
-	} information;
+        } information;
 };
 
 struct Z_OtherInformation {
-	int num_elements;
-	Z_OtherInformationUnit **list;
+        int num_elements;
+        Z_OtherInformationUnit **list;
 };
 
 struct Z_InfoCategory {
-	Odr_oid *categoryTypeId; /* OPT */
-	Odr_int *categoryValue;
+        Odr_oid *categoryTypeId; /* OPT */
+        Odr_int *categoryValue;
 };
 
 struct Z_IntUnit {
-	Odr_int *value;
-	Z_Unit *unitUsed;
+        Odr_int *value;
+        Z_Unit *unitUsed;
 };
 
 struct Z_Unit {
-	Z_InternationalString *unitSystem; /* OPT */
-	Z_StringOrNumeric *unitType; /* OPT */
-	Z_StringOrNumeric *unit; /* OPT */
-	Odr_int *scaleFactor; /* OPT */
+        Z_InternationalString *unitSystem; /* OPT */
+        Z_StringOrNumeric *unitType; /* OPT */
+        Z_StringOrNumeric *unit; /* OPT */
+        Odr_int *scaleFactor; /* OPT */
 };
 
 
 
 struct Z_StringOrNumeric {
-	int which;
-	union {
-		Z_InternationalString *string;
-		Odr_int *numeric;
+        int which;
+        union {
+                Z_InternationalString *string;
+                Odr_int *numeric;
 #define Z_StringOrNumeric_string 1
 #define Z_StringOrNumeric_numeric 2
-	} u;
+        } u;
 };
 
 #ifdef __cplusplus

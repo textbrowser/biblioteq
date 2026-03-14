@@ -24,12 +24,12 @@ YAZ_EXPORT int z_DBName(ODR o, Z_DBName **p, int opt, const char *name);
 extern "C" {
 #endif
 struct Z_OCLC_UserInformation {
-	char *motd; /* OPT */
-	int num_dblist;
-	Z_DBName **dblist; /* OPT */
-	Odr_bool *failReason; /* OPT */
-	Odr_int *code; /* OPT */
-	char *text; /* OPT */
+        char *motd; /* OPT */
+        int num_dblist;
+        Z_DBName **dblist; /* OPT */
+        Odr_bool *failReason; /* OPT */
+        Odr_int *code; /* OPT */
+        char *text; /* OPT */
 };
 
 

@@ -69,18 +69,18 @@ YAZ_EXPORT void yaz_retrieval_destroy(yaz_retrieval_t p);
        <retrieval syntax="usmarc" name="F"/>
        <retrieval syntax="usmarc" name="B"/>
        <retrieval syntax="xml" name="marcxml"
-		  identifier="info:srw/schema/1/marcxml-v1.1">
+                  identifier="info:srw/schema/1/marcxml-v1.1">
          <backend syntax="usmarc" name="F">
-	   <marc inputformat="marc" outputformat="marcxml"
-		 inputcharset="marc-8"/>
-	 </backend>
+           <marc inputformat="marc" outputformat="marcxml"
+                 inputcharset="marc-8"/>
+         </backend>
        </retrieval>
        <retrieval syntax="xml" name="dc">
          <backend syntax="usmarc" name="F">
-	   <marc inputformat="marc" outputformat="marcxml"
-		 inputcharset="marc-8"/>
+           <marc inputformat="marc" outputformat="marcxml"
+                 inputcharset="marc-8"/>
            <xslt stylesheet="MARC21slim2DC.xsl"/>
-	 </backend>
+         </backend>
        </retrieval>
      </retrievalinfo>
     \endverbatim

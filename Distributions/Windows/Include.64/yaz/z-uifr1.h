@@ -40,56 +40,56 @@ YAZ_EXPORT int z_QueryExpression(ODR o, Z_QueryExpression **p, int opt, const ch
 extern "C" {
 #endif
 struct Z_SearchInfoReport_s {
-	Z_InternationalString *subqueryId; /* OPT */
-	Odr_bool *fullQuery;
-	Z_QueryExpression *subqueryExpression; /* OPT */
-	Z_QueryExpression *subqueryInterpretation; /* OPT */
-	Z_QueryExpression *subqueryRecommendation; /* OPT */
-	Odr_int *subqueryCount; /* OPT */
-	Z_IntUnit *subqueryWeight; /* OPT */
-	Z_ResultsByDB *resultsByDB; /* OPT */
+        Z_InternationalString *subqueryId; /* OPT */
+        Odr_bool *fullQuery;
+        Z_QueryExpression *subqueryExpression; /* OPT */
+        Z_QueryExpression *subqueryInterpretation; /* OPT */
+        Z_QueryExpression *subqueryRecommendation; /* OPT */
+        Odr_int *subqueryCount; /* OPT */
+        Z_IntUnit *subqueryWeight; /* OPT */
+        Z_ResultsByDB *resultsByDB; /* OPT */
 };
 
 struct Z_SearchInfoReport {
-	int num;
-	Z_SearchInfoReport_s **elements;
+        int num;
+        Z_SearchInfoReport_s **elements;
 };
 
 struct Z_ResultsByDB_sList {
-	int num;
-	Z_DatabaseName **elements;
+        int num;
+        Z_DatabaseName **elements;
 };
 
 struct Z_ResultsByDB_s {
-	int which;
-	union {
-		Odr_null *all;
-		Z_ResultsByDB_sList *list;
+        int which;
+        union {
+                Odr_null *all;
+                Z_ResultsByDB_sList *list;
 #define Z_ResultsByDB_s_all 1
 #define Z_ResultsByDB_s_list 2
-	} u;
-	Odr_int *count; /* OPT */
-	Z_InternationalString *resultSetName; /* OPT */
+        } u;
+        Odr_int *count; /* OPT */
+        Z_InternationalString *resultSetName; /* OPT */
 };
 
 struct Z_ResultsByDB {
-	int num;
-	Z_ResultsByDB_s **elements;
+        int num;
+        Z_ResultsByDB_s **elements;
 };
 
 struct Z_QueryExpressionTerm {
-	Z_Term *queryTerm;
-	Z_InternationalString *termComment; /* OPT */
+        Z_Term *queryTerm;
+        Z_InternationalString *termComment; /* OPT */
 };
 
 struct Z_QueryExpression {
-	int which;
-	union {
-		Z_QueryExpressionTerm *term;
-		Z_Query *query;
+        int which;
+        union {
+                Z_QueryExpressionTerm *term;
+                Z_Query *query;
 #define Z_QueryExpression_term 1
 #define Z_QueryExpression_query 2
-	} u;
+        } u;
 };
 
 #ifdef __cplusplus

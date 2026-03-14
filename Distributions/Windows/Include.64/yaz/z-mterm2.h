@@ -25,13 +25,13 @@ YAZ_EXPORT int z_MultipleSearchTerms_2(ODR o, Z_MultipleSearchTerms_2 **p, int o
 extern "C" {
 #endif
 struct Z_MultipleSearchTerms_2_s {
-	Z_Term *term;
-	Odr_bool *flag; /* OPT */
+        Z_Term *term;
+        Odr_bool *flag; /* OPT */
 };
 
 struct Z_MultipleSearchTerms_2 {
-	int num;
-	Z_MultipleSearchTerms_2_s **elements;
+        int num;
+        Z_MultipleSearchTerms_2_s **elements;
 };
 
 #ifdef __cplusplus

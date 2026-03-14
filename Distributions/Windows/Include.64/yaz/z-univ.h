@@ -28,23 +28,23 @@ YAZ_EXPORT int z_UniverseReport(ODR o, Z_UniverseReport **p, int opt, const char
 extern "C" {
 #endif
 struct Z_UniverseReportHits {
-	Z_StringOrNumeric *database;
-	Z_StringOrNumeric *hits;
+        Z_StringOrNumeric *database;
+        Z_StringOrNumeric *hits;
 };
 
 struct Z_UniverseReportDuplicate {
-	Z_StringOrNumeric *hitno;
+        Z_StringOrNumeric *hitno;
 };
 
 struct Z_UniverseReport {
-	Odr_int *totalHits;
-	int which;
-	union {
-		Z_UniverseReportHits *databaseHits;
-		Z_UniverseReportDuplicate *duplicate;
+        Odr_int *totalHits;
+        int which;
+        union {
+                Z_UniverseReportHits *databaseHits;
+                Z_UniverseReportDuplicate *duplicate;
 #define Z_UniverseReport_databaseHits 1
 #define Z_UniverseReport_duplicate 2
-	} u;
+        } u;
 };
 
 #ifdef __cplusplus

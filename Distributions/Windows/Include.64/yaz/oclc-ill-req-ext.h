@@ -34,24 +34,24 @@ YAZ_EXPORT int ill_RecordNo(ODR o, ILL_RecordNo **p, int opt, const char *name);
 extern "C" {
 #endif
 struct ILL_OCLCILLRequestExtension {
-	ILL_String *clientDepartment; /* OPT */
-	ILL_String *paymentMethod; /* OPT */
-	ILL_String *uniformTitle; /* OPT */
-	ILL_String *dissertation; /* OPT */
-	ILL_String *issueNumber; /* OPT */
-	ILL_String *volume; /* OPT */
-	ILL_String *affiliations; /* OPT */
-	ILL_String *source; /* OPT */
+        ILL_String *clientDepartment; /* OPT */
+        ILL_String *paymentMethod; /* OPT */
+        ILL_String *uniformTitle; /* OPT */
+        ILL_String *dissertation; /* OPT */
+        ILL_String *issueNumber; /* OPT */
+        ILL_String *volume; /* OPT */
+        ILL_String *affiliations; /* OPT */
+        ILL_String *source; /* OPT */
 };
 
 struct ILL_SystemNo_s {
-	ILL_System *System;
-	ILL_RecordNo *recordNo;
+        ILL_System *System;
+        ILL_RecordNo *recordNo;
 };
 
 struct ILL_SystemNo {
-	int num;
-	ILL_SystemNo_s **elements;
+        int num;
+        ILL_SystemNo_s **elements;
 };
 
 #define ILL_System_dobis 1

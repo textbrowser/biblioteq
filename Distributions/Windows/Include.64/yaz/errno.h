@@ -33,6 +33,7 @@
 #define YAZ_ERRNO_H
 
 #include <yaz/yconfig.h>
+#include <stddef.h>
 
 YAZ_BEGIN_CDECL
 

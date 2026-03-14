@@ -671,6 +671,7 @@ Completed Items
      biblioteq_c.cc
      biblioteq_import.cc
 339. Dynamic ellipses in menus.
+340. YAZ 5.35 on Windows.
 
 Remaining Items
 
@@ -685,4 +686,3 @@ Remaining Items
      QSqlDriver::subscribeToNotification().
 9.   Replace apt with snap.
 10.  Add format options for deleted_date and reserved_date.
-11.  YAZ 5.35 on Windows.

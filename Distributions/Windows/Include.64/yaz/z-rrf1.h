@@ -28,15 +28,15 @@ YAZ_EXPORT int z_EstimateType(ODR o, Z_EstimateType **p, int opt, const char *na
 extern "C" {
 #endif
 struct Z_ResourceReport1 {
-	int num_estimates;
-	Z_Estimate1 **estimates;
-	Z_InternationalString *message;
+        int num_estimates;
+        Z_Estimate1 **estimates;
+        Z_InternationalString *message;
 };
 
 struct Z_Estimate1 {
-	Z_EstimateType *type;
-	Odr_int *value;
-	Odr_int *currency_code; /* OPT */
+        Z_EstimateType *type;
+        Odr_int *value;
+        Odr_int *currency_code; /* OPT */
 };
 
 #define Z_EstimateType_currentSearchRecords 1

@@ -28,24 +28,24 @@ YAZ_EXPORT int z_KRBResponse(ODR o, Z_KRBResponse **p, int opt, const char *name
 extern "C" {
 #endif
 struct Z_KRBObject {
-	int which;
-	union {
-		Z_KRBRequest *challenge;
-		Z_KRBResponse *response;
+        int which;
+        union {
+                Z_KRBRequest *challenge;
+                Z_KRBResponse *response;
 #define Z_KRBObject_challenge 1
 #define Z_KRBObject_response 2
-	} u;
+        } u;
 };
 
 struct Z_KRBRequest {
-	Z_InternationalString *service;
-	Z_InternationalString *instance; /* OPT */
-	Z_InternationalString *realm; /* OPT */
+        Z_InternationalString *service;
+        Z_InternationalString *instance; /* OPT */
+        Z_InternationalString *realm; /* OPT */
 };
 
 struct Z_KRBResponse {
-	Z_InternationalString *userid; /* OPT */
-	Odr_oct *ticket;
+        Z_InternationalString *userid; /* OPT */
+        Odr_oct *ticket;
 };
 
 #ifdef __cplusplus

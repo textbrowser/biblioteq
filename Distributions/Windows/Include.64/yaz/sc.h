@@ -63,8 +63,8 @@ YAZ_EXPORT yaz_sc_t yaz_sc_create(const char *service_name,
     the application operates (after initialization)
 */
 YAZ_EXPORT int yaz_sc_program(yaz_sc_t s, int argc, char **argv,
-	 		      int (*sc_main)(yaz_sc_t s, int argc, char **argv),
-			      void (*sc_stop)(yaz_sc_t s));
+                              int (*sc_main)(yaz_sc_t s, int argc, char **argv),
+                              void (*sc_stop)(yaz_sc_t s));
 
 /** \brief signals that sc_main applicatio starts running
     \param s service control handle

@@ -55,23 +55,23 @@ YAZ_EXPORT int z_IUTaskPackageRecordStructure(ODR o, Z_IUTaskPackageRecordStruct
 extern "C" {
 #endif
 struct Z_IUUpdateEsRequest {
-	Z_IUOriginPartToKeep *toKeep;
-	Z_IUOriginPartNotToKeep *notToKeep;
+        Z_IUOriginPartToKeep *toKeep;
+        Z_IUOriginPartNotToKeep *notToKeep;
 };
 
 struct Z_IUUpdateTaskPackage {
-	Z_IUOriginPartToKeep *originPart;
-	Z_IUTargetPart *targetPart;
+        Z_IUOriginPartToKeep *originPart;
+        Z_IUTargetPart *targetPart;
 };
 
 struct Z_IUUpdate {
-	int which;
-	union {
-		Z_IUUpdateEsRequest *esRequest;
-		Z_IUUpdateTaskPackage *taskPackage;
+        int which;
+        union {
+                Z_IUUpdateEsRequest *esRequest;
+                Z_IUUpdateTaskPackage *taskPackage;
 #define Z_IUUpdate_esRequest 1
 #define Z_IUUpdate_taskPackage 2
-	} u;
+        } u;
 };
 
 struct Z_IUOriginPartToKeep {
@@ -80,11 +80,11 @@ struct Z_IUOriginPartToKeep {
 #define Z_IUOriginPartToKeep_recordDelete 3
 #define Z_IUOriginPartToKeep_elementUpdate 4
 #define Z_IUOriginPartToKeep_specialUpdate 5
-	Odr_int *action;
-	Z_InternationalString *databaseName;
-	Odr_oid *schema; /* OPT */
-	Z_InternationalString *elementSetName; /* OPT */
-	Z_External *actionQualifier; /* OPT */
+        Odr_int *action;
+        Z_InternationalString *databaseName;
+        Odr_oid *schema; /* OPT */
+        Z_InternationalString *elementSetName; /* OPT */
+        Z_External *actionQualifier; /* OPT */
 };
 
 
@@ -93,71 +93,71 @@ struct Z_IUTargetPart {
 #define Z_IUTargetPart_success 1
 #define Z_IUTargetPart_partial 2
 #define Z_IUTargetPart_failure 3
-	Odr_int *updateStatus;
-	int num_globalDiagnostics;
-	Z_DiagRec **globalDiagnostics; /* OPT */
-	int num_taskPackageRecords;
-	Z_IUTaskPackageRecordStructure **taskPackageRecords;
+        Odr_int *updateStatus;
+        int num_globalDiagnostics;
+        Z_DiagRec **globalDiagnostics; /* OPT */
+        int num_taskPackageRecords;
+        Z_IUTaskPackageRecordStructure **taskPackageRecords;
 };
 
 struct Z_IUSuppliedRecordsId {
-	int which;
-	union {
-		char *timeStamp;
-		Z_InternationalString *versionNumber;
-		Z_External *previousVersion;
+        int which;
+        union {
+                char *timeStamp;
+                Z_InternationalString *versionNumber;
+                Z_External *previousVersion;
 #define Z_IUSuppliedRecordsId_timeStamp 1
 #define Z_IUSuppliedRecordsId_versionNumber 2
 #define Z_IUSuppliedRecordsId_previousVersion 3
-	} u;
+        } u;
 };
 
 struct Z_IUSuppliedRecords_elem {
-	int which;
-	union {
-		Odr_int *number;
-		Z_InternationalString *string;
-		Odr_oct *opaque;
+        int which;
+        union {
+                Odr_int *number;
+                Z_InternationalString *string;
+                Odr_oct *opaque;
 #define Z_IUSuppliedRecords_elem_number 1
 #define Z_IUSuppliedRecords_elem_string 2
 #define Z_IUSuppliedRecords_elem_opaque 3
-	} u; /* OPT */
-	Z_IUSuppliedRecordsId *supplementalId; /* OPT */
-	Z_IUCorrelationInfo *correlationInfo; /* OPT */
-	Z_External *record;
+        } u; /* OPT */
+        Z_IUSuppliedRecordsId *supplementalId; /* OPT */
+        Z_IUCorrelationInfo *correlationInfo; /* OPT */
+        Z_External *record;
 };
 
 struct Z_IUSuppliedRecords {
-	int num;
-	Z_IUSuppliedRecords_elem **elements;
+        int num;
+        Z_IUSuppliedRecords_elem **elements;
 };
 
 struct Z_IUCorrelationInfo {
-	Z_InternationalString *note; /* OPT */
-	Odr_int *id; /* OPT */
+        Z_InternationalString *note; /* OPT */
+        Odr_int *id; /* OPT */
 };
 
 struct Z_IUTaskPackageRecordStructureSurrogateDiagnostics {
-	int num;
-	Z_DiagRec **elements;
+        int num;
+        Z_DiagRec **elements;
 };
 
 struct Z_IUTaskPackageRecordStructure {
-	int which;
-	union {
-		Z_External *record;
-		Z_IUTaskPackageRecordStructureSurrogateDiagnostics *surrogateDiagnostics;
+        int which;
+        union {
+                Z_External *record;
+                Z_IUTaskPackageRecordStructureSurrogateDiagnostics *surrogateDiagnostics;
 #define Z_IUTaskPackageRecordStructure_record 1
 #define Z_IUTaskPackageRecordStructure_surrogateDiagnostics 2
-	} u; /* OPT */
-	Z_IUCorrelationInfo *correlationInfo; /* OPT */
+        } u; /* OPT */
+        Z_IUCorrelationInfo *correlationInfo; /* OPT */
 #define Z_IUTaskPackageRecordStructure_success 1
 #define Z_IUTaskPackageRecordStructure_queued 2
 #define Z_IUTaskPackageRecordStructure_inProcess 3
 #define Z_IUTaskPackageRecordStructure_failure 4
-	Odr_int *recordStatus;
-	int num_supplementalDiagnostics;
-	Z_DiagRec **supplementalDiagnostics; /* OPT */
+        Odr_int *recordStatus;
+        int num_supplementalDiagnostics;
+        Z_DiagRec **supplementalDiagnostics; /* OPT */
 };
 
 #ifdef __cplusplus
