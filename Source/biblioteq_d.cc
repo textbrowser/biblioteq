@@ -942,6 +942,47 @@ void biblioteq::slotAboutToShowItemsPagesMenu(void)
   prepareItemPagesMenu();
 }
 
+void biblioteq::slotAboutToShowMenuAddItem(void)
+{
+  if(ui.actionTabbed_Item_Windows->isChecked())
+    {
+      foreach(auto action, ui.menu_Add_Item->actions())
+	if(action && action != ui.action_Book)
+	  action->setText(action->text().remove(tr("...")));
+    }
+  else
+    {
+      foreach(auto action, ui.menu_Add_Item->actions())
+	if(action && action != ui.action_Book)
+	  {
+	    action->setText(action->text().remove(tr("...")));
+	    action->setText(tr("%1...").arg(action->text()));
+	  }
+    }
+}
+
+void biblioteq::slotAboutToShowMenuEdit(void)
+{
+  if(ui.actionTabbed_Item_Windows->isChecked())
+    {
+      ui.actionDuplicateEntry->setText
+	(ui.actionDuplicateEntry->text().remove(tr("...")));
+      ui.actionModifyEntry->setText
+	(ui.actionModifyEntry->text().remove(tr("...")));
+    }
+  else
+    {
+      ui.actionDuplicateEntry->setText
+	(ui.actionDuplicateEntry->text().remove(tr("...")));
+      ui.actionDuplicateEntry->setText
+	(tr("%1...").arg(ui.actionDuplicateEntry->text()));
+      ui.actionModifyEntry->setText
+	(ui.actionModifyEntry->text().remove(tr("...")));
+      ui.actionModifyEntry->setText
+	(tr("%1...").arg(ui.actionModifyEntry->text()));
+    }
+}
+
 void biblioteq::slotActionToggled(void)
 {
   auto action = qobject_cast<QAction *> (sender());

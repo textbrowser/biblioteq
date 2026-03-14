@@ -910,7 +910,7 @@
      <normaloff>:/16x16/eraser.png</normaloff>:/16x16/eraser.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Delete Selected Item(s)</string>
+    <string>&amp;Delete Selected Item(s)...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+X</string>

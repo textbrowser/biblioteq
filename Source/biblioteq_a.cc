@@ -967,10 +967,18 @@ biblioteq::biblioteq(void):QMainWindow()
 	  SIGNAL(aboutToShow(void)),
 	  this,
 	  SLOT(slotAboutToShowItemsPagesMenu(void)));
+  connect(ui.menu_Add_Item,
+	  SIGNAL(aboutToShow(void)),
+	  this,
+	  SLOT(slotAboutToShowMenuAddItem(void)));
   connect(ui.menu_Category,
 	  SIGNAL(triggered(QAction *)),
 	  this,
 	  SLOT(slotAutoPopOnFilter(QAction *)));
+  connect(ui.menu_Edit,
+	  SIGNAL(aboutToShow(void)),
+	  this,
+	  SLOT(slotAboutToShowMenuEdit(void)));
   connect(ui.modifyTool,
 	  SIGNAL(triggered(void)),
 	  this,
