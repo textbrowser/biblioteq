@@ -4435,7 +4435,7 @@ void biblioteq::slotMembersContextMenu(const QPoint &point)
 {
   QMenu menu(m_members_diag);
 
-  menu.addAction(tr("Delete Selected Member"),
+  menu.addAction(tr("Delete Selected Member..."),
 		 this,
 		 SLOT(slotRemoveMember(void)));
   menu.addAction(tr("Modify Selected Member..."),
