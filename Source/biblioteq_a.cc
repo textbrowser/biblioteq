@@ -5743,40 +5743,78 @@ void biblioteq::slotShowMenu(void)
 	      this,
 	      SLOT(slotSearch(void)));
       menu.addSeparator();
-      connect(menu.addAction(tr("&Book Search...")),
-	      SIGNAL(triggered(void)),
-	      this,
-	      SLOT(slotBookSearch(void)));
-      connect(menu.addAction(tr("&DVD Search...")),
-	      SIGNAL(triggered(void)),
-	      this,
-	      SLOT(slotDVDSearch(void)));
-      connect(menu.addAction(tr("&Grey Literature Search...")),
-	      SIGNAL(triggered(void)),
-	      this,
-	      SLOT(slotGreyLiteratureSearch(void)));
-      connect(menu.addAction(tr("&Journal Search...")),
-	      SIGNAL(triggered(void)),
-	      this,
-	      SLOT(slotJournSearch(void)));
-      connect(menu.addAction(tr("&Magazine Search...")),
-	      SIGNAL(triggered(void)),
-	      this,
-	      SLOT(slotMagSearch(void)));
-      connect(menu.addAction(tr("Music &CD Search...")),
-	      SIGNAL(triggered(void)),
-	      this,
-	      SLOT(slotCDSearch(void)));
-      connect
-	(menu.addAction(tr("&Photograph Collection Search...")),
-	 SIGNAL(triggered(void)),
-	 this,
-	 SLOT(slotPhotographSearch(void)));
-      connect
-	(menu.addAction(tr("&Video Game Search...")),
-	 SIGNAL(triggered(void)),
-	 this,
-	 SLOT(slotVideoGameSearch(void)));
+
+      if(ui.actionTabbed_Item_Windows->isChecked())
+	{
+	  connect(menu.addAction(tr("&Book Search")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotBookSearch(void)));
+	  connect(menu.addAction(tr("&DVD Search")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotDVDSearch(void)));
+	  connect(menu.addAction(tr("&Grey Literature Search")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotGreyLiteratureSearch(void)));
+	  connect(menu.addAction(tr("&Journal Search")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotJournSearch(void)));
+	  connect(menu.addAction(tr("&Magazine Search")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotMagSearch(void)));
+	  connect(menu.addAction(tr("Music &CD Search")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotCDSearch(void)));
+	  connect(menu.addAction(tr("&Photograph Collection Search")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotPhotographSearch(void)));
+	  connect(menu.addAction(tr("&Video Game Search")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotVideoGameSearch(void)));
+	}
+      else
+	{
+	  connect(menu.addAction(tr("&Book Search...")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotBookSearch(void)));
+	  connect(menu.addAction(tr("&DVD Search...")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotDVDSearch(void)));
+	  connect(menu.addAction(tr("&Grey Literature Search...")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotGreyLiteratureSearch(void)));
+	  connect(menu.addAction(tr("&Journal Search...")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotJournSearch(void)));
+	  connect(menu.addAction(tr("&Magazine Search...")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotMagSearch(void)));
+	  connect(menu.addAction(tr("Music &CD Search...")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotCDSearch(void)));
+	  connect(menu.addAction(tr("&Photograph Collection Search...")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotPhotographSearch(void)));
+	  connect(menu.addAction(tr("&Video Game Search...")),
+		  SIGNAL(triggered(void)),
+		  this,
+		  SLOT(slotVideoGameSearch(void)));
+	}
+
       menu.exec(point);
     }
   else if(sender() == userinfo_diag->m_userinfo.menu)
