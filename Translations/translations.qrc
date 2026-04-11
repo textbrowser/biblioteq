@@ -14,6 +14,7 @@
 	<file>biblioteq_pl_PL.qm</file>
 	<file>biblioteq_pt_PT.qm</file>
 	<file>biblioteq_ru_RU.qm</file>
+	<file>biblioteq_ro_RO.qm</file>
 	<file>qtbase_ar.qm</file>
 	<file>qtbase_cs.qm</file>
 	<file>qtbase_de.qm</file>
@@ -23,6 +24,7 @@
 	<file>qtbase_it.qm</file>
 	<file>qtbase_pl.qm</file>
 	<file>qtbase_ru.qm</file>
+	<file>qtbase_ro.qm</file>
 	<file>qtbase_zh_TW.qm</file>
     </qresource>
 </RCC>
