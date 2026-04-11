@@ -1064,6 +1064,7 @@ void biblioteq::slotContributors(void)
 	    "Fares Othman<br>"
 	    "Frans<br>"
 	    "Fátima Dias<br>"
+	    "Gentimir<br>"
 	    "J. Cornavin<br>"
 	    "Jeepee<br>"
 	    "Lazaros S.<br>"
