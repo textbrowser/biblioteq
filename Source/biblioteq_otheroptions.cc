@@ -235,6 +235,12 @@ QString biblioteq_otheroptions::dateFormat(const QString &it) const
 
   if(itemType.contains("book"))
     format = settings.value("otheroptions/book_date_format").toString();
+  else if(itemType.contains("book_history_deleted_date"))
+    format = settings.value
+      ("otheroptions/book_history_deleted_date").toString();
+  else if(itemType.contains("book_statistics_reserved_date"))
+    format = settings.value
+      ("otheroptions/book_statistics_reserved_date_format").toString();
   else if(itemType.contains("cd") || itemType.contains("musiccds"))
     format = settings.value("otheroptions/cd_date_format").toString();
   else if(itemType.contains("dvd"))
@@ -711,7 +717,9 @@ void biblioteq_otheroptions::prepareSettings(void)
       }
   }
 
-  list1 << tr("Books")
+  list1 << tr("Book History (Deleted Date)")
+	<< tr("Book Statistics (Reserved Date)")
+	<< tr("Books")
 	<< tr("DVDs")
 	<< tr("Grey Literature")
 	<< tr("Journals")
@@ -719,7 +727,11 @@ void biblioteq_otheroptions::prepareSettings(void)
 	<< tr("Music CDs")
 	<< tr("Photograph Collections")
 	<< tr("Video Games");
-  list2 << settings.value("otheroptions/book_date_format").toString()
+  list2 << settings.value
+           ("otheroptions/book_history_deleted_date_format").toString()
+	<< settings.value
+           ("otheroptions/book_statistics_reserved_date_format").toString()
+	<< settings.value("otheroptions/book_date_format").toString()
 	<< settings.value("otheroptions/dvd_date_format").toString()
 	<< settings.value("otheroptions/grey_literature_date_format").toString()
 	<< settings.value("otheroptions/journal_date_format").toString()
@@ -727,7 +739,9 @@ void biblioteq_otheroptions::prepareSettings(void)
     	<< settings.value("otheroptions/cd_date_format").toString()
 	<< settings.value("otheroptions/photograph_date_format").toString()
 	<< settings.value("otheroptions/videogame_date_format").toString();
-  list3 << "otheroptions/book_date_format"
+  list3 << "otheroptions/book_history_deleted_date_format"
+	<< "otheroptions/book_statistics_reserved_date_format"
+	<< "otheroptions/book_date_format"
 	<< "otheroptions/dvd_date_format"
 	<< "otheroptions/grey_literature_date_format"
 	<< "otheroptions/journal_date_format"
