@@ -309,9 +309,8 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 	      progress->setLabelText
 		(tr("Importing the CSV file. Processing line %1.").arg(ct));
 	      progress->repaint();
+	      QApplication::processEvents();
 	    }
-
-	  QApplication::processEvents();
 	}
 
       auto const data(in.readLine().trimmed());
@@ -703,9 +702,8 @@ void biblioteq_import::importPatrons(QProgressDialog *progress,
 	      progress->setLabelText
 		(tr("Importing the CSV file. Processing line %1.").arg(ct));
 	      progress->repaint();
+	      QApplication::processEvents();
 	    }
-
-	  QApplication::processEvents();
 	}
 
       auto const data(in.readLine().trimmed());
@@ -880,9 +878,8 @@ void biblioteq_import::loadPreview(void)
 		break;
 
 	      progress->repaint();
+	      QApplication::processEvents();
 	    }
-
-	  QApplication::processEvents();
 
 	  auto const data(in.readLine().trimmed());
 	  auto headers
@@ -947,7 +944,6 @@ void biblioteq_import::loadPreview(void)
   file.close();
   m_ui.detect->click(); // Highlight, if necessary.
   progress ? (void) progress->close() : (void) 0;
-  QApplication::processEvents();
 }
 
 void biblioteq_import::prepareIcons(void)
@@ -1240,7 +1236,6 @@ void biblioteq_import::slotImport(void)
 	   tr("BiblioteQ: Error"),
 	   tr("The file %1 is not readable.").arg(fileInfo.absolutePath()));
 
-      QApplication::processEvents();
       return;
     }
 
@@ -1275,7 +1270,6 @@ void biblioteq_import::slotImport(void)
 	     tr("BiblioteQ: Error"),
 	     tr("Duplicate mapping discovered in the table. Please "
 		"review row %1.").arg(item1->row()));
-	  QApplication::processEvents();
 	  return;
 	}
 
@@ -1287,7 +1281,6 @@ void biblioteq_import::slotImport(void)
     {
       QMessageBox::critical
 	(this, tr("BiblioteQ: Error"), tr("Please define column mappings."));
-      QApplication::processEvents();
       return;
     }
 
@@ -1346,7 +1339,6 @@ void biblioteq_import::slotImport(void)
     importPatrons(progress.data(), errors, &imported, &notImported);
 
   progress ? (void) progress->close() : (void) 0;
-  QApplication::processEvents();
 
   if(!errors.isEmpty())
     {
@@ -1386,8 +1378,6 @@ void biblioteq_import::slotImport(void)
        tr("Imported: %1. Not imported: %2. Elapsed second(s): %3.").
        arg(imported).arg(notImported).arg(elapsed.elapsed() / 1000));
 
-  QApplication::processEvents();
-
   if(imported > 0 &&
      m_ui.post_import_script->text().trimmed().isEmpty() == false)
     {
@@ -1399,8 +1389,6 @@ void biblioteq_import::slotImport(void)
 			       QMessageBox::No | QMessageBox::Yes,
 			       QMessageBox::No) == QMessageBox::Yes)
 	{
-	  QApplication::processEvents();
-
 	  auto list
 	    (m_ui.post_import_script->text().trimmed().
 	     split(QRegularExpression(QString("%1"
@@ -1412,8 +1400,6 @@ void biblioteq_import::slotImport(void)
 
 	  m_process.start(list.value(0), list.mid(1));
 	}
-
-      QApplication::processEvents();
     }
 
   if(imported > 0 && (index == static_cast<int> (Templates::TEMPLATE_1) ||
@@ -1425,8 +1411,6 @@ void biblioteq_import::slotImport(void)
 			       QMessageBox::No | QMessageBox::Yes,
 			       QMessageBox::Yes) == QMessageBox::Yes)
 	m_qmain->refresh(tr("Books"));
-
-      QApplication::processEvents();
     }
 }
 
@@ -1529,10 +1513,7 @@ void biblioteq_import::slotReset(void)
 			       tr("Are you sure that you wish to reset?"),
 			       QMessageBox::No | QMessageBox::Yes,
 			       QMessageBox::No) == QMessageBox::No)
-	{
-	  QApplication::processEvents();
-	  return;
-	}
+	return;
 
   m_mappings.clear();
   m_previewHeaders.clear();
@@ -1569,7 +1550,6 @@ void biblioteq_import::slotSelectCSVFile(void)
   dialog.setOption(QFileDialog::DontUseNativeDialog);
   dialog.setWindowTitle(tr("BiblioteQ: Select CSV Import File"));
   dialog.exec();
-  QApplication::processEvents();
 
   if(dialog.result() == QDialog::Accepted)
     {
@@ -1759,10 +1739,7 @@ void biblioteq_import::slotTemplates(int index)
 					"Template %1 values?").arg(index),
 				     QMessageBox::No | QMessageBox::Yes,
 				     QMessageBox::No) == QMessageBox::No)
-	      {
-		QApplication::processEvents();
-		break;
-	      }
+	      break;
 	  }
 
 	m_ui.ignored_rows->setText("1");

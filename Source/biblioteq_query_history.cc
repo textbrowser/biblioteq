@@ -152,13 +152,10 @@ void biblioteq_query_history::slotExecuteQuery(const QModelIndex &index)
      q.startsWith("lock ") ||
      q.startsWith("revoke ") ||
      q.startsWith("truncate "))
-    {
-      QMessageBox::critical
-	(this,
-	 tr("BiblioteQ: User Error"),
-	 tr("Please provide a non-destructive SQL statement."));
-      QApplication::processEvents();
-    }
+    QMessageBox::critical
+      (this,
+       tr("BiblioteQ: User Error"),
+       tr("Please provide a non-destructive SQL statement."));
   else if(q.startsWith("delete ") || q.startsWith("update "))
     {
       if(QMessageBox::
@@ -167,12 +164,7 @@ void biblioteq_query_history::slotExecuteQuery(const QModelIndex &index)
 		  tr("Are you sure that you wish to execute the statement?"),
 		  QMessageBox::No | QMessageBox::Yes,
 		  QMessageBox::No) == QMessageBox::No)
-	{
-	  QApplication::processEvents();
-	  return;
-	}
-      else
-	QApplication::processEvents();
+	return;
     }
 
   emit executeQuery(query);
