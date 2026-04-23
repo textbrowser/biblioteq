@@ -399,15 +399,11 @@ void biblioteq_cd::closeEvent(QCloseEvent *event)
 		      QMessageBox::No | QMessageBox::Yes,
 		      QMessageBox::No) == QMessageBox::No)
 	    {
-	      QApplication::processEvents();
-
 	      if(event)
 		event->ignore();
 
 	      return;
 	    }
-
-	  QApplication::processEvents();
 	}
     }
 
@@ -604,7 +600,6 @@ void biblioteq_cd::modify(const int state)
       QMessageBox::critical(this,
 			    tr("BiblioteQ: Database Error"),
 			    tr("Unable to retrieve the selected CD's data."));
-      QApplication::processEvents();
       close();
       return;
     }
@@ -932,14 +927,11 @@ void biblioteq_cd::slotComputeRuntime(void)
   if(count > 0)
     {
       if(sum.toString("hh:mm:ss") == "00:00:00")
-	{
-	  QMessageBox::critical
-	    (this,
-	     tr("BiblioteQ: User Error"),
-	     tr("The total runtime of the available tracks is "
-		"zero. Please set the individual runtimes."));
-	  QApplication::processEvents();
-	}
+	QMessageBox::critical
+	  (this,
+	   tr("BiblioteQ: User Error"),
+	   tr("The total runtime of the available tracks is "
+	      "zero. Please set the individual runtimes."));
       else
 	cd.runtime->setTime
 	  (QTime::fromString(sum.toString("hh:mm:ss"), "hh:mm:ss"));
@@ -1052,7 +1044,6 @@ void biblioteq_cd::slotGo(void)
 		 tr("BiblioteQ: Database Error"),
 		 tr("Unable to determine the maximum copy number of "
 		    "the item."));
-	      QApplication::processEvents();
 	      return;
 	    }
 
@@ -1066,7 +1057,6 @@ void biblioteq_cd::slotGo(void)
 		 tr("It appears that you are attempting to decrease the "
 		    "number of copies while there are copies "
 		    "that have been reserved."));
-	      QApplication::processEvents();
 	      cd.quantity->setValue(m_oldq);
 	      return;
 	    }
@@ -1079,12 +1069,7 @@ void biblioteq_cd::slotGo(void)
 		     "Would you like to modify copy information?"),
 		  QMessageBox::No | QMessageBox::Yes,
 		  QMessageBox::No) == QMessageBox::Yes)
-		{
-		  QApplication::processEvents();
-		  slotPopulateCopiesEditor();
-		}
-
-	      QApplication::processEvents();
+		slotPopulateCopiesEditor();
 	    }
 	}
 
@@ -1097,7 +1082,6 @@ void biblioteq_cd::slotGo(void)
 	    (this,
 	     tr("BiblioteQ: User Error"),
 	     tr("Please complete the Catalog Number field."));
-	  QApplication::processEvents();
 	  cd.id->setFocus();
 	  return;
 	}
@@ -1110,7 +1094,6 @@ void biblioteq_cd::slotGo(void)
 	  QMessageBox::critical(this,
 				tr("BiblioteQ: User Error"),
 				tr("Please complete the Artist field."));
-	  QApplication::processEvents();
 	  cd.artist->setFocus();
 	  return;
 	}
@@ -1120,7 +1103,6 @@ void biblioteq_cd::slotGo(void)
 	  QMessageBox::critical(this,
 				tr("BiblioteQ: User Error"),
 				tr("Please provide a valid Runtime."));
-	  QApplication::processEvents();
 	  cd.runtime->setFocus();
 	  return;
 	}
@@ -1133,7 +1115,6 @@ void biblioteq_cd::slotGo(void)
 	  QMessageBox::critical(this,
 				tr("BiblioteQ: User Error"),
 				tr("Please complete the Title field."));
-	  QApplication::processEvents();
 	  cd.title->setFocus();
 	  return;
 	}
@@ -1147,7 +1128,6 @@ void biblioteq_cd::slotGo(void)
 	    critical(this,
 		     tr("BiblioteQ: User Error"),
 		     tr("Please complete the Recording Label field."));
-	  QApplication::processEvents();
 	  cd.recording_label->setFocus();
 	  return;
 	}
@@ -1160,7 +1140,6 @@ void biblioteq_cd::slotGo(void)
 	  QMessageBox::critical(this,
 				tr("BiblioteQ: User Error"),
 				tr("Please complete the Categories field."));
-	  QApplication::processEvents();
 	  cd.category->setFocus();
 	  return;
 	}
@@ -1173,7 +1152,6 @@ void biblioteq_cd::slotGo(void)
 	  QMessageBox::critical(this,
 				tr("BiblioteQ: User Error"),
 				tr("Please complete the Abstract field."));
-	  QApplication::processEvents();
 	  cd.description->setFocus();
 	  return;
 	}
@@ -1193,7 +1171,6 @@ void biblioteq_cd::slotGo(void)
 	    (this,
 	     tr("BiblioteQ: Database Error"),
 	     tr("Unable to create a database transaction."));
-	  QApplication::processEvents();
 	  return;
 	}
 
@@ -1645,7 +1622,6 @@ void biblioteq_cd::slotGo(void)
 		    (this,
 		     tr("BiblioteQ: Database Error"),
 		     tr("Unable to retrieve the CD's OID."));
-		  QApplication::processEvents();
 		}
 	      else
 		qmain->replaceCD(m_oid, this);
@@ -1685,7 +1661,6 @@ void biblioteq_cd::slotGo(void)
 	 tr("BiblioteQ: Database Error"),
 	 tr("Unable to create or update the entry. Please verify that "
 	    "the entry does not already exist."));
-      QApplication::processEvents();
     }
   else if(m_engWindowTitle.contains("Search"))
     {
@@ -2022,7 +1997,6 @@ void biblioteq_cd::slotPopulateTracksBrowser(void)
 	(this,
 	 tr("BiblioteQ: Database Error"),
 	 tr("Unable to retrieve track data for table populating."));
-      QApplication::processEvents();
       return;
     }
 
@@ -2494,7 +2468,6 @@ void biblioteq_cd::slotSaveTracks(void)
 	QMessageBox::critical(m_tracks_diag,
 			      tr("BiblioteQ: User Error"),
 			      errormsg);
-	QApplication::processEvents();
 	return;
       }
 
@@ -2511,7 +2484,6 @@ void biblioteq_cd::slotSaveTracks(void)
       QMessageBox::critical(m_tracks_diag,
 			    tr("BiblioteQ: Database Error"),
 			    tr("Unable to create a database transaction."));
-      QApplication::processEvents();
       return;
     }
 
@@ -2656,13 +2628,10 @@ void biblioteq_cd::slotSaveTracks(void)
 
       if(!lastError.isEmpty() ||
 	 qmain->getDB().lastError().isValid())
-	{
-	  QMessageBox::critical
-	    (m_tracks_diag,
-	     tr("BiblioteQ: Database Error"),
-	     tr("Some or all of the track data has not been saved."));
-	  QApplication::processEvents();
-	}
+	QMessageBox::critical
+	  (m_tracks_diag,
+	   tr("BiblioteQ: Database Error"),
+	   tr("Some or all of the track data has not been saved."));
 
       /*
       ** Update the runtime.
@@ -2688,7 +2657,6 @@ void biblioteq_cd::slotSelectImage(void)
     dialog.setWindowTitle(tr("BiblioteQ: Back Cover Image Selection"));
 
   dialog.exec();
-  QApplication::processEvents();
 
   if(dialog.result() == QDialog::Accepted)
     {

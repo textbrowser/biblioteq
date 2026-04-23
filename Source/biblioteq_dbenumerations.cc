@@ -258,15 +258,11 @@ void biblioteq_dbenumerations::closeEvent(QCloseEvent *event)
 		  QMessageBox::No | QMessageBox::Yes,
 		  QMessageBox::No) == QMessageBox::No)
 	{
-	  QApplication::processEvents();
-
 	  if(event)
 	    event->ignore();
 
 	  return;
 	}
-
-      QApplication::processEvents();
     }
 
 #ifndef Q_OS_ANDROID
@@ -794,12 +790,7 @@ void biblioteq_dbenumerations::slotReload(void)
 		  tr("Your changes have not been saved. Continue?"),
 		  QMessageBox::No | QMessageBox::Yes,
 		  QMessageBox::No) == QMessageBox::No)
-	{
-	  QApplication::processEvents();
-	  return;
-	}
-
-      QApplication::processEvents();
+	return;
     }
 
   populateWidgets();
@@ -1101,13 +1092,10 @@ void biblioteq_dbenumerations::slotSave(void)
   QApplication::restoreOverrideCursor();
 
   if(error)
-    {
-      QMessageBox::critical(this,
-			    tr("BiblioteQ: Database Error"),
-			    tr("An error occurred while attempting to save "
-			       "the database enumerations."));
-      QApplication::processEvents();
-    }
+    QMessageBox::critical(this,
+			  tr("BiblioteQ: Database Error"),
+			  tr("An error occurred while attempting to save "
+			     "the database enumerations."));
   else
     {
       populateWidgets();

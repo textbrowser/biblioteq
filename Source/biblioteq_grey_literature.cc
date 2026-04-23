@@ -299,7 +299,6 @@ bool biblioteq_grey_literature::validateWidgets(void)
 	(this,
 	 tr("BiblioteQ: Database Error"),
 	 tr("Unable to create a database transaction."));
-      QApplication::processEvents();
       return false;
     }
 
@@ -310,7 +309,6 @@ bool biblioteq_grey_literature::validateWidgets(void)
   if(!error.isEmpty())
     {
       QMessageBox::critical(this, tr("BiblioteQ: User Error"), error);
-      QApplication::processEvents();
       return false;
     }
 
@@ -359,15 +357,11 @@ void biblioteq_grey_literature::closeEvent(QCloseEvent *event)
 		      QMessageBox::No | QMessageBox::Yes,
 		      QMessageBox::No) == QMessageBox::No)
 	    {
-	      QApplication::processEvents();
-
 	      if(event)
 		event->ignore();
 
 	      return;
 	    }
-
-	  QApplication::processEvents();
 	}
     }
 
@@ -628,7 +622,6 @@ void biblioteq_grey_literature::insertDatabase(void)
 			tr("BiblioteQ: Database Error"),
 			tr("Unable to create the entry. Please verify that "
 			   "the entry does not already exist."));
-  QApplication::processEvents();
 }
 
 void biblioteq_grey_literature::modify(const int state)
@@ -696,7 +689,6 @@ void biblioteq_grey_literature::modify(const int state)
 	(this,
 	 tr("BiblioteQ: Database Error"),
 	 tr("Unable to retrieve the selected grey literature's data."));
-      QApplication::processEvents();
       m_ui.title->setFocus();
       return;
     }
@@ -987,7 +979,6 @@ void biblioteq_grey_literature::slotAttachFiles(void)
   if(fileDialog.exec() == QDialog::Accepted)
     {
       repaint();
-      QApplication::processEvents();
 
       QProgressDialog progress(this);
       auto const files(fileDialog.selectedFiles());
@@ -1024,8 +1015,6 @@ void biblioteq_grey_literature::slotAttachFiles(void)
       populateFiles();
       storeData(this);
     }
-
-  QApplication::processEvents();
 }
 
 void biblioteq_grey_literature::slotCancel(void)
@@ -1096,7 +1085,6 @@ void biblioteq_grey_literature::slotDeleteFiles(void)
 	(this,
 	 tr("BiblioteQ: User Error"),
 	 tr("Please select at least one file to delete."));
-      QApplication::processEvents();
       return;
     }
 
@@ -1106,12 +1094,8 @@ void biblioteq_grey_literature::slotDeleteFiles(void)
 			      "selected file(s)?"),
 			   QMessageBox::No | QMessageBox::Yes,
 			   QMessageBox::No) == QMessageBox::No)
-    {
-      QApplication::processEvents();
-      return;
-    }
+    return;
 
-  QApplication::processEvents();
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   for(int i = 0; i < list.size(); i++)
@@ -1146,13 +1130,11 @@ void biblioteq_grey_literature::slotExportFiles(void)
   dialog.setOption(QFileDialog::DontUseNativeDialog);
   dialog.setWindowTitle(tr("BiblioteQ: Grey Literature File Export"));
   dialog.exec();
-  QApplication::processEvents();
 
   if(dialog.result() != QDialog::Accepted)
     return;
 
   repaint();
-  QApplication::processEvents();
 
   QProgressDialog progress(this);
 
@@ -1934,7 +1916,6 @@ void biblioteq_grey_literature::updateDatabase(void)
   QMessageBox::critical(this,
 			tr("BiblioteQ: Database Error"),
 			tr("Unable to update the entry."));
-  QApplication::processEvents();
 }
 
 void biblioteq_grey_literature::updateWindow(const int state)

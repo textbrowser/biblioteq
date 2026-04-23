@@ -281,12 +281,7 @@ void biblioteq_files::slotExport(void)
 				  "files?").arg(list.size()),
 			       QMessageBox::No | QMessageBox::Yes,
 			       QMessageBox::No) == QMessageBox::No)
-	{
-	  QApplication::processEvents();
-	  return;
-	}
-
-      QApplication::processEvents();
+	return;
     }
   else if(list.isEmpty())
     return;
@@ -299,10 +294,7 @@ void biblioteq_files::slotExport(void)
   dialog.setWindowTitle(tr("BiblioteQ: File Export"));
 
   if(dialog.exec() != QDialog::Accepted)
-    {
-      QApplication::processEvents();
-      return;
-    }
+    return;
 
   QProgressDialog progress(this);
 

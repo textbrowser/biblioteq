@@ -1453,13 +1453,10 @@ void biblioteq_otheroptions::slotSelectColor(void)
 
   if(dialog.exec() == QDialog::Accepted)
     {
-      QApplication::processEvents();
       biblioteq_misc_functions::assignImage
 	(pushButton, dialog.selectedColor());
       pushButton->setText(dialog.selectedColor().name());
     }
-  else
-    QApplication::processEvents();
 }
 
 void biblioteq_otheroptions::slotSelectMainwindowCanvasBackgroundColor(void)
@@ -1480,7 +1477,6 @@ void biblioteq_otheroptions::slotSelectMainwindowCanvasBackgroundColor(void)
 
   if(dialog.exec() == QDialog::Accepted)
     {
-      QApplication::processEvents();
       biblioteq_misc_functions::assignImage
 	(m_ui.main_window_canvas_background_color, dialog.selectedColor());
       m_ui.main_window_canvas_background_color->setText
@@ -1488,7 +1484,6 @@ void biblioteq_otheroptions::slotSelectMainwindowCanvasBackgroundColor(void)
     }
   else
     {
-      QApplication::processEvents();
       biblioteq_misc_functions::assignImage
 	(m_ui.main_window_canvas_background_color, color);
       emit mainWindowCanvasBackgroundColorChanged(QColor());

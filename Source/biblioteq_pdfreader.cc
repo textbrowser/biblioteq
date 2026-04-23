@@ -386,8 +386,6 @@ void biblioteq_pdfreader::slotPrint(void)
 
   if(dialog->exec() == QDialog::Accepted)
     {
-      QApplication::processEvents();
-
       QProgressDialog progress(this);
 
       progress.setLabelText(tr("Printing PDF..."));
@@ -454,8 +452,6 @@ void biblioteq_pdfreader::slotPrint(void)
 
       painter.end();
     }
-
-  QApplication::processEvents();
 #endif
 }
 
@@ -578,7 +574,6 @@ void biblioteq_pdfreader::slotPrintPreview(void)
   printer.setPageSize(QPrinter::Letter);
 #endif
   dialog->exec();
-  QApplication::processEvents();
 #endif
 }
 
@@ -600,7 +595,6 @@ void biblioteq_pdfreader::slotSaveAs(void)
   if(dialog.exec() == QDialog::Accepted)
     {
       repaint();
-      QApplication::processEvents();
       QApplication::setOverrideCursor(Qt::WaitCursor);
 
       auto converter = m_document->pdfConverter();
@@ -621,8 +615,6 @@ void biblioteq_pdfreader::slotSaveAs(void)
 #endif
       QApplication::restoreOverrideCursor();
     }
-
-  QApplication::processEvents();
 #endif
 }
 

@@ -124,7 +124,6 @@ void biblioteq_custom_query::changeEvent(QEvent *event)
       case QEvent::LanguageChange:
 	{
 	  cq.retranslateUi(this);
-	  QApplication::processEvents();
 	  break;
 	}
       default:
@@ -170,12 +169,7 @@ void biblioteq_custom_query::slotDeleteFavoriteQuery(void)
 	      arg(cq.favorites->currentText()),
 	      QMessageBox::No | QMessageBox::Yes,
 	      QMessageBox::No) == QMessageBox::No)
-    {
-      QApplication::processEvents();
-      return;
-    }
-  else
-    QApplication::processEvents();
+    return;
 
   QSettings settings;
 

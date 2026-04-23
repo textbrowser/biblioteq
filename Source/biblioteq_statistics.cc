@@ -237,12 +237,7 @@ void biblioteq_statistics::slotDelete(void)
 	      arg(m_ui.queries->currentText()),
 	      QMessageBox::No | QMessageBox::Yes,
 	      QMessageBox::No) == QMessageBox::No)
-    {
-      QApplication::processEvents();
-      return;
-    }
-  else
-    QApplication::processEvents();
+    return;
 
   QSettings settings;
 

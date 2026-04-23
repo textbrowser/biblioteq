@@ -848,15 +848,11 @@ void biblioteq_book::closeEvent(QCloseEvent *event)
 		      QMessageBox::No | QMessageBox::Yes,
 		      QMessageBox::No) == QMessageBox::No)
 	    {
-	      QApplication::processEvents();
-
 	      if(event)
 		event->ignore();
 
 	      return;
 	    }
-
-	  QApplication::processEvents();
 	}
     }
 
@@ -994,14 +990,11 @@ void biblioteq_book::downloadFinished(void)
 	  m_imageBuffer.close();
 
 	  if(!m_doNotShowDialogs)
-	    {
-	      QMessageBox::warning
-		(this,
-		 tr("BiblioteQ: HTTP Warning"),
-		 tr("The front cover image for the specified ISBN "
-		    "may not exist."));
-	      QApplication::processEvents();
-	    }
+	    QMessageBox::warning
+	      (this,
+	       tr("BiblioteQ: HTTP Warning"),
+	       tr("The front cover image for the specified ISBN "
+		  "may not exist."));
 	}
     }
   else
@@ -1017,14 +1010,11 @@ void biblioteq_book::downloadFinished(void)
 	  m_imageBuffer.close();
 
 	  if(!m_doNotShowDialogs)
-	    {
-	      QMessageBox::warning
-		(this,
-		 tr("BiblioteQ: HTTP Warning"),
-		 tr("The back cover image for the specified ISBN "
-		    "may not exist."));
-	      QApplication::processEvents();
-	    }
+	    QMessageBox::warning
+	      (this,
+	       tr("BiblioteQ: HTTP Warning"),
+	       tr("The back cover image for the specified ISBN "
+		  "may not exist."));
 	}
     }
 
@@ -1283,7 +1273,6 @@ void biblioteq_book::modify(const int state)
 	(this,
 	 tr("BiblioteQ: Database Error"),
 	 tr("Unable to retrieve the selected book's data."));
-      QApplication::processEvents();
       close();
       return;
     }
@@ -1532,14 +1521,11 @@ void biblioteq_book::openLibraryDownloadFinished(void)
      m_openLibraryResults.length() <= 10)
     {
       if(!m_doNotShowDialogs)
-	{
-	  QMessageBox::critical
-	    (this,
-	     tr("BiblioteQ: Open Library Query Error"),
-	     tr("The Open Library query produced invalid results. "
-		"Perhaps the book is not defined."));
-	  QApplication::processEvents();
-	}
+	QMessageBox::critical
+	  (this,
+	   tr("BiblioteQ: Open Library Query Error"),
+	   tr("The Open Library query produced invalid results. "
+	      "Perhaps the book is not defined."));
     }
   else
     {
@@ -1551,12 +1537,7 @@ void biblioteq_book::openLibraryDownloadFinished(void)
 				      "retrieved from Open Library?"),
 				   QMessageBox::No | QMessageBox::Yes,
 				   QMessageBox::No) == QMessageBox::No)
-	    {
-	      QApplication::processEvents();
-	      return;
-	    }
-	  else
-	    QApplication::processEvents();
+	    return;
 	}
 
       populateAfterOpenLibrary();
@@ -2553,7 +2534,6 @@ void biblioteq_book::slotAttachFiles(void)
   if(fileDialog.exec() == QDialog::Accepted)
     {
       repaint();
-      QApplication::processEvents();
 
       QProgressDialog progress(this);
       auto const files(fileDialog.selectedFiles());
@@ -2590,8 +2570,6 @@ void biblioteq_book::slotAttachFiles(void)
       populateFiles();
       storeData(this);
     }
-
-  QApplication::processEvents();
 }
 
 void biblioteq_book::slotCancel(void)
@@ -2624,7 +2602,6 @@ void biblioteq_book::slotConvertISBN13to10(void)
 	(this,
 	 tr("BiblioteQ: User Error"),
 	 tr("The ISBN-13 must begin with 978."));
-      QApplication::processEvents();
       return;
     }
 
@@ -2742,7 +2719,6 @@ void biblioteq_book::slotDeleteFiles(void)
 	(this,
 	 tr("BiblioteQ: User Error"),
 	 tr("Please select at least one file to delete."));
-      QApplication::processEvents();
       return;
     }
 
@@ -2752,12 +2728,8 @@ void biblioteq_book::slotDeleteFiles(void)
 			      "selected file(s)?"),
 			   QMessageBox::No | QMessageBox::Yes,
 			   QMessageBox::No) == QMessageBox::No)
-    {
-      QApplication::processEvents();
-      return;
-    }
+    return;
 
-  QApplication::processEvents();
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   for(int i = 0; i < list.size(); i++)
@@ -2817,14 +2789,11 @@ void biblioteq_book::slotDownloadImage(void)
       if(!ok)
 	{
 	  if(!m_doNotShowDialogs)
-	    {
-	      QMessageBox::critical
-		(this,
-		 tr("BiblioteQ: User Error"),
-		 tr("In order to download a cover image, "
-		    "Alternate Identifier or ISBN-10 must be provided."));
-	      QApplication::processEvents();
-	    }
+	    QMessageBox::critical
+	      (this,
+	       tr("BiblioteQ: User Error"),
+	       tr("In order to download a cover image, "
+		  "Alternate Identifier or ISBN-10 must be provided."));
 
 	  id.id->setFocus();
 	  return;
@@ -2840,14 +2809,11 @@ void biblioteq_book::slotDownloadImage(void)
       if(!ok)
 	{
 	  if(!m_doNotShowDialogs)
-	    {
-	      QMessageBox::critical
-		(this,
-		 tr("BiblioteQ: User Error"),
-		 tr("In order to download a cover image, "
-		    "Alternate Identifier must be provided."));
-	      QApplication::processEvents();
-	    }
+	    QMessageBox::critical
+	      (this,
+	       tr("BiblioteQ: User Error"),
+	       tr("In order to download a cover image, "
+		  "Alternate Identifier must be provided."));
 
 	  id.id->setFocus();
 	  return;
@@ -3148,7 +3114,6 @@ void biblioteq_book::slotDownloadImage(void)
 	  this,
 	  SLOT(slotReadyRead(void)));
   reply->ignoreSslErrors();
-  QApplication::processEvents();
 }
 
 void biblioteq_book::slotExportFiles(void)
@@ -3167,12 +3132,10 @@ void biblioteq_book::slotExportFiles(void)
   dialog.setOption(QFileDialog::DontUseNativeDialog);
   dialog.setWindowTitle(tr("BiblioteQ: Book File Export"));
   dialog.exec();
-  QApplication::processEvents();
 
   if(dialog.result() == QDialog::Accepted)
     {
       repaint();
-      QApplication::processEvents();
 
       QProgressDialog progress(this);
 
@@ -3311,7 +3274,6 @@ void biblioteq_book::slotGo(void)
 		 tr("BiblioteQ: Database Error"),
 		 tr("Unable to determine the maximum copy number of "
 		    "the item."));
-	      QApplication::processEvents();
 	      return;
 	    }
 
@@ -3325,7 +3287,6 @@ void biblioteq_book::slotGo(void)
 		 tr("It appears that you are attempting to decrease the "
 		    "number of copies while there are copies "
 		    "that have been reserved."));
-	      QApplication::processEvents();
 	      id.quantity->setValue(m_oldq);
 	      return;
 	    }
@@ -3338,12 +3299,7 @@ void biblioteq_book::slotGo(void)
 		     "Would you like to modify copy information?"),
 		  QMessageBox::No | QMessageBox::Yes,
 		  QMessageBox::No) == QMessageBox::Yes)
-		{
-		  QApplication::processEvents();
-		  slotPopulateCopiesEditor();
-		}
-
-	      QApplication::processEvents();
+		slotPopulateCopiesEditor();
 	    }
 	}
 
@@ -3379,7 +3335,6 @@ void biblioteq_book::slotGo(void)
 	      (this,
 	       tr("BiblioteQ: User Error"),
 	       tr("Please complete the ISBN-10 or the ISBN-13 field."));
-	    QApplication::processEvents();
 
 	    if(id.id->text().remove('-').length() != 10)
 	      id.id->setFocus();
@@ -3397,7 +3352,6 @@ void biblioteq_book::slotGo(void)
 	  QMessageBox::critical(this,
 				tr("BiblioteQ: User Error"),
 				tr("Please complete the Authors field."));
-	  QApplication::processEvents();
 	  id.author->setFocus();
 	  return;
 	}
@@ -3410,7 +3364,6 @@ void biblioteq_book::slotGo(void)
 	  QMessageBox::critical(this,
 				tr("BiblioteQ: User Error"),
 				tr("Please complete the Title field."));
-	  QApplication::processEvents();
 	  id.title->setFocus();
 	  return;
 	}
@@ -3423,7 +3376,6 @@ void biblioteq_book::slotGo(void)
 	  QMessageBox::critical(this,
 				tr("BiblioteQ: User Error"),
 				tr("Please complete the Publisher field."));
-	  QApplication::processEvents();
 	  id.publisher->setFocus();
 	  return;
 	}
@@ -3437,7 +3389,6 @@ void biblioteq_book::slotGo(void)
 	    (this,
 	     tr("BiblioteQ: User Error"),
 	     tr("Please complete the Place of Publication field."));
-	  QApplication::processEvents();
 	  id.place->setFocus();
 	  return;
 	}
@@ -3450,7 +3401,6 @@ void biblioteq_book::slotGo(void)
 	  QMessageBox::critical(this,
 				tr("BiblioteQ: User Error"),
 				tr("Please complete the Categories field."));
-	  QApplication::processEvents();
 	  id.category->setFocus();
 	  return;
 	}
@@ -3463,7 +3413,6 @@ void biblioteq_book::slotGo(void)
 	  QMessageBox::critical(this,
 				tr("BiblioteQ: User Error"),
 				tr("Please complete the Abstract field."));
-	  QApplication::processEvents();
 	  id.description->setFocus();
 	  return;
 	}
@@ -3483,7 +3432,6 @@ void biblioteq_book::slotGo(void)
 	    (this,
 	     tr("BiblioteQ: Database Error"),
 	     tr("Unable to create a database transaction."));
-	  QApplication::processEvents();
 	  return;
 	}
 
@@ -4139,7 +4087,6 @@ void biblioteq_book::slotGo(void)
 	 tr("BiblioteQ: Database Error"),
 	 tr("Unable to create or update the entry. Please verify that "
 	    "the entry does not already exist."));
-      QApplication::processEvents();
     }
   else if(m_engWindowTitle.contains("Search"))
     {
@@ -4574,15 +4521,12 @@ void biblioteq_book::slotOpenLibraryQuery(void)
   if(!ok)
     {
       if(!m_doNotShowDialogs)
-	{
-	  QMessageBox::critical
-	    (this,
-	     tr("BiblioteQ: User Error"),
-	     tr("In order to query an Open Library site, "
-		"Alternate Identifier, ISBN-10, or ISBN-13 must "
-		"be provided."));
-	  QApplication::processEvents();
-	}
+	QMessageBox::critical
+	  (this,
+	   tr("BiblioteQ: User Error"),
+	   tr("In order to query an Open Library site, "
+	      "Alternate Identifier, ISBN-10, or ISBN-13 must "
+	      "be provided."));
 
       id.id->setFocus();
       return;
@@ -4596,7 +4540,6 @@ void biblioteq_book::slotOpenLibraryQuery(void)
       m_openLibraryWorking->show();
       m_openLibraryWorking->update();
       m_openLibraryWorking->repaint();
-      QApplication::processEvents();
     }
 
   QString searchstr("");
@@ -4757,7 +4700,6 @@ void biblioteq_book::slotOpenLibraryQueryError(const QString &text)
     (this,
      tr("BiblioteQ: Open Library Query Error"),
      tr("A network error (%1) occurred.").arg(text.trimmed()));
-  QApplication::processEvents();
 }
 
 void biblioteq_book::slotOpenLibraryReadyRead(void)
@@ -4980,12 +4922,9 @@ void biblioteq_book::slotPrintAuthorTitleDewey(void)
 
   if(dialog->exec() == QDialog::Accepted)
     {
-      QApplication::processEvents();
       document.setHtml(html);
       document.print(&printer);
     }
-
-  QApplication::processEvents();
 }
 
 void biblioteq_book::slotPrintCallDewey(void)
@@ -5026,12 +4965,9 @@ void biblioteq_book::slotPrintCallDewey(void)
 
   if(dialog->exec() == QDialog::Accepted)
     {
-      QApplication::processEvents();
       document.setHtml(html);
       document.print(&printer);
     }
-
-  QApplication::processEvents();
 }
 
 void biblioteq_book::slotProxyAuthenticationRequired
@@ -5048,12 +4984,9 @@ void biblioteq_book::slotProxyAuthenticationRequired
 
       if(m_proxyDialog->exec() == QDialog::Accepted)
 	{
-	  QApplication::processEvents();
 	  authenticator->setPassword(ui_p.passwordLineEdit->text());
 	  authenticator->setUser(ui_p.usernameLineEdit->text());
 	}
-
-      QApplication::processEvents();
     }
 }
 
@@ -5517,14 +5450,11 @@ void biblioteq_book::slotSRUQuery(void)
        id.isbn13->text().remove('-').trimmed().length() == 13))
     {
       if(!m_doNotShowDialogs)
-	{
-	  QMessageBox::critical
-	    (this,
-	     tr("BiblioteQ: User Error"),
-	     tr("In order to query an SRU site, "
-		"ISBN-10 or ISBN-13 must be provided."));
-	  QApplication::processEvents();
-	}
+	QMessageBox::critical
+	  (this,
+	   tr("BiblioteQ: User Error"),
+	   tr("In order to query an SRU site, "
+	      "ISBN-10 or ISBN-13 must be provided."));
 
       id.id->setFocus();
       return;
@@ -5538,7 +5468,6 @@ void biblioteq_book::slotSRUQuery(void)
       m_sruWorking->show();
       m_sruWorking->update();
       m_sruWorking->repaint();
-      QApplication::processEvents();
     }
 
   QString name("");
@@ -5703,7 +5632,6 @@ void biblioteq_book::slotSRUQueryError(const QString &text)
     (this,
      tr("BiblioteQ: SRU Query Error"),
      tr("A network error (%1) occurred.").arg(text.trimmed()));
-  QApplication::processEvents();
 }
 
 void biblioteq_book::slotSRUReadyRead(void)
@@ -5749,7 +5677,6 @@ void biblioteq_book::slotSelectImage(void)
     dialog.setWindowTitle(tr("BiblioteQ: Front Cover Image Selection"));
 
   dialog.exec();
-  QApplication::processEvents();
 
   if(dialog.result() == QDialog::Accepted)
     {
@@ -5879,7 +5806,6 @@ void biblioteq_book::slotZ3950Query(void)
 	 tr("BiblioteQ: User Error"),
 	 tr("In order to query a Z39.50 site, "
 	    "ISBN-10 or ISBN-13 must be provided."));
-      QApplication::processEvents();
       id.id->setFocus();
       return;
     }
@@ -5974,8 +5900,6 @@ void biblioteq_book::slotZ3950Query(void)
 	  QMessageBox::No | QMessageBox::Yes,
 	  QMessageBox::No) == QMessageBox::Yes)
 	{
-	  QApplication::processEvents();
-
 	  if(recordSyntax == "MARC21")
 	    populateAfterZ3950
 	      (m_thread->getZ3950Results()[0],
@@ -5985,17 +5909,12 @@ void biblioteq_book::slotZ3950Query(void)
 	      (m_thread->getZ3950Results()[0],
 	       biblioteq_marc::RECORD_SYNTAX::UNIMARC);
 	}
-
-      QApplication::processEvents();
     }
   else if(errorstr.isEmpty() && m_thread->getZ3950Results().isEmpty())
-    {
-      QMessageBox::critical
-	(this,
-	 tr("BiblioteQ: Z39.50 Query Error"),
-	 tr("A Z39.50 entry may not yet exist for the provided ISBN(s)."));
-      QApplication::processEvents();
-    }
+    QMessageBox::critical
+      (this,
+       tr("BiblioteQ: Z39.50 Query Error"),
+       tr("A Z39.50 entry may not yet exist for the provided ISBN(s)."));
   else
     etype = m_thread->getEType();
 
@@ -6010,7 +5929,6 @@ void biblioteq_book::slotZ3950Query(void)
 	 tr("BiblioteQ: Z39.50 Query Error"),
 	 tr("The Z39.50 entry could not be retrieved. Please view the "
 	    "error log."));
-      QApplication::processEvents();
     }
 }
 
@@ -6044,12 +5962,7 @@ void biblioteq_book::sruDownloadFinished(void)
 				      "those retrieved from the SRU site?"),
 				   QMessageBox::No | QMessageBox::Yes,
 				   QMessageBox::No) == QMessageBox::Yes)
-	    {
-	      QApplication::processEvents();
-	      populateAfterSRU("MARC21", m_sruResults);
-	    }
-
-	  QApplication::processEvents();
+	    populateAfterSRU("MARC21", m_sruResults);
 	}
       else
 	populateAfterSRU("MARC21", m_sruResults);	
@@ -6057,24 +5970,18 @@ void biblioteq_book::sruDownloadFinished(void)
   else if(records == 0)
     {
       if(!m_doNotShowDialogs)
-	{
-	  QMessageBox::critical
-	    (this,
-	     tr("BiblioteQ: SRU Query Error"),
-	     tr("An SRU entry may not yet exist for the provided ISBN(s)."));
-	  QApplication::processEvents();
-	}
+	QMessageBox::critical
+	  (this,
+	   tr("BiblioteQ: SRU Query Error"),
+	   tr("An SRU entry may not yet exist for the provided ISBN(s)."));
     }
   else
     {
       if(!m_doNotShowDialogs)
-	{
-	  QMessageBox::critical
-	    (this,
-	     tr("BiblioteQ: SRU Query Error"),
-	     tr("The SRU query produced invalid results."));
-	  QApplication::processEvents();
-	}
+	QMessageBox::critical
+	  (this,
+	   tr("BiblioteQ: SRU Query Error"),
+	   tr("The SRU query produced invalid results."));
     }
 }
 
