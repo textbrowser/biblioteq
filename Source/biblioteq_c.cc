@@ -581,7 +581,6 @@ int biblioteq::populateTable(QSqlQuery *query,
       if(progress)
 	progress->close();
 
-      QApplication::processEvents();
       QApplication::restoreOverrideCursor();
 
       if(!m_previousTypeFilter.isEmpty())
@@ -610,7 +609,6 @@ int biblioteq::populateTable(QSqlQuery *query,
 	 tr("BiblioteQ: Database Error"),
 	 tr("Unable to retrieve the data required for "
 	    "populating the main views."));
-      QApplication::processEvents();
       delete m_searchQuery;
       m_searchQuery = nullptr;
       ui.graphicsView->setSceneRect
@@ -1484,7 +1482,6 @@ void biblioteq::exportAsCSV
   dialog.setOption(QFileDialog::DontUseNativeDialog);
   dialog.setWindowTitle(title);
   dialog.exec();
-  QApplication::processEvents();
 
   if(dialog.result() == QDialog::Accepted)
     {
@@ -2692,7 +2689,6 @@ void biblioteq::slotCheckout(void)
       QMessageBox::critical(m_members_diag,
 			    tr("BiblioteQ: User Error"),
 			    tr("Photographs may not be reserved."));
-      QApplication::processEvents();
       return;
     }
 
@@ -2726,7 +2722,6 @@ void biblioteq::slotCheckout(void)
 	     tr("BiblioteQ: User Error"),
 	     tr("It appears that the selected member's "
 		"membership has expired."));
-	  QApplication::processEvents();
 	  return;
 	}
 
@@ -2769,7 +2764,6 @@ void biblioteq::slotCheckout(void)
 		 tr("BiblioteQ: User Error"),
 		 tr("Too many (%1) %2 items reserved (%3).").
 		 arg(maximumReserved).arg(type.toLower()).arg(totalReserved));
-	      QApplication::processEvents();
 	      return;
 	    }
 	}
@@ -2807,7 +2801,6 @@ void biblioteq::slotCheckout(void)
 	     tr("BiblioteQ: User Error"),
 	     tr("It appears that the item that you selected "
 		"is not available for reservation."));
-	  QApplication::processEvents();
 	  return;
 	}
     }
@@ -2818,7 +2811,6 @@ void biblioteq::slotCheckout(void)
 			    tr("BiblioteQ: User Error"),
 			    tr("Please select a member and an item "
 			       "to continue with the reservation process."));
-      QApplication::processEvents();
       return;
     }
   else
@@ -2860,7 +2852,6 @@ void biblioteq::slotCheckout(void)
 	    (m_members_diag,
 	     tr("BiblioteQ: User Error"),
 	     tr("Unable to determine the selected item's type."));
-	  QApplication::processEvents();
 	  delete item;
 	  return;
 	}
@@ -2890,7 +2881,6 @@ void biblioteq::slotCheckout(void)
 					     bb.speedy->isChecked());
       copyeditor->populateCopiesEditor();
       copyeditor->exec();
-      QApplication::processEvents();
       delete item;
     }
 }
@@ -2921,7 +2911,6 @@ void biblioteq::slotConnectDB(void)
 	     tr("BiblioteQ: User Error"),
 	     tr("The selected SQLite file is not accessible. Please "
 		"verify that the file exists, is readable, and is writable."));
-	  QApplication::processEvents();
 	  return;
 	}
     }
@@ -2989,7 +2978,6 @@ void biblioteq::slotConnectDB(void)
 	 str +
 	 "\n" +
 	 tr("Please contact your administrator."));
-      QApplication::processEvents();
       return;
     }
 
@@ -3047,7 +3035,6 @@ void biblioteq::slotConnectDB(void)
 	 tr("Unable to open a database "
 	    "connection with the provided information. Please "
 	    "review the Error Log."));
-      QApplication::processEvents();
     }
   else
     {
@@ -3068,7 +3055,6 @@ void biblioteq::slotConnectDB(void)
 	     tr("The current database driver that you're using "
 		"does not support transactions. "
 		"Please upgrade your database and/or driver."));
-	  QApplication::processEvents();
 	}
     }
 
@@ -3094,7 +3080,6 @@ void biblioteq::slotConnectDB(void)
 		     tr("It appears that the account ") +
 		     br.userid->text().trimmed() +
 		     tr(" does not have administrator privileges."));
-		  QApplication::processEvents();
 		}
 	      else if(!m_roles.isEmpty() && br.role->currentIndex() != 0)
 		{
@@ -3104,7 +3089,6 @@ void biblioteq::slotConnectDB(void)
 		     tr("BiblioteQ: User Error"),
 		     tr("It appears that you are attempting to assume an "
 			"administrator role in a non-administrator mode."));
-		  QApplication::processEvents();
 		}
 	      else
 		{
@@ -3132,7 +3116,6 @@ void biblioteq::slotConnectDB(void)
 			 tr("Unable to set the role for ") +
 			 br.userid->text().trimmed() +
 			 tr("."));
-		      QApplication::processEvents();
 		    }
 		}
 	    }
@@ -3152,7 +3135,6 @@ void biblioteq::slotConnectDB(void)
 		 tr("Unable to determine the roles of ") +
 		 br.userid->text().trimmed() +
 		 tr("."));
-	      QApplication::processEvents();
 	    }
 	  else if(br.role->currentIndex() == 1) // Guest
 	    {
@@ -3170,7 +3152,6 @@ void biblioteq::slotConnectDB(void)
 		    (parent,
 		     tr("BiblioteQ: Database Error"),
 		     tr("Unable to set a guest role."));
-		  QApplication::processEvents();
 		}
 	    }
 	  else
@@ -3193,7 +3174,6 @@ void biblioteq::slotConnectDB(void)
 		     tr("Unable to set the role for ") +
 		     br.userid->text().trimmed() +
 		     tr("."));
-		  QApplication::processEvents();
 		}
 	    }
 	}
@@ -4188,7 +4168,6 @@ void biblioteq::slotExportMembersAsCSV(void)
   dialog.setOption(QFileDialog::DontUseNativeDialog);
   dialog.setWindowTitle(tr("BiblioteQ: Export Patrons As CSV"));
   dialog.exec();
-  QApplication::processEvents();
 
   if(dialog.result() == QDialog::Accepted)
     {
@@ -4473,7 +4452,6 @@ void biblioteq::slotModifyBorrower(void)
 	(m_members_diag,
 	 tr("BiblioteQ: User Error"),
 	 tr("Please select a member to modify."));
-      QApplication::processEvents();
       return;
     }
 
@@ -4508,7 +4486,6 @@ void biblioteq::slotModifyBorrower(void)
 	   tr("BiblioteQ: Database Error"),
 	   tr("Unable to retrieve the selected member's information."));
 
-      QApplication::processEvents();
       return;
     }
   else
@@ -4704,8 +4681,6 @@ void biblioteq::slotOpenPDFFiles(void)
 
   if(dialog.exec() == QDialog::Accepted)
     {
-      QApplication::processEvents();
-
       if(dialog.selectedFiles().size() >= MAXIMUM_DEVICES_CONFIRMATION)
 	if(QMessageBox::
 	   question(this,
@@ -4714,10 +4689,7 @@ void biblioteq::slotOpenPDFFiles(void)
 		    arg(dialog.selectedFiles().size()),
 		    QMessageBox::No | QMessageBox::Yes,
 		    QMessageBox::No) == QMessageBox::No)
-	  {
-	    QApplication::processEvents();
-	    return;
-	  }
+	  return;
 
       QApplication::setOverrideCursor(Qt::WaitCursor);
 
@@ -4742,8 +4714,6 @@ void biblioteq::slotOpenPDFFiles(void)
 
       QApplication::restoreOverrideCursor();
     }
-
-  QApplication::processEvents();
 #endif
 }
 
@@ -5050,7 +5020,6 @@ void biblioteq::slotPopulateMembersBrowser(void)
 	(m_members_diag,
 	 tr("BiblioteQ: Database Error"),
 	 tr("Unable to retrieve member data for table populating."));
-      QApplication::processEvents();
       return;
     }
 
@@ -5193,7 +5162,6 @@ void biblioteq::slotRefreshAdminList(void)
 	(m_admin_diag,
 	 tr("BiblioteQ: Database Error"),
 	 tr("Unable to retrieve administrator data for table populating."));
-      QApplication::processEvents();
       return;
     }
 
@@ -5277,7 +5245,6 @@ void biblioteq::slotRemoveMember(void)
       QMessageBox::critical(m_members_diag,
 			    tr("BiblioteQ: User Error"),
 			    tr("Please select a member to delete."));
-      QApplication::processEvents();
       return;
     }
 
@@ -5306,7 +5273,6 @@ void biblioteq::slotRemoveMember(void)
 	 tr("BiblioteQ: Database Error"),
 	 tr("Unable to determine the number of items that "
 	    "are reserved by the selected member."));
-      QApplication::processEvents();
       return;
     }
 
@@ -5316,7 +5282,6 @@ void biblioteq::slotRemoveMember(void)
 	(m_members_diag,
 	 tr("BiblioteQ: User Error"),
 	 tr("You may not remove a member that has reserved items."));
-      QApplication::processEvents();
       return;
     }
 
@@ -5326,10 +5291,7 @@ void biblioteq::slotRemoveMember(void)
 			      "selected member (%1)?").arg(memberid),
 			   QMessageBox::No | QMessageBox::Yes,
 			   QMessageBox::No) == QMessageBox::No)
-    {
-      QApplication::processEvents();
-      return;
-    }
+    return;
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
@@ -5346,7 +5308,6 @@ void biblioteq::slotRemoveMember(void)
 	(m_members_diag,
 	 tr("BiblioteQ: Database Error"),
 	 tr("Unable to create a database transaction."));
-      QApplication::processEvents();
       return;
     }
 
@@ -5375,7 +5336,6 @@ void biblioteq::slotRemoveMember(void)
 	(m_members_diag,
 	 tr("BiblioteQ: Database Error"),
 	 tr("Unable to remove the selected member."));
-      QApplication::processEvents();
     }
   else
     {
@@ -5412,7 +5372,6 @@ void biblioteq::slotRemoveMember(void)
 	     tr("Unable to remove the patron account ") +
 	     memberid +
 	     tr("."));
-	  QApplication::processEvents();
 	}
       else
 	{
@@ -5430,7 +5389,6 @@ void biblioteq::slotRemoveMember(void)
 		(m_members_diag,
 		 tr("BiblioteQ: Database Error"),
 		 tr("Unable to commit the current database transaction."));
-	      QApplication::processEvents();
 	      return;
 	    }
 	}
@@ -5459,7 +5417,6 @@ void biblioteq::slotRequest(void)
 	    (this,
 	     tr("BiblioteQ: User Error"),
 	     tr("Please select at least one reservation request to cancel."));
-	  QApplication::processEvents();
 	  return;
 	}
 
@@ -5472,12 +5429,7 @@ void biblioteq::slotRequest(void)
 				      "request(s)?"),
 				   QMessageBox::No | QMessageBox::Yes,
 				   QMessageBox::No) == QMessageBox::No)
-	    {
-	      QApplication::processEvents();
-	      return;
-	    }
-
-	  QApplication::processEvents();
+	    return;
 	}
     }
   else if(task == RequestActionItems::REQUEST_SELECTED)
@@ -5488,7 +5440,6 @@ void biblioteq::slotRequest(void)
 	    (this,
 	     tr("BiblioteQ: User Error"),
 	     tr("Please select at least one item to place on request."));
-	  QApplication::processEvents();
 	  return;
 	}
     }
@@ -5500,7 +5451,6 @@ void biblioteq::slotRequest(void)
 	    (this,
 	     tr("BiblioteQ: User Error"),
 	     tr("Please select at least one item to return."));
-	  QApplication::processEvents();
 	  return;
 	}
     }
@@ -5702,8 +5652,6 @@ void biblioteq::slotRequest(void)
 	   tr("Unable to return some or all of the selected items."));
     }
 
-  QApplication::processEvents();
-
   if(numcompleted > 0)
     {
       str += "</html>";
@@ -5723,7 +5671,6 @@ void biblioteq::slotRequest(void)
 	  dialog.resize(500, 500);
 	  dialog.setWindowTitle(tr("BiblioteQ: Information"));
 	  dialog.exec();
-	  QApplication::processEvents();
 	}
 
       if(task == RequestActionItems::CANCEL_REQUESTED ||
@@ -5789,7 +5736,6 @@ void biblioteq::slotSaveAdministrators(void)
 	    (m_admin_diag,
 	     tr("BiblioteQ: User Error"),
 	     tr("Administrators must belong to at least one category."));
-	  QApplication::processEvents();
 	  return;
 	}
 
@@ -5807,7 +5753,6 @@ void biblioteq::slotSaveAdministrators(void)
 	    (m_admin_diag,
 	     tr("BiblioteQ: User Error"),
 	     tr("Duplicate administrator ids are not allowed."));
-	  QApplication::processEvents();
 	  return;
 	}
     }
@@ -5827,7 +5772,6 @@ void biblioteq::slotSaveAdministrators(void)
 	(m_admin_diag,
 	 tr("BiblioteQ: Database Error"),
 	 tr("Unable to create a database transaction."));
-      QApplication::processEvents();
       return;
     }
 
@@ -6060,7 +6004,6 @@ void biblioteq::slotSaveAdministrators(void)
 	(m_admin_diag,
 	 tr("BiblioteQ: Database Error"),
 	 tr("Unable to commit the current database transaction."));
-      QApplication::processEvents();
       return;
     }
 
@@ -6068,14 +6011,11 @@ void biblioteq::slotSaveAdministrators(void)
   m_deletedAdmins.clear();
 
   if(adminCreated)
-    {
-      QMessageBox::information
-	(m_admin_diag,
-	 tr("BiblioteQ: Information"),
-	 tr("Please notify new administrators that their "
-	    "default password has been set to tempPass."));
-      QApplication::processEvents();
-    }
+    QMessageBox::information
+      (m_admin_diag,
+       tr("BiblioteQ: Information"),
+       tr("Please notify new administrators that their "
+	  "default password has been set to tempPass."));
 
   slotRefreshAdminList();
   return;
@@ -6097,7 +6037,6 @@ void biblioteq::slotSaveAdministrators(void)
      tr("BiblioteQ: Database Error"),
      tr("An error occurred while attempting to save "
 	"the administrator information."));
-  QApplication::processEvents();
 }
 
 void biblioteq::slotSaveConfig(void)
@@ -6230,7 +6169,6 @@ void biblioteq::slotSaveUser(void)
 	    (userinfo_diag,
 	     tr("BiblioteQ: User Error"),
 	     tr("The Member ID must contain at least five characters."));
-	  QApplication::processEvents();
 	  userinfo_diag->m_userinfo.memberid->setFocus();
 	  return;
 	}
@@ -6250,7 +6188,6 @@ void biblioteq::slotSaveUser(void)
 	     tr("The Member ID ") +
 	     userinfo_diag->m_userinfo.memberid->text() +
 	     tr(" already exists."));
-	  QApplication::processEvents();
 	  userinfo_diag->m_userinfo.memberid->setFocus();
 	  return;
 	}
@@ -6261,7 +6198,6 @@ void biblioteq::slotSaveUser(void)
       QMessageBox::critical(userinfo_diag,
 			    tr("BiblioteQ: User Error"),
 			    tr("Please provide a valid City."));
-      QApplication::processEvents();
       userinfo_diag->m_userinfo.city->setFocus();
       return;
     }
@@ -6271,7 +6207,6 @@ void biblioteq::slotSaveUser(void)
       QMessageBox::critical(userinfo_diag,
 			    tr("BiblioteQ: User Error"),
 			    tr("Please provide a valid First Name."));
-      QApplication::processEvents();
       userinfo_diag->m_userinfo.firstName->setFocus();
       return;
     }
@@ -6281,7 +6216,6 @@ void biblioteq::slotSaveUser(void)
       QMessageBox::critical(userinfo_diag,
 			    tr("BiblioteQ: User Error"),
 			    tr("Please provide a valid Last Name."));
-      QApplication::processEvents();
       userinfo_diag->m_userinfo.lastName->setFocus();
       return;
     }
@@ -6291,7 +6225,6 @@ void biblioteq::slotSaveUser(void)
       QMessageBox::critical(userinfo_diag,
 			    tr("BiblioteQ: User Error"),
 			    tr("Please provide a valid Street."));
-      QApplication::processEvents();
       userinfo_diag->m_userinfo.street->setFocus();
       return;
     }
@@ -6301,7 +6234,6 @@ void biblioteq::slotSaveUser(void)
       QMessageBox::critical(userinfo_diag,
 			    tr("BiblioteQ: User Error"),
 			    tr("Please provide a ZIP Code."));
-      QApplication::processEvents();
       userinfo_diag->m_userinfo.zip->setFocus();
       return;
     }
@@ -6336,7 +6268,6 @@ void biblioteq::slotSaveUser(void)
 	(userinfo_diag,
 	 tr("BiblioteQ: Database Error"),
 	 tr("Unable to determine the uniqueness of the proposed member."));
-      QApplication::processEvents();
       return;
     }
 
@@ -6345,7 +6276,6 @@ void biblioteq::slotSaveUser(void)
       QMessageBox::critical(userinfo_diag,
 			    tr("BiblioteQ: User Error"),
 			    tr("An identical member already exists."));
-      QApplication::processEvents();
       return;
     }
 
@@ -6364,7 +6294,6 @@ void biblioteq::slotSaveUser(void)
 	(userinfo_diag,
 	 tr("BiblioteQ: Database Error"),
 	 tr("Unable to create a database transaction."));
-      QApplication::processEvents();
       return;
     }
 
@@ -6563,7 +6492,6 @@ void biblioteq::slotSaveUser(void)
       QMessageBox::critical(userinfo_diag,
 			    tr("BiblioteQ: Database Error"),
 			    tr("Unable to save the member's information."));
-      QApplication::processEvents();
     }
   else
     {
@@ -6602,7 +6530,6 @@ void biblioteq::slotSaveUser(void)
 		 tr("BiblioteQ: Database Error"),
 		 tr("An error occurred while attempting to "
 		    "create a database account for the new member."));
-	      QApplication::processEvents();
 	      return;
 	    }
 	  else
@@ -6621,7 +6548,6 @@ void biblioteq::slotSaveUser(void)
 					tr("BiblioteQ: Database Error"),
 					tr("Unable to commit the current "
 					   "database transaction."));
-		  QApplication::processEvents();
 		  return;
 		}
 	    }
@@ -6674,7 +6600,6 @@ void biblioteq::slotSaveUser(void)
 		 tr("An error occurred while attempting "
 		    "to update the database account %1.").
 		 arg(userinfo_diag->m_userinfo.memberid->text()));
-	      QApplication::processEvents();
 	      return;
 	    }
 	  else
@@ -6693,7 +6618,6 @@ void biblioteq::slotSaveUser(void)
 					tr("BiblioteQ: Database Error"),
 					tr("Unable to commit the current "
 					   "database transaction."));
-		  QApplication::processEvents();
 		  return;
 		}
 	    }
@@ -6806,14 +6730,11 @@ void biblioteq::slotSaveUser(void)
 #endif
 
 	  if(m_db.driverName() != "QSQLITE")
-	    {
-	      QMessageBox::information
-		(m_members_diag,
-		 tr("BiblioteQ: Information"),
-		 tr("Please notify the new member that their "
-		    "default password has been set to tempPass."));
-	      QApplication::processEvents();
-	    }
+	    QMessageBox::information
+	      (m_members_diag,
+	       tr("BiblioteQ: Information"),
+	       tr("Please notify the new member that their "
+		  "default password has been set to tempPass."));
 
 	  slotPopulateMembersBrowser();
 	}
@@ -6947,7 +6868,6 @@ void biblioteq::slotShowHistory(void)
 	   tr("BiblioteQ: User Error"),
 	   tr("In order to display a member's reservation "
 	      "history, you must first select the member."));
-	QApplication::processEvents();
 	return;
       }
 
@@ -7193,7 +7113,6 @@ void biblioteq::slotShowHistory(void)
 	   tr("Unable to retrieve reservation "
 	      "history data for table populating."));
 
-      QApplication::processEvents();
       return;
     }
 
@@ -7379,12 +7298,7 @@ void biblioteq::slotVacuum(void)
 			      "Continue?"),
 			   QMessageBox::No | QMessageBox::Yes,
 			   QMessageBox::No) == QMessageBox::No)
-    {
-      QApplication::processEvents();
-      return;
-    }
-
-  QApplication::processEvents();
+    return;
 
   QProgressDialog progress(this);
 
@@ -7456,7 +7370,6 @@ void biblioteq::slotVacuum(void)
     statusBar()->clearMessage();
 
   progress.close();
-  QApplication::processEvents();
 }
 
 void biblioteq::vgSearch(const QString &field, const QString &value)

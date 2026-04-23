@@ -220,7 +220,6 @@ void biblioteq_sqlite_merge_databases::slotMerge(void)
   progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
   progress->show();
   progress->repaint();
-  QApplication::processEvents();
 
   QString errors("<html>");
   auto const tables(QStringList()
@@ -375,7 +374,6 @@ void biblioteq_sqlite_merge_databases::slotMerge(void)
   errors.append("</html>");
   m_ui.results->setHtml(errors);
   progress->close();
-  QApplication::processEvents();
 }
 
 void biblioteq_sqlite_merge_databases::slotReset(void)
@@ -400,7 +398,6 @@ void biblioteq_sqlite_merge_databases::slotSelect(void)
   dialog.setOption(QFileDialog::DontUseNativeDialog);
   dialog.setWindowTitle(tr("BiblioteQ: SQLite Database Selection"));
   dialog.exec();
-  QApplication::processEvents();
 
   if(dialog.result() == QDialog::Accepted)
     {

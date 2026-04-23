@@ -659,7 +659,6 @@ void biblioteq_batch_activities::borrow(void)
     }
 
   progress.close();
-  QApplication::processEvents();
 }
 
 void biblioteq_batch_activities::changeEvent(QEvent *event)
@@ -1770,7 +1769,6 @@ void biblioteq_batch_activities::slotExportMissing(void)
   dialog.setOption(QFileDialog::DontUseNativeDialog);
   dialog.setWindowTitle(tr("BiblioteQ: Export As CSV"));
   dialog.exec();
-  QApplication::processEvents();
 
   if(dialog.result() == QDialog::Accepted)
     {
@@ -2255,10 +2253,7 @@ void biblioteq_batch_activities::slotReset(void)
 				 tr("Are you sure that you wish to reset?"),
 				 QMessageBox::No | QMessageBox::Yes,
 				 QMessageBox::No) == QMessageBox::No)
-	  {
-	    QApplication::processEvents();
-	    return;
-	  }
+	  return;
 
       m_ui.add_scan->clear();
       m_ui.add_scan->setFocus();
@@ -2275,10 +2270,7 @@ void biblioteq_batch_activities::slotReset(void)
 				 tr("Are you sure that you wish to reset?"),
 				 QMessageBox::No | QMessageBox::Yes,
 				 QMessageBox::No) == QMessageBox::No)
-	  {
-	    QApplication::processEvents();
-	    return;
-	  }
+	  return;
 
       m_ui.borrow_member_id->clear();
       m_ui.borrow_member_id->setFocus();
@@ -2307,10 +2299,7 @@ void biblioteq_batch_activities::slotReset(void)
 				 tr("Are you sure that you wish to reset?"),
 				 QMessageBox::No | QMessageBox::Yes,
 				 QMessageBox::No) == QMessageBox::No)
-	  {
-	    QApplication::processEvents();
-	    return;
-	  }
+	  return;
 
       m_ui.dreamy_date->setDate(QDate::currentDate());
       m_ui.dreamy_member_id->clear();

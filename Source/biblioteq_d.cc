@@ -271,7 +271,6 @@ void biblioteq::addItemWindowToTab(QMainWindow *window)
   ui.tab->setCurrentIndex(ui.tab->count() - 1);
   ui.tab->setTabToolTip(ui.tab->count() - 1, title);
   ui.tab->setTabsClosable(true);
-  QApplication::processEvents();
   prepareTabWidgetCloseButtons();
 }
 
@@ -284,7 +283,6 @@ void biblioteq::executeCustomQuery(QWidget *widget, const QString &text)
       QMessageBox::critical(widget == nullptr ? this : widget,
 			    tr("BiblioteQ: User Error"),
 			    tr("Please provide a valid SQL statement."));
-      QApplication::processEvents();
       return;
     }
 
@@ -299,13 +297,10 @@ void biblioteq::executeCustomQuery(QWidget *widget, const QString &text)
      q.startsWith("lock ") ||
      q.startsWith("revoke ") ||
      q.startsWith("truncate "))
-    {
-      QMessageBox::critical
-	(widget == nullptr ? this : widget,
-	 tr("BiblioteQ: User Error"),
-	 tr("Please provide a non-destructive SQL statement."));
-      QApplication::processEvents();
-    }
+    QMessageBox::critical
+      (widget == nullptr ? this : widget,
+       tr("BiblioteQ: User Error"),
+       tr("Please provide a non-destructive SQL statement."));
   else if(q.startsWith("delete "))
     {
       if(QMessageBox::
@@ -314,12 +309,7 @@ void biblioteq::executeCustomQuery(QWidget *widget, const QString &text)
 		  tr("Are you sure that you wish to execute the statement?"),
 		  QMessageBox::No | QMessageBox::Yes,
 		  QMessageBox::No) == QMessageBox::No)
-	{
-	  QApplication::processEvents();
-	  return;
-	}
-      else
-	QApplication::processEvents();
+	return;
 
       QSqlQuery query(m_db);
 
@@ -334,12 +324,7 @@ void biblioteq::executeCustomQuery(QWidget *widget, const QString &text)
 		  tr("Are you sure that you wish to execute the statement?"),
 		  QMessageBox::No | QMessageBox::Yes,
 		  QMessageBox::No) == QMessageBox::No)
-	{
-	  QApplication::processEvents();
-	  return;
-	}
-      else
-	QApplication::processEvents();
+	return;
 
       QSqlQuery query(m_db);
       auto const list(ui.table->selectionModel()->selectedRows());
@@ -860,7 +845,6 @@ void biblioteq::prepareTabWidgetCloseButtons(void)
       ui.tab->tabBar()->setTabButton(index, list.at(i), nullptr);
     }
 
-  QApplication::processEvents();
   QApplication::restoreOverrideCursor();
 }
 
@@ -901,8 +885,6 @@ void biblioteq::prepareUpgradeNotification(void)
 	   tr("BiblioteQ: Database Error"),
 	   tr("The current SQLite schema is not current. "
 	      "Please visit Tools -> Upgrade SQLite Schema (Recent)."));
-
-      QApplication::processEvents();
     }
 }
 
@@ -1192,22 +1174,18 @@ void biblioteq::slotDelayedPreparation(void)
   QFileInfo const fileInfo(BIBLIOTEQ_MACOS_LIBPQ_PATH);
 
   if(!fileInfo.isReadable())
-    {
-      QMessageBox::critical
-	(this,
-	 tr("BiblioteQ: Configuration Error"),
-	 tr("The PostgreSQL library %1 cannot be read. "
-	    "PostgreSQL services will not be functional.").
-	 arg(fileInfo.absoluteFilePath()));
-      QApplication::processEvents();
-    }
+    QMessageBox::critical
+      (this,
+       tr("BiblioteQ: Configuration Error"),
+       tr("The PostgreSQL library %1 cannot be read. "
+	  "PostgreSQL services will not be functional.").
+       arg(fileInfo.absoluteFilePath()));
 #else
   QMessageBox::critical
     (this,
      tr("BiblioteQ: Configuration Error"),
      tr("The PostgreSQL library cannot be read. "
 	"PostgreSQL services will not be functional."));
-  QApplication::processEvents();
 #endif
 #endif
 }
@@ -1252,7 +1230,6 @@ void biblioteq::slotExportAsPNG(void)
   dialog.setOption(QFileDialog::DontUseNativeDialog);
   dialog.setWindowTitle(tr("BiblioteQ: Export Icons View As PNG"));
   dialog.exec();
-  QApplication::processEvents();
 
   if(dialog.result() == QDialog::Accepted)
     {
@@ -1487,7 +1464,6 @@ void biblioteq::slotPrintIconsView(void)
 
   if(dialog->exec() == QDialog::Accepted)
     {
-      QApplication::processEvents();
       QApplication::setOverrideCursor(Qt::WaitCursor);
 
       QPainter painter(&printer);
@@ -1496,8 +1472,6 @@ void biblioteq::slotPrintIconsView(void)
       ui.graphicsView->scene()->render(&painter);
       QApplication::restoreOverrideCursor();
     }
-
-  QApplication::processEvents();
 }
 
 void biblioteq::slotResizeTimeout(void)
@@ -1619,7 +1593,6 @@ void biblioteq::slotSetMembershipFees(void)
 	    (this,
 	     tr("BiblioteQ: Database Error"),
 	     tr("Unable to update the entries."));
-	  QApplication::processEvents();
 	}
       else
 	QApplication::restoreOverrideCursor();

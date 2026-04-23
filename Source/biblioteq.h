@@ -283,10 +283,7 @@ class userinfo_diag_class: public QDialog
 		     "Continue closing?\n%1").arg(str.trimmed()),
 		  QMessageBox::No | QMessageBox::Yes,
 		  QMessageBox::No) == QMessageBox::No)
-	{
-	  QApplication::processEvents();
-	  return;
-	}
+	return;
 
     QDialog::done(result);
   }
