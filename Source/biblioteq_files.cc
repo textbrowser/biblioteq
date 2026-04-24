@@ -343,8 +343,11 @@ void biblioteq_files::slotExport(void)
 		     QDir::separator() +
 		     fileName);
 
-	  file.open(QIODevice::Truncate | QIODevice::WriteOnly);
-	  file.write(qUncompress(query.value(0).toByteArray()));
+	  if(file.open(QIODevice::Truncate | QIODevice::WriteOnly))
+	    file.write(qUncompress(query.value(0).toByteArray()));
+	  else
+	    qDebug() << tr("Cannot open %1 for writing.").arg(file.fileName());
+
 	  file.close();
 	}
     }
