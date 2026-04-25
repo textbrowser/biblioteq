@@ -2,21 +2,29 @@
 exists(/usr/include/poppler/cpp) {
 DEFINES     += BIBLIOTEQ_POPPLER_VERSION_DEFINED
 INCLUDEPATH += /usr/include/poppler/cpp
+} else {
+warning("Poppler is not available in /usr/include.")
 }
 
 exists(/usr/include/yaz) {
 DEFINES += BIBLIOTEQ_LINKED_WITH_YAZ
 LIBS    += -lyaz
+} else {
+warning("YAZ is not available in /usr/include.")
 }
 
 exists(/usr/local/include/poppler/cpp) {
 DEFINES     += BIBLIOTEQ_POPPLER_VERSION_DEFINED
 INCLUDEPATH += /usr/local/include/poppler/cpp
+} else {
+warning("Poppler is not available in /usr/local.")
 }
 
 exists(/usr/local/include/yaz) {
 DEFINES += BIBLIOTEQ_LINKED_WITH_YAZ
 LIBS    += -lyaz
+} else {
+warning("YAZ is not available in /usr/local.")
 }
 
 greaterThan(QT_MAJOR_VERSION, 5) {
@@ -55,6 +63,8 @@ LIBS        += -lpoppler-qt5
 qtHaveModule(multimedia) {
 DEFINES += BIBLIOTEQ_AUDIO_SUPPORTED
 QT      += multimedia
+} else {
+warning("Qt's Multimedia was not discovered.")
 }
 
 qtHaveModule(pdf) {

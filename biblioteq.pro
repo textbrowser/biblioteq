@@ -59,6 +59,8 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
 exists(/usr/include/sqlite3.h) {
 DEFINES += BIBLIOTEQ_SQLITE3_INCLUDE_FILE_EXISTS
 LIBS    += -lsqlite3
+} else {
+warning("The file /usr/include/sqlite3.h does not exist.")
 }
 
 QMAKE_DISTCLEAN     += -r .qmake.cache .qmake.stash Temporary
