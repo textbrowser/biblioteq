@@ -17,7 +17,6 @@ DEFINES += BIBLIOTEQ_MACOS_LIBPQ_PATH="'\"/usr/local/opt/libpq/lib/libpq.dylib\"
 warning("/usr/local/opt/libpq/lib/libpq.dylib does not exist.")
 }
 
-DEFINES	 += QT_DEPRECATED_WARNINGS
 LANGUAGE = C++
 QT	 += gui network printsupport sql widgets
 QT	 -= webkit
