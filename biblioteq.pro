@@ -46,6 +46,7 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wstrict-overflow=1 \
                           -Wtrampolines \
                           -Wundef \
+                          -Wvla \
                           -fPIE \
                           -fstack-protector-all \
                           -funroll-loops \

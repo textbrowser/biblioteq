@@ -53,7 +53,7 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
     if(title.isEmpty())
       return windowTitle();
     else
-      return QString(tr("Photograph Collection (%1)").arg(title));
+      return tr("Photograph Collection (%1)").arg(title);
   }
 
   void duplicate(const QString &p_oid, const int state);

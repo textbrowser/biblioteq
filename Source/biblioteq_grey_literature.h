@@ -48,7 +48,7 @@ class biblioteq_grey_literature: public QMainWindow, public biblioteq_item
     if(title.isEmpty())
       return windowTitle();
     else
-      return QString(tr("Grey Literature (%1)").arg(title));
+      return tr("Grey Literature (%1)").arg(title);
   }
 
   void duplicate(const QString &p_oid, const int state);

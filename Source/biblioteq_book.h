@@ -56,7 +56,7 @@ class biblioteq_book: public QMainWindow, public biblioteq_item
     if(title.isEmpty())
       return windowTitle();
     else
-      return QString(tr("Book (%1)").arg(title));
+      return tr("Book (%1)").arg(title);
   }
 
   void delayedQuery(const QString &querySystem);

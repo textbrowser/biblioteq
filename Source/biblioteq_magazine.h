@@ -55,9 +55,9 @@ class biblioteq_magazine: public QMainWindow, public biblioteq_item
     if(title.isEmpty())
       return windowTitle();
     else if(m_subType == "Journal")
-      return QString(tr("Journal (%1)").arg(title));
+      return tr("Journal (%1)").arg(title);
     else
-      return QString(tr("Magazine (%1)").arg(title));
+      return tr("Magazine (%1)").arg(title);
   }
 
   Ui_magDialog dialog(void) const;

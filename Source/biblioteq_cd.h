@@ -49,7 +49,7 @@ class biblioteq_cd: public QMainWindow, public biblioteq_item
     if(title.isEmpty())
       return windowTitle();
     else
-      return QString(tr("Music CD (%1)").arg(title));
+      return tr("Music CD (%1)").arg(title);
   }
 
   void duplicate(const QString &p_oid, const int state);
