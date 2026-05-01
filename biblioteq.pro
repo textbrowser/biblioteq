@@ -37,6 +37,7 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wfloat-equal \
                           -Wformat-overflow=2 \
                           -Wformat=2 \
+                          -Wimplicit-fallthrough \
                           -Wlogical-op \
                           -Wno-deprecated-declarations \
                           -Wold-style-cast \

@@ -974,7 +974,7 @@ void biblioteq_photographcollection::setReadOnlyFieldsOverride(void)
 void biblioteq_photographcollection::setSceneRect(const qint64 size)
 {
   pc.graphicsView->setSceneRect
-    (0.0, 0.0, 5.0 * 150.0, (size / 5.0) * 200.0 + 200.0);
+    (0.0, 0.0, 5.0 * 150.0, (static_cast<double> (size) / 5.0) * 200.0 + 200.0);
 }
 
 void biblioteq_photographcollection::showPhotographs(const int page)
