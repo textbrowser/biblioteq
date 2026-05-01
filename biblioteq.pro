@@ -48,6 +48,7 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -Wtrampolines \
                           -Wundef \
                           -Wvla \
+                          -Wzero-as-null-pointer-constant \
                           -fPIE \
                           -fstack-protector-all \
                           -funroll-loops \

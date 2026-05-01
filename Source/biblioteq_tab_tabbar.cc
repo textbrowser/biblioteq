@@ -102,7 +102,7 @@ preferredCloseButtonPositionOpposite(void) const
 #endif
 
   auto const buttonPosition = static_cast<QTabBar::ButtonPosition>
-    (style()->styleHint(QStyle::SH_TabBar_CloseButtonPosition, 0, this));
+    (style()->styleHint(QStyle::SH_TabBar_CloseButtonPosition, nullptr, this));
 
 #ifdef Q_OS_MACOS
   return buttonPosition == QTabBar::LeftSide ?
