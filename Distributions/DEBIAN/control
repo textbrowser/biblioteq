@@ -1,22 +1,23 @@
 Architecture: amd64
 Depends: libpq5,
 	 libqt6core6t64,
-	 libqt6gui6t64,
+	 libqt6gui6,
 	 libqt6multimedia6,
-	 libqt6network6t64,
+	 libqt6network6,
 	 libqt6pdf6,
 	 libqt6pdfwidgets6,
-	 libqt6printsupport6t64,
+	 libqt6printsupport6,
+	 libqt6sql6,
+	 libqt6sql6-psql,
 	 libqt6sql6-sqlite,
-	 libqt6sql6t64,
-	 libqt6widgets6t64,
+	 libqt6widgets6,
 	 libsqlite3-0,
 	 libyaz5
 Maintainer: f83043e79dc03a0abfbcbc376879a97d66f2cacb@protonmail.ch
 Package: BiblioteQ
 Priority: optional
 Section: Database
-Version: 2025.12.25
+Version: 2026.05.05
 Description: BiblioteQ
  Welcome to BiblioteQ on Debian!
  BiblioteQ is governed by a BSD license. Enjoy!
