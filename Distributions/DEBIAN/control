@@ -17,7 +17,7 @@ Maintainer: f83043e79dc03a0abfbcbc376879a97d66f2cacb@protonmail.ch
 Package: BiblioteQ
 Priority: optional
 Section: Database
-Version: 2026.05.05
+Version: 2026.05.10
 Description: BiblioteQ
  Welcome to BiblioteQ on Debian!
  BiblioteQ is governed by a BSD license. Enjoy!
