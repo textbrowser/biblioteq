@@ -22,7 +22,7 @@ fi
 
 VERSION=$(grep -oP '(?<=BIBLIOTEQ_VERSION ").*(?=")' Source/biblioteq.h)
 
-# Preparing ./opt/biblioteq:
+# Preparing ./opt/biblioteq.
 
 make distclean 2>/dev/null
 mkdir -p ./opt/biblioteq/Documentation
@@ -40,7 +40,7 @@ cp -pr ./Documentation/* ./opt/biblioteq/Documentation/.
 cp -pr ./SQL/* ./opt/biblioteq/SQL/.
 rm -fr ./opt/biblioteq/Documentation/Doxygen
 
-# Preparing BiblioteQ-x.deb:
+# Preparing BiblioteQ-x.deb.
 
 mkdir -p biblioteq-debian/opt
 mkdir -p biblioteq-debian/usr/share/applications
