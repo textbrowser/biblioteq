@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 # Alexis Megas.
-# Please pass any argument for creating a bundle with Qt 5.
 
 if [ ! -x /usr/bin/dpkg-deb ]
 then
@@ -21,24 +20,23 @@ then
     exit 1
 fi
 
+VERSION=$(grep -oP '(?<=BIBLIOTEQ_VERSION ").*(?=")' Source/biblioteq.h)
 qt5=""
 
-if [ ! -z "$1" ]
-then
-    qt5="-QT5"
-fi
-
-VERSION=$(grep -oP '(?<=BIBLIOTEQ_VERSION ").*(?=")' Source/biblioteq.h)
-
-# Preparing ./opt/biblioteq:
+# Preparing ./opt/biblioteq.
 
 make distclean 2>/dev/null
 mkdir -p ./opt/biblioteq/Documentation
 mkdir -p ./opt/biblioteq/SQL
 
-if [ ! -z "$qt5" ]
+if [ ! -z "$(which qmake)" ]
 then
     qmake -o Makefile biblioteq.pro
+    qt5="-QT5"
+elif [ ! -z "$(which qmake5)" ]
+then
+    qmake5 -o Makefile biblioteq.pro
+    qt5="-QT5"
 else
     qmake6 -o Makefile biblioteq.pro
 fi
@@ -55,7 +53,7 @@ cp -pr ./Documentation/* ./opt/biblioteq/Documentation/.
 cp -pr ./SQL/* ./opt/biblioteq/SQL/.
 rm -fr ./opt/biblioteq/Documentation/Doxygen
 
-# Preparing BiblioteQ-x.deb:
+# Preparing BiblioteQ-x.deb.
 
 mkdir -p biblioteq-debian/opt
 mkdir -p biblioteq-debian/usr/share/applications
