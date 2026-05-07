@@ -24,7 +24,7 @@ qmake -o Makefile biblioteq.pro
 make -j 4
 
 4 - Create Distribution Package
-./Distributions/build_debian_amd64.bash
+./Distributions/build-debian-amd64.bash
 
 5 - Install BiblioteQ
 sudo captain BiblioteQ-YYYY.MM.DD_amd64.deb
