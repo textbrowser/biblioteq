@@ -35,5 +35,5 @@ Unix Terminal
 Windows Qt MinGW Terminal
 
 > qmake -o Makefile biblioteq.windows.pro
-> mingw32-make
-> mingw32-make install
+> make
+> make install
