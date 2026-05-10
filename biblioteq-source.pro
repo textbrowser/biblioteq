@@ -2,28 +2,28 @@
 exists(/usr/include/poppler/cpp) {
 DEFINES     += BIBLIOTEQ_POPPLER_VERSION_DEFINED
 INCLUDEPATH += /usr/include/poppler/cpp
-} else {
+} else:unix {
 warning("Poppler is not available in /usr/include.")
 }
 
 exists(/usr/include/yaz) {
 DEFINES += BIBLIOTEQ_LINKED_WITH_YAZ
 LIBS    += -lyaz
-} else {
+} else:unix {
 warning("YAZ is not available in /usr/include.")
 }
 
 exists(/usr/local/include/poppler/cpp) {
 DEFINES     += BIBLIOTEQ_POPPLER_VERSION_DEFINED
 INCLUDEPATH += /usr/local/include/poppler/cpp
-} else {
+} else:unix {
 warning("Poppler is not available in /usr/local.")
 }
 
 exists(/usr/local/include/yaz) {
 DEFINES += BIBLIOTEQ_LINKED_WITH_YAZ
 LIBS    += -lyaz
-} else {
+} else:unix {
 warning("YAZ is not available in /usr/local.")
 }
 
