@@ -1,7 +1,7 @@
 cache()
 include(biblioteq-source.pro)
 
-purge.commands = del /Q *~ && del /Q *\\*~
+purge.commands = rm -fr *~ && rm -fr *\\*~
 
 CONFIG   += qt release warn_on windows
 DEFINES  += BIBLIOTEQ_LINKED_WITH_YAZ
@@ -51,7 +51,7 @@ libraries.files     = Distributions\\Windows\\Libraries.64\\*.dll \
 libraries.path      = release\\.
 plugins.files       = $$[QT_INSTALL_PLUGINS]\\*
 plugins.path        = release\\plugins\\.
-pluginspurge.extra  = del /Q /S *.debug
+pluginspurge.extra  = rm -fr *.debug
 pluginspurge.path   = release\\plugins\\.
 qt.files            = Distributions\\Windows\\qt.conf
 qt.path             = release\\.
