@@ -399,6 +399,7 @@ class biblioteq_otheroptions: public QMainWindow
   void prepareSQLKeywords(void);
   void prepareShortcuts(void);
   void prepareSpecialColors(const bool reset = false);
+  void prepareWindowIcons(void);
 
  private slots:
   void setGlobalFonts(const QFont &font);

@@ -655,6 +655,7 @@ void biblioteq_otheroptions::prepareSettings(void)
   prepareColorTable(m_ui.overdue_color);
   prepareIcons();
   prepareShortcuts();
+  prepareWindowIcons();
 
   QSettings settings;
   QStringList list1;
@@ -973,6 +974,21 @@ void biblioteq_otheroptions::prepareSpecialColors(const bool reset)
     (settings.value("otheroptions/enable_special_values_colors").toBool());
 }
 
+void biblioteq_otheroptions::prepareWindowIcons(void)
+{
+  QSettings settings;
+
+  m_ui.batch_activities_icon->setChecked
+    (settings.value("otheroptions/batch_activities_icon", false).toBool());
+  m_ui.custom_query_icon->setChecked
+    (settings.value("otheroptions/custom_query_icon", false).toBool());
+  m_ui.general_database_search_icon->setChecked
+    (settings.value("otheroptions/general_database_search_icon", false).
+     toBool());
+  m_ui.members_browser_icon->setChecked
+    (settings.value("otheroptions/members_browser_icon", false).toBool());
+}
+
 void biblioteq_otheroptions::setGlobalFonts(const QFont &font)
 {
   setFont(font);
@@ -1149,12 +1165,14 @@ void biblioteq_otheroptions::slotReset(void)
   m_ui.availability_color->scrollToTop();
   m_ui.availability_color->sortByColumn(0, Qt::AscendingOrder);
   m_ui.availability_colors->setChecked(false);
+  m_ui.batch_activities_icon->setChecked(false);
   m_ui.book_read_status->setChecked(false);
   m_ui.books_accession_number->setCurrentIndex
     (m_ui.books_accession_number->findText(tr("Numeric")));
   m_ui.books_accession_number->setCurrentIndex
     (m_ui.books_accession_number->currentIndex() < 0 ?
      0 : m_ui.books_accession_number->currentIndex());
+  m_ui.custom_query_icon->setChecked(false);
   m_ui.date_format->clearSelection();
   m_ui.date_format->resizeColumnToContents
     (static_cast<int> (ItemsColumns::ITEM_TYPE));
@@ -1162,10 +1180,12 @@ void biblioteq_otheroptions::slotReset(void)
   m_ui.date_format->scrollToTop();
   m_ui.date_format->sortByColumn(0, Qt::AscendingOrder);
   m_ui.display_icon_set->setCurrentIndex(0);
+  m_ui.general_database_search_icon->setChecked(false);
   m_ui.generated_letter->clear();
   m_ui.icons_view_column_count->setValue(5);
   m_ui.isbn10_display_format->setCurrentIndex(0);
   m_ui.isbn13_display_format->setCurrentIndex(0);
+  m_ui.members_browser_icon->setChecked(false);
   m_ui.only_utf8_printable_text->setChecked(false);
   m_ui.overdue_color->clearSelection();
   m_ui.overdue_color->resizeColumnToContents
@@ -1343,13 +1363,21 @@ void biblioteq_otheroptions::slotSave(void)
     ("mainwindow_canvas_background_color",
      m_ui.main_window_canvas_background_color->text().remove('&'));
   settings.setValue
+    ("otheroptions/batch_activities_icon",
+     m_ui.batch_activities_icon->isChecked());
+  settings.setValue
     ("otheroptions/book_read_status", m_ui.book_read_status->isChecked());
   settings.setValue
     ("otheroptions/books_accession_number_index",
      m_ui.books_accession_number->currentIndex());
   settings.setValue
+    ("otheroptions/custom_query_icon", m_ui.custom_query_icon->isChecked());
+  settings.setValue
     ("otheroptions/display_icon_set_index",
      m_ui.display_icon_set->currentIndex());
+  settings.setValue
+    ("otheroptions/general_database_search_icon",
+     m_ui.general_database_search_icon->isChecked());
   settings.setValue
     ("otheroptions/generated_letter",
      m_ui.generated_letter->toPlainText().toUtf8().toBase64());
@@ -1368,6 +1396,9 @@ void biblioteq_otheroptions::slotSave(void)
   settings.setValue
     ("otheroptions/item_query_result_color",
      m_ui.item_query_result_color->text().remove('&'));
+  settings.setValue
+    ("otheroptions/members_browser_icon",
+     m_ui.members_browser_icon->isChecked());
   settings.setValue
     ("otheroptions/members_mandatory_field_color",
      m_ui.members_mandatory_field_color->text().remove('&'));
