@@ -175,8 +175,8 @@ void biblioteq_documentationwindow::load(const QByteArray &data)
 
 void biblioteq_documentationwindow::prepareIcons(void)
 {
-  QSettings setting;
-  auto const index = setting.value
+  QSettings settings;
+  auto const index = settings.value
     ("otheroptions/display_icon_set_index", 0).toInt();
 
   if(index == 1)

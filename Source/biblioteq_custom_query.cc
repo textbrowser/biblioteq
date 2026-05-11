@@ -293,8 +293,8 @@ void biblioteq_custom_query::slotPopulateFavorites(void)
 
 void biblioteq_custom_query::slotPrepareIcons(void)
 {
-  QSettings setting;
-  auto const index = setting.value
+  QSettings settings;
+  auto const index = settings.value
     ("otheroptions/display_icon_set_index", 0).toInt();
 
   if(index == 1)
@@ -325,6 +325,11 @@ void biblioteq_custom_query::slotPrepareIcons(void)
       cq.refresh_pb->setIcon(QIcon(":/16x16/reload.png"));
       cq.save->setIcon(QIcon(":/16x16/filesave.png"));
     }
+
+  if(settings.value("otheroptions/custom_query_icon", false).toBool())
+    setWindowIcon(QIcon(":/32x32/customquery.png"));
+  else
+    setWindowIcon(QIcon(":/book.png"));
 }
 
 void biblioteq_custom_query::slotRefreshCustomQuery(void)

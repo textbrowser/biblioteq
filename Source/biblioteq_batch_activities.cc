@@ -766,8 +766,8 @@ void biblioteq_batch_activities::play(const QString &file)
 
 void biblioteq_batch_activities::prepareIcons(void)
 {
-  QSettings setting;
-  auto const index = setting.value
+  QSettings settings;
+  auto const index = settings.value
     ("otheroptions/display_icon_set_index", 0).toInt();
 
   if(index == 1)
@@ -802,6 +802,11 @@ void biblioteq_batch_activities::prepareIcons(void)
       m_ui.go->setIcon(QIcon(":/32x32/ok.png"));
       m_ui.reset->setIcon(QIcon(":/32x32/reload.png"));
     }
+
+  if(settings.value("otheroptions/batch_activities_icon", false).toBool())
+    setWindowIcon(QIcon(":/32x32/data.png"));
+  else
+    setWindowIcon(QIcon(":/book.png"));
 }
 
 void biblioteq_batch_activities::reset(void)

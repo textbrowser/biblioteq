@@ -160,8 +160,8 @@ void biblioteq_sruresults::keyPressEvent(QKeyEvent *event)
 
 void biblioteq_sruresults::prepareIcons(void)
 {
-  QSettings setting;
-  auto const index = setting.value
+  QSettings settings;
+  auto const index = settings.value
     ("otheroptions/display_icon_set_index", 0).toInt();
 
   if(index == 1)

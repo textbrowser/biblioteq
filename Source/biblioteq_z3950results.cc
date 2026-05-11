@@ -149,8 +149,8 @@ void biblioteq_z3950results::keyPressEvent(QKeyEvent *event)
 
 void biblioteq_z3950results::prepareIcons(void)
 {
-  QSettings setting;
-  auto const index = setting.value
+  QSettings settings;
+  auto const index = settings.value
     ("otheroptions/display_icon_set_index", 0).toInt();
 
   if(index == 1)

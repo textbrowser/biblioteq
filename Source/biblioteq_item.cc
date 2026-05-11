@@ -63,8 +63,8 @@ biblioteq_item::~biblioteq_item()
 
 QIcon biblioteq_item::iconForText(const QString &text) const
 {
-  QSettings setting;
-  auto const index = setting.value
+  QSettings settings;
+  auto const index = settings.value
     ("otheroptions/display_icon_set_index", 0).toInt();
   auto system = false;
 
