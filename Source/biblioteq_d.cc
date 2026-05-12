@@ -736,6 +736,11 @@ void biblioteq::prepareIcons(void)
       userinfo_diag->m_userinfo.prevTool->setIcon
 	(QIcon(":/32x32/previous.png"));
     }
+
+  if(settings.value("otheroptions/members_browser_icon", false).toBool())
+    m_members_diag->setWindowIcon(QIcon(":/16x16/members.png"));
+  else
+    m_members_diag->setWindowIcon(QIcon(":/book.png"));
 }
 
 void biblioteq::prepareItemPagesMenu(void)
