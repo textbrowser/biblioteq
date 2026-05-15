@@ -739,12 +739,12 @@ void biblioteq::prepareIcons(void)
 
   if(settings.value("otheroptions/general_database_search_icon", false).
      toBool())
-    m_all_diag->setWindowIcon(QIcon(":/16x16/find.png"));
+    m_all_diag->setWindowIcon(QIcon(":/32x32/find.png"));
   else
     m_all_diag->setWindowIcon(QIcon(":/book.png"));
 
   if(settings.value("otheroptions/members_browser_icon", false).toBool())
-    m_members_diag->setWindowIcon(QIcon(":/16x16/members.png"));
+    m_members_diag->setWindowIcon(QIcon(":/32x32/members.png"));
   else
     m_members_diag->setWindowIcon(QIcon(":/book.png"));
 }
