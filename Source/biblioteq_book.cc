@@ -567,10 +567,6 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	      SIGNAL(triggered(void)),
 	      this,
 	      SLOT(slotDownloadImage(void)));
-      connect(action,
-	      SIGNAL(triggered(void)),
-	      this,
-	      SLOT(slotResetAfterAutomated(void)));
     }
 
   for(int i = 1; i <= 2; i++)
@@ -594,6 +590,14 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
 	      SLOT(slotDownloadImage(void)));
     }
 
+  connect(id.action_back->menu(),
+	  SIGNAL(aboutToShow(void)),
+	  this,
+	  SLOT(slotResetAfterAutomated(void)));
+  connect(id.action_front->menu(),
+	  SIGNAL(aboutToShow(void)),
+	  this,
+	  SLOT(slotResetAfterAutomated(void)));
   id.action_back->menu()->addSeparator();
   id.action_back->menu()->addAction
     (tr("&Paste Image"),
@@ -612,20 +616,12 @@ biblioteq_book::biblioteq_book(biblioteq *parentArg,
      SLOT(slotPasteImage(void)));
 
   action->setProperty("type", "front");
-  connect(action,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotResetAfterAutomated(void)));
   id.action_front->menu()->addSeparator();
   action = id.action_front->menu()->addAction
     (tr("&Select Image..."),
      this,
      SLOT(slotSelectImage(void)));
   action->setProperty("type", "front");
-  connect(action,
-	  SIGNAL(triggered(void)),
-	  this,
-	  SLOT(slotResetAfterAutomated(void)));
   action = new QAction(tr("All..."), this);
   connect(action,
 	  SIGNAL(triggered(void)),
@@ -5373,7 +5369,7 @@ void biblioteq_book::slotResetAfterAutomated(void)
   ** Browser.
   */
 
-  m_doNotShowDialogs = false;
+  m_doNotShowDialogs = false;qDebug() << "A.";
 }
 
 void biblioteq_book::slotSRUCanceled(void)
