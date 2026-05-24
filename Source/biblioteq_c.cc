@@ -3536,15 +3536,18 @@ void biblioteq::slotDisconnect(void)
   else
     lock.unlock();
 
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  if(!emptyContainers())
+  if(!s_quit)
     {
-      QApplication::restoreOverrideCursor();
-      return;
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+
+      if(!emptyContainers())
+	{
+	  QApplication::restoreOverrideCursor();
+	  return;
+	}
+      else
+	QApplication::restoreOverrideCursor();
     }
-  else
-    QApplication::restoreOverrideCursor();
 
   br.show_password->setChecked(false);
   m_allSearchShown = false;

@@ -82,6 +82,7 @@ QString biblioteq::s_locale = "";
 QString biblioteq::s_unknown = "UNKNOWN";
 QTranslator *biblioteq::s_appTranslator = nullptr;
 QTranslator *biblioteq::s_qtTranslator = nullptr;
+bool biblioteq::s_quit = false;
 qreal biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER = 2.5;
 
 int main(int argc, char *argv[])
@@ -1823,6 +1824,9 @@ void biblioteq::closeEvent(QCloseEvent *event)
 	}
     }
 
+  if(s_quit)
+    return;
+
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(!emptyContainers())
@@ -2163,6 +2167,7 @@ void biblioteq::quit(const char *msg, const char *file, const int line)
   else
     qDebug() << tr("An unknown error occurred in an unknown file.");
 
+  s_quit = true;
   exit(EXIT_FAILURE);
 #ifdef Q_OS_ANDROID
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 1, 0))
@@ -2175,6 +2180,7 @@ void biblioteq::quit(const char *msg, const char *file, const int line)
 
 void biblioteq::quit(void)
 {
+  s_quit = true;
   QCoreApplication::quit();
 #ifdef Q_OS_ANDROID
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 1, 0))

@@ -564,6 +564,7 @@ class biblioteq: public QMainWindow
   qint64 m_pages;
   qint64 m_queryOffset;
   quint64 m_idCt;
+  static bool s_quit;
   swifty *m_swifty;
   userinfo_diag_class *userinfo_diag;
   QString dbUserName(void) const;
