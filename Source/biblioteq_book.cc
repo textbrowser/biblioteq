@@ -5369,7 +5369,7 @@ void biblioteq_book::slotResetAfterAutomated(void)
   ** Browser.
   */
 
-  m_doNotShowDialogs = false;qDebug() << "A.";
+  m_doNotShowDialogs = false;
 }
 
 void biblioteq_book::slotSRUCanceled(void)
