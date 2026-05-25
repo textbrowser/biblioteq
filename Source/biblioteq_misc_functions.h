@@ -129,7 +129,7 @@ class biblioteq_misc_functions
 
   static bool isBookRead(const QSqlDatabase &db, const quint64 myoid)
   {
-    if(db.driverName() != "QSQLITE")
+    if(db.driverName() != "QSQLITE" || db.isOpen() == false)
       return false;
 
     QSqlQuery query(db);

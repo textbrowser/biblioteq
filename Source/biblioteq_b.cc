@@ -3624,7 +3624,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
   QSqlQuery query(m_db);
 
-  if(limit == -1 && m_db.driverName() == "QSQLITE")
+  if(limit == -1)
     query.setForwardOnly(true);
 
   if(!query.exec(searchstr))
