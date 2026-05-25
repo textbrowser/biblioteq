@@ -3831,6 +3831,9 @@ void biblioteq::slotExit(void)
   else
     lock.unlock();
 
+  if(s_quit)
+    return;
+
   if(sender()) // A person requested an exit.
     {
       QApplication::setOverrideCursor(Qt::WaitCursor);

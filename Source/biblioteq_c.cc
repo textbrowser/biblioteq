@@ -297,6 +297,9 @@ bool biblioteq::availabilityColors(void) const
 
 bool biblioteq::emptyContainers(void)
 {
+  if(s_quit)
+    return true;
+
   for(int i = 1; i < ui.tab->count(); i++)
     {
       auto w = dynamic_cast<biblioteq_item *> (ui.tab->widget(i));
