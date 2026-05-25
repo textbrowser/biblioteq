@@ -1667,6 +1667,9 @@ void biblioteq_batch_activities::slotDiscoverDreamy(void)
 	{
 	  m_ui.dreamy_table->setRowCount(m_ui.dreamy_table->rowCount() + 1);
 
+	  if(m_ui.bottom_scroll_on_add->isChecked())
+	    m_ui.dreamy_table->scrollToBottom();
+
 	  auto const record(query.record());
 
 	  for(int i = 0; i < record.count(); i++)
@@ -2386,6 +2389,9 @@ void biblioteq_batch_activities::slotScanAddingTimerTimeout(void)
 	(row, static_cast<int> (AddTableColumns::QUERY_SYSTEM_COLUMN), item);
       toolButton->setIcon
 	(QIcon::fromTheme("list-remove", QIcon(":/16x16/eraser.png")));
+
+      if(m_ui.bottom_scroll_on_add->isChecked())
+	m_ui.add_table->scrollToBottom();
     }
 
   m_ui.add_scan->clear();
