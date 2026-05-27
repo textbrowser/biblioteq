@@ -221,6 +221,8 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 {
   m_qmain = parent;
   m_ui.setupUi(this);
+  biblioteq_misc_functions::sortCombinationBox(m_ui.add_query_system);
+  biblioteq_misc_functions::sortCombinationBox(m_ui.add_scan_type);
 #ifndef BIBLIOTEQ_AUDIO_SUPPORTED
   m_ui.audio->setChecked(false);
   m_ui.audio->setEnabled(false);
@@ -669,6 +671,10 @@ void biblioteq_batch_activities::changeEvent(QEvent *event)
       case QEvent::LanguageChange:
 	{
 	  m_ui.retranslateUi(this);
+	  biblioteq_misc_functions::sortCombinationBox
+	    (m_ui.add_query_system);
+	  biblioteq_misc_functions::sortCombinationBox
+	    (m_ui.add_scan_type);
 	  break;
 	}
       default:
