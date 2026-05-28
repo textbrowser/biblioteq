@@ -129,6 +129,9 @@
              </item>
              <item>
               <widget class="QComboBox" name="add_query_system">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open Library is for books only.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
                <property name="currentText">
                 <string>Open Library</string>
                </property>

@@ -2267,6 +2267,7 @@ void biblioteq_batch_activities::slotReset(void)
 				 QMessageBox::No) == QMessageBox::No)
 	  return;
 
+      m_ui.add_query_system->setCurrentIndex(0);
       m_ui.add_scan->clear();
       m_ui.add_scan->setFocus();
       m_ui.add_scan_type->setCurrentIndex(0);
@@ -2352,7 +2353,7 @@ void biblioteq_batch_activities::slotScanAddingTimerTimeout(void)
 	  else
 	    {
 	      category = tr("Book");
-	      querySystem = tr("Open Library");
+	      querySystem = m_ui.add_query_system->currentText();
 	    }
 	}
       else if(category == tr("Journal") || category == tr("Magazine"))

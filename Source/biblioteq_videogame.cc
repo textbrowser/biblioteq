@@ -333,6 +333,7 @@ void biblioteq_videogame::changeEvent(QEvent *event)
       case QEvent::LanguageChange:
 	{
 	  vg.retranslateUi(this);
+	  biblioteq_misc_functions::sortCombinationBox(vg.mode);
 	  break;
 	}
       default:

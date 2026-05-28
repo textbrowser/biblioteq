@@ -491,6 +491,7 @@ void biblioteq_magazine::changeEvent(QEvent *event)
       case QEvent::LanguageChange:
 	{
 	  ma.retranslateUi(this);
+	  biblioteq_misc_functions::sortCombinationBox(ma.marc_tags_format);
 	  break;
 	}
       default:
