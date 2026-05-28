@@ -364,6 +364,8 @@ void biblioteq_cd::changeEvent(QEvent *event)
       case QEvent::LanguageChange:
 	{
 	  cd.retranslateUi(this);
+	  biblioteq_misc_functions::sortCombinationBox(cd.audio);
+	  biblioteq_misc_functions::sortCombinationBox(cd.recording_type);
 	  trd.retranslateUi(m_tracks_diag);
 	  break;
 	}

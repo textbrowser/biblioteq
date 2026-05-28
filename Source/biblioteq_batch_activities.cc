@@ -671,10 +671,8 @@ void biblioteq_batch_activities::changeEvent(QEvent *event)
       case QEvent::LanguageChange:
 	{
 	  m_ui.retranslateUi(this);
-	  biblioteq_misc_functions::sortCombinationBox
-	    (m_ui.add_query_system);
-	  biblioteq_misc_functions::sortCombinationBox
-	    (m_ui.add_scan_type);
+	  biblioteq_misc_functions::sortCombinationBox(m_ui.add_query_system);
+	  biblioteq_misc_functions::sortCombinationBox(m_ui.add_scan_type);
 	  break;
 	}
       default:

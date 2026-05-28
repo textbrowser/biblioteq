@@ -809,6 +809,9 @@ void biblioteq_book::changeEvent(QEvent *event)
       case QEvent::LanguageChange:
 	{
 	  id.retranslateUi(this);
+	  biblioteq_misc_functions::sortCombinationBox(id.condition);
+	  biblioteq_misc_functions::sortCombinationBox(id.marc_tags_format);
+	  biblioteq_misc_functions::sortCombinationBox(id.originality);
 	  ui_p.retranslateUi(m_proxyDialog);
 	  break;
 	}

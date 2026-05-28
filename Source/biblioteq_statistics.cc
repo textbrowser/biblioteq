@@ -110,6 +110,7 @@ void biblioteq_statistics::changeEvent(QEvent *event)
       case QEvent::LanguageChange:
 	{
 	  m_ui.retranslateUi(this);
+	  biblioteq_misc_functions::sortCombinationBox(m_ui.queries);
 	  break;
 	}
       default:
