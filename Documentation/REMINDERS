@@ -672,6 +672,7 @@ Completed Items
      biblioteq_import.cc
 339. Dynamic ellipses in menus.
 340. YAZ 5.35 on Windows.
+341. Default query system (Open Library, etc.) for Batch Activities -> Add.
 
 Remaining Items
 
@@ -686,4 +687,3 @@ Remaining Items
      QSqlDriver::subscribeToNotification().
 9.   Replace apt with snap.
 10.  Add format options for deleted_date and reserved_date.
-11.  Default query system (Open Library, etc.) for Batch Activities.
