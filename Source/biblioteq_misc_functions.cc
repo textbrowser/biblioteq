@@ -2323,7 +2323,7 @@ void biblioteq_misc_functions::assignImage
 
 void biblioteq_misc_functions::boldText(QLabel *label, const QString &text)
 {
-  if(!label)
+  if(!label || text.trimmed().isEmpty())
     return;
 
   label->setText(QString("<html><b>%1</b></html>").arg(text));

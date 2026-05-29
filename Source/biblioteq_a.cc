@@ -1195,8 +1195,9 @@ biblioteq::biblioteq(void):QMainWindow()
     if(m_lastCategory ==
        ui.menu_Category->actions().at(i)->data().toString())
       {
+	biblioteq_misc_functions::boldText
+	  (ui.categoryLabel, ui.menu_Category->actions().at(i)->text());
 	found = true;
-	ui.categoryLabel->setText(ui.menu_Category->actions().at(i)->text());
 	ui.menu_Category->actions().at(i)->setChecked(true);
 	ui.menu_Category->setDefaultAction(ui.menu_Category->actions().at(i));
 	break;
@@ -1204,7 +1205,7 @@ biblioteq::biblioteq(void):QMainWindow()
 
   if(!found)
     {
-      ui.categoryLabel->setText(tr("All"));
+      biblioteq_misc_functions::boldText(ui.categoryLabel, tr("All"));
 
       if(!ui.menu_Category->actions().isEmpty())
 	ui.menu_Category->actions().at(0)->setChecked(true);
@@ -1766,6 +1767,8 @@ void biblioteq::changeEvent(QEvent *event)
 	  ab.retranslateUi(m_admin_diag);
 	  al.retranslateUi(m_all_diag);
 	  bb.retranslateUi(m_members_diag);
+	  biblioteq_misc_functions::boldText
+	    (ui.itemsCountLabel, tr("0 Results"));
 	  br.retranslateUi(m_branch_diag);
 	  er.retranslateUi(m_error_diag);
 	  history.retranslateUi(m_history_diag);
@@ -1778,7 +1781,6 @@ void biblioteq::changeEvent(QEvent *event)
 	  ui.graphicsView->resetTransform();
 	  ui.graphicsView->scene()->clear();
 	  ui.graphicsView->verticalScrollBar()->setValue(0);
-	  ui.itemsCountLabel->setText(tr("0 Results"));
 	  ui.nextPageButton->setEnabled(false);
 	  ui.pagesLabel->setText(tr("1"));
 	  ui.previousPageButton->setEnabled(false);
@@ -2517,7 +2519,7 @@ void biblioteq::showMain(void)
     }
 #endif
 
-  ui.itemsCountLabel->setText(tr("0 Results"));
+  biblioteq_misc_functions::boldText(ui.itemsCountLabel, tr("0 Results"));
 
   QSettings settings;
 
@@ -3040,7 +3042,7 @@ void biblioteq::slotAutoPopOnFilter(QAction *action)
 	  SIGNAL(triggered(QAction *)),
 	  this,
 	  SLOT(slotAutoPopOnFilter(QAction *)));
-  ui.categoryLabel->setText(action->text());
+  biblioteq_misc_functions::boldText(ui.categoryLabel, action->text());
   prepareRequestToolButton(action->data().toString());
 
   QSettings settings;
@@ -3056,12 +3058,12 @@ void biblioteq::slotAutoPopOnFilter(QAction *action)
     slotRefresh();
   else
     {
+      biblioteq_misc_functions::boldText(ui.itemsCountLabel, tr("0 Results"));
       m_findList.clear();
       ui.graphicsView->horizontalScrollBar()->setValue(0);
       ui.graphicsView->resetTransform();
       ui.graphicsView->scene()->clear();
       ui.graphicsView->verticalScrollBar()->setValue(0);
-      ui.itemsCountLabel->setText(tr("0 Results"));
       ui.nextPageButton->setEnabled(false);
       ui.pagesLabel->setText(tr("1"));
       ui.previousPageButton->setEnabled(false);

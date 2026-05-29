@@ -113,7 +113,7 @@ int biblioteq::populateTable(const int search_type_arg,
   QElapsedTimer elapsed;
 
   elapsed.start();
-  ui.itemsCountLabel->setText(tr("0 Results"));
+  biblioteq_misc_functions::boldText(ui.itemsCountLabel, tr("0 Results"));
 
   QScopedPointer<QProgressDialog> progress;
   QString limitStr("");
@@ -3617,10 +3617,10 @@ int biblioteq::populateTable(const int search_type_arg,
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(ui.table->rowCount() == 0)
-    ui.itemsCountLabel->setText(tr("0 Results"));
+    biblioteq_misc_functions::boldText(ui.itemsCountLabel, tr("0 Results"));
   else
-    ui.itemsCountLabel->setText
-      (tr("%1 Result(s)").arg(ui.table->rowCount()));
+    biblioteq_misc_functions::boldText
+      (ui.itemsCountLabel, tr("%1 Result(s)").arg(ui.table->rowCount()));
 
   QSqlQuery query(m_db);
 
@@ -3644,8 +3644,8 @@ int biblioteq::populateTable(const int search_type_arg,
 	  if(m_previousTypeFilter ==
 	     ui.menu_Category->actions().at(ii)->data().toString())
 	    {
-	      ui.categoryLabel->setText
-		(ui.menu_Category->actions().at(ii)->text());
+	      biblioteq_misc_functions::boldText
+		(ui.categoryLabel, ui.menu_Category->actions().at(ii)->text());
 	      ui.menu_Category->actions().at(ii)->setChecked(true);
 	      ui.menu_Category->setDefaultAction
 		(ui.menu_Category->actions().at(ii));
@@ -3676,9 +3676,10 @@ int biblioteq::populateTable(const int search_type_arg,
     if(typefilter ==
        ui.menu_Category->actions().at(ii)->data().toString())
       {
+	biblioteq_misc_functions::boldText
+	  (ui.categoryLabel, ui.menu_Category->actions().at(ii)->text());
 	found = true;
 	m_previousTypeFilter = typefilter;
-	ui.categoryLabel->setText(ui.menu_Category->actions().at(ii)->text());
 	ui.menu_Category->actions().at(ii)->setChecked(true);
 	ui.menu_Category->setDefaultAction(ui.menu_Category->actions().at(ii));
 	break;
@@ -3686,7 +3687,7 @@ int biblioteq::populateTable(const int search_type_arg,
 
   if(typefilter.isEmpty())
     {
-      ui.categoryLabel->setText(tr("All"));
+      biblioteq_misc_functions::boldText(ui.categoryLabel, tr("All"));
 
       if(!ui.menu_Category->actions().isEmpty())
 	ui.menu_Category->actions().at(0)->setChecked(true);
@@ -3695,7 +3696,7 @@ int biblioteq::populateTable(const int search_type_arg,
     }
   else if(!found)
     {
-      ui.categoryLabel->setText(tr("All"));
+      biblioteq_misc_functions::boldText(ui.categoryLabel, tr("All"));
 
       if(!ui.menu_Category->actions().isEmpty())
 	ui.menu_Category->actions().at(0)->setChecked(true);
@@ -4247,8 +4248,8 @@ int biblioteq::populateTable(const int search_type_arg,
 	}
     }
 
-  ui.itemsCountLabel->setText
-    (tr("%1 Result(s)").arg(ui.table->rowCount()));
+  biblioteq_misc_functions::boldText
+    (ui.itemsCountLabel, tr("%1 Result(s)").arg(ui.table->rowCount()));
 
   if(!m_db.driver()->hasFeature(QSqlDriver::QuerySize) &&
      limit != -1 &&
@@ -4300,9 +4301,10 @@ int biblioteq::populateTable(const int search_type_arg,
   ui.previousPageButton->setEnabled(m_queryOffset > 0);
 
   if(ui.table->rowCount() == 0)
-    ui.itemsCountLabel->setText(tr("0 Results"));
+    biblioteq_misc_functions::boldText(ui.itemsCountLabel, tr("0 Results"));
   else
-    ui.itemsCountLabel->setText(tr("%1 Result(s)").arg(ui.table->rowCount()));
+    biblioteq_misc_functions::boldText
+      (ui.itemsCountLabel, tr("%1 Result(s)").arg(ui.table->rowCount()));
 
   if(limit == -1)
     ui.nextPageButton->setEnabled(false);

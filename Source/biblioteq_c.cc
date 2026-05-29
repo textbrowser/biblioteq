@@ -505,7 +505,7 @@ int biblioteq::populateTable(QSqlQuery *query,
       ui.configTool->setToolTip("");
     }
 
-  ui.itemsCountLabel->setText(tr("0 Results"));
+  biblioteq_misc_functions::boldText(ui.itemsCountLabel, tr("0 Results"));
 
   QScopedPointer<QProgressDialog> progress;
 
@@ -565,10 +565,10 @@ int biblioteq::populateTable(QSqlQuery *query,
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   if(ui.table->rowCount() == 0)
-    ui.itemsCountLabel->setText(tr("0 Results"));
+    biblioteq_misc_functions::boldText(ui.itemsCountLabel, tr("0 Results"));
   else
-    ui.itemsCountLabel->setText
-      (tr("%1 Result(s)").arg(ui.table->rowCount()));
+    biblioteq_misc_functions::boldText
+      (ui.itemsCountLabel, tr("%1 Result(s)").arg(ui.table->rowCount()));
 
   auto ok = true;
 
@@ -591,8 +591,8 @@ int biblioteq::populateTable(QSqlQuery *query,
 	  if(m_previousTypeFilter ==
 	     ui.menu_Category->actions().at(ii)->data().toString())
 	    {
-	      ui.categoryLabel->setText
-		(ui.menu_Category->actions().at(ii)->text());
+	      biblioteq_misc_functions::boldText
+		(ui.categoryLabel, ui.menu_Category->actions().at(ii)->text());
 	      ui.menu_Category->actions().at(ii)->setChecked(true);
 	      ui.menu_Category->setDefaultAction
 		(ui.menu_Category->actions().at(ii));
@@ -626,9 +626,10 @@ int biblioteq::populateTable(QSqlQuery *query,
   for(int ii = 0; ii < ui.menu_Category->actions().size(); ii++)
     if(typefilter == ui.menu_Category->actions().at(ii)->data().toString())
       {
+	biblioteq_misc_functions::boldText
+	  (ui.categoryLabel, ui.menu_Category->actions().at(ii)->text());
 	found = true;
 	m_previousTypeFilter = typefilter;
-	ui.categoryLabel->setText(ui.menu_Category->actions().at(ii)->text());
 	ui.menu_Category->actions().at(ii)->setChecked(true);
 	ui.menu_Category->setDefaultAction(ui.menu_Category->actions().at(ii));
 	break;
@@ -636,7 +637,7 @@ int biblioteq::populateTable(QSqlQuery *query,
 
   if(typefilter.isEmpty())
     {
-      ui.categoryLabel->setText(tr("All"));
+      biblioteq_misc_functions::boldText(ui.categoryLabel, tr("All"));
 
       if(!ui.menu_Category->actions().isEmpty())
 	ui.menu_Category->actions().at(0)->setChecked(true);
@@ -645,7 +646,7 @@ int biblioteq::populateTable(QSqlQuery *query,
     }
   else if(!found)
     {
-      ui.categoryLabel->setText(tr("All"));
+      biblioteq_misc_functions::boldText(ui.categoryLabel, tr("All"));
 
       if(!ui.menu_Category->actions().isEmpty())
 	ui.menu_Category->actions().at(0)->setChecked(true);
@@ -1181,8 +1182,8 @@ int biblioteq::populateTable(QSqlQuery *query,
 	  break;
     }
 
-  ui.itemsCountLabel->setText
-    (tr("%1 Result(s)").arg(ui.table->rowCount()));
+  biblioteq_misc_functions::boldText
+    (ui.itemsCountLabel, tr("%1 Result(s)").arg(ui.table->rowCount()));
 
   if(!m_db.driver()->hasFeature(QSqlDriver::QuerySize) &&
      limit != -1 &&
@@ -1216,9 +1217,10 @@ int biblioteq::populateTable(QSqlQuery *query,
   ui.previousPageButton->setEnabled(m_queryOffset > 0);
 
   if(ui.table->rowCount() == 0)
-    ui.itemsCountLabel->setText(tr("0 Results"));
+    biblioteq_misc_functions::boldText(ui.itemsCountLabel, tr("0 Results"));
   else
-    ui.itemsCountLabel->setText(tr("%1 Result(s)").arg(ui.table->rowCount()));
+    biblioteq_misc_functions::boldText
+      (ui.itemsCountLabel, tr("%1 Result(s)").arg(ui.table->rowCount()));
 
   if(limit == -1)
     ui.nextPageButton->setEnabled(false);
@@ -3496,8 +3498,9 @@ void biblioteq::slotConnectDB(void)
     if(m_lastCategory ==
        ui.menu_Category->actions().at(i)->data().toString())
       {
+	biblioteq_misc_functions::boldText
+	  (ui.categoryLabel, ui.menu_Category->actions().at(i)->text());
 	found = true;
-	ui.categoryLabel->setText(ui.menu_Category->actions().at(i)->text());
 	ui.menu_Category->actions().at(i)->setChecked(true);
 	ui.menu_Category->setDefaultAction(ui.menu_Category->actions().at(i));
 	break;
@@ -3505,7 +3508,7 @@ void biblioteq::slotConnectDB(void)
 
   if(!found)
     {
-      ui.categoryLabel->setText(tr("All"));
+      biblioteq_misc_functions::boldText(ui.categoryLabel, tr("All"));
 
       if(!ui.menu_Category->actions().isEmpty())
 	ui.menu_Category->actions().at(0)->setChecked(true);
@@ -3701,12 +3704,12 @@ void biblioteq::slotDisconnect(void)
   if(ui.actionResetErrorLogOnDisconnect->isChecked())
     slotResetErrorLog();
 
+  biblioteq_misc_functions::boldText(ui.itemsCountLabel, tr("0 Results"));
   m_findList.clear();
   ui.graphicsView->horizontalScrollBar()->setValue(0);
   ui.graphicsView->resetTransform();
   ui.graphicsView->scene()->clear();
   ui.graphicsView->verticalScrollBar()->setValue(0);
-  ui.itemsCountLabel->setText(tr("0 Results"));
   ui.nextPageButton->setEnabled(false);
   ui.pagesLabel->setText(tr("1"));
   ui.previousPageButton->setEnabled(false);
@@ -3717,7 +3720,8 @@ void biblioteq::slotDisconnect(void)
     if(m_previousTypeFilter ==
        ui.menu_Category->actions().at(i)->data().toString())
       {
-	ui.categoryLabel->setText(ui.menu_Category->actions().at(i)->text());
+	biblioteq_misc_functions::boldText
+	  (ui.categoryLabel, ui.menu_Category->actions().at(i)->text());
 	ui.menu_Category->actions().at(i)->setChecked(true);
 	ui.menu_Category->setDefaultAction(ui.menu_Category->actions().at(i));
 	break;
