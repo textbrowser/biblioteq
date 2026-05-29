@@ -35,6 +35,7 @@
 #include <QTableWidget>
 
 class QComboBox;
+class QLabel;
 class QMainWindow;
 class QPushButton;
 class biblioteq;
@@ -219,6 +220,7 @@ class biblioteq_misc_functions
 			QString &,
 			const QString & = "");
   static void assignImage(QPushButton *, const QColor &);
+  static void boldText(QLabel *label, const QString &text);
   static void center(QWidget *, QMainWindow *, const bool = true);
   static void createBookCopy(const QString &,
 			     const int,

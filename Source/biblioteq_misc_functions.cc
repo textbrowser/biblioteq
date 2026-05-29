@@ -2321,6 +2321,14 @@ void biblioteq_misc_functions::assignImage
   button->setIcon(QPixmap::fromImage(image));
 }
 
+void biblioteq_misc_functions::boldText(QLabel *label, const QString &text)
+{
+  if(!label)
+    return;
+
+  label->setText(QString("<html><b>%1</b></html>").arg(text));
+}
+
 void biblioteq_misc_functions::center
 (QWidget *child, QMainWindow *parent, const bool force)
 {
