@@ -1,7 +1,20 @@
 <html>
   <body>
+    <p><u>31 mai 2026</u></p>
     <ul>
+      <li>Adaptation au contenu pour les boîtes combinées.</li>
+      <li>Étiquettes en gras dans la fenêtre principale.</li>
+      <li>Nouveau système de recherche par défaut dans le navigateur d'activités par lots -> Ajouter.</li>
+    </ul>
+    <p><u>25 mai 2026</u></p>
+    <ul>
+      <li>Navigateur d'activités par lots : faire défiler vers le bas si nécessaire pour l'onglet Ajouter, «Extensions de Rêves».</li>
+      <li>Ajoutez les options de connexion dans le fichier biblioteq.conf pour PostgreSQL. Séparez également les valeurs par des points-virgules plutôt que par des virgules.</li>
+      <li>Requêtes SQL unidirectionnelles dans la vue principale pour PostgreSQL en cas de récupération de tous les éléments.</li>
+      <li>Nouveau serveur Z39.50 de la Bibliothèque d'Écosse dans le fichier biblioteq.conf.</li>
+    </ul>
     <p><u>24 mai 2026</u></p>
+    <ul>
       <li>Évitez les fermetures en double de l'application.</li>
       <li>Réinitialiser les nouvelles entrées de livre après les requêtes automatisées du navigateur d'activités par lots.</li>
     </ul>
@@ -179,7 +192,7 @@
       <li>Créer des relations uniques entre les conteneurs d'éléments et l'interface principale.</li>
       <li>N'effacez pas les révisions d'un élément existant si l'élément est renouvelé via l'interface principale. Les révisions nécessitent une confirmation.</li>
       <li>Nouveaux outils -> Statistiques. Incomplet et invisible.</li>
-      <li>Nouvelles astuces dans l'explorateur d'activités par lots.</li>
+      <li>Nouvelles astuces dans le navigateur d'activités par lots.</li>
       <li>Algorithme super-simple de centrage des fenêtres.</li>
       <li>Ignorer totalement l'événement de fermeture d'un élément si le verrouillage spécial de la mémoire est activé. Le fait d'ignorer l'événement permet d'éviter une demande de confirmation non pertinente.</li>
     </ul>
@@ -267,7 +280,7 @@
       <li>Ajout d'instructions DROP dans postgresql_destroy_schema.sql. Pas un seul sprite n'a déposé de plainte.</li>
       <li>N'autoriser que les éléments uniques dans le navigateur d'activités par lots -> Découvrir. L'unicité est définie par la colonne Identifiant.</li>
       <li>De superbes couleurs pour les boutons. L'édition précédente proposait des boutons de toutes les couleurs.</li>
-      <li>Les activités par lot sont incomplètes en ce qui concerne l'historique des réservations. En effet, les entrées d'historique n'ont pas été créées pour les articles empruntés. <b>Ticjet GitHub #373.</b></li>
+      <li>Les activités par lot sont incomplètes en ce qui concerne l'historique des réservations. En effet, les entrées d'historique n'ont pas été créées pour les articles empruntés. <b>Ticket GitHub #373.</b></li>
       <li>Navigateur d'importation CSV : deviner les valeurs des noms de champs de la table BiblioteQ en fonction du contenu du fichier CSV. <b>Ticket GitHub #376.</b></li>
       <li>Navigateur d'importation CSV :  met en évidence les cellules de l'aperçu CSV dans le tableau Templates. Les cellules sont surlignées si les valeurs sont absentes ou présentes.	<b>Ticket GitHub #376.</b></li>
       <li>Navigateur d'importation CSV : optionnellement, rafraîchir la vue de la fenêtre principale après un événement d'importation du Modèle 1 et du Modèle 2. Une invite s'affiche si au moins un élément est importé. Catégorie de livres.</li>
@@ -420,7 +433,7 @@
     </ul>
     <p><u>8 October 2023.</u></p>
     <ul>
-      <li>Modèle d'achèvement des activités par lots intelligentes. Moins de ressources. <b>Ticket GitHub #331.</b></li>
+      <li>Modèle intelligent de complétion automatique pour le navigateur d'activités par lots. <b>Ticket GitHub #331.</b></li>
     </ul>
     <p><u>5 octobre 2023.</u></p>
     <ul>
