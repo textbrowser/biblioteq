@@ -424,6 +424,9 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 	    comboBox->addItem(tr("Recalled"));
 	    comboBox->addItem(biblioteq::s_unknown);
 	    comboBox->setEnabled(!m_showForLending);
+	    comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
+	    comboBox->setSizePolicy
+	      (QSizePolicy::Preferred, QSizePolicy::Minimum);
 	    biblioteq_misc_functions::sortCombinationBox(comboBox);
 	    goto done_label;
 	  }
