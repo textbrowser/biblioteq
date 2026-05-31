@@ -679,19 +679,19 @@ int biblioteq::populateTable(QSqlQuery *query,
     m_pages = 1;
 
   if(m_pages == 1)
-    ui.pagesLabel->setText(tr("1"));
+    biblioteq_misc_functions::boldText(ui.pagesLabel, tr("1"));
   else if(m_pages >= 2 && m_pages <= 10)
     {
       QString str("");
 
       for(qint64 ii = 1; ii <= m_pages; ii++)
-	if(ii == currentPage)
-	  str += tr(" %1 ").arg(currentPage);
+	if(currentPage == ii)
+	  str += QString(" %1 ").arg(currentPage);
 	else
-	  str += QString(" <a href=\"%1\">" + tr("%1") + "</a> ").arg(ii);
+	  str += QString(" <a href=\"%1\">%1</a> ").arg(ii);
 
       str = str.trimmed();
-      ui.pagesLabel->setText(str);
+      biblioteq_misc_functions::boldText(ui.pagesLabel, str);
     }
   else
     {
@@ -709,18 +709,17 @@ int biblioteq::populateTable(QSqlQuery *query,
 
       for(qint64 ii = start; ii <= start + 6; ii++)
 	if(ii == currentPage && ii <= m_pages - 1)
-	  str += tr(" %1 ").arg(ii);
+	  str += QString(" %1 ").arg(ii);
 	else if(ii <= m_pages - 1)
-	  str += QString(" <a href=\"%1\">" + tr("%1") + "</a> ").arg(ii);
+	  str += QString(" <a href=\"%1\">%1</a> ").arg(ii);
 
       if(currentPage == m_pages)
 	str += tr(" ... %1 ").arg(currentPage);
       else
-	str += QString(" ... <a href=\"%1\">" + tr("%1") + "</a> ").
-	  arg(m_pages);
+	str += QString(" ... <a href=\"%1\">%1</a> ").arg(m_pages);
 
       str = str.trimmed();
-      ui.pagesLabel->setText(str);
+      biblioteq_misc_functions::boldText(ui.pagesLabel, str);
     }
 
   m_lastSearchType = searchType;
@@ -3604,6 +3603,7 @@ void biblioteq::slotDisconnect(void)
   if(db_enumerations)
     db_enumerations->clear();
 
+  biblioteq_misc_functions::boldText(ui.pagesLabel, tr("1"));
   resetAdminBrowser();
   resetMembersBrowser();
   ui.actionAutoPopulateOnCreation->setEnabled(false);
@@ -3640,7 +3640,6 @@ void biblioteq::slotDisconnect(void)
   ui.menu_Add_Item->setEnabled(false);
   ui.modifyTool->setEnabled(false);
   ui.nextPageButton->setEnabled(false);
-  ui.pagesLabel->setText(tr("1"));
   ui.previousPageButton->setEnabled(false);
   ui.printTool->setEnabled(false);
   ui.refreshTool->setEnabled(false);
@@ -3705,13 +3704,13 @@ void biblioteq::slotDisconnect(void)
     slotResetErrorLog();
 
   biblioteq_misc_functions::boldText(ui.itemsCountLabel, tr("0 Results"));
+  biblioteq_misc_functions::boldText(ui.pagesLabel, tr("1"));
   m_findList.clear();
   ui.graphicsView->horizontalScrollBar()->setValue(0);
   ui.graphicsView->resetTransform();
   ui.graphicsView->scene()->clear();
   ui.graphicsView->verticalScrollBar()->setValue(0);
   ui.nextPageButton->setEnabled(false);
-  ui.pagesLabel->setText(tr("1"));
   ui.previousPageButton->setEnabled(false);
   ui.table->resetTable(dbUserName(), m_previousTypeFilter, m_roles);
   prepareFilter();

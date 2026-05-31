@@ -29,7 +29,7 @@
 #define _BIBLIOTEQ_H_
 
 #define BIBLIOTEQ_GUEST_ACCOUNT "xbook_guest"
-#define BIBLIOTEQ_VERSION "2026.05.25"
+#define BIBLIOTEQ_VERSION "2026.05.31"
 #define BIBLIOTEQ_VERSION_FILE_URL			\
   "https://raw.githubusercontent.com/"			\
   "textbrowser/biblioteq/master/Source/biblioteq.h"
@@ -314,14 +314,14 @@ class biblioteq: public QMainWindow
       QUANTITY = 1000 // Copies per item.
     };
 
+  static QPointer<QTranslator> s_appTranslator;
+  static QPointer<QTranslator> s_qtTranslator;
   static QSize s_noImageResize;
   static QString s_databaseDateFormat;
   static QString s_databaseTimeFormat;
   static QString s_empty;
   static QString s_locale;
   static QString s_unknown;
-  static QTranslator *s_appTranslator;
-  static QTranslator *s_qtTranslator;
   static const int CUSTOM_QUERY = 0;
   static const int EDITABLE = 0;
   static const int MAXIMUM_DEVICES_CONFIRMATION = 5;

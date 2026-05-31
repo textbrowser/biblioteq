@@ -3733,19 +3733,19 @@ int biblioteq::populateTable(const int search_type_arg,
     m_pages = 1;
 
   if(m_pages == 1)
-    ui.pagesLabel->setText(tr("1"));
+    biblioteq_misc_functions::boldText(ui.pagesLabel, tr("1"));
   else if(m_pages >= 2 && m_pages <= 10)
     {
       QString str("");
 
       for(qint64 ii = 1; ii <= m_pages; ii++)
-	if(ii == currentPage)
-	  str += tr(" %1 ").arg(currentPage);
+	if(currentPage == ii)
+	  str += QString(" %1 ").arg(currentPage);
 	else
-	  str += QString(" <a href=\"%1\">" + tr("%1") + "</a> ").arg(ii);
+	  str += QString(" <a href=\"%1\">%1</a> ").arg(ii);
 
       str = str.trimmed();
-      ui.pagesLabel->setText(str);
+      biblioteq_misc_functions::boldText(ui.pagesLabel, str);
     }
   else
     {
@@ -3765,16 +3765,15 @@ int biblioteq::populateTable(const int search_type_arg,
 	if(ii == currentPage && ii <= m_pages - 1)
 	  str += tr(" %1 ").arg(ii);
 	else if(ii <= m_pages - 1)
-	  str += QString(" <a href=\"%1\">" + tr("%1") + "</a> ").arg(ii);
+	  str += QString(" <a href=\"%1\">%1</a> ").arg(ii);
 
       if(currentPage == m_pages)
 	str += tr(" ... %1 ").arg(currentPage);
       else
-	str += QString(" ... <a href=\"%1\">" + tr("%1") + "</a> ").
-	  arg(m_pages);
+	str += QString(" ... <a href=\"%1\">%1</a> ").arg(m_pages);
 
       str = str.trimmed();
-      ui.pagesLabel->setText(str);
+      biblioteq_misc_functions::boldText(ui.pagesLabel, str);
     }
 
   m_queryOffset = offset;

@@ -74,14 +74,14 @@ extern "C"
 ** -- Global Variables --
 */
 
+QPointer<QTranslator> biblioteq::s_appTranslator = nullptr;
+QPointer<QTranslator> biblioteq::s_qtTranslator = nullptr;
 QSize biblioteq::s_noImageResize = QSize(126, 187);
 QString biblioteq::s_databaseDateFormat = "MM/dd/yyyy";
 QString biblioteq::s_databaseTimeFormat = "hh:mm:ss";
 QString biblioteq::s_empty = "(Empty)";
 QString biblioteq::s_locale = "";
 QString biblioteq::s_unknown = "UNKNOWN";
-QTranslator *biblioteq::s_appTranslator = nullptr;
-QTranslator *biblioteq::s_qtTranslator = nullptr;
 bool biblioteq::s_quit = false;
 qreal biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER = 2.5;
 
@@ -228,6 +228,7 @@ biblioteq::biblioteq(void):QMainWindow()
   QMenu *menu1 = nullptr;
 
   ui.setupUi(this);
+  biblioteq_misc_functions::boldText(ui.pagesLabel, tr("1"));
   ui.table->setQMain(this);
 
   if(menuBar())
@@ -1769,6 +1770,7 @@ void biblioteq::changeEvent(QEvent *event)
 	  bb.retranslateUi(m_members_diag);
 	  biblioteq_misc_functions::boldText
 	    (ui.itemsCountLabel, tr("0 Results"));
+	  biblioteq_misc_functions::boldText(ui.pagesLabel, tr("1"));
 	  br.retranslateUi(m_branch_diag);
 	  er.retranslateUi(m_error_diag);
 	  history.retranslateUi(m_history_diag);
@@ -1782,7 +1784,6 @@ void biblioteq::changeEvent(QEvent *event)
 	  ui.graphicsView->scene()->clear();
 	  ui.graphicsView->verticalScrollBar()->setValue(0);
 	  ui.nextPageButton->setEnabled(false);
-	  ui.pagesLabel->setText(tr("1"));
 	  ui.previousPageButton->setEnabled(false);
 	  ui.table->resetTable
 	    (dbUserName(),
@@ -3059,13 +3060,13 @@ void biblioteq::slotAutoPopOnFilter(QAction *action)
   else
     {
       biblioteq_misc_functions::boldText(ui.itemsCountLabel, tr("0 Results"));
+      biblioteq_misc_functions::boldText(ui.pagesLabel, tr("1"));
       m_findList.clear();
       ui.graphicsView->horizontalScrollBar()->setValue(0);
       ui.graphicsView->resetTransform();
       ui.graphicsView->scene()->clear();
       ui.graphicsView->verticalScrollBar()->setValue(0);
       ui.nextPageButton->setEnabled(false);
-      ui.pagesLabel->setText(tr("1"));
       ui.previousPageButton->setEnabled(false);
       ui.table->resetTable(dbUserName(), action->data().toString(), "");
     }

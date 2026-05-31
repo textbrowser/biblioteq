@@ -673,6 +673,7 @@ Completed Items
 339. Dynamic ellipses in menus.
 340. YAZ 5.35 on Windows.
 341. Default query system (Open Library, etc.) for Batch Activities -> Add.
+342. Bold pagination label.
 
 Remaining Items
 
@@ -687,4 +688,3 @@ Remaining Items
      QSqlDriver::subscribeToNotification().
 9.   Replace apt with snap.
 10.  Add format options for deleted_date and reserved_date.
-11.  Bold pagination label.

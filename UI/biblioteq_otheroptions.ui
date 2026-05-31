@@ -935,6 +935,9 @@
             <property name="toolTip">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The strings of this widget are in English and will not be translated.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
+            <property name="sizeAdjustPolicy">
+             <enum>QComboBox::SizeAdjustPolicy::AdjustToContents</enum>
+            </property>
             <item>
              <property name="text">
               <string notr="true">Default</string>
@@ -961,19 +964,6 @@
              <bool>true</bool>
             </property>
            </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_13">
-            <property name="orientation">
-             <enum>Qt::Orientation::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
           </item>
          </layout>
         </item>
