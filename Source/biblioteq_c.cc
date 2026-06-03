@@ -3445,6 +3445,9 @@ void biblioteq::slotConnectDB(void)
       ** Guest.
       */
 
+      if(m_status_bar_label != nullptr)
+	m_status_bar_label->setToolTip(tr("Guest Mode"));
+
       ui.actionChangePassword->setEnabled(false);
     }
   else
@@ -3452,6 +3455,9 @@ void biblioteq::slotConnectDB(void)
       /*
       ** Patron.
       */
+
+      if(m_status_bar_label != nullptr)
+	m_status_bar_label->setToolTip(tr("Patron Mode"));
 
       ui.actionChangePassword->setEnabled(true);
       ui.actionPatron_Reservation_History->setChecked
