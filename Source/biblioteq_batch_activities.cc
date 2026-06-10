@@ -350,6 +350,7 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
     (static_cast<int> (AddTableColumns::QUERY_SYSTEM_COLUMN),
      new biblioteq_batch_activities_item_delegate("add_table",
 						  m_ui.add_table));
+  m_ui.discover_table->sortByColumn(0, Qt::AscendingOrder);
   m_ui.dreamy_date->setDisplayFormat
     (QLocale().dateFormat(QLocale::LongFormat));
   m_ui.dreamy_table->horizontalHeader()->setSortIndicator
@@ -2532,6 +2533,8 @@ void biblioteq_batch_activities::slotScanDiscoverTimerTimeout(void)
 	}
     }
 
+  m_ui.discover_table->setSortingEnabled(false);
+
   QHash<QString, QString> hash;
   QString member("");
   QString str("");
@@ -2589,6 +2592,7 @@ void biblioteq_batch_activities::slotScanDiscoverTimerTimeout(void)
      item);
   m_ui.discover_scan->clear();
   m_ui.discover_scan->setFocus();
+  m_ui.discover_table->setSortingEnabled(true);
   QApplication::restoreOverrideCursor();
 }
 
