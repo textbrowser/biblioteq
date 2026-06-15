@@ -581,6 +581,9 @@ void biblioteq_otheroptions::prepareSQLKeywords(void)
   ** Please do not translate the contents of list.
   */
 
+  // https://sqlite.org/lang_keywords.html
+  // https://www.postgresql.org/docs/current/sql-keywords-appendix.html
+
   list << "/* A COMMENT. */"
        << "ALL"
        << "AND"
