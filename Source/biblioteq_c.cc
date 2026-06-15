@@ -78,11 +78,14 @@ static void regexp(sqlite3_context *context, int argc, sqlite3_value **argv)
   auto text = reinterpret_cast<const char *> (sqlite3_value_text(argv[1]));
 
   if(!expression || !text)
-    /*
-    ** We require two values.
-    */
+    {
+      /*
+      ** We require two values.
+      */
 
-    return;
+      sqlite3_result_null(context);
+      return;
+    }
 
   QRegularExpression const r(expression);
 
