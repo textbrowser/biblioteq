@@ -3234,12 +3234,15 @@ void biblioteq::slotConnectDB(void)
 					  nullptr,
 					  nullptr,
 					  nullptr) != SQLITE_OK)
-	addError
-	  (tr("SQLite Create Function"),
-	   tr("The function sqlite3_create_function_v2(REGEXP) failed."),
-	   tr("The function sqlite3_create_function_v2(REGEXP) failed."),
-	   __FILE__,
-	   __LINE__);
+	{
+	  addError
+	    (tr("SQLite Create Function"),
+	     tr("The function sqlite3_create_function_v2(REGEXP) failed."),
+	     tr("The function sqlite3_create_function_v2(REGEXP) failed."),
+	     __FILE__,
+	     __LINE__);
+	  ok = false;
+	}
 
       if(ok && sqlite3_enable_load_extension(handle, 1) != SQLITE_OK)
 	{
