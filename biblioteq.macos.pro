@@ -11,10 +11,24 @@ DEFINES += BIBLIOTEQ_MACOS_LIBPQ_PATH="'\"/opt/homebrew/opt/libpq/lib/libpq.dyli
 warning("/opt/homebrew/opt/libpq/lib/libpq.dylib does not exist.")
 }
 
+exists(/opt/homebrew/opt/sqlite/include) {
+DEFINES += BIBLIOTEQ_SQLITE3_INCLUDE_FILE_EXISTS
+LIBS    += -lsqlite3
+} else {
+warning("/opt/homebrew/opt/sqlite/include does not exist.")
+}
+
 exists(/usr/local/opt/libpq/lib/libpq.dylib) {
 DEFINES += BIBLIOTEQ_MACOS_LIBPQ_PATH="'\"/usr/local/opt/libpq/lib/libpq.dylib\"'"
 } else {
 warning("/usr/local/opt/libpq/lib/libpq.dylib does not exist.")
+}
+
+exists(/usr/local/opt/sqlite/include) {
+DEFINES += BIBLIOTEQ_SQLITE3_INCLUDE_FILE_EXISTS
+LIBS    += -lsqlite3
+} else {
+warning("/usr/local/opt/sqlite/include does not exist.")
 }
 
 LANGUAGE = C++
