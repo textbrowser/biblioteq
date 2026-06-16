@@ -3233,7 +3233,7 @@ void biblioteq::slotConnectDB(void)
 					  2,
 					  SQLITE_UTF8,
 					  nullptr,
-					  regexp,
+					  &regexp,
 					  nullptr,
 					  nullptr,
 					  nullptr) != SQLITE_OK)
