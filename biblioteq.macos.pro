@@ -14,7 +14,7 @@ warning("/opt/homebrew/opt/libpq/lib/libpq.dylib does not exist.")
 exists(/opt/homebrew/opt/sqlite/include) {
 DEFINES     += BIBLIOTEQ_SQLITE3_INCLUDE_FILE_EXISTS
 INCLUDEPATH += /opt/homebrew/opt/sqlite/include
-LIBS        += -lsqlite3
+LIBS        += -L/opt/homebrew/opt/sqlite/lib -lsqlite3
 } else {
 warning("/opt/homebrew/opt/sqlite/include does not exist.")
 }
@@ -28,7 +28,7 @@ warning("/usr/local/opt/libpq/lib/libpq.dylib does not exist.")
 exists(/usr/local/opt/sqlite/include) {
 DEFINES     += BIBLIOTEQ_SQLITE3_INCLUDE_FILE_EXISTS
 INCLUDEPATH += /usr/local/opt/sqlite/include
-LIBS        += -lsqlite3
+LIBS        += -L/usr/local/opt/sqlite/lib -lsqlite3
 } else {
 warning("/usr/local/opt/sqlite/include does not exist.")
 }
