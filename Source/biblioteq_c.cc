@@ -67,11 +67,16 @@ extern "C"
 static void regexp(sqlite3_context *context, int argc, sqlite3_value **argv)
 {
   if(argc != 2 || context == nullptr)
-    /*
-    ** We require two values.
-    */
+    {
+      /*
+      ** We require two values.
+      */
 
-    return;
+      if(context)
+	sqlite3_result_null(context);
+
+      return;
+    }
 
   auto expression = reinterpret_cast<const char *>
     (sqlite3_value_text(argv[0]));
