@@ -14,6 +14,12 @@ BIBLIOTEQ_CONFIGURATION_FILE
 Name of BiblioteQ's configuration file. Please use
 the terminal option --configuration-file instead.
 
+BIBLIOTEQ_DO_NOT_INCLUDE_SQLITE_REGEXP
+
+If defined, the custom biblioteq_regexp() function will not be
+attached to BiblioteQ. The function sqlite3_create_function_v2() may
+abort.
+
 BIBLIOTEQ_ESCAPE_SINGLE_QUOTE
 
 Escape the single quote before executing an SQL query.

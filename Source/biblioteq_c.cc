@@ -64,7 +64,9 @@ extern "C"
 #include <sqlite3.h>
 }
 
-static void regexp(sqlite3_context *context, int argc, sqlite3_value **argv)
+#ifndef BIBLIOTEQ_DO_NOT_INCLUDE_SQLITE_REGEXP
+static void biblioteq_regexp
+(sqlite3_context *context, int argc, sqlite3_value **argv)
 {
   if(argc != 2 || context == nullptr)
     {
@@ -97,6 +99,7 @@ static void regexp(sqlite3_context *context, int argc, sqlite3_value **argv)
   sqlite3_result_int
     (context, QRegularExpressionMatch(r.match(text)).hasMatch());
 }
+#endif
 #endif
 
 QColor biblioteq::availabilityColor(const QString &itemType) const
@@ -3233,12 +3236,13 @@ void biblioteq::slotConnectDB(void)
 	  ok = false;
 	}
 
+#ifndef BIBLIOTEQ_DO_NOT_INCLUDE_SQLITE_REGEXP
       if(ok && sqlite3_create_function_v2(handle,
 					  "REGEXP",
 					  2,
 					  SQLITE_UTF8,
 					  nullptr,
-					  &regexp,
+					  &biblioteq_regexp,
 					  nullptr,
 					  nullptr,
 					  nullptr) != SQLITE_OK)
@@ -3251,6 +3255,7 @@ void biblioteq::slotConnectDB(void)
 	     __LINE__);
 	  ok = false;
 	}
+#endif
 
       if(ok && sqlite3_enable_load_extension(handle, 1) != SQLITE_OK)
 	{
