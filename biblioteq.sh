@@ -4,7 +4,7 @@
 
 set_qt_qpa_platformtheme()
 {
-    qt6=$(ldd "$1" | grep Qt6 2>/dev/null)
+    qt6=$(ldd "$1" 2>/dev/null | grep Qt6 2>/dev/null)
 
     if [ ! -z "$qt6" ]
     then
@@ -23,11 +23,13 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=1
 
 export QT_X11_NO_MITSHM=1
 
-if [ -r ./BiblioteQ ] && [ -x ./BiblioteQ ]
+if [ -f ./BiblioteQ ] && \
+   [ -r ./BiblioteQ ] && \
+   [ -x ./BiblioteQ ]
 then
     echo "Launching a local BiblioteQ."
 
-    if [ -r ./Lib ]
+    if [ -d ./Lib ] && [ -r ./Lib ]
     then
 	export LD_LIBRARY_PATH=Lib
     fi
@@ -37,19 +39,22 @@ then
     exit $?
 fi
 
-if [ -r /opt/biblioteq/BiblioteQ ] && [ -x /opt/biblioteq/BiblioteQ ]
+if [ -f /opt/biblioteq/BiblioteQ ] && \
+   [ -r /opt/biblioteq/BiblioteQ ] && \
+   [ -x /opt/biblioteq/BiblioteQ ]
 then
-    echo "Launching an official BiblioteQ."
+    echo "Launching an official BiblioteQ (/opt/biblioteq)."
     set_qt_qpa_platformtheme "/opt/biblioteq/BiblioteQ"
     /opt/biblioteq/BiblioteQ \
 	--configuration-file /opt/biblioteq/biblioteq.conf "$@"
     exit $?
 fi
 
-if [ -r /usr/local/biblioteq/BiblioteQ ] &&
+if [ -f /usr/local/biblioteq/BiblioteQ ] && \
+   [ -r /usr/local/biblioteq/BiblioteQ ] && \
    [ -x /usr/local/biblioteq/BiblioteQ ]
 then
-    echo "Launching an official BiblioteQ."
+    echo "Launching an official BiblioteQ (/usr/local/biblioteq)."
     set_qt_qpa_platformtheme "/usr/local/biblioteq/BiblioteQ"
     /usr/local/biblioteq/BiblioteQ \
 	--configuration-file /usr/local/biblioteq/biblioteq.conf "$@"
