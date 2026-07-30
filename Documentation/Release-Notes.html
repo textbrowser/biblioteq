@@ -1,5 +1,15 @@
 <html>
   <body>
+    <p><u>July 31, 2026</u></p>
+    <ul>
+      <li>Modified biblioteq_misc_functions::bookAccessionNumber() such that
+	it returns 1 + MAX(value) if an insert into book_sequence fails.
+	SQLite only.</li>
+      <li>New sequence_trigger database trigger for SQLite. The purpose of
+	the trigger is to remove all content of the sequence table before
+	an entry is inserted. The trigger replaces an SQL query and is
+	automatically created if it does not already exist.</li>
+    </ul>
     <p><u>July 5, 2026</u></p>
     <ul>
       <li>Enabled table sorting in Batch Activities Browser -> Add.

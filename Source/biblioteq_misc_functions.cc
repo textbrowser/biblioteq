@@ -2110,7 +2110,7 @@ qint64 biblioteq_misc_functions::bookAccessionNumber(const QSqlDatabase &db)
       if(query.exec("INSERT INTO book_sequence VALUES (NULL)"))
 	return query.lastInsertId().toLongLong();
       else
-	query.prepare("SELECT value FROM book_sequence");
+	query.prepare("SELECT 1 + MAX(value) FROM book_sequence");
     }
 
   if(query.exec() && query.next())
@@ -2131,21 +2131,18 @@ qint64 biblioteq_misc_functions::getSqliteUniqueId(const QSqlDatabase &db,
 
   errorstr = "";
 
+  query.exec("CREATE TRIGGER IF NOT EXISTS sequence_trigger "
+	     "BEFORE INSERT ON sequence "
+	     "BEGIN "
+	     "DELETE FROM sequence; "
+	     "END;");
+
   if(query.exec("INSERT INTO sequence VALUES (NULL)"))
     {
       auto const variant(query.lastInsertId());
 
       if(variant.isValid())
-	{
-	  value = variant.toLongLong();
-
-	  /*
-	  ** Store only one entry in the table.
-	  */
-
-	  query.exec
-	    (QString("DELETE FROM sequence WHERE value < %1").arg(value));
-	}
+	value = variant.toLongLong();
       else
 	errorstr = "Invalid variant.";
     }
