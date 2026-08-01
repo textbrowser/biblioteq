@@ -66,7 +66,7 @@
 	  license.</p>
 	<p>The newest <b>software release</b> version is <b>2026.05.10</b>.
 	  <br>
-	  The newest <b>source release</b> version is <b>2026.07.05</b>.</p>
+	  The newest <b>source release</b> version is <b>2026.07.31</b>.</p>
 	<h3>BiblioteQ Summary</h3>
 	<ul>
 	  <li>AMD, ARM, Alpha, Apple Silicon, PowerPC,
@@ -134,6 +134,16 @@
 	</ul>
 	<hr>
 	<h3>Release Notes</h3>
+	<p>July 31, 2026</p>
+	<ul>
+	  <li>Modified biblioteq_misc_functions::bookAccessionNumber() such
+	    that it returns 1 + MAX(value) if an insert into book_sequence
+	    fails. SQLite only.</li>
+	  <li>New sequence_trigger database trigger for SQLite. The purpose of
+	    the trigger is to remove all content of the sequence table before
+	    an entry is inserted. The trigger replaces an SQL query and is
+	    automatically created if it does not already exist.</li>
+	</ul>
 	<p>July 5, 2026</p>
 	<ul>
 	  <li>Enabled table sorting in Batch Activities Browser -> Add.
