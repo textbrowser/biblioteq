@@ -15,7 +15,7 @@ A. Install Homebrew via https://brew.sh.
 B. Install Qt via Homebrew.
 C. Install PostgreSQL via https://formulae.brew.sh/formula/libpq.
 D. > qmake -o Makefile biblioteq.macos.pro
-   > make
+   > make install
    > make dmg
 
 MacOS Intel
@@ -25,6 +25,7 @@ B. Install Homebrew via https://brew.sh.
 C. Install PostgreSQL via https://formulae.brew.sh/formula/libpq.
 D. > qmake -o Makefile biblioteq.macos.pro
    > make
+   > make install
    > codesign --deep --force -s "textbrowser" ./BiblioteQ.d/BiblioteQ.app
    > make dmg
 
