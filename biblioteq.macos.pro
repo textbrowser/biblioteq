@@ -37,29 +37,29 @@ LANGUAGE = C++
 QT	 += gui network printsupport sql widgets
 QT	 -= webkit
 
-QMAKE_CLEAN	       += BiblioteQ
-QMAKE_CXXFLAGS_RELEASE += -Wall \
-                          -Wcast-align \
-                          -Wcast-qual \
-                          -Wextra \
-                          -Wformat=2 \
-                          -Wno-deprecated-declarations \
-                          -Woverloaded-virtual \
-                          -Wpointer-arith \
-                          -Wstack-protector \
-                          -fPIE \
-                          -fstack-protector-all \
-                          -funroll-loops \
-                          -fwrapv \
-                          -pedantic \
-                          -std=c++17
-QMAKE_DISTCLEAN        += -r \
-                          .qmake.cache \
-                          .qmake.stash \
-                          BiblioteQ \
-                          BiblioteQ.d \
-                          Temporary
-
+QMAKE_APPLE_DEVICE_ARCHS       = arm64 x86_64
+QMAKE_CLEAN	               += BiblioteQ
+QMAKE_CXXFLAGS_RELEASE         += -Wall \
+                                  -Wcast-align \
+                                  -Wcast-qual \
+                                  -Wextra \
+                                  -Wformat=2 \
+                                  -Wno-deprecated-declarations \
+                                  -Woverloaded-virtual \
+                                  -Wpointer-arith \
+                                  -Wstack-protector \
+                                  -fPIE \
+                                  -fstack-protector-all \
+                                  -funroll-loops \
+                                  -fwrapv \
+                                  -pedantic \
+                                  -std=c++17
+QMAKE_DISTCLEAN                += -r \
+                                  .qmake.cache \
+                                  .qmake.stash \
+                                  BiblioteQ \
+                                  BiblioteQ.d \
+                                  Temporary
 QMAKE_EXTRA_TARGETS            = dmg purge
 QMAKE_MACOSX_DEPLOYMENT_TARGET = 13.0
 
