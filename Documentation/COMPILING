@@ -25,6 +25,7 @@ B. Install Homebrew via https://brew.sh.
 C. Install PostgreSQL via https://formulae.brew.sh/formula/libpq.
 D. > qmake -o Makefile biblioteq.macos.pro
    > make
+   > codesign --deep --force -s "textbrowser" ./BiblioteQ.d/BiblioteQ.app
    > make dmg
 
 Unix Terminal
