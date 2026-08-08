@@ -1807,8 +1807,10 @@ bool biblioteq_misc_functions::sqliteReturnReminder
       query.prepare
 	("SELECT member_identifier FROM return_reminders "
 	 "WHERE (REPLACE(UPPER(item_identifier), '-', '') = ? OR "
+	 "REPLACE(UPPER(item_identifier), '-', '') = ? OR "
 	 "REPLACE(UPPER(item_identifier), '-', '') = ?) AND "
 	 "UPPER(item_type) = ?");
+      query.addBindValue(identifier);
       query.addBindValue(isbn10to13(identifier));
       query.addBindValue(isbn13to10(identifier));
     }
