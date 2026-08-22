@@ -861,6 +861,58 @@
            </item>
           </layout>
          </widget>
+         <widget class="QWidget" name="page_export_photographs">
+          <attribute name="title">
+           <string>Export Photographs</string>
+          </attribute>
+          <layout class="QVBoxLayout" name="verticalLayout_7">
+           <item>
+            <layout class="QHBoxLayout" name="_3">
+             <item>
+              <widget class="QLineEdit" name="export_photographs_destination_directory">
+               <property name="placeholderText">
+                <string>Destination Directory</string>
+               </property>
+               <property name="clearButtonEnabled">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="export_photographs_select_destination">
+               <property name="text">
+                <string>Select...</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_11">
+             <item>
+              <widget class="QLabel" name="label_11">
+               <property name="text">
+                <string>Filename Prefix</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="export_photographs_filename_prefix">
+               <property name="placeholderText">
+                <string>Filename Prefix</string>
+               </property>
+               <property name="clearButtonEnabled">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QListWidget" name="export_photographs_progress"/>
+           </item>
+          </layout>
+         </widget>
          <widget class="QWidget" name="page_return">
           <attribute name="title">
            <string>Return</string>
@@ -1071,6 +1123,10 @@
   <tabstop>dreamy_table</tabstop>
   <tabstop>dreamy_date</tabstop>
   <tabstop>dreamy_go</tabstop>
+  <tabstop>export_photographs_destination_directory</tabstop>
+  <tabstop>export_photographs_select_destination</tabstop>
+  <tabstop>export_photographs_filename_prefix</tabstop>
+  <tabstop>export_photographs_progress</tabstop>
   <tabstop>return_scan</tabstop>
   <tabstop>return_table</tabstop>
   <tabstop>go</tabstop>
