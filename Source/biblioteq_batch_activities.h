@@ -93,7 +93,8 @@ class biblioteq_batch_activities: public QMainWindow
       Borrow = 1,
       Discover = 2,
       DreamyExtensions = 3,
-      Return = 4
+      ExportPhotographs = 4,
+      Return = 5
     };
 
   QPointer<QCompleter> m_memberIdCompleter;
@@ -113,6 +114,7 @@ class biblioteq_batch_activities: public QMainWindow
   void closeEvent(QCloseEvent *event);
   void discover(void);
   void dreamyExtensions(void);
+  void exportPhotographs(void);
   void play(const QString &file);
   void returnItems(void);
 

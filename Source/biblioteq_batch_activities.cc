@@ -1392,6 +1392,11 @@ void biblioteq_batch_activities::show(QMainWindow *parent, const bool center)
 	m_ui.dreamy_member_id->setFocus();
 	break;
       }
+    case static_cast<int> (Pages::ExportPhotographs):
+      {
+	m_ui.export_photographs_destination_directory->setFocus();
+	break;
+      }
     case static_cast<int> (Pages::Return):
       {
 	m_ui.return_scan->setFocus();
