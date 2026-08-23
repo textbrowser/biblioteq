@@ -367,10 +367,10 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
     (static_cast<int> (DreamyTableColumns::NEW_RETURN_DATE),
      new biblioteq_batch_activities_item_delegate("dreamy_table", this));
   m_ui.tab->setCurrentIndex
-    (qBound(0,
-	    QSettings().value("otheroptions/batch_activities_page_index").
-	    toInt(),
-	    m_ui.tab->count() - 1));
+    (qBound
+    (0,
+     QSettings().value("otheroptions/batch_activities_page_index").toInt(),
+     m_ui.tab->count() - 1));
   prepareIcons();
   slotPageIndexChanged(m_ui.tab->currentIndex());
 }
@@ -732,6 +732,10 @@ void biblioteq_batch_activities::dreamyExtensions(void)
     }
 
   QApplication::restoreOverrideCursor();
+}
+
+void biblioteq_batch_activities::exportPhotographs(void)
+{
 }
 
 void biblioteq_batch_activities::play(const QString &file)
@@ -1898,6 +1902,11 @@ void biblioteq_batch_activities::slotGo(void)
     case Pages::DreamyExtensions:
       {
 	dreamyExtensions();
+	break;
+      }
+    case Pages::ExportPhotographs:
+      {
+	exportPhotographs();
 	break;
       }
     case Pages::Return:
