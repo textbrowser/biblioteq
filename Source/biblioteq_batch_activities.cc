@@ -2346,6 +2346,14 @@ void biblioteq_batch_activities::slotReset(void)
       m_ui.dreamy_table->setRowCount(0);
     }
 
+  if(!sender() ||
+     m_ui.tab->currentIndex() == static_cast<int> (Pages::ExportPhotographs))
+    {
+      m_ui.export_photographs_destination_directory->clear();
+      m_ui.export_photographs_destination_directory->setFocus();
+      m_ui.export_photographs_filename_prefix->clear();
+    }
+
   if(!sender() || m_ui.tab->currentIndex() == static_cast<int> (Pages::Return))
     {
       m_ui.return_scan->clear();
