@@ -736,6 +736,8 @@ void biblioteq_batch_activities::dreamyExtensions(void)
 
 void biblioteq_batch_activities::exportPhotographs(void)
 {
+  if(m_ui.export_photographs_destination_directory->text().trimmed().isEmpty())
+    return;
 }
 
 void biblioteq_batch_activities::play(const QString &file)
