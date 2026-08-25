@@ -4915,7 +4915,7 @@ void biblioteq::slotSearchBasic(void)
   QString type("");
   QString videoGameFrontCover("'' AS front_cover ");
   QStringList types;
-  auto const text(ui.search->text().trimmed());
+  auto const text("%" + ui.search->text().trimmed() + "%");
   auto query = new QSqlQuery(m_db);
 
   types.append("Book");
