@@ -867,6 +867,16 @@
           </attribute>
           <layout class="QVBoxLayout" name="verticalLayout_7">
            <item>
+            <widget class="QLabel" name="label_12">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Collections will be exported into the Destination Directory. For Example, &lt;span style=&quot; font-weight:700;&quot;&gt;&amp;quot;Collection A&amp;quot; will be exported as Collection-A&lt;/span&gt;. Multiple spaces will be translated into single spaces.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
             <layout class="QHBoxLayout" name="_3">
              <item>
               <widget class="QLineEdit" name="export_photographs_destination_directory">
