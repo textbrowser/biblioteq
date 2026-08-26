@@ -921,6 +921,30 @@
            <item>
             <widget class="QListWidget" name="export_photographs_progress"/>
            </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_12">
+             <item>
+              <spacer name="horizontalSpacer_9">
+               <property name="orientation">
+                <enum>Qt::Orientation::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="list_photograph_collections">
+               <property name="text">
+                <string>List Collections</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
           </layout>
          </widget>
          <widget class="QWidget" name="page_return">
@@ -1137,6 +1161,7 @@
   <tabstop>export_photographs_select_destination</tabstop>
   <tabstop>export_photographs_filename_prefix</tabstop>
   <tabstop>export_photographs_progress</tabstop>
+  <tabstop>list_photograph_collections</tabstop>
   <tabstop>return_scan</tabstop>
   <tabstop>return_table</tabstop>
   <tabstop>go</tabstop>
