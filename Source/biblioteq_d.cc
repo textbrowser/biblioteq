@@ -1074,6 +1074,7 @@ void biblioteq::slotContributors(void)
 	    "coldacid<br>"
 	    "duhow<br>"
 	    "fmra357<br>"
+	    "iam-samzz<br>"
 	    "jerzyPL<br>"
 	    "jferby<br>"
 	    "luismontilla<br>"
