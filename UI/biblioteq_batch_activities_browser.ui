@@ -919,7 +919,7 @@
             </layout>
            </item>
            <item>
-            <widget class="QListWidget" name="export_photographs_progress"/>
+            <widget class="QListWidget" name="photograph_collections"/>
            </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_12">
@@ -1160,7 +1160,7 @@
   <tabstop>export_photographs_destination_directory</tabstop>
   <tabstop>export_photographs_select_destination</tabstop>
   <tabstop>export_photographs_filename_prefix</tabstop>
-  <tabstop>export_photographs_progress</tabstop>
+  <tabstop>photograph_collections</tabstop>
   <tabstop>list_photograph_collections</tabstop>
   <tabstop>return_scan</tabstop>
   <tabstop>return_table</tabstop>

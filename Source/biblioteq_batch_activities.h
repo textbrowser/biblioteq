@@ -132,6 +132,7 @@ class biblioteq_batch_activities: public QMainWindow
   void slotGo(void);
   void slotListDiscoveredItems(void);
   void slotListMembersReservedItems(void);
+  void slotListPhotographCollections(void);
 #ifdef BIBLIOTEQ_AUDIO_SUPPORTED
   void slotMediaError(QMediaPlayer::Error error);
   void slotMediaError(QMediaPlayer::Error error, const QString &errorString);

@@ -330,6 +330,10 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotGo(void)));
+  connect(m_ui.list_photograph_collections,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotListPhotographCollections(void)));
   connect(m_ui.reset,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -2203,6 +2207,27 @@ void biblioteq_batch_activities::slotListDiscoveredItems(void)
     (query, "All", biblioteq::NEW_PAGE, biblioteq::POPULATE_SEARCH);
 }
 
+void biblioteq_batch_activities::slotListPhotographCollections(void)
+{
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  m_ui.photograph_collections->clear();
+
+  QSqlQuery query(m_qmain->getDB());
+
+  if(query.exec("SELECT id FROM photograph_collection ORDER BY id"))
+    while(query.next())
+      {
+	auto item = new QListWidgetItem(query.value(0).toString().trimmed());
+
+	item->setCheckState(Qt::Checked);
+	item->setFlags
+	  (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
+	m_ui.photograph_collections->addItem(item);
+      }
+
+  QApplication::restoreOverrideCursor();
+}
+
 void biblioteq_batch_activities::slotListMembersReservedItems(void)
 {
   emit listMembersReservedItems(m_ui.borrow_member_id->text());
@@ -2354,6 +2379,7 @@ void biblioteq_batch_activities::slotReset(void)
       m_ui.export_photographs_destination_directory->clear();
       m_ui.export_photographs_destination_directory->setFocus();
       m_ui.export_photographs_filename_prefix->clear();
+      m_ui.photograph_collections->clear();
     }
 
   if(!sender() || m_ui.tab->currentIndex() == static_cast<int> (Pages::Return))
