@@ -741,7 +741,10 @@ void biblioteq_batch_activities::dreamyExtensions(void)
 void biblioteq_batch_activities::exportPhotographs(void)
 {
   if(m_ui.export_photographs_destination_directory->text().trimmed().isEmpty())
-    return;
+    {
+      m_ui.export_photographs_destination_directory->setFocus();
+      return;
+    }
 }
 
 void biblioteq_batch_activities::play(const QString &file)
@@ -2338,6 +2341,7 @@ void biblioteq_batch_activities::slotReset(void)
 
       m_ui.borrow_member_id->clear();
       m_ui.borrow_member_id->setFocus();
+      m_ui.borrow_member_id->setPlaceholderText(tr("Member ID"));
       m_ui.borrow_member_name->clear();
       m_ui.borrow_scan->clear();
       m_ui.borrow_scan_type->setCurrentIndex(0);
