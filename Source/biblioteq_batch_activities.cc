@@ -572,11 +572,11 @@ void biblioteq_batch_activities::borrow(void)
 
       QSqlQuery query(m_qmain->getDB());
       QString errorstr("");
-      auto dueDate(QDate::currentDate());
       auto const itemOid = biblioteq_misc_functions::getOID
 	(identifier->text(), type, m_qmain->getDB(), errorstr);
       auto const copyNumber = biblioteq_misc_functions::getCopyNumber
 	(m_qmain->getDB(), copyIdentifier->text(), itemOid, type, errorstr);
+      auto dueDate(QDate::currentDate());
 
       if(copyNumber == -1)
 	{
@@ -812,7 +812,11 @@ void biblioteq_batch_activities::prepareIcons(void)
 	(QIcon::fromTheme("dialog-ok", QIcon(":/32x32/ok.png")));
       m_ui.export_missing->setIcon
 	(QIcon::fromTheme("document-save-as", QIcon(":/32x32/save.png")));
+      m_ui.export_photographs_select_destination->setIcon
+	(QIcon::fromTheme("document-open", QIcon(":/16x16/fileopen.png")));
       m_ui.go->setIcon(QIcon::fromTheme("dialog-ok", QIcon(":/32x32/ok.png")));
+      m_ui.list_photograph_collections->setIcon
+	(QIcon::fromTheme("view-refresh", QIcon(":/32x32/reload.png")));
       m_ui.reset->setIcon
 	(QIcon::fromTheme("view-refresh", QIcon(":/32x32/reload.png")));
     }
@@ -826,7 +830,10 @@ void biblioteq_batch_activities::prepareIcons(void)
       m_ui.close->setIcon(QIcon(":/32x32/cancel.png"));
       m_ui.dreamy_go->setIcon(QIcon(":/32x32/ok.png"));
       m_ui.export_missing->setIcon(QIcon(":/32x32/save.png"));
+      m_ui.export_photographs_select_destination->setIcon
+	(QIcon(":/16x16/fileopen.png"));
       m_ui.go->setIcon(QIcon(":/32x32/ok.png"));
+      m_ui.list_photograph_collections->setIcon(QIcon(":/32x32/reload.png"));
       m_ui.reset->setIcon(QIcon(":/32x32/reload.png"));
     }
 
@@ -2384,8 +2391,9 @@ void biblioteq_batch_activities::slotReset(void)
   if(!sender() ||
      m_ui.tab->currentIndex() == static_cast<int> (Pages::ExportPhotographs))
     {
-      m_ui.export_photographs_destination_directory->clear();
       m_ui.export_photographs_destination_directory->setFocus();
+      m_ui.export_photographs_destination_directory->setText(QDir::homePath());
+      m_ui.export_photographs_destination_directory->selectAll();
       m_ui.export_photographs_filename_prefix->clear();
       m_ui.photograph_collections->clear();
     }
