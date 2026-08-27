@@ -326,6 +326,10 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotExportMissing(void)));
+  connect(m_ui.export_photographs_select_destination,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSelectDirectory(void)));
   connect(m_ui.go,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -2758,6 +2762,28 @@ void biblioteq_batch_activities::slotScannedDiscover(void)
 void biblioteq_batch_activities::slotScannedReturn(void)
 {
   QTimer::singleShot(100, this, SLOT(slotScanReturnTimerTimeout(void)));
+}
+
+void biblioteq_batch_activities::slotSelectDirectory(void)
+{
+  QFileDialog dialog(this);
+
+  dialog.setAcceptMode(QFileDialog::AcceptSave);
+  dialog.setDirectory(QDir::homePath());
+  dialog.setFileMode(QFileDialog::Directory);
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
+  dialog.setWindowTitle(tr("BiblioteQ: Select Directory"));
+  dialog.exec();
+
+  if(dialog.result() == QDialog::Accepted)
+    {
+      if(m_ui.export_photographs_select_destination == sender())
+	{
+	  m_ui.export_photographs_destination_directory->setText
+	    (dialog.selectedFiles().value(0));
+	  m_ui.export_photographs_destination_directory->setCursorPosition(0);
+	}
+    }
 }
 
 void biblioteq_batch_activities::slotSetGlobalFonts(const QFont &font)

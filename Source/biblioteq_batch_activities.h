@@ -149,6 +149,7 @@ class biblioteq_batch_activities: public QMainWindow
   void slotScannedBorrow(void);
   void slotScannedDiscover(void);
   void slotScannedReturn(void);
+  void slotSelectDirectory(void);
   void slotSetGlobalFonts(const QFont &font);
   void slotWidgetDestroyed(void);
 
