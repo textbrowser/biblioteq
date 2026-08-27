@@ -1677,8 +1677,14 @@ void biblioteq::adminSetup(void)
 
   if(m_roles.contains("administrator") || m_roles.contains("circulation"))
     {
+      m_batchActivities->setReadOnly(false);
       ui.actionBatchActivitiesBrowser->setEnabled(true);
       ui.reserveTool->setEnabled(true);
+    }
+  else
+    {
+      m_batchActivities->setReadOnly(true);
+      ui.actionBatchActivitiesBrowser->setEnabled(true);
     }
 
   if(m_roles.contains("administrator") || m_roles.contains("librarian"))

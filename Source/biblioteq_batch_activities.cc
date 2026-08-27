@@ -1356,6 +1356,28 @@ void biblioteq_batch_activities::returnItems(void)
     (query, "All Reserved", biblioteq::NEW_PAGE, biblioteq::POPULATE_SEARCH);
 }
 
+void biblioteq_batch_activities::setReadOnly(const bool state)
+{
+  if(state)
+    {
+      /*
+      ** Only Export Photographs is available.
+      */
+
+      for(int i = 0; i < m_ui.tab->count(); i++)
+	if(Pages::ExportPhotographs == static_cast<Pages> (i))
+	  {
+	    m_ui.tab->setCurrentIndex(i);
+	    m_ui.tab->setTabEnabled(i, true);
+	  }
+	else
+	  m_ui.tab->setTabEnabled(i, false);
+    }
+  else
+    for(int i = 0; i < m_ui.tab->count(); i++)
+      m_ui.tab->setTabEnabled(i, true);
+}
+
 void biblioteq_batch_activities::show(QMainWindow *parent, const bool center)
 {
   Q_UNUSED(center);

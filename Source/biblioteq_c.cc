@@ -3461,9 +3461,10 @@ void biblioteq::slotConnectDB(void)
       ** Guest.
       */
 
-      if(m_status_bar_label != nullptr)
-	m_status_bar_label->setToolTip(tr("Guest Mode"));
-
+      m_batchActivities->setReadOnly(true);
+      m_status_bar_label != nullptr ?
+	m_status_bar_label->setToolTip(tr("Guest Mode")) : (void) 0;
+      ui.actionBatchActivitiesBrowser->setEnabled(true);
       ui.actionChangePassword->setEnabled(false);
     }
   else
@@ -3472,9 +3473,10 @@ void biblioteq::slotConnectDB(void)
       ** Patron.
       */
 
-      if(m_status_bar_label != nullptr)
-	m_status_bar_label->setToolTip(tr("Patron Mode"));
-
+      m_batchActivities->setReadOnly(true);
+      m_status_bar_label != nullptr ?
+	m_status_bar_label->setToolTip(tr("Patron Mode")) : (void) 0;
+      ui.actionBatchActivitiesBrowser->setEnabled(true);
       ui.actionChangePassword->setEnabled(true);
       ui.actionPatron_Reservation_History->setChecked
 	(!biblioteq_misc_functions::dnt(m_db, dbUserName(), errorstr));
