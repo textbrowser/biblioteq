@@ -60,6 +60,16 @@ biblioteq_numeric_table_item::biblioteq_numeric_table_item
 #endif
 }
 
+biblioteq_numeric_table_item::biblioteq_numeric_table_item
+(const qint64 value):QTableWidgetItem(QString::number(value))
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+  m_type = QMetaType::LongLong;
+#else
+  m_type = QVariant::LongLong;
+#endif
+}
+
 QVariant biblioteq_numeric_table_item::value(void) const
 {
   return text();
@@ -95,7 +105,13 @@ bool biblioteq_numeric_table_item::operator <
     case QVariant::Double:
 #endif
       return text().toDouble() < other.text().toDouble();
-    default:
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    case QMetaType::Int:
+#else
+    case QVariant::Int:
+#endif
       return text().toInt() < other.text().toInt();
+    default:
+      return text().toLongLong() < other.text().toLongLong();
     }
 }

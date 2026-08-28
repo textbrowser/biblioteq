@@ -2274,8 +2274,7 @@ void biblioteq_batch_activities::slotListPhotographCollections(void)
 	  (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
 	m_ui.photograph_collections->setItem
 	  (m_ui.photograph_collections->rowCount() - 1, 0, item);
-	item = new QTableWidgetItem
-	  (QString::number(query.value(1).toLongLong()));
+	item = new biblioteq_numeric_table_item(query.value(1).toLongLong());
 	item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 	m_ui.photograph_collections->setItem
 	  (m_ui.photograph_collections->rowCount() - 1, 1, item);
@@ -2435,7 +2434,8 @@ void biblioteq_batch_activities::slotReset(void)
      m_ui.tab->currentIndex() == static_cast<int> (Pages::ExportPhotographs))
     {
       m_ui.export_photographs_destination_directory->setFocus();
-      m_ui.export_photographs_destination_directory->setText(QDir::homePath());
+      m_ui.export_photographs_destination_directory->setText
+	(QDir::homePath() + QDir::separator() + "BiblioteQ-Exports");
       m_ui.export_photographs_destination_directory->selectAll();
       m_ui.export_photographs_filename_prefix->clear();
       m_ui.photograph_collections->setRowCount(0);
@@ -2820,7 +2820,8 @@ void biblioteq_batch_activities::slotSelectDirectory(void)
   QFileDialog dialog(this);
 
   dialog.setAcceptMode(QFileDialog::AcceptSave);
-  dialog.setDirectory(QDir::homePath());
+  dialog.setDirectory
+    (QDir::homePath() + QDir::separator() + "BiblioteQ-Exports");
   dialog.setFileMode(QFileDialog::Directory);
   dialog.setOption(QFileDialog::DontUseNativeDialog);
   dialog.setWindowTitle(tr("BiblioteQ: Select Directory"));
