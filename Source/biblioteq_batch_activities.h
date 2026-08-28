@@ -98,6 +98,12 @@ class biblioteq_batch_activities: public QMainWindow
       Return = 5
     };
 
+  enum class PhotographCollectionsTableColumns
+    {
+      COLLECTION_NAME_COLUMN = 0,
+      COLLECTION_SIZE_COLUMN = 1
+    };
+
   QPointer<QCompleter> m_memberIdCompleter;
   QPointer<QSqlQueryModel> m_memberIdModel;
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))

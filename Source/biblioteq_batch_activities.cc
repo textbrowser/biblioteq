@@ -374,6 +374,10 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
   m_ui.dreamy_table->setItemDelegateForColumn
     (static_cast<int> (DreamyTableColumns::NEW_RETURN_DATE),
      new biblioteq_batch_activities_item_delegate("dreamy_table", this));
+  m_ui.photograph_collections->sortByColumn
+    (static_cast<int> (PhotographCollectionsTableColumns::
+		       COLLECTION_NAME_COLUMN),
+     Qt::AscendingOrder);
   m_ui.tab->setCurrentIndex
     (qBound
     (0,
