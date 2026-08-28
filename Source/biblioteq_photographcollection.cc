@@ -1774,8 +1774,7 @@ void biblioteq_photographcollection::slotGo(void)
 	"photograph_collection.type, "
 	"photograph_collection.myoid, " +
 	frontCover +
-	"FROM photograph_collection LEFT JOIN "
-	"photograph "
+	"FROM photograph_collection LEFT JOIN photograph "
 	"ON photograph_collection.myoid = photograph.collection_oid "
 	"WHERE ";
 

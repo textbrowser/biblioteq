@@ -2246,19 +2246,36 @@ void biblioteq_batch_activities::slotListDiscoveredItems(void)
 void biblioteq_batch_activities::slotListPhotographCollections(void)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
-  m_ui.photograph_collections->clear();
+  m_ui.photograph_collections->setRowCount(0);
 
   QSqlQuery query(m_qmain->getDB());
 
-  if(query.exec("SELECT id FROM photograph_collection ORDER BY id"))
+  query.setForwardOnly(true);
+
+  if(query.exec("SELECT DISTINCT photograph_collection.title, "
+		"COUNT(photograph.myoid) AS photograph_count "
+		"FROM photograph LEFT JOIN photograph_collection "
+		"ON photograph.collection_oid = photograph_collection.myoid "
+		"GROUP BY photograph_collection.title "
+		"ORDER BY photograph_collection.title"))
     while(query.next())
       {
-	auto item = new QListWidgetItem(query.value(0).toString().trimmed());
+	m_ui.photograph_collections->setRowCount
+	  (1 + m_ui.photograph_collections->rowCount());
+
+	auto item = new QTableWidgetItem(query.value(0).toString().trimmed());
 
 	item->setCheckState(Qt::Checked);
 	item->setFlags
 	  (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
-	m_ui.photograph_collections->addItem(item);
+	m_ui.photograph_collections->setItem
+	  (m_ui.photograph_collections->rowCount() - 1, 0, item);
+	item = new QTableWidgetItem
+	  (QString::number(query.value(1).toLongLong()));
+	item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+	m_ui.photograph_collections->setItem
+	  (m_ui.photograph_collections->rowCount() - 1, 1, item);
+
       }
 
   QApplication::restoreOverrideCursor();
@@ -2417,7 +2434,7 @@ void biblioteq_batch_activities::slotReset(void)
       m_ui.export_photographs_destination_directory->setText(QDir::homePath());
       m_ui.export_photographs_destination_directory->selectAll();
       m_ui.export_photographs_filename_prefix->clear();
-      m_ui.photograph_collections->clear();
+      m_ui.photograph_collections->setRowCount(0);
     }
 
   if(!sender() || m_ui.tab->currentIndex() == static_cast<int> (Pages::Return))
