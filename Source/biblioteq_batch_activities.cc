@@ -219,6 +219,7 @@ slotCurrentIndexChanged(int index)
 biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
   QMainWindow(parent)
 {
+  m_currentExportRow = 0;
   m_qmain = parent;
   m_ui.setupUi(this);
   biblioteq_misc_functions::sortCombinationBox(m_ui.add_query_system);
@@ -746,38 +747,58 @@ void biblioteq_batch_activities::dreamyExtensions(void)
   QApplication::restoreOverrideCursor();
 }
 
+void biblioteq_batch_activities::exportPhotographCollection
+(QProgressDialog *progress, const QString &id)
+{
+  if(!progress || id.trimmed().isEmpty())
+    return;
+}
+
 void biblioteq_batch_activities::exportPhotographs(void)
 {
-  if(findChild<QProgressDialog *> ("export-photographs"))
-    return;
-
   if(m_ui.export_photographs_destination_directory->text().trimmed().isEmpty())
     {
       m_ui.export_photographs_destination_directory->setFocus();
       return;
     }
 
-  auto progress = new QProgressDialog(this);
+  auto progress = findChild<QProgressDialog *> ("export-photographs");
 
-  progress->setLabelText(tr("Exporting photographs(s)..."));
-  progress->setMaximum(m_ui.borrow_table->rowCount());
-  progress->setMinimum(0);
-  progress->setMinimumWidth
-    (qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
-	   progress->sizeHint().width()));
-  progress->setModal(true);
-  progress->setObjectName("export-photographs");
-  progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  if(!progress)
+    {
+      progress = new QProgressDialog(this);
+      progress->setLabelText(tr("Exporting photographs(s)..."));
+      progress->setMaximum(m_ui.borrow_table->rowCount());
+      progress->setMinimum(0);
+      progress->setMinimumWidth
+	(qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	       progress->sizeHint().width()));
+      progress->setModal(true);
+      progress->setObjectName("export-photographs");
+      progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+    }
+
+  progress->close();
   progress->show();
   progress->repaint();
 
-  for(int i = 0; i < m_ui.photograph_collections->rowCount(); i++)
+  for(int i = m_currentExportRow;
+      i < m_ui.photograph_collections->rowCount();
+      i++)
     {
+      QApplication::processEvents();
+
       auto item = m_ui.photograph_collections->itemAt(i, 0);
 
       if(!item || item->checkState() != Qt::Checked)
 	continue;
+
+      exportPhotographCollection(progress, item->text());
+      progress->setLabelText(tr("Exporting %1...").arg(item->text()));
+      return;
     }
+
+  progress->deleteLater();
 }
 
 void biblioteq_batch_activities::play(const QString &file)
@@ -1977,6 +1998,7 @@ void biblioteq_batch_activities::slotGo(void)
       }
     case Pages::ExportPhotographs:
       {
+	m_currentExportRow = 0;
 	exportPhotographs();
 	break;
       }
@@ -2281,12 +2303,12 @@ void biblioteq_batch_activities::slotListPhotographCollections(void)
 
   query.setForwardOnly(true);
 
-  if(query.exec("SELECT DISTINCT photograph_collection.title, "
+  if(query.exec("SELECT DISTINCT photograph_collection.id, "
 		"COUNT(photograph.myoid) AS photograph_count "
 		"FROM photograph LEFT JOIN photograph_collection "
 		"ON photograph.collection_oid = photograph_collection.myoid "
-		"GROUP BY photograph_collection.title "
-		"ORDER BY photograph_collection.title"))
+		"GROUP BY photograph_collection.id "
+		"ORDER BY photograph_collection.id"))
     while(query.next())
       {
 	m_ui.photograph_collections->setRowCount

@@ -42,6 +42,7 @@
 
 #include "ui_biblioteq_batch_activities_browser.h"
 
+class QProgressDialog;
 class biblioteq;
 
 class biblioteq_batch_activities: public QMainWindow
@@ -115,6 +116,7 @@ class biblioteq_batch_activities: public QMainWindow
   QVector<QFuture<void> > m_exportFutures;
   Ui_batchActivitiesBrowser m_ui;
   biblioteq *m_qmain;
+  int m_currentExportRow;
   static QColor s_notSoOkColor;
   static QColor s_okColor;
   void add(void);
@@ -123,6 +125,8 @@ class biblioteq_batch_activities: public QMainWindow
   void closeEvent(QCloseEvent *event);
   void discover(void);
   void dreamyExtensions(void);
+  void exportPhotographCollection
+    (QProgressDialog *progress, const QString &id);
   void exportPhotographs(void);
   void play(const QString &file);
   void returnItems(void);
