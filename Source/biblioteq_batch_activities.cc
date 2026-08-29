@@ -748,10 +748,35 @@ void biblioteq_batch_activities::dreamyExtensions(void)
 
 void biblioteq_batch_activities::exportPhotographs(void)
 {
+  if(findChild<QProgressDialog *> ("export-photographs"))
+    return;
+
   if(m_ui.export_photographs_destination_directory->text().trimmed().isEmpty())
     {
       m_ui.export_photographs_destination_directory->setFocus();
       return;
+    }
+
+  auto progress = new QProgressDialog(this);
+
+  progress->setLabelText(tr("Exporting photographs(s)..."));
+  progress->setMaximum(m_ui.borrow_table->rowCount());
+  progress->setMinimum(0);
+  progress->setMinimumWidth
+    (qCeil(biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER *
+	   progress->sizeHint().width()));
+  progress->setModal(true);
+  progress->setObjectName("export-photographs");
+  progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
+  progress->show();
+  progress->repaint();
+
+  for(int i = 0; i < m_ui.photograph_collections->rowCount(); i++)
+    {
+      auto item = m_ui.photograph_collections->itemAt(i, 0);
+
+      if(!item || item->checkState() != Qt::Checked)
+	continue;
     }
 }
 

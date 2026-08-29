@@ -35,6 +35,7 @@
 #endif
 #include <QMediaPlayer>
 #endif
+#include <QFuture>
 #include <QPointer>
 #include <QSqlQueryModel>
 #include <QStyledItemDelegate>
@@ -111,6 +112,7 @@ class biblioteq_batch_activities: public QMainWindow
   QScopedPointer<QAudioOutput> m_audioOutput;
 #endif
 #endif
+  QVector<QFuture<void> > m_exportFutures;
   Ui_batchActivitiesBrowser m_ui;
   biblioteq *m_qmain;
   static QColor s_notSoOkColor;
