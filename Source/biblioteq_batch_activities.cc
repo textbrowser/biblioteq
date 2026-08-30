@@ -750,8 +750,86 @@ void biblioteq_batch_activities::dreamyExtensions(void)
 void biblioteq_batch_activities::exportPhotographCollection
 (QProgressDialog *progress, const QString &id)
 {
-  if(!progress || id.trimmed().isEmpty())
+  if(!progress || id.trimmed().isEmpty() || progress->wasCanceled())
     return;
+
+  progress->setLabelText(tr("Exporting %1...").arg(id.trimmed()));
+  progress->repaint();
+  QApplication::processEvents();
+
+  QSqlQuery query(m_qmain->getDB());
+
+  query.setForwardOnly(true);
+  query.prepare
+    ("SELECT myoid FROM photograph WHERE collection_oid = "
+     "(SELECT myoid FROM photograph_collection WHERE id = ?) "
+     "ORDER BY myoid");
+  query.addBindValue(id);
+
+  if(query.exec())
+    while(progress->wasCanceled() == false && query.next())
+      {
+	QApplication::processEvents();
+	progress->repaint();
+      }
+
+  if(!progress->wasCanceled())
+    {
+      m_currentExportRow += 1;
+      exportPhotographs();
+    }
+  else
+    progress->deleteLater();
+}
+
+void biblioteq_batch_activities::exportPhotographTask
+(const QString &id, const qint64 oid)
+{
+  if(id.trimmed().isEmpty() || oid < 0)
+    return;
+
+  QImage image;
+  auto const connectionName
+    (QString("export-photograph-task-%1").
+     arg(quintptr(QThread::currentThreadId())));
+
+  {
+    auto const original = QSqlDatabase::database("Default");
+    auto db = QSqlDatabase::cloneDatabase(original, connectionName);
+
+    if(db.open())
+      {
+	QSqlQuery query(db);
+
+	query.setForwardOnly(true);
+	query.prepare
+	  ("SELECT image FROM photograph WHERE "
+	   "collection_oid = "
+	   "(SELECT myoid FROM photograph_collection WHERE id = ?) AND "
+	   "myoid = ?");
+	query.addBindValue(id);
+	query.addBindValue(oid);
+
+	if(query.exec() && query.next())
+	  {
+	    auto bytes(QByteArray::fromBase64(query.value(0).toByteArray()));
+	    auto const format
+	      (biblioteq_misc_functions::imageFormatGuess(bytes));
+
+	    image.loadFromData(bytes);
+
+	    if(image.isNull())
+	      {
+		bytes = query.value(0).toByteArray();
+		image.loadFromData(bytes);
+	      }
+	  }
+
+	db.close();
+      }
+  }
+
+  QSqlDatabase::removeDatabase(connectionName);
 }
 
 void biblioteq_batch_activities::exportPhotographs(void)
@@ -778,7 +856,6 @@ void biblioteq_batch_activities::exportPhotographs(void)
       progress->setWindowTitle(tr("BiblioteQ: Progress Dialog"));
     }
 
-  progress->close();
   progress->show();
   progress->repaint();
 
@@ -786,15 +863,12 @@ void biblioteq_batch_activities::exportPhotographs(void)
       i < m_ui.photograph_collections->rowCount();
       i++)
     {
-      QApplication::processEvents();
-
-      auto item = m_ui.photograph_collections->itemAt(i, 0);
+      auto item = m_ui.photograph_collections->item(i, 0);
 
       if(!item || item->checkState() != Qt::Checked)
 	continue;
 
       exportPhotographCollection(progress, item->text());
-      progress->setLabelText(tr("Exporting %1...").arg(item->text()));
       return;
     }
 
@@ -2901,9 +2975,4 @@ void biblioteq_batch_activities::slotSetGlobalFonts(const QFont &font)
   m_ui.dreamy_table->resizeColumnsToContents();
   m_ui.return_table->resizeColumnsToContents();
   update();
-}
-
-void biblioteq_batch_activities::slotWidgetDestroyed(void)
-{
-  qDebug() << sender();
 }

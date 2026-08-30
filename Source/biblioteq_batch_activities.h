@@ -117,6 +117,7 @@ class biblioteq_batch_activities: public QMainWindow
   Ui_batchActivitiesBrowser m_ui;
   biblioteq *m_qmain;
   int m_currentExportRow;
+  qint64 m_maximumExportOid;
   static QColor s_notSoOkColor;
   static QColor s_okColor;
   void add(void);
@@ -127,6 +128,7 @@ class biblioteq_batch_activities: public QMainWindow
   void dreamyExtensions(void);
   void exportPhotographCollection
     (QProgressDialog *progress, const QString &id);
+  void exportPhotographTask(const QString &id, const qint64 oid);
   void exportPhotographs(void);
   void play(const QString &file);
   void returnItems(void);
@@ -164,7 +166,6 @@ class biblioteq_batch_activities: public QMainWindow
   void slotScannedReturn(void);
   void slotSelectDirectory(void);
   void slotSetGlobalFonts(const QFont &font);
-  void slotWidgetDestroyed(void);
 
  signals:
   void createItem(const QString &identifier,
