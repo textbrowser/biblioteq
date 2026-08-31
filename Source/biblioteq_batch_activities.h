@@ -127,7 +127,7 @@ class biblioteq_batch_activities: public QMainWindow
   void discover(void);
   void dreamyExtensions(void);
   void exportPhotographCollection
-    (QProgressDialog *progress, const QString &id);
+    (QProgressDialog *progress, const QString &id, const int size);
   void exportPhotographTask
     (const QHash<QString, QVariant> &information,
      const QString &id,

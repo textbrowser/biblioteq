@@ -773,12 +773,14 @@ void biblioteq_batch_activities::dreamyExtensions(void)
 }
 
 void biblioteq_batch_activities::exportPhotographCollection
-(QProgressDialog *progress, const QString &id)
+(QProgressDialog *progress, const QString &id, const int size)
 {
   if(!progress || id.trimmed().isEmpty() || progress->wasCanceled())
     return;
 
   progress->setLabelText(tr("Exporting %1...").arg(id.trimmed()));
+  progress->setMaximum(size);
+  progress->setValue(0);
   progress->repaint();
   QApplication::processEvents();
 
@@ -941,8 +943,11 @@ void biblioteq_batch_activities::exportPhotographs(void)
       if(!item || item->checkState() != Qt::Checked)
 	continue;
 
+      int size = m_ui.photograph_collections->item(i, 1) ?
+	m_ui.photograph_collections->item(i, 1)->text().toInt() : 0;
+
       m_currentExportRow = i + 1;
-      exportPhotographCollection(progress, item->text());
+      exportPhotographCollection(progress, item->text(), size);
       return;
     }
 
@@ -2689,6 +2694,11 @@ void biblioteq_batch_activities::slotSaveImage
 
   if(!image.save(fileName, format.toUtf8().constData(), 100))
     qDebug() << tr("Error exporting %1.").arg(fileName);
+
+  auto progress = findChild<QProgressDialog *> ("export-photographs");
+
+  if(progress)
+    progress->setValue(1 + progress->value());
 }
 
 void biblioteq_batch_activities::slotScanAddingTimerTimeout(void)
