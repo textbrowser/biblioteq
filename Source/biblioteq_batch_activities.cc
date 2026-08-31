@@ -839,10 +839,7 @@ void biblioteq_batch_activities::exportPhotographCollection
       }
 
   if(!progress->wasCanceled())
-    {
-      m_currentExportRow += 1;
-      exportPhotographs();
-    }
+    exportPhotographs();
   else
     progress->deleteLater();
 }
@@ -935,7 +932,8 @@ void biblioteq_batch_activities::exportPhotographs(void)
   progress->repaint();
 
   for(int i = m_currentExportRow;
-      i < m_ui.photograph_collections->rowCount();
+      i < m_ui.photograph_collections->rowCount() &&
+      progress->wasCanceled() == false;
       i++)
     {
       auto item = m_ui.photograph_collections->item(i, 0);
@@ -943,6 +941,7 @@ void biblioteq_batch_activities::exportPhotographs(void)
       if(!item || item->checkState() != Qt::Checked)
 	continue;
 
+      m_currentExportRow = i + 1;
       exportPhotographCollection(progress, item->text());
       return;
     }
