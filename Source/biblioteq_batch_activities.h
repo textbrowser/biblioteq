@@ -141,6 +141,7 @@ class biblioteq_batch_activities: public QMainWindow
   void slotAudioEnabled(void);
   void slotBorrowItemChanged(QTableWidgetItem *item);
   void slotClose(void);
+  void slotCheckExportPhotographs(void);
   void slotDeleteAddingRow(void);
   void slotDeleteBorrowingRow(void);
   void slotDiscoverDreamy(void);

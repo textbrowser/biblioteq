@@ -328,6 +328,14 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotExportMissing(void)));
+  connect(m_ui.export_photographs_check_all,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotCheckExportPhotographs(void)));
+  connect(m_ui.export_photographs_check_none,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotCheckExportPhotographs(void)));
   connect(m_ui.export_photographs_select_destination,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -1746,6 +1754,21 @@ void biblioteq_batch_activities::slotClose(void)
 #else
   close();
 #endif
+}
+
+void biblioteq_batch_activities::slotCheckExportPhotographs(void)
+{
+  for(int i = 0; i < m_ui.photograph_collections->rowCount(); i++)
+    {
+      auto item = m_ui.photograph_collections->item(i, 0);
+
+      if(!item)
+	continue;
+
+      item->setCheckState
+	(m_ui.export_photographs_check_all == sender() ?
+	 Qt::Checked : Qt::Unchecked);
+    }
 }
 
 void biblioteq_batch_activities::slotDeleteAddingRow(void)
