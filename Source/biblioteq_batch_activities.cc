@@ -44,6 +44,7 @@ QColor biblioteq_batch_activities::s_notSoOkColor =
   QColor(255, 114, 118); // Red light.
 QColor biblioteq_batch_activities::s_okColor =
   QColor(144, 238, 144); // Green light.
+int biblioteq_batch_activities::s_maximumPhotographExportFutures = 10;
 
 biblioteq_batch_activities_item_delegate::
 biblioteq_batch_activities_item_delegate
@@ -328,14 +329,10 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotExportMissing(void)));
-  connect(m_ui.export_photographs_check_all,
-	  SIGNAL(clicked(void)),
+  connect(m_ui.export_photographs_check,
+	  SIGNAL(toggled(bool)),
 	  this,
-	  SLOT(slotCheckExportPhotographs(void)));
-  connect(m_ui.export_photographs_check_none,
-	  SIGNAL(clicked(void)),
-	  this,
-	  SLOT(slotCheckExportPhotographs(void)));
+	  SLOT(slotCheckExportPhotographs(bool)));
   connect(m_ui.export_photographs_select_destination,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -806,7 +803,7 @@ void biblioteq_batch_activities::exportPhotographCollection
 
 	while(10 == m_exportFutures.size() && progress->wasCanceled() == false)
 	  {
-	    i = qMin(1 + i, 9);
+	    i = qMin(1 + i, s_maximumPhotographExportFutures);
 
 	    if(m_exportFutures.at(i).isFinished())
 	      break;
@@ -943,7 +940,7 @@ void biblioteq_batch_activities::exportPhotographs(void)
       if(!item || item->checkState() != Qt::Checked)
 	continue;
 
-      int size = m_ui.photograph_collections->item(i, 1) ?
+      const int size = m_ui.photograph_collections->item(i, 1) ?
 	m_ui.photograph_collections->item(i, 1)->text().toInt() : 0;
 
       m_currentExportRow = i + 1;
@@ -1760,7 +1757,7 @@ void biblioteq_batch_activities::slotClose(void)
 #endif
 }
 
-void biblioteq_batch_activities::slotCheckExportPhotographs(void)
+void biblioteq_batch_activities::slotCheckExportPhotographs(bool state)
 {
   for(int i = 0; i < m_ui.photograph_collections->rowCount(); i++)
     {
@@ -1769,10 +1766,13 @@ void biblioteq_batch_activities::slotCheckExportPhotographs(void)
       if(!item)
 	continue;
 
-      item->setCheckState
-	(m_ui.export_photographs_check_all == sender() ?
-	 Qt::Checked : Qt::Unchecked);
+      item->setCheckState(state ? Qt::Checked : Qt::Unchecked);
     }
+
+  if(state)
+    m_ui.export_photographs_check->setText(tr("Check None"));
+  else
+    m_ui.export_photographs_check->setText(tr("Check All"));
 }
 
 void biblioteq_batch_activities::slotDeleteAddingRow(void)
@@ -2488,7 +2488,9 @@ void biblioteq_batch_activities::slotListPhotographCollections(void)
 
 	auto item = new QTableWidgetItem(query.value(0).toString().trimmed());
 
-	item->setCheckState(Qt::Checked);
+	item->setCheckState
+	  (m_ui.export_photographs_check->isChecked() ?
+	   Qt::Checked : Qt::Unchecked);
 	item->setFlags
 	  (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
 	m_ui.photograph_collections->setItem
@@ -2497,7 +2499,6 @@ void biblioteq_batch_activities::slotListPhotographCollections(void)
 	item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 	m_ui.photograph_collections->setItem
 	  (m_ui.photograph_collections->rowCount() - 1, 1, item);
-
       }
 
   QApplication::restoreOverrideCursor();
@@ -2652,6 +2653,7 @@ void biblioteq_batch_activities::slotReset(void)
   if(!sender() ||
      m_ui.tab->currentIndex() == static_cast<int> (Pages::ExportPhotographs))
     {
+      m_ui.export_photographs_check->setChecked(true);
       m_ui.export_photographs_destination_directory->setFocus();
       m_ui.export_photographs_destination_directory->setText
 	(QDir::homePath() + QDir::separator() + "BiblioteQ-Exports");

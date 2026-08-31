@@ -965,14 +965,7 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_12">
              <item>
-              <widget class="QPushButton" name="export_photographs_check_all">
-               <property name="text">
-                <string>Check All</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="export_photographs_check_none">
+              <widget class="QCheckBox" name="export_photographs_check">
                <property name="text">
                 <string>Check None</string>
                </property>
@@ -1216,8 +1209,7 @@
   <tabstop>export_photographs_select_destination</tabstop>
   <tabstop>export_photographs_filename_prefix</tabstop>
   <tabstop>photograph_collections</tabstop>
-  <tabstop>export_photographs_check_all</tabstop>
-  <tabstop>export_photographs_check_none</tabstop>
+  <tabstop>export_photographs_check</tabstop>
   <tabstop>list_photograph_collections</tabstop>
   <tabstop>return_scan</tabstop>
   <tabstop>return_table</tabstop>

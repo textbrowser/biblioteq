@@ -120,6 +120,7 @@ class biblioteq_batch_activities: public QMainWindow
   qint64 m_maximumExportOid;
   static QColor s_notSoOkColor;
   static QColor s_okColor;
+  static int s_maximumPhotographExportFutures;
   void add(void);
   void borrow(void);
   void changeEvent(QEvent *event);
@@ -141,7 +142,7 @@ class biblioteq_batch_activities: public QMainWindow
   void slotAudioEnabled(void);
   void slotBorrowItemChanged(QTableWidgetItem *item);
   void slotClose(void);
-  void slotCheckExportPhotographs(void);
+  void slotCheckExportPhotographs(bool state);
   void slotDeleteAddingRow(void);
   void slotDeleteBorrowingRow(void);
   void slotDiscoverDreamy(void);
