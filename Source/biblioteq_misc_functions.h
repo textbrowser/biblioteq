@@ -50,6 +50,7 @@ class biblioteq_misc_functions
 			 const QString &,
 			 const QString &,
 			 const QSqlDatabase &);
+  static QImage imageFromBytes(const QByteArray &bytes);
   static QList<QPair<QString, QString> > getLocations(const QSqlDatabase &,
 						      QString &);
   static QList<int> selectedRows(QTableWidget *);

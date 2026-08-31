@@ -391,6 +391,7 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
   m_ui.dreamy_table->setItemDelegateForColumn
     (static_cast<int> (DreamyTableColumns::NEW_RETURN_DATE),
      new biblioteq_batch_activities_item_delegate("dreamy_table", this));
+  m_ui.photograph_collections->setIconSize(QSize(64, 94));
   m_ui.photograph_collections->sortByColumn
     (static_cast<int> (PhotographCollectionsTableColumns::
 		       COLLECTION_NAME_COLUMN),
@@ -848,7 +849,7 @@ void biblioteq_batch_activities::exportPhotographTask
  const QString &id,
  const qint64 oid)
 {
-  if(id.trimmed().isEmpty() || oid < 0)
+  if(id.trimmed().isEmpty() || information.isEmpty() || oid < 0)
     return;
 
   QImage image;
@@ -2476,6 +2477,7 @@ void biblioteq_batch_activities::slotListPhotographCollections(void)
   QSqlQuery query(m_qmain->getDB());
 
   if(query.exec("SELECT DISTINCT photograph_collection.id, "
+		"photograph_collection.image_scaled, "
 		"COUNT(photograph.myoid) AS photograph_count "
 		"FROM photograph LEFT JOIN photograph_collection "
 		"ON photograph.collection_oid = photograph_collection.myoid "
@@ -2493,9 +2495,15 @@ void biblioteq_batch_activities::slotListPhotographCollections(void)
 	   Qt::Checked : Qt::Unchecked);
 	item->setFlags
 	  (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
+	item->setIcon
+	  (QPixmap::fromImage(biblioteq_misc_functions::imageFromBytes
+			     (query.value(1).toByteArray())));
 	m_ui.photograph_collections->setItem
 	  (m_ui.photograph_collections->rowCount() - 1, 0, item);
-	item = new biblioteq_numeric_table_item(query.value(1).toLongLong());
+	m_ui.photograph_collections->setRowHeight
+	  (m_ui.photograph_collections->rowCount() - 1,
+	   m_ui.photograph_collections->iconSize().height());
+	item = new biblioteq_numeric_table_item(query.value(2).toLongLong());
 	item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 	m_ui.photograph_collections->setItem
 	  (m_ui.photograph_collections->rowCount() - 1, 1, item);

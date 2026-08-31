@@ -87,6 +87,38 @@ QImage biblioteq_misc_functions::getImage(const QString &oid,
   return image;
 }
 
+QImage biblioteq_misc_functions::imageFromBytes(const QByteArray &bytes)
+{
+  QByteArray data;
+  QImage image;
+
+  data = QByteArray::fromBase64(bytes);
+  image.loadFromData(data);
+
+  if(image.isNull())
+    {
+      data = bytes;
+      image.loadFromData(bytes);
+    }
+
+  if(image.isNull())
+    {
+      image = QImage(":/missing_image.png");
+
+      /*
+      ** The size of missing_image.png is AxB.
+      */
+
+      if(!image.isNull())
+	image = image.scaled
+	  (biblioteq::s_noImageResize,
+	   Qt::KeepAspectRatio,
+	   Qt::SmoothTransformation);
+    }
+
+  return image;
+}
+
 QList<QPair<QString, QString> > biblioteq_misc_functions::getLocations
 (const QSqlDatabase &db, QString &errorstr)
 {
