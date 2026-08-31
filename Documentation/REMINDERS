@@ -676,6 +676,7 @@ Completed Items
 342. Bold pagination label.
 343. Strangeness with SQLite library. Add
      BIBLIOTEQ_DO_NOT_INCLUDE_SQLITE_REGEXP to DEFINES in project file.
+344. Export all photographs into files.
 
 Remaining Items
 
@@ -690,5 +691,4 @@ Remaining Items
      QSqlDriver::subscribeToNotification().
 9.   Replace apt with snap.
 10.  Add format options for deleted_date and reserved_date.
-11.  Export all photographs into files.
-12.  Review numeric table columns for sorting.
+11.  Review numeric table columns for sorting.

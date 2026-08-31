@@ -6,7 +6,7 @@ purge.commands = find . -name \'*~*\' -exec rm -f {} \;
 CONFIG	    += copy_dir_files qt release warn_on
 LANGUAGE    = C++
 QMAKE_CLEAN += BiblioteQ
-QT          += concurrent gui network printsupport sql widgets
+QT          += gui network printsupport sql widgets
 QT          -= webkit
 TEMPLATE    = app
 

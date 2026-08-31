@@ -60,6 +60,8 @@ LIBS        += -lpoppler-qt5
 }
 }
 
+QT += concurrent
+
 qtHaveModule(multimedia) {
 DEFINES += BIBLIOTEQ_AUDIO_SUPPORTED
 QT      += multimedia
