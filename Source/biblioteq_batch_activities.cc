@@ -44,7 +44,7 @@ QColor biblioteq_batch_activities::s_notSoOkColor =
   QColor(255, 114, 118); // Red light.
 QColor biblioteq_batch_activities::s_okColor =
   QColor(144, 238, 144); // Green light.
-int biblioteq_batch_activities::s_maximumPhotographExportFutures = 10;
+int biblioteq_batch_activities::s_maximumPhotographExportFutures = 9;
 
 biblioteq_batch_activities_item_delegate::
 biblioteq_batch_activities_item_delegate
@@ -790,6 +790,7 @@ void biblioteq_batch_activities::exportPhotographCollection
   hash["driverName"] = m_qmain->getDB().driverName();
   hash["hostName"] = m_qmain->getDB().hostName();
   hash["password"] = m_qmain->getDB().password();
+  hash["port"] = m_qmain->getDB().port();
   hash["userName"] = m_qmain->getDB().userName();
   query.prepare
     ("SELECT myoid FROM photograph WHERE collection_oid = "
@@ -802,9 +803,10 @@ void biblioteq_batch_activities::exportPhotographCollection
       {
 	int i = -1;
 
-	while(10 == m_exportFutures.size() && progress->wasCanceled() == false)
+	while(m_exportFutures.size() == s_maximumPhotographExportFutures &&
+	      progress->wasCanceled() == false)
 	  {
-	    i = qMin(1 + i, s_maximumPhotographExportFutures);
+	    i = qMin(-1 + s_maximumPhotographExportFutures, 1 + i);
 
 	    if(m_exportFutures.at(i).isFinished())
 	      break;
@@ -855,7 +857,8 @@ void biblioteq_batch_activities::exportPhotographTask
   QImage image;
   QString format("");
   auto const connectionName
-    (QString("export-photograph-task-%1-%2").arg(id).arg(oid));
+    (QString("export-photograph-task-%1").
+     arg(m_dbCounter.fetchAndAddOrdered(1)));
 
   {
     auto db = QSqlDatabase::addDatabase
@@ -865,6 +868,7 @@ void biblioteq_batch_activities::exportPhotographTask
     db.setDatabaseName(information.value("databaseName").toString());
     db.setHostName(information.value("hostName").toString());
     db.setPassword(information.value("password").toString());
+    db.setPort(information.value("port").toInt());
     db.setUserName(information.value("userName").toString());
 
     if(db.open())

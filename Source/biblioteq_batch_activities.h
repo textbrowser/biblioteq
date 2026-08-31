@@ -106,6 +106,7 @@ class biblioteq_batch_activities: public QMainWindow
       COLLECTION_SIZE_COLUMN = 1
     };
 
+  QAtomicInteger<qint64> m_dbCounter;
   QPointer<QCompleter> m_memberIdCompleter;
   QPointer<QSqlQueryModel> m_memberIdModel;
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
