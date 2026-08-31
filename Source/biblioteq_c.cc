@@ -3024,6 +3024,7 @@ void biblioteq::slotConnectDB(void)
     (void) m_db.open();
   else
     {
+      m_db.setPassword(br.password->text());
       (void) m_db.open(br.userid->text().trimmed(), br.password->text());
 
       if(br.role->currentIndex() != 1)

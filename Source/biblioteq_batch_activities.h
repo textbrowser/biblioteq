@@ -128,7 +128,10 @@ class biblioteq_batch_activities: public QMainWindow
   void dreamyExtensions(void);
   void exportPhotographCollection
     (QProgressDialog *progress, const QString &id);
-  void exportPhotographTask(const QString &id, const qint64 oid);
+  void exportPhotographTask
+    (const QHash<QString, QVariant> &information,
+     const QString &id,
+     const qint64 oid);
   void exportPhotographs(void);
   void play(const QString &file);
   void returnItems(void);
@@ -156,6 +159,10 @@ class biblioteq_batch_activities: public QMainWindow
   void slotMemberIdEdited(const QString &text);
   void slotPageIndexChanged(int index);
   void slotReset(void);
+  void slotSaveImage(const QImage &image,
+		     const QString &format,
+		     const QString &id,
+		     const qint64 oid);
   void slotScanAddingTimerTimeout(void);
   void slotScanBorrowingTimerTimeout(void);
   void slotScanDiscoverTimerTimeout(void);
@@ -171,6 +178,10 @@ class biblioteq_batch_activities: public QMainWindow
   void createItem(const QString &identifier,
 		  const QString &querySystem,
 		  const QString &type);
+  void exportImage(const QImage &image,
+		   const QString &format,
+		   const QString &id,
+		   const qint64 oid);
   void listMembersReservedItems(const QString &id);
 };
 
