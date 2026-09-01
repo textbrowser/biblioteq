@@ -921,6 +921,7 @@ void biblioteq_batch_activities::exportPhotographs(void)
   if(!progress)
     {
       progress = new QProgressDialog(this);
+      progress->setAutoClose(false);
       progress->setLabelText(tr("Exporting photographs(s)..."));
       progress->setMaximum(m_ui.borrow_table->rowCount());
       progress->setMinimum(0);
