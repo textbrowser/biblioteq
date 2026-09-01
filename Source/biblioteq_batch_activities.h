@@ -35,6 +35,7 @@
 #endif
 #include <QMediaPlayer>
 #endif
+#include <QElapsedTimer>
 #include <QFuture>
 #include <QPointer>
 #include <QSqlQueryModel>
@@ -107,6 +108,7 @@ class biblioteq_batch_activities: public QMainWindow
     };
 
   QAtomicInteger<qint64> m_dbCounter;
+  QElapsedTimer m_exportElapsedTimer;
   QPointer<QCompleter> m_memberIdCompleter;
   QPointer<QSqlQueryModel> m_memberIdModel;
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))

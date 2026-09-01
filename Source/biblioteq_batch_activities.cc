@@ -920,6 +920,7 @@ void biblioteq_batch_activities::exportPhotographs(void)
 
   if(!progress)
     {
+      m_exportElapsedTimer.start();
       progress = new QProgressDialog(this);
       progress->setAutoClose(false);
       progress->setLabelText(tr("Exporting photographs(s)..."));
@@ -955,6 +956,12 @@ void biblioteq_batch_activities::exportPhotographs(void)
     }
 
   progress->deleteLater();
+
+  if(statusBar())
+    statusBar()->showMessage
+      (tr("Exporting of photographs completed in %1 seconds.").
+       arg(m_exportElapsedTimer.elapsed() / 1000.0),
+       10000);
 }
 
 void biblioteq_batch_activities::play(const QString &file)
