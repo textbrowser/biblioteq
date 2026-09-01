@@ -901,7 +901,7 @@ void biblioteq_batch_activities::exportPhotographTask
     else
       qDebug() << tr("Unable (%1) to open a database connection "
 		     "for %2%3.").
-	arg(db.lastError().text()).srg(oid).arg(id);
+	arg(db.lastError().text()).arg(oid).arg(id);
 
     db.close();
   }
