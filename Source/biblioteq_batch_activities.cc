@@ -898,6 +898,10 @@ void biblioteq_batch_activities::exportPhotographTask
 	    format = biblioteq_misc_functions::imageFormatGuess(bytes);
 	  }
       }
+    else
+      qDebug() << tr("Unable (%1) to open a database connection "
+		     "for %2%3.").
+	arg(db.lastError().text()).srg(oid).arg(id);
 
     db.close();
   }
@@ -956,12 +960,11 @@ void biblioteq_batch_activities::exportPhotographs(void)
     }
 
   progress->deleteLater();
-
-  if(statusBar())
-    statusBar()->showMessage
-      (tr("Exporting of photographs completed in %1 seconds.").
-       arg(m_exportElapsedTimer.elapsed() / 1000.0),
-       10000);
+  QMessageBox::information
+    (this,
+     tr("BiblioteQ: Information"),
+     tr("Exporting of photographs completed in %1 seconds.").
+     arg(m_exportElapsedTimer.elapsed() / 1000.0));
 }
 
 void biblioteq_batch_activities::play(const QString &file)
