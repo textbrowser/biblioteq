@@ -881,12 +881,13 @@ void biblioteq_batch_activities::exportPhotographTask
 	QSqlQuery query(db);
 
 	query.prepare
-	  ("SELECT format, image FROM photograph WHERE "
-	   "collection_oid = "
-	   "(SELECT myoid FROM photograph_collection WHERE id = ?) AND "
-	   "myoid = ?");
-	query.addBindValue(id);
+	  ("SELECT photograph.format, photograph.image FROM photograph, "
+	   "photograph_collection WHERE "
+	   "photograph.collection_oid = photograph_collection.myoid AND "
+	   "photograph.myoid = ? AND "
+	   "photograph_collection.id = ?");
 	query.addBindValue(oid);
+	query.addBindValue(id.trimmed());
 
 	if(query.exec() && query.next())
 	  {
