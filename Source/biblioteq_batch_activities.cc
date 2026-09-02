@@ -44,7 +44,6 @@ QColor biblioteq_batch_activities::s_notSoOkColor =
   QColor(255, 114, 118); // Red light.
 QColor biblioteq_batch_activities::s_okColor =
   QColor(144, 238, 144); // Green light.
-int biblioteq_batch_activities::s_maximumPhotographExportFutures = 9;
 
 biblioteq_batch_activities_item_delegate::
 biblioteq_batch_activities_item_delegate
@@ -391,6 +390,11 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
   m_ui.dreamy_table->setItemDelegateForColumn
     (static_cast<int> (DreamyTableColumns::NEW_RETURN_DATE),
      new biblioteq_batch_activities_item_delegate("dreamy_table", this));
+  m_ui.export_photographs_threads->setMaximum(QThread::idealThreadCount());
+  m_ui.export_photographs_threads->setToolTip
+    (QString("[%1, %2]").
+     arg(m_ui.export_photographs_threads->minimum()).
+     arg(m_ui.export_photographs_threads->maximum()));
   m_ui.photograph_collections->setIconSize(QSize(64, 94));
   m_ui.photograph_collections->sortByColumn
     (static_cast<int> (PhotographCollectionsTableColumns::
@@ -784,6 +788,7 @@ void biblioteq_batch_activities::exportPhotographCollection
 
   QHash<QString, QVariant> hash;
   QSqlQuery query(m_qmain->getDB());
+  auto const maximumFutures = m_ui.export_photographs_threads->value();
 
   hash["connectOptions"] = m_qmain->getDB().connectOptions();
   hash["databaseName"] = m_qmain->getDB().databaseName();
@@ -803,10 +808,10 @@ void biblioteq_batch_activities::exportPhotographCollection
       {
 	int i = -1;
 
-	while(m_exportFutures.size() == s_maximumPhotographExportFutures &&
+	while(m_exportFutures.size() == maximumFutures &&
 	      progress->wasCanceled() == false)
 	  {
-	    i = qMin(-1 + s_maximumPhotographExportFutures, 1 + i);
+	    i = qMin(-1 + maximumFutures, 1 + i);
 
 	    if(m_exportFutures.at(i).isFinished())
 	      break;
@@ -957,6 +962,12 @@ void biblioteq_batch_activities::exportPhotographs(void)
       m_currentExportRow = i + 1;
       exportPhotographCollection(progress, item->text(), size);
       return;
+    }
+
+  for(int i = 0; i < m_exportFutures.size(); i++)
+    {
+      m_exportFutures[i].cancel();
+      m_exportFutures[i].waitForFinished();
     }
 
   progress->deleteLater();
@@ -2682,6 +2693,8 @@ void biblioteq_batch_activities::slotReset(void)
 	(QDir::homePath() + QDir::separator() + "BiblioteQ-Exports");
       m_ui.export_photographs_destination_directory->selectAll();
       m_ui.export_photographs_filename_prefix->clear();
+      m_ui.export_photographs_threads->setValue
+	(m_ui.export_photographs_threads->minimum());
       m_ui.photograph_collections->setRowCount(0);
     }
 

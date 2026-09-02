@@ -880,6 +880,9 @@
             <layout class="QHBoxLayout" name="_3">
              <item>
               <widget class="QLineEdit" name="export_photographs_destination_directory">
+               <property name="toolTip">
+                <string>Value is trimmed.</string>
+               </property>
                <property name="placeholderText">
                 <string>Destination Directory</string>
                </property>
@@ -908,6 +911,9 @@
              </item>
              <item>
               <widget class="QLineEdit" name="export_photographs_filename_prefix">
+               <property name="toolTip">
+                <string>Value is trimmed.</string>
+               </property>
                <property name="placeholderText">
                 <string>Filename Prefix</string>
                </property>
@@ -974,7 +980,10 @@
              <item>
               <widget class="QSpinBox" name="export_photographs_threads">
                <property name="suffix">
-                <string> Parallel Queries</string>
+                <string> Query Thread(s)</string>
+               </property>
+               <property name="minimum">
+                <number>1</number>
                </property>
               </widget>
              </item>

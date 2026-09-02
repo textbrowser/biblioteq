@@ -123,7 +123,6 @@ class biblioteq_batch_activities: public QMainWindow
   qint64 m_maximumExportOid;
   static QColor s_notSoOkColor;
   static QColor s_okColor;
-  static int s_maximumPhotographExportFutures;
   void add(void);
   void borrow(void);
   void changeEvent(QEvent *event);
