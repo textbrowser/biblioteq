@@ -972,6 +972,13 @@
               </widget>
              </item>
              <item>
+              <widget class="QSpinBox" name="export_photographs_threads">
+               <property name="suffix">
+                <string> Parallel Queries</string>
+               </property>
+              </widget>
+             </item>
+             <item>
               <spacer name="horizontalSpacer_9">
                <property name="orientation">
                 <enum>Qt::Orientation::Horizontal</enum>
@@ -1210,6 +1217,7 @@
   <tabstop>export_photographs_filename_prefix</tabstop>
   <tabstop>photograph_collections</tabstop>
   <tabstop>export_photographs_check</tabstop>
+  <tabstop>export_photographs_threads</tabstop>
   <tabstop>list_photograph_collections</tabstop>
   <tabstop>return_scan</tabstop>
   <tabstop>return_table</tabstop>
