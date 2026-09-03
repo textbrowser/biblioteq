@@ -166,7 +166,6 @@ QMap<QString, QString> biblioteq_misc_functions::getMinimumDays
   QMap<QString, QString> map;
   QSqlQuery query(db);
   QString querystr("");
-  QStringList minimumdays;
 
   errorstr = "";
   querystr = "SELECT type, days FROM minimum_days "

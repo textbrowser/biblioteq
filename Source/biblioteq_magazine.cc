@@ -4187,14 +4187,14 @@ void biblioteq_magazine::slotZ3950Query(void)
 	      QMessageBox::No | QMessageBox::Yes,
 	      QMessageBox::No) == QMessageBox::Yes)
 	    {
-	      list = QString(m_thread->getZ3950Results()[0]).split("\n");
+	      list = QString(m_thread->getZ3950Results().at(0)).split("\n");
 	      populateDisplayAfterZ3950(list, recordSyntax);
 	    }
 	}
       else if(m_thread->getZ3950Results().size() > 1)
 	{
 	  for(i = 0; i < m_thread->getZ3950Results().size(); i++)
-	    list.append(m_thread->getZ3950Results()[i]);
+	    list.append(m_thread->getZ3950Results().at(i));
 
 	  /*
 	  ** Display a selection dialog.

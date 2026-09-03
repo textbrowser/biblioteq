@@ -5901,11 +5901,11 @@ void biblioteq_book::slotZ3950Query(void)
 	{
 	  if(recordSyntax == "MARC21")
 	    populateAfterZ3950
-	      (m_thread->getZ3950Results()[0],
+	      (m_thread->getZ3950Results().at(0),
 	       biblioteq_marc::RECORD_SYNTAX::MARC21);
 	  else
 	    populateAfterZ3950
-	      (m_thread->getZ3950Results()[0],
+	      (m_thread->getZ3950Results().at(0),
 	       biblioteq_marc::RECORD_SYNTAX::UNIMARC);
 	}
     }

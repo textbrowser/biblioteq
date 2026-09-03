@@ -2590,7 +2590,7 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
 
       if(pc.exportPhotographsToolButton->menu() &&
 	 pc.exportPhotographsToolButton->menu()->actions().size() >= 3)
-	pc.exportPhotographsToolButton->menu()->actions()[2]->
+	pc.exportPhotographsToolButton->menu()->actions().at(2)->
 	  setEnabled(false);
 
       pc.format_item->clear();
@@ -2612,7 +2612,7 @@ void biblioteq_photographcollection::slotSceneSelectionChanged(void)
 
   if(pc.exportPhotographsToolButton->menu() &&
      pc.exportPhotographsToolButton->menu()->actions().size() >= 3)
-    pc.exportPhotographsToolButton->menu()->actions()[2]->
+    pc.exportPhotographsToolButton->menu()->actions().at(2)->
       setEnabled(true);
 
   QGraphicsPixmapItem *item = nullptr;
