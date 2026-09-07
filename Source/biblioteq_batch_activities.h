@@ -186,6 +186,7 @@ class biblioteq_batch_activities: public QMainWindow
 		   const QString &format,
 		   const QString &id,
 		   const qint64 oid);
+  void exportImageFailure(const QString &id, const qint64 oid);
   void listMembersReservedItems(const QString &id);
 };
 
