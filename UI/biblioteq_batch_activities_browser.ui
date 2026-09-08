@@ -925,6 +925,16 @@
             </layout>
            </item>
            <item>
+            <widget class="QLabel" name="label_13">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If the Collection Size contains the text &lt;span style=&quot; font-weight:700;&quot;&gt;Export Error&lt;/span&gt;, the specified photograph was not exported.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QTableWidget" name="photograph_collections">
              <property name="alternatingRowColors">
               <bool>true</bool>
