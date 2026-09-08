@@ -366,6 +366,12 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 			     const QString &,
 			     const QString &,
 			     const qint64)));
+  connect(this,
+	  SIGNAL(exportImageFailure(const QString &,
+				    const qint64)),
+	  this,
+	  SLOT(slotExportImageFailure(const QString &,
+				      const qint64)));
   m_ui.add_table->horizontalHeader()->setSortIndicator
     (static_cast<int> (AddTableColumns::IDENTIFIER_COLUMN),
      Qt::AscendingOrder);
@@ -2086,6 +2092,13 @@ void biblioteq_batch_activities::slotDreamyGo(void)
 
   m_ui.dreamy_table->setSortingEnabled(true);
   QApplication::restoreOverrideCursor();
+}
+
+void biblioteq_batch_activities::slotExportImageFailure
+(const QString &id, const qint64 oid)
+{
+  Q_UNUSED(id);
+  Q_UNUSED(oid);
 }
 
 void biblioteq_batch_activities::slotExportMissing(void)

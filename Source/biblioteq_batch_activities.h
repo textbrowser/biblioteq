@@ -150,6 +150,7 @@ class biblioteq_batch_activities: public QMainWindow
   void slotDiscoverDreamy(void);
   void slotDiscoverMemberName(void);
   void slotDreamyGo(void);
+  void slotExportImageFailure(const QString &id, const qint64 oid);
   void slotExportMissing(void);
   void slotGo(void);
   void slotListDiscoveredItems(void);
