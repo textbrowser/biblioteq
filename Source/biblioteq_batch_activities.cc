@@ -861,6 +861,7 @@ void biblioteq_batch_activities::exportPhotographTask
 
   QImage image;
   QString format("");
+  auto ok = true;
   auto const connectionName
     (QString("export-photograph-task-%1").
      arg(m_dbCounter.fetchAndAddOrdered(1)));
@@ -893,21 +894,26 @@ void biblioteq_batch_activities::exportPhotographTask
 	  {
 	    auto bytes(QByteArray::fromBase64(query.value(1).toByteArray()));
 
-	    image.loadFromData(bytes);
+	    ok = image.loadFromData(bytes);
 
 	    if(image.isNull())
 	      {
 		bytes = query.value(1).toByteArray();
-		image.loadFromData(bytes);
+		ok = image.loadFromData(bytes);
 	      }
 
 	    format = biblioteq_misc_functions::imageFormatGuess(bytes);
 	  }
+	else
+	  ok = false;
       }
     else
-      qDebug() << tr("Unable (%1) to open a database connection "
-		     "for %2%3.").
-	arg(db.lastError().text()).arg(oid).arg(id);
+      {
+	ok = false;
+	qDebug() << tr("Unable (%1) to open a database connection "
+		       "for %2%3.").
+	  arg(db.lastError().text()).arg(oid).arg(id);
+      }
 
     db.close();
   }
@@ -916,6 +922,9 @@ void biblioteq_batch_activities::exportPhotographTask
 
   if(!image.isNull())
     emit exportImage(image, format, id, oid);
+
+  if(!ok)
+    emit exportImageFailure(id, oid);
 }
 
 void biblioteq_batch_activities::exportPhotographs(void)
