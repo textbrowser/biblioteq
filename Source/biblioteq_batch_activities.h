@@ -108,7 +108,7 @@ class biblioteq_batch_activities: public QMainWindow
     };
 
   QAtomicInteger<qint64> m_dbCounter;
-  QElapsedTimer m_exportElapsedTimer;
+  QElapsedTimer m_exportPhotographsElapsedTimer;
   QPointer<QCompleter> m_memberIdCompleter;
   QPointer<QSqlQueryModel> m_memberIdModel;
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
@@ -116,11 +116,10 @@ class biblioteq_batch_activities: public QMainWindow
   QScopedPointer<QAudioOutput> m_audioOutput;
 #endif
 #endif
-  QVector<QFuture<void> > m_exportFutures;
+  QVector<QFuture<void> > m_exportPhotographsFutures;
   Ui_batchActivitiesBrowser m_ui;
   biblioteq *m_qmain;
-  int m_currentExportRow;
-  qint64 m_maximumExportOid;
+  int m_currentExportPhotographsRow;
   static QColor s_notSoOkColor;
   static QColor s_okColor;
   void add(void);
@@ -150,8 +149,8 @@ class biblioteq_batch_activities: public QMainWindow
   void slotDiscoverDreamy(void);
   void slotDiscoverMemberName(void);
   void slotDreamyGo(void);
-  void slotExportImageFailure(const QString &id, const qint64 oid);
   void slotExportMissing(void);
+  void slotExportPhotographFailure(const QString &id, const qint64 oid);
   void slotGo(void);
   void slotListDiscoveredItems(void);
   void slotListMembersReservedItems(void);
@@ -164,10 +163,10 @@ class biblioteq_batch_activities: public QMainWindow
   void slotMemberIdEdited(const QString &text);
   void slotPageIndexChanged(int index);
   void slotReset(void);
-  void slotSaveImage(const QImage &image,
-		     const QString &format,
-		     const QString &id,
-		     const qint64 oid);
+  void slotSavePhotograph(const QImage &image,
+			  const QString &format,
+			  const QString &id,
+			  const qint64 oid);
   void slotScanAddingTimerTimeout(void);
   void slotScanBorrowingTimerTimeout(void);
   void slotScanDiscoverTimerTimeout(void);
@@ -183,11 +182,11 @@ class biblioteq_batch_activities: public QMainWindow
   void createItem(const QString &identifier,
 		  const QString &querySystem,
 		  const QString &type);
-  void exportImage(const QImage &image,
-		   const QString &format,
-		   const QString &id,
-		   const qint64 oid);
-  void exportImageFailure(const QString &id, const qint64 oid);
+  void exportPhotograph(const QImage &image,
+			const QString &format,
+			const QString &id,
+			const qint64 oid);
+  void exportPhotographFailure(const QString &id, const qint64 oid);
   void listMembersReservedItems(const QString &id);
 };
 
