@@ -109,6 +109,7 @@ class biblioteq_batch_activities: public QMainWindow
 
   QAtomicInteger<qint64> m_dbCounter;
   QElapsedTimer m_exportPhotographsElapsedTimer;
+  QHash<QString, char> m_exportPhotographsFailures; // ID + OID
   QPointer<QCompleter> m_memberIdCompleter;
   QPointer<QSqlQueryModel> m_memberIdModel;
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
@@ -119,7 +120,7 @@ class biblioteq_batch_activities: public QMainWindow
   QVector<QFuture<void> > m_exportPhotographsFutures;
   Ui_batchActivitiesBrowser m_ui;
   biblioteq *m_qmain;
-  int m_currentExportPhotographsRow;
+  int m_exportPhotographsCurrentRow;
   static QColor s_notSoOkColor;
   static QColor s_okColor;
   void add(void);

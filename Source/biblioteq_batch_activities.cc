@@ -220,7 +220,7 @@ slotCurrentIndexChanged(int index)
 biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
   QMainWindow(parent)
 {
-  m_currentExportPhotographsRow = 0;
+  m_exportPhotographsCurrentRow = 0;
   m_qmain = parent;
   m_ui.setupUi(this);
   biblioteq_misc_functions::sortCombinationBox(m_ui.add_query_system);
@@ -368,7 +368,7 @@ biblioteq_batch_activities::biblioteq_batch_activities(biblioteq *parent):
 				  const qint64)));
   connect(this,
 	  SIGNAL(exportPhotographFailure(const QString &,
-				    const qint64)),
+					 const qint64)),
 	  this,
 	  SLOT(slotExportPhotographFailure(const QString &,
 					   const qint64)));
@@ -817,7 +817,7 @@ void biblioteq_batch_activities::exportPhotographCollection
 	while(m_exportPhotographsFutures.size() == maximumFutures &&
 	      progress->wasCanceled() == false)
 	  {
-	    i = qMin(-1 + maximumFutures, 1 + i);
+	    i = qMin(i + 1, maximumFutures - 1);
 
 	    if(m_exportPhotographsFutures.at(i).isFinished())
 	      break;
@@ -962,7 +962,7 @@ void biblioteq_batch_activities::exportPhotographs(void)
   progress->show();
   progress->repaint();
 
-  for(int i = m_currentExportPhotographsRow;
+  for(int i = m_exportPhotographsCurrentRow;
       i < m_ui.photograph_collections->rowCount() &&
       progress->wasCanceled() == false;
       i++)
@@ -975,7 +975,7 @@ void biblioteq_batch_activities::exportPhotographs(void)
       const int size = m_ui.photograph_collections->item(i, 1) ?
 	m_ui.photograph_collections->item(i, 1)->text().toInt() : 0;
 
-      m_currentExportPhotographsRow = i + 1;
+      m_exportPhotographsCurrentRow = i + 1;
       exportPhotographCollection(progress, item->text(), size);
       return;
     }
@@ -2192,8 +2192,37 @@ void biblioteq_batch_activities::slotExportMissing(void)
 void biblioteq_batch_activities::slotExportPhotographFailure
 (const QString &id, const qint64 oid)
 {
-  Q_UNUSED(id);
-  Q_UNUSED(oid);
+  auto const key(QString("%1%2").arg(id.trimmed()).arg(oid));
+
+  if(m_exportPhotographsFailures.contains(key))
+    return;
+
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+  m_exportPhotographsFailures[key] = 0;
+  m_ui.photograph_collections->setRowCount
+    (m_ui.photograph_collections->rowCount() + 1);
+  m_ui.photograph_collections->setSortingEnabled(false);
+
+  auto item = new QTableWidgetItem(id.trimmed());
+
+  item->setCheckState
+    (m_ui.export_photographs_check->isChecked() ? Qt::Checked : Qt::Unchecked);
+  item->setFlags
+    (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
+  item->setIcon
+    (QPixmap::fromImage
+    (biblioteq_misc_functions::imageFromBytes(QByteArray())));
+  m_ui.photograph_collections->setItem
+    (m_ui.photograph_collections->rowCount() - 1, 0, item);
+  m_ui.photograph_collections->setRowHeight
+    (m_ui.photograph_collections->rowCount() - 1,
+     m_ui.photograph_collections->iconSize().height());
+  item = new QTableWidgetItem(tr("Export Error (%1)").arg(oid));
+  item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+  m_ui.photograph_collections->setItem
+    (m_ui.photograph_collections->rowCount() - 1, 1, item);
+  m_ui.photograph_collections->setSortingEnabled(true);
+  QApplication::restoreOverrideCursor();
 }
 
 void biblioteq_batch_activities::slotGo(void)
@@ -2222,7 +2251,7 @@ void biblioteq_batch_activities::slotGo(void)
       }
     case Pages::ExportPhotographs:
       {
-	m_currentExportPhotographsRow = 0;
+	m_exportPhotographsCurrentRow = 0;
 	exportPhotographs();
 	break;
       }
@@ -2535,7 +2564,7 @@ void biblioteq_batch_activities::slotListPhotographCollections(void)
     while(query.next())
       {
 	m_ui.photograph_collections->setRowCount
-	  (1 + m_ui.photograph_collections->rowCount());
+	  (m_ui.photograph_collections->rowCount() + 1);
 
 	auto item = new QTableWidgetItem(query.value(0).toString().trimmed());
 
@@ -2710,6 +2739,7 @@ void biblioteq_batch_activities::slotReset(void)
   if(!sender() ||
      m_ui.tab->currentIndex() == static_cast<int> (Pages::ExportPhotographs))
     {
+      m_exportPhotographsFailures.clear();
       m_ui.export_photographs_check->setChecked(true);
       m_ui.export_photographs_destination_directory->setFocus();
       m_ui.export_photographs_destination_directory->setText
@@ -2754,12 +2784,15 @@ void biblioteq_batch_activities::slotSavePhotograph
      format.trimmed());
 
   if(!image.save(fileName, format.toUtf8().constData(), 100))
-    qDebug() << tr("Error exporting %1.").arg(fileName);
+    emit exportPhotographFailure(id, oid);
+  else
+    {
+    }
 
   auto progress = findChild<QProgressDialog *> ("export-photographs");
 
   if(progress)
-    progress->setValue(1 + progress->value());
+    progress->setValue(progress->value() + 1);
 }
 
 void biblioteq_batch_activities::slotScanAddingTimerTimeout(void)
