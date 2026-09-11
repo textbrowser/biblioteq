@@ -1063,6 +1063,66 @@
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open Library is for books only.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Library</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SRU Query</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export Photographs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Collections will be exported into the Destination Directory. For Example, &lt;span style=&quot; font-weight:700;&quot;&gt;&amp;quot;Collection A&amp;quot; will be exported as Collection-A&lt;/span&gt;. Multiple spaces will be translated into single spaces.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Value is trimmed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Destination Directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filename Prefix</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If the Collection Size contains the text &lt;span style=&quot; font-weight:700;&quot;&gt;Export Error&lt;/span&gt;, the specified photograph was not exported.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collection Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collection Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> Query Thread(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>List Collections</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq</name>
@@ -1456,23 +1516,23 @@
     </message>
     <message>
         <source>&amp;Book Search</source>
-        <translation type="obsolete">&amp;Buch Suche</translation>
+        <translation type="unfinished">&amp;Buch Suche</translation>
     </message>
     <message>
         <source>&amp;DVD Search</source>
-        <translation type="obsolete">&amp;DVD Suche</translation>
+        <translation type="unfinished">&amp;DVD Suche</translation>
     </message>
     <message>
         <source>&amp;Journal Search</source>
-        <translation type="obsolete">&amp;Journal Suche</translation>
+        <translation type="unfinished">&amp;Journal Suche</translation>
     </message>
     <message>
         <source>&amp;Magazine Search</source>
-        <translation type="obsolete">&amp;Magazin Suche</translation>
+        <translation type="unfinished">&amp;Magazin Suche</translation>
     </message>
     <message>
         <source>&amp;Video Game Search</source>
-        <translation type="obsolete">&amp;Videospiel Suche</translation>
+        <translation type="unfinished">&amp;Videospiel Suche</translation>
     </message>
     <message>
         <source>Table Name</source>
@@ -2192,7 +2252,7 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M�
     </message>
     <message>
         <source>%1</source>
-        <translation>%1</translation>
+        <translation type="vanished">%1</translation>
     </message>
     <message>
         <source> 1 ... </source>
@@ -2312,7 +2372,7 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M�
     </message>
     <message>
         <source>Delete Selected Item(s)</source>
-        <translation type="unfinished">Ausgewählte Objekte löschen</translation>
+        <translation type="obsolete">Ausgewählte Objekte löschen</translation>
     </message>
     <message>
         <source>Duplicate Selected Item(s)...</source>
@@ -2344,7 +2404,7 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M�
     </message>
     <message>
         <source>Delete Selected Member</source>
-        <translation type="unfinished">Ausgewählten Benutzer löschen</translation>
+        <translation type="obsolete">Ausgewählten Benutzer löschen</translation>
     </message>
     <message>
         <source>List Selected Member&apos;s Reserved Items</source>
@@ -2863,10 +2923,6 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M�
         <translation type="unfinished">Magazin</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;b&gt;The following people have made BiblioteQ beautiful. If your name is not mentioned, please submit a ticket at https://github.com/textbrowser/biblioteq/issues. Thank You!&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ana Monteiro&lt;br&gt;Arti&lt;br&gt;Bill Burns&lt;br&gt;Ceres&lt;br&gt;Csanád Baksay&lt;br&gt;Fares Othman&lt;br&gt;Frans&lt;br&gt;Fátima Dias&lt;br&gt;J. Cornavin&lt;br&gt;Jeepee&lt;br&gt;Lazaros S.&lt;br&gt;Leif-W&lt;br&gt;Marty&lt;br&gt;Nick&lt;br&gt;Nicola&lt;br&gt;ResetFlag&lt;br&gt;Safranil&lt;br&gt;SigmaX&lt;br&gt;a12554&lt;br&gt;azc100&lt;br&gt;caalma&lt;br&gt;coldacid&lt;br&gt;duhow&lt;br&gt;fmra357&lt;br&gt;jerzyPL&lt;br&gt;jferby&lt;br&gt;luismontilla&lt;br&gt;meteos77&lt;br&gt;numibesi&lt;br&gt;ozgurcan&lt;br&gt;robindegen&lt;br&gt;sidheban&lt;br&gt;sit42&lt;br&gt;sunyuyangg555&lt;br&gt;tamascz&lt;br&gt;wohali&lt;br&gt;yasbean&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Too many (%1) %2 items reserved (%3).</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2904,6 +2960,86 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M�
     </message>
     <message>
         <source>Are you sure that you wish to launch the program %1?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ was not able to discover the biblioteq.conf file. Default values will be assumed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;DVD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Grey Literature</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Journal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Magazine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Music &amp;CD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Photograph Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add &amp;Video Game</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Grey Literature Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Music &amp;CD Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Photograph Collection Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete Selected Item(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duplicate Selected Item(s)</source>
+        <translation type="unfinished">Ausgewählte Objekte duplizieren</translation>
+    </message>
+    <message>
+        <source>Modify Selected Item(s)</source>
+        <translation type="unfinished">Ausgewählte Objekte bearbeiten</translation>
+    </message>
+    <message>
+        <source>Guest Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Patron Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete Selected Member...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;b&gt;The following people have made BiblioteQ beautiful. If your name is not mentioned, please submit a ticket at https://github.com/textbrowser/biblioteq/issues. Thank You!&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ana Monteiro&lt;br&gt;Arti&lt;br&gt;Bill Burns&lt;br&gt;Ceres&lt;br&gt;Csanád Baksay&lt;br&gt;Fares Othman&lt;br&gt;Frans&lt;br&gt;Fátima Dias&lt;br&gt;Gentimir&lt;br&gt;J. Cornavin&lt;br&gt;Jeepee&lt;br&gt;Lazaros S.&lt;br&gt;Leif-W&lt;br&gt;Marty&lt;br&gt;Nick&lt;br&gt;Nicola&lt;br&gt;ResetFlag&lt;br&gt;Safranil&lt;br&gt;SigmaX&lt;br&gt;a12554&lt;br&gt;azc100&lt;br&gt;caalma&lt;br&gt;coldacid&lt;br&gt;duhow&lt;br&gt;fmra357&lt;br&gt;iam-samzz&lt;br&gt;jerzyPL&lt;br&gt;jferby&lt;br&gt;luismontilla&lt;br&gt;meteos77&lt;br&gt;numibesi&lt;br&gt;ozgurcan&lt;br&gt;robindegen&lt;br&gt;sidheban&lt;br&gt;sit42&lt;br&gt;sunyuyangg555&lt;br&gt;tamascz&lt;br&gt;wohali&lt;br&gt;yasbean&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3071,6 +3207,42 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M�
     </message>
     <message>
         <source>Maximum (%1) number of reserved (%2) %3 items exceeded.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exporting %1...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unable (%1) to open a database connection for %2%3.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exporting photographs(s)...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exporting of photographs completed in %1 seconds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export Error (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BiblioteQ: Select Directory</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5701,6 +5873,10 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M�
         <source>&lt;html&gt;Update digests of selected entries. The process may not be timely.&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Cannot open %1 for writing.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>biblioteq_generic_thread</name>
@@ -7211,6 +7387,14 @@ Die Datei qt.conf existiert in BiblioteQ&apos;s aktuellem Arbeitsverzeichnis. M�
     </message>
     <message>
         <source>BiblioteQ was created without a required SQLite file (sqlite3.h). This property is disabled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book History (Deleted Date)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Book Statistics (Reserved Date)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -11303,7 +11487,7 @@ URL</source>
     </message>
     <message>
         <source>&amp;Delete Selected Item(s)</source>
-        <translation>Ausgewählte Objekte &amp;löschen</translation>
+        <translation type="vanished">Ausgewählte Objekte &amp;löschen</translation>
     </message>
     <message>
         <source>Ctrl+X</source>
@@ -11871,6 +12055,10 @@ URL</source>
     </message>
     <message>
         <source>Overdue Items Notification</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete Selected Item(s)...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -12711,6 +12899,26 @@ URL</source>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Absolute file paths.&lt;/span&gt; Please place scripts on individual lines. BiblioteQ will replace %1 with the current &lt;span style=&quot; font-weight:600;&quot;&gt;SQLite&lt;/span&gt; database absolute file path. The scripts will be available in some places. Please enclose values with double-quotes if necessary. Be careful of lengthy content. Paths will be trimmed of leading and trailing spaces.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Window Icons</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display native window icons instead of the BiblioteQ icon for the selected windows.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Batch Activities Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>General Database Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Members Browser</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
