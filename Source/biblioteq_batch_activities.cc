@@ -2218,6 +2218,7 @@ void biblioteq_batch_activities::slotExportPhotographFailure
     (m_ui.photograph_collections->rowCount() - 1,
      m_ui.photograph_collections->iconSize().height());
   item = new QTableWidgetItem(tr("Export Error (%1)").arg(oid));
+  item->setData(Qt::UserRole, -1);
   item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
   m_ui.photograph_collections->setItem
     (m_ui.photograph_collections->rowCount() - 1, 1, item);
@@ -2582,6 +2583,7 @@ void biblioteq_batch_activities::slotListPhotographCollections(void)
 	  (m_ui.photograph_collections->rowCount() - 1,
 	   m_ui.photograph_collections->iconSize().height());
 	item = new biblioteq_numeric_table_item(query.value(2).toLongLong());
+	item->setData(Qt::UserRole, 0);
 	item->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 	m_ui.photograph_collections->setItem
 	  (m_ui.photograph_collections->rowCount() - 1, 1, item);
