@@ -677,6 +677,7 @@ Completed Items
 343. Strangeness with SQLite library. Add
      BIBLIOTEQ_DO_NOT_INCLUDE_SQLITE_REGEXP to DEFINES in project file.
 344. Export all photographs into files.
+345. Failed photograph exports.
 
 Remaining Items
 
@@ -692,4 +693,3 @@ Remaining Items
 9.   Replace apt with snap.
 10.  Add format options for deleted_date and reserved_date.
 11.  Review numeric table columns for sorting.
-12.  Failed photograph exports.
