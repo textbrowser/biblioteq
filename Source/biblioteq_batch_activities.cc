@@ -960,6 +960,7 @@ void biblioteq_batch_activities::exportPhotographs(void)
 
   progress->show();
   progress->repaint();
+  QApplication::processEvents();
 
   for(int i = m_exportPhotographsCurrentRow;
       i < m_ui.photograph_collections->rowCount() &&
@@ -1008,6 +1009,8 @@ void biblioteq_batch_activities::exportPhotographs(void)
 		   oid);
 	    }
 
+	  progress->repaint();
+	  QApplication::processEvents();
 	  continue;
 	}
 
