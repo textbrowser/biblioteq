@@ -926,10 +926,9 @@ void biblioteq_batch_activities::exportPhotographTask
 
   QSqlDatabase::removeDatabase(connectionName);
 
-  if(!image.isNull())
+  if(ok)
     emit exportPhotograph(image, format, id, oid);
-
-  if(!ok)
+  else
     emit exportPhotographFailure(id, oid);
 }
 
@@ -973,6 +972,45 @@ void biblioteq_batch_activities::exportPhotographs(void)
 	continue;
 
       auto const oid = item->data(Qt::UserRole).toInt();
+
+      if(oid >= 0)
+	{
+	  QImage image;
+	  QSqlQuery query(m_qmain->getDB());
+	  auto const id(item->text().trimmed());
+
+	  query.prepare
+	    ("SELECT photograph.format, photograph.image FROM photograph, "
+	     "photograph_collection WHERE "
+	     "photograph.collection_oid = photograph_collection.myoid AND "
+	     "photograph.myoid = ? AND "
+	     "photograph_collection.id = ?");
+	  query.addBindValue(oid);
+	  query.addBindValue(id);
+
+	  if(query.exec() && query.next())
+	    {
+	      auto bytes(QByteArray::fromBase64(query.value(1).toByteArray()));
+
+	      image.loadFromData(bytes);
+
+	      if(image.isNull())
+		{
+		  bytes = query.value(1).toByteArray();
+		  image.loadFromData(bytes);
+		}
+
+	      if(!image.isNull())
+		emit exportPhotograph
+		  (image,
+		   biblioteq_misc_functions::imageFormatGuess(bytes),
+		   id,
+		   oid);
+	    }
+
+	  continue;
+	}
+
       auto const size = m_ui.photograph_collections->item(i, 1) ?
 	m_ui.photograph_collections->item(i, 1)->text().toInt() : 0;
 
@@ -2208,6 +2246,7 @@ void biblioteq_batch_activities::slotExportPhotographFailure
 
   item->setCheckState
     (m_ui.export_photographs_check->isChecked() ? Qt::Checked : Qt::Unchecked);
+  item->setData(Qt::UserRole, oid);
   item->setFlags
     (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
   item->setIcon
@@ -2573,6 +2612,7 @@ void biblioteq_batch_activities::slotListPhotographCollections(void)
 	item->setCheckState
 	  (m_ui.export_photographs_check->isChecked() ?
 	   Qt::Checked : Qt::Unchecked);
+	item->setData(Qt::UserRole, -1);
 	item->setFlags
 	  (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
 	item->setIcon
