@@ -805,9 +805,9 @@ void biblioteq_batch_activities::exportPhotographCollection
   hash["userName"] = m_qmain->getDB().userName();
   query.prepare
     ("SELECT myoid FROM photograph WHERE collection_oid = "
-     "(SELECT myoid FROM photograph_collection WHERE id = ?) "
+     "(SELECT myoid FROM photograph_collection WHERE LTRIM(RTRIM(id)) = ?) "
      "ORDER BY myoid");
-  query.addBindValue(id);
+  query.addBindValue(id.trimmed());
 
   if(query.exec())
     while(progress->wasCanceled() == false && query.next())
@@ -892,7 +892,7 @@ void biblioteq_batch_activities::exportPhotographTask
 	   "photograph_collection WHERE "
 	   "photograph.collection_oid = photograph_collection.myoid AND "
 	   "photograph.myoid = ? AND "
-	   "photograph_collection.id = ?");
+	   "LTRIM(RTRIM(photograph_collection.id)) = ?");
 	query.addBindValue(oid);
 	query.addBindValue(id.trimmed());
 
@@ -918,7 +918,7 @@ void biblioteq_batch_activities::exportPhotographTask
 	ok = false;
 	qDebug() << tr("Unable (%1) to open a database connection "
 		       "for %2%3.").
-	  arg(db.lastError().text()).arg(oid).arg(id);
+	  arg(db.lastError().text()).arg(oid).arg(id.trimmed());
       }
 
     db.close();
@@ -985,7 +985,7 @@ void biblioteq_batch_activities::exportPhotographs(void)
 	     "photograph_collection WHERE "
 	     "photograph.collection_oid = photograph_collection.myoid AND "
 	     "photograph.myoid = ? AND "
-	     "photograph_collection.id = ?");
+	     "LTRIM(RTRIM(photograph_collection.id)) = ?");
 	  query.addBindValue(oid);
 	  query.addBindValue(id);
 
@@ -2240,7 +2240,6 @@ void biblioteq_batch_activities::slotExportPhotographFailure
     return;
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
-  m_exportPhotographsFailures[key] = 0;
   m_ui.photograph_collections->setRowCount
     (m_ui.photograph_collections->rowCount() + 1);
   m_ui.photograph_collections->setSortingEnabled(false);
@@ -2255,6 +2254,7 @@ void biblioteq_batch_activities::slotExportPhotographFailure
   item->setIcon
     (QPixmap::fromImage
     (biblioteq_misc_functions::imageFromBytes(QByteArray())));
+  m_exportPhotographsFailures[key] = item;
   m_ui.photograph_collections->setItem
     (m_ui.photograph_collections->rowCount() - 1, 0, item);
   m_ui.photograph_collections->setRowHeight
@@ -2809,20 +2809,22 @@ void biblioteq_batch_activities::slotReset(void)
 void biblioteq_batch_activities::slotSavePhotograph
 (const QImage &image,
  const QString &format,
- const QString &id,
+ const QString &i,
  const qint64 oid)
 {
-  if(id.trimmed().isEmpty() || image.isNull())
+  if(i.trimmed().isEmpty() || image.isNull())
     return;
+
+  auto const id(i.trimmed());
 
   QDir().mkpath
     (m_ui.export_photographs_destination_directory->text().trimmed() +
      QDir::separator() +
-     id.simplified().trimmed().replace(' ', '-'));
+     QString(id).simplified().replace(' ', '-'));
   QString fileName
     (m_ui.export_photographs_destination_directory->text().trimmed() +
      QDir::separator() +
-     id.simplified().trimmed().replace(' ', '-') +
+     QString(id).simplified().replace(' ', '-') +
      QDir::separator() +
      m_ui.export_photographs_filename_prefix->text().trimmed() +
      QString::number(oid) +
@@ -2833,6 +2835,7 @@ void biblioteq_batch_activities::slotSavePhotograph
     emit exportPhotographFailure(id, oid);
   else
     {
+      m_exportPhotographsFailures.remove(QString("%1%2").arg(id).arg(oid));
     }
 
   auto progress = findChild<QProgressDialog *> ("export-photographs");

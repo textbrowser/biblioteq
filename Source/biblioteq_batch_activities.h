@@ -109,7 +109,7 @@ class biblioteq_batch_activities: public QMainWindow
 
   QAtomicInteger<qint64> m_dbCounter;
   QElapsedTimer m_exportPhotographsElapsedTimer;
-  QHash<QString, char> m_exportPhotographsFailures; // ID + OID
+  QHash<QString, QTableWidgetItem *> m_exportPhotographsFailures; // ID + OID
   QPointer<QCompleter> m_memberIdCompleter;
   QPointer<QSqlQueryModel> m_memberIdModel;
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
@@ -166,7 +166,7 @@ class biblioteq_batch_activities: public QMainWindow
   void slotReset(void);
   void slotSavePhotograph(const QImage &image,
 			  const QString &format,
-			  const QString &id,
+			  const QString &i, // ID
 			  const qint64 oid);
   void slotScanAddingTimerTimeout(void);
   void slotScanBorrowingTimerTimeout(void);
