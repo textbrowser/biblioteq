@@ -109,7 +109,7 @@ class biblioteq_batch_activities: public QMainWindow
 
   QAtomicInteger<qint64> m_dbCounter;
   QElapsedTimer m_exportPhotographsElapsedTimer;
-  QHash<QString, QTableWidgetItem *> m_exportPhotographsFailures; // ID + OID
+  QHash<QString, char> m_exportPhotographsFailures; // ID + OID
   QPointer<QCompleter> m_memberIdCompleter;
   QPointer<QSqlQueryModel> m_memberIdModel;
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))

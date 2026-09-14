@@ -972,7 +972,7 @@ void biblioteq_batch_activities::exportPhotographs(void)
       if(!item || item->checkState() != Qt::Checked)
 	continue;
 
-      auto const oid = item->data(Qt::UserRole).toInt();
+      auto const oid = item->data(Qt::UserRole).toLongLong();
 
       if(oid >= 0)
 	{
@@ -1026,6 +1026,26 @@ void biblioteq_batch_activities::exportPhotographs(void)
     {
       m_exportPhotographsFutures[i].cancel();
       m_exportPhotographsFutures[i].waitForFinished();
+    }
+
+  for(int i = m_ui.photograph_collections->rowCount() - 1; i >= 0; i--)
+    {
+      auto item = m_ui.photograph_collections->item(i, 0);
+
+      if(!item)
+	continue;
+
+      auto const key(QString("%1%2").
+		     arg(item->text().trimmed()).
+		     arg(item->data(Qt::UserRole).toLongLong()));
+
+      if(m_exportPhotographsFailures.value(key, 0) == 1)
+	{
+	  m_exportPhotographsFailures.remove(key);
+	  m_ui.photograph_collections->setSortingEnabled(false);
+	  m_ui.photograph_collections->removeRow(i);
+	  m_ui.photograph_collections->setSortingEnabled(true);
+	}
     }
 
   progress->deleteLater();
@@ -2240,6 +2260,7 @@ void biblioteq_batch_activities::slotExportPhotographFailure
     return;
 
   QApplication::setOverrideCursor(Qt::WaitCursor);
+  m_exportPhotographsFailures[key] = 0;
   m_ui.photograph_collections->setRowCount
     (m_ui.photograph_collections->rowCount() + 1);
   m_ui.photograph_collections->setSortingEnabled(false);
@@ -2254,7 +2275,6 @@ void biblioteq_batch_activities::slotExportPhotographFailure
   item->setIcon
     (QPixmap::fromImage
     (biblioteq_misc_functions::imageFromBytes(QByteArray())));
-  m_exportPhotographsFailures[key] = item;
   m_ui.photograph_collections->setItem
     (m_ui.photograph_collections->rowCount() - 1, 0, item);
   m_ui.photograph_collections->setRowHeight
@@ -2835,7 +2855,10 @@ void biblioteq_batch_activities::slotSavePhotograph
     emit exportPhotographFailure(id, oid);
   else
     {
-      m_exportPhotographsFailures.remove(QString("%1%2").arg(id).arg(oid));
+      auto const key = QString("%1%2").arg(id).arg(oid);
+
+      if(m_exportPhotographsFailures.contains(key))
+	m_exportPhotographsFailures[key] = 1;
     }
 
   auto progress = findChild<QProgressDialog *> ("export-photographs");
