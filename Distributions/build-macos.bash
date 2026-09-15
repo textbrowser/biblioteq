@@ -27,12 +27,12 @@ make install
 codesign --deep --force -s "textbrowser" ./BiblioteQ.d/BiblioteQ.app
 make dmg
 
-if [ ! -r BiblioteQ.dmg ]
+if [ ! -r BiblioteQ.d.dmg ]
 then
     echo "BiblioteQ.dmg is not a readable file."
     exit 1
 fi
 
-mv BiblioteQ.dmg BiblioteQ-${VERSION}_Universal.dmg
+mv BiblioteQ.d.dmg BiblioteQ-${VERSION}_Universal.dmg
 make distclean 2>/dev/null
 rm -fr ./BiblioteQ.d
