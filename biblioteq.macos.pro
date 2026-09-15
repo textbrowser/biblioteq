@@ -104,9 +104,9 @@ exists(/usr/local/opt/libpq/lib/libpq.dylib) {
 }
 
 installnametool1.path = .
-lrelease.extra        = $$[QT_INSTALL_BINS]/lrelease biblioteq.osx.pro
+lrelease.extra        = $$[QT_INSTALL_BINS]/lrelease biblioteq.macos.pro
 lrelease.path         = .
-lupdate.extra         = $$[QT_INSTALL_BINS]/lupdate biblioteq.osx.pro
+lupdate.extra         = $$[QT_INSTALL_BINS]/lupdate biblioteq.macos.pro
 lupdate.path          = .
 macdeployqt.extra     = $$[QT_INSTALL_BINS]/macdeployqt ./BiblioteQ.app
 macdeployqt.path      = BiblioteQ.app
