@@ -20,21 +20,20 @@ warning("/opt/homebrew/opt/sqlite/include does not exist.")
 }
 }
 
+contains(QMAKE_HOST.arch, x86_64) {
 exists(/usr/local/opt/libpq/lib/libpq.dylib) {
-# DEFINES += BIBLIOTEQ_MACOS_LIBPQ_PATH="'\"/usr/local/opt/libpq/lib/libpq.dylib\"'"
-warning("Ignoring PostgreSQL for universal build.")
+DEFINES += BIBLIOTEQ_MACOS_LIBPQ_PATH="'\"/usr/local/opt/libpq/lib/libpq.dylib\"'"
 } else {
 warning("/usr/local/opt/libpq/lib/libpq.dylib does not exist.")
 }
 
 exists(/usr/local/opt/sqlite/include) {
-# The Homebrew library is for X86-64 only!
-# DEFINES     += BIBLIOTEQ_SQLITE3_INCLUDE_FILE_EXISTS
-# INCLUDEPATH += /usr/local/opt/sqlite/include
-# LIBS        += -L/usr/local/opt/sqlite/lib -lsqlite3
-warning("Ignoring /usr/local/opt/sqlite/include for universal build.")
+DEFINES     += BIBLIOTEQ_SQLITE3_INCLUDE_FILE_EXISTS
+INCLUDEPATH += /usr/local/opt/sqlite/include
+LIBS        += -L/usr/local/opt/sqlite/lib -lsqlite3
 } else {
 warning("/usr/local/opt/sqlite/include does not exist.")
+}
 }
 
 LANGUAGE = C++
@@ -95,12 +94,16 @@ doc2.files	= Documentation/Contributed/*/*.html \
                   Documentation/Contributed/*/*.pdf
 doc2.path	= BiblioteQ.d/Documentation/Contributed
 
+contains(QMAKE_HOST.arch, arm64) {
 exists(/opt/homebrew/opt/libpq/lib/libpq.dylib) {
-# installnametool1.extra = install_name_tool -change /Applications/Postgres.app/Contents/Versions/14/lib/libpq.5.dylib /opt/homebrew/opt/libpq/lib/libpq.dylib ./BiblioteQ.d/BiblioteQ.app/Contents/PlugIns/sqldrivers/libqsqlpsql.dylib
+installnametool1.extra = install_name_tool -change /Applications/Postgres.app/Contents/Versions/14/lib/libpq.5.dylib /opt/homebrew/opt/libpq/lib/libpq.dylib ./BiblioteQ.d/BiblioteQ.app/Contents/PlugIns/sqldrivers/libqsqlpsql.dylib
+}
 }
 
+contains(QMAKE_HOST.arch, x86_64) {
 exists(/usr/local/opt/libpq/lib/libpq.dylib) {
-# installnametool1.extra = install_name_tool -change /Applications/Postgres.app/Contents/Versions/14/lib/libpq.5.dylib /usr/local/opt/libpq/lib/libpq.dylib ./BiblioteQ.d/BiblioteQ.app/Contents/PlugIns/sqldrivers/libqsqlpsql.dylib
+installnametool1.extra = install_name_tool -change /Applications/Postgres.app/Contents/Versions/14/lib/libpq.5.dylib /usr/local/opt/libpq/lib/libpq.dylib ./BiblioteQ.d/BiblioteQ.app/Contents/PlugIns/sqldrivers/libqsqlpsql.dylib
+}
 }
 
 installnametool1.path = .
