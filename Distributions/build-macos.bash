@@ -20,7 +20,7 @@ else
     exit 1
 fi
 
-VERSION=$(grep -oP '(?<=BIBLIOTEQ_VERSION ").*(?=")' Source/biblioteq.h)
+VERSION="$(grep 'BIBLIOTEQ_VERSION ' Source/biblioteq.h | awk '{print $3}' | sed 's/"//g')"
 
 make -j $(sysctl -n hw.ncpu)
 make install
