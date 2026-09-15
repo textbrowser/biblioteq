@@ -25,9 +25,11 @@ warning("/usr/local/opt/libpq/lib/libpq.dylib does not exist.")
 }
 
 exists(/usr/local/opt/sqlite/include) {
-DEFINES     += BIBLIOTEQ_SQLITE3_INCLUDE_FILE_EXISTS
-INCLUDEPATH += /usr/local/opt/sqlite/include
-LIBS        += -L/usr/local/opt/sqlite/lib -lsqlite3
+# The Homebrew library is for X86-64 only!
+# DEFINES     += BIBLIOTEQ_SQLITE3_INCLUDE_FILE_EXISTS
+# INCLUDEPATH += /usr/local/opt/sqlite/include
+# LIBS        += -L/usr/local/opt/sqlite/lib -lsqlite3
+warning("Ignoring /usr/local/opt/sqlite/include for universal build.")
 } else {
 warning("/usr/local/opt/sqlite/include does not exist.")
 }
