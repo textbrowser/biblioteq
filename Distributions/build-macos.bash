@@ -9,11 +9,11 @@ fi
 
 make distclean 2>/dev/null
 
-qmake="~/Qt/6.8.3/macos/bin/qmake"
+qmake="$(echo ~/Qt/6.8.3/macos/bin/qmake)"
 
 if [ -x "$qmake" ]
 then
-    $qmake -o Makefile biblioteq.macos
+    $qmake -o Makefile biblioteq.macos.pro
 else
     echo "Cannot locate $qmake."
     echo "Please install the official Qt."
