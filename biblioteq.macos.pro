@@ -4,6 +4,7 @@ purge.commands = find . -name \'*~*\' -exec rm -f {} \;
 
 CONFIG += qt release warn_on
 
+contains(QMAKE_HOST.arch, arm64) {
 exists(/opt/homebrew/opt/libpq/lib/libpq.dylib) {
 DEFINES += BIBLIOTEQ_MACOS_LIBPQ_PATH="'\"/opt/homebrew/opt/libpq/lib/libpq.dylib\"'"
 } else {
@@ -17,9 +18,11 @@ LIBS        += -L/opt/homebrew/opt/sqlite/lib -lsqlite3
 } else {
 warning("/opt/homebrew/opt/sqlite/include does not exist.")
 }
+}
 
 exists(/usr/local/opt/libpq/lib/libpq.dylib) {
-DEFINES += BIBLIOTEQ_MACOS_LIBPQ_PATH="'\"/usr/local/opt/libpq/lib/libpq.dylib\"'"
+# DEFINES += BIBLIOTEQ_MACOS_LIBPQ_PATH="'\"/usr/local/opt/libpq/lib/libpq.dylib\"'"
+warning("Ignoring PostgreSQL for universal build.")
 } else {
 warning("/usr/local/opt/libpq/lib/libpq.dylib does not exist.")
 }
