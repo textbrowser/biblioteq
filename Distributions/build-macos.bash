@@ -29,7 +29,7 @@ make dmg
 
 if [ ! -r BiblioteQ.d.dmg ]
 then
-    echo "BiblioteQ.dmg is not a readable file."
+    echo "BiblioteQ.d.dmg is not a readable file."
     exit 1
 fi
 

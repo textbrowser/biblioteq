@@ -93,11 +93,11 @@ doc2.files	= Documentation/Contributed/*/*.html \
 doc2.path	= BiblioteQ.d/Documentation/Contributed
 
 exists(/opt/homebrew/opt/libpq/lib/libpq.dylib) {
-installnametool1.extra = install_name_tool -change /Applications/Postgres.app/Contents/Versions/14/lib/libpq.5.dylib /opt/homebrew/opt/libpq/lib/libpq.dylib ./BiblioteQ.d/BiblioteQ.app/Contents/PlugIns/sqldrivers/libqsqlpsql.dylib
+# installnametool1.extra = install_name_tool -change /Applications/Postgres.app/Contents/Versions/14/lib/libpq.5.dylib /opt/homebrew/opt/libpq/lib/libpq.dylib ./BiblioteQ.d/BiblioteQ.app/Contents/PlugIns/sqldrivers/libqsqlpsql.dylib
 }
 
 exists(/usr/local/opt/libpq/lib/libpq.dylib) {
-installnametool1.extra = install_name_tool -change /Applications/Postgres.app/Contents/Versions/14/lib/libpq.5.dylib /usr/local/opt/libpq/lib/libpq.dylib ./BiblioteQ.d/BiblioteQ.app/Contents/PlugIns/sqldrivers/libqsqlpsql.dylib
+# installnametool1.extra = install_name_tool -change /Applications/Postgres.app/Contents/Versions/14/lib/libpq.5.dylib /usr/local/opt/libpq/lib/libpq.dylib ./BiblioteQ.d/BiblioteQ.app/Contents/PlugIns/sqldrivers/libqsqlpsql.dylib
 }
 
 installnametool1.path = .
@@ -105,8 +105,7 @@ lrelease.extra        = $$[QT_INSTALL_BINS]/lrelease biblioteq.osx.pro
 lrelease.path         = .
 lupdate.extra         = $$[QT_INSTALL_BINS]/lupdate biblioteq.osx.pro
 lupdate.path          = .
-macdeployqt.extra     = $$[QT_INSTALL_BINS]/macdeployqt ./BiblioteQ.app \
-                        -verbose=0 2>/dev/null ; echo;
+macdeployqt.extra     = $$[QT_INSTALL_BINS]/macdeployqt ./BiblioteQ.app
 macdeployqt.path      = BiblioteQ.app
 postinstall.extra     = cp -r BiblioteQ.app BiblioteQ.d/.
 postinstall.path      = BiblioteQ.d
