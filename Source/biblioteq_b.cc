@@ -4022,7 +4022,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		    {
 		      if(booksAccessionNumberIndex == 0)
 			item = new biblioteq_numeric_table_item
-			  (query.value(j).toInt());
+			  (query.value(j).toLongLong());
 		      else
 			item = new QTableWidgetItem();
 		    }

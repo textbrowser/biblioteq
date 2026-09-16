@@ -955,7 +955,7 @@ int biblioteq::populateTable(QSqlQuery *query,
 		    {
 		      if(booksAccessionNumberIndex == 0)
 			item = new biblioteq_numeric_table_item
-			  (m_searchQuery->value(j).toInt());
+			  (m_searchQuery->value(j).toLongLong());
 		      else
 			item = new QTableWidgetItem();
 		    }
