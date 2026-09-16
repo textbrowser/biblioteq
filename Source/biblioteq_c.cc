@@ -5115,13 +5115,7 @@ void biblioteq::slotPopulateMembersBrowser(void)
 
 		  item = new biblioteq_numeric_table_item(date, Qt::ISODate);
 		}
-	      else
-		{
-		  if(fieldName.startsWith("number_reserved_"))
-		    total += query.value(j).toLongLong();
-		}
-
-	      if(fieldName.endsWith("_fees"))
+	      else if(fieldName.endsWith("_fees"))
 		item = new biblioteq_numeric_table_item
 		  (query.value(j).toDouble());
 	      else if(fieldName.startsWith("number_reserved_"))
@@ -5129,10 +5123,13 @@ void biblioteq::slotPopulateMembersBrowser(void)
 		  if(fieldName == "number_reserved_total")
 		    item = new biblioteq_numeric_table_item(total);
 		  else
-		    item = new biblioteq_numeric_table_item
-		      (query.value(j).toLongLong());
+		    {
+		      item = new biblioteq_numeric_table_item
+			(query.value(j).toLongLong());
+		      total += query.value(j).toLongLong();
+		    }
 		}
-	      else if(item == nullptr)
+	      else
 		item = new QTableWidgetItem
 		  (query.value(j).toString().trimmed());
 
