@@ -692,4 +692,6 @@ Remaining Items
      QSqlDriver::subscribeToNotification().
 9.   Replace apt with snap.
 10.  Add format options for deleted_date and reserved_date.
-11.  Review numeric table columns for sorting.
+11.  Review numeric table columns for sorting:
+     Files Browser (Completed)
+     Members Browser (Completed)

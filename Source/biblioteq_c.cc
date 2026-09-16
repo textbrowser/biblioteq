@@ -4903,7 +4903,6 @@ void biblioteq::slotPopulateMembersBrowser(void)
 
   QSqlQuery query(m_db);
   QString str = "";
-  QTableWidgetItem *item = nullptr;
   auto page = bb.page->currentIndex();
   int i = -1;
   int j = 0;
@@ -5104,30 +5103,40 @@ void biblioteq::slotPopulateMembersBrowser(void)
 
 	  for(j = 0; j < record.count(); j++)
 	    {
-	      if(record.fieldName(j).contains("date") ||
-		 record.fieldName(j).contains("membersince"))
+	      QTableWidgetItem *item = nullptr;
+	      auto const fieldName(record.fieldName(j));
+
+	      if(fieldName.contains("date") ||
+		 fieldName.contains("membersince"))
 		{
 		  auto const date
-		    (QDate::fromString(query.value(j).toString().
-				       trimmed(),
+		    (QDate::fromString(query.value(j).toString().trimmed(),
 				       s_databaseDateFormat));
 
-		  str = date.toString(Qt::ISODate);
+		  item = new biblioteq_numeric_table_item(date, Qt::ISODate);
 		}
 	      else
 		{
-		  str = query.value(j).toString().trimmed();
-
-		  if(record.fieldName(j).startsWith("number_reserved_"))
-		    total += str.toLongLong();
+		  if(fieldName.startsWith("number_reserved_"))
+		    total += query.value(j).toLongLong();
 		}
 
-	      if(j == record.count() - 1)
-		str = QString::number(total);
+	      if(fieldName.endsWith("_fees"))
+		item = new biblioteq_numeric_table_item
+		  (query.value(j).toDouble());
+	      else if(fieldName.startsWith("number_reserved_"))
+		{
+		  if(fieldName == "number_reserved_total")
+		    item = new biblioteq_numeric_table_item(total);
+		  else
+		    item = new biblioteq_numeric_table_item
+		      (query.value(j).toLongLong());
+		}
+	      else if(item == nullptr)
+		item = new QTableWidgetItem
+		  (query.value(j).toString().trimmed());
 
-	      item = new QTableWidgetItem();
 	      item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-	      item->setText(str);
 	      bb.table->setItem(i, j, item);
 	    }
 	}

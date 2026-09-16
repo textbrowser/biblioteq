@@ -29,10 +29,22 @@
 
 #include "biblioteq_numeric_table_item.h"
 
-biblioteq_numeric_table_item::biblioteq_numeric_table_item
-(const QDate &date):
+biblioteq_numeric_table_item::biblioteq_numeric_table_item(const QDate &date):
   QTableWidgetItem(QLocale().toString(date, QLocale::LongFormat))
 {
+  m_dateFormat = Qt::TextDate;
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+  m_type = QMetaType::QDate;
+#else
+  m_type = QVariant::Date;
+#endif
+}
+
+biblioteq_numeric_table_item::biblioteq_numeric_table_item
+(const QDate &date, const Qt::DateFormat dateFormat):
+  QTableWidgetItem(date.toString(dateFormat))
+{
+  m_dateFormat = dateFormat;
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
   m_type = QMetaType::QDate;
 #else
@@ -90,12 +102,21 @@ bool biblioteq_numeric_table_item::operator <
     case QVariant::Date:
 #endif
       {
-	auto const date1
-	  (QDate::fromString(text(),
-			     QLocale().dateFormat(QLocale::LongFormat)));
-	auto const date2
-	  (QDate::fromString(other.text(),
-			     QLocale().dateFormat(QLocale::LongFormat)));
+	QDate date1;
+	QDate date2;
+
+	if(m_dateFormat == Qt::ISODate)
+	  {
+	    date1 = QDate::fromString(text(), m_dateFormat);
+	    date2 = QDate::fromString(other.text(), m_dateFormat);
+	  }
+	else
+	  {
+	    date1 = QDate::fromString
+	      (text(), QLocale().dateFormat(QLocale::LongFormat));
+	    date2 = QDate::fromString
+	      (other.text(), QLocale().dateFormat(QLocale::LongFormat));
+	  }
 
 	return date1 < date2;
       }

@@ -37,6 +37,8 @@ class biblioteq_numeric_table_item: public QTableWidgetItem
 {
  public:
   biblioteq_numeric_table_item(const QDate &value);
+  biblioteq_numeric_table_item
+    (const QDate &value, const Qt::DateFormat dateFormat);
   biblioteq_numeric_table_item(const double value);
   biblioteq_numeric_table_item(const int value);
   biblioteq_numeric_table_item(const qint64 value);
@@ -49,6 +51,7 @@ class biblioteq_numeric_table_item: public QTableWidgetItem
 #else
   QVariant::Type m_type;
 #endif
+  Qt::DateFormat m_dateFormat;
 };
 
 #endif
