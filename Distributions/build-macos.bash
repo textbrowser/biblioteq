@@ -9,8 +9,8 @@ fi
 
 if [ ! -z "${SSH_TTY}" ]
 then
-    echo "SSH session detected. "
-    echo "MacOS signing-password prompt may be invisible."
+    echo "SSH session detected. " \
+	 "MacOS codesign password prompt may be invisible."
 fi
 
 make distclean 1>/dev/null 2>/dev/null
@@ -41,7 +41,7 @@ fi
 VERSION="$(grep 'BIBLIOTEQ_VERSION ' Source/biblioteq.h | awk '{print $3}' | sed 's/"//g')"
 
 echo "Making BiblioteQ."
-make -j $(sysctl -n hw.ncpu)
+make -j $(sysctl -n hw.ncpu) 1>/dev/null 2>/dev/null
 make install 1>/dev/null 2>/dev/null
 echo "Signing ./BiblioteQ.d/BiblioteQ.app."
 codesign --deep --force -s "textbrowser" ./BiblioteQ.d/BiblioteQ.app \
