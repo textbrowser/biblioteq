@@ -7,6 +7,12 @@ then
     exit 1
 fi
 
+if [ ! -z "${SSH_TTY}" ]
+then
+    echo "SSH session detected. "
+    echo "MacOS signing-password prompt may be invisible."
+fi
+
 make distclean 1>/dev/null 2>/dev/null
 
 declare -a qmakes=("~/Qt/6.11.1/macos/bin/qmake"
