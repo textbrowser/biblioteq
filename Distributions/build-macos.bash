@@ -7,25 +7,47 @@ then
     exit 1
 fi
 
-make distclean 2>/dev/null
+make distclean 1>/dev/null 2>/dev/null
 
-qmake="$(echo ~/Qt/6.8.3/macos/bin/qmake)"
+declare -a qmakes=("~/Qt/6.11.1/macos/bin/qmake"
+		   "~/Qt/6.8.3/macos/bin/qmake")
+qmake=""
+
+for i in "${qmakes[@]}"
+do
+    qmake="$(echo $i)"
+
+    if [ -x "$qmake" ]
+    then
+	break
+    fi
+done
 
 if [ -x "$qmake" ]
 then
     $qmake -o Makefile biblioteq.macos.pro
 else
-    echo "Cannot locate $qmake."
-    echo "Please install the official Qt."
+    echo "Cannot locate qmake. Please install the official Qt."
     exit 1
 fi
 
 VERSION="$(grep 'BIBLIOTEQ_VERSION ' Source/biblioteq.h | awk '{print $3}' | sed 's/"//g')"
 
+echo "Making BiblioteQ."
 make -j $(sysctl -n hw.ncpu)
-make install
-codesign --deep --force -s "textbrowser" ./BiblioteQ.d/BiblioteQ.app
-make dmg
+make install 1>/dev/null 2>/dev/null
+echo "Signing ./BiblioteQ.d/BiblioteQ.app."
+codesign --deep --force -s "textbrowser" ./BiblioteQ.d/BiblioteQ.app \
+	 1>/dev/null 2>/dev/null
+
+if [ ! $? -eq 0 ]
+then
+    echo "Signing error. Bye!"
+    exit 1
+fi
+
+echo "Building BiblioteQ.d.dmg."
+make dmg 1>dev/null 2>/dev/null
 
 if [ ! -r BiblioteQ.d.dmg ]
 then
@@ -34,5 +56,5 @@ then
 fi
 
 mv BiblioteQ.d.dmg BiblioteQ-${VERSION}_Universal.dmg
-make distclean 2>/dev/null
+make distclean 1>/dev/null 2>/dev/null
 rm -fr ./BiblioteQ.d
