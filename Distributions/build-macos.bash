@@ -15,8 +15,8 @@ fi
 
 make distclean 1>/dev/null 2>/dev/null
 
-declare -a qmakes=("~/Qt/6.11.1/macos/bin/qmake"
-		   "~/Qt/6.8.3/macos/bin/qmake")
+declare -a qmakes=("$HOME/Qt/6.11.1/macos/bin/qmake"
+		   "$HOME/Qt/6.8.3/macos/bin/qmake")
 qmake=""
 
 for i in "${qmakes[@]}"
@@ -31,7 +31,8 @@ done
 
 if [ -x "$qmake" ]
 then
-    $qmake -o Makefile biblioteq.macos.pro
+    echo "Found $qmake."
+    $qmake -o Makefile biblioteq.macos.pro 1>/dev/null 2>/dev/null
 else
     echo "Cannot locate qmake. Please install the official Qt."
     exit 1
