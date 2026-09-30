@@ -54,7 +54,7 @@ then
 fi
 
 echo "Building BiblioteQ.d.dmg."
-make dmg 1>dev/null 2>/dev/null
+make dmg 1>/dev/null 2>/dev/null
 
 if [ ! -r BiblioteQ.d.dmg ]
 then
