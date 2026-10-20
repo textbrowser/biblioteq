@@ -15,7 +15,8 @@ fi
 
 make distclean 1>/dev/null 2>/dev/null
 
-declare -a qmakes=("$HOME/Qt/6.11.1/macos/bin/qmake"
+declare -a qmakes=("$HOME/Qt/6.12.0/macos/bin/qmake"
+		   "$HOME/Qt/6.11.1/macos/bin/qmake"
 		   "$HOME/Qt/6.8.3/macos/bin/qmake")
 qmake=""
 
