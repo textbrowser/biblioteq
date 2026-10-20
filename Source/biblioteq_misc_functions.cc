@@ -3047,7 +3047,7 @@ void biblioteq_misc_functions::sortCombinationBox(QComboBox *comboBox)
 
 void biblioteq_misc_functions::updateColumn(QTableWidget *table,
 					    const int row,
-					    int column,
+					    const int column,
 					    const QString &value)
 {
   if(!table || !table->item(row, column) || column < 0 || row < 0)
@@ -3072,7 +3072,7 @@ void biblioteq_misc_functions::updateColumn(QTableWidget *table,
 
 void biblioteq_misc_functions::updateColumnColor(QTableWidget *table,
 						 const int row,
-						 int column,
+						 const int column,
 						 const QColor &color)
 {
   if(!table || !table->item(row, column) || column < 0 || row < 0)
