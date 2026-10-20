@@ -1009,6 +1009,8 @@ int biblioteq::populateTable(QSqlQuery *query,
 		  if(QDate::currentDate() > duedate)
 		    item->setBackground
 		      (m_otherOptions->overdueColor(itemType));
+		  else
+		    item->setBackground(QColor(Qt::white));
 		}
 	      else if(fieldName.endsWith("front_cover") ||
 		      fieldName.endsWith("image_scaled"))

@@ -4074,6 +4074,8 @@ int biblioteq::populateTable(const int search_type_arg,
 		  if(QDate::currentDate() > duedate)
 		    item->setBackground
 		      (m_otherOptions->overdueColor(itemType));
+		  else
+		    item->setBackground(QColor(Qt::white));
 		}
 	      else if(fieldName.endsWith("front_cover") ||
 		      fieldName.endsWith("image_scaled"))
