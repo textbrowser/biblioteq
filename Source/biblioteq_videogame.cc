@@ -1410,6 +1410,10 @@ void biblioteq_videogame::slotGo(void)
 			       errorstr,
 			       __FILE__,
 			       __LINE__);
+
+			  qmain->setAvailabilityBackground
+			    (qmain->getUI().table->item(m_index->row(), i),
+			     "video_game");
 			}
 		      else if(names.at(i) == "Categories" ||
 			      names.at(i) == "Genres")

@@ -1560,6 +1560,10 @@ void biblioteq_dvd::slotGo(void)
 			       errorstr,
 			       __FILE__,
 			       __LINE__);
+
+			  qmain->setAvailabilityBackground
+			    (qmain->getUI().table->item(m_index->row(), i),
+			     "dvd");
 			}
 		      else if(names.at(i) == "Categories")
 			qmain->getUI().table->item(m_index->row(), i)->setText

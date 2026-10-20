@@ -678,6 +678,9 @@ Completed Items
      BIBLIOTEQ_DO_NOT_INCLUDE_SQLITE_REGEXP to DEFINES in project file.
 344. Export all photographs into files.
 345. Failed photograph exports.
+346. Review numeric table columns for sorting:
+     Files Browser (Completed)
+     Members Browser (Completed)
 
 Remaining Items
 
@@ -692,6 +695,3 @@ Remaining Items
      QSqlDriver::subscribeToNotification().
 9.   Replace apt with snap.
 10.  Add format options for deleted_date and reserved_date.
-11.  Review numeric table columns for sorting:
-     Files Browser (Completed)
-     Members Browser (Completed)

@@ -3926,6 +3926,10 @@ void biblioteq_book::slotGo(void)
 			       errorstr,
 			       __FILE__,
 			       __LINE__);
+
+			  qmain->setAvailabilityBackground
+			    (qmain->getUI().table->item(m_index->row(), i),
+			     "book");
 			}
 		      else if(names.at(i) == "Book Binding Type")
 			qmain->getUI().table->item(m_index->row(), i)->setText

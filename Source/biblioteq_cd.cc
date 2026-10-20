@@ -1533,6 +1533,10 @@ void biblioteq_cd::slotGo(void)
 			       errorstr,
 			       __FILE__,
 			       __LINE__);
+
+			  qmain->setAvailabilityBackground
+			    (qmain->getUI().table->item(m_index->row(), i),
+			     "cd");
 			}
 		      else if(names.at(i) == "Catalog Number" ||
 			      names.at(i) == "ID Number")

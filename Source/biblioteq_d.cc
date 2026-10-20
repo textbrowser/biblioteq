@@ -915,6 +915,23 @@ void biblioteq::resizeEvent(QResizeEvent *event)
   m_resizeTimer.start();
 }
 
+void biblioteq::setAvailabilityBackground
+(QTableWidgetItem *item, const QString &itemType)
+{
+  if(!availabilityColors() ||
+     !item ||
+     item->column() != ui.table->columnNumber("Availability"))
+    return;
+
+  QColor color(Qt::white);
+
+  if(item->text().toInt() > 0)
+    color = availabilityColor(itemType);
+
+  biblioteq_misc_functions::updateColumnColor
+    (ui.table, item->row(), item->column(), color);
+}
+
 void biblioteq::showStatusBarMessage(const QString &text, const int duration)
 {
   if(statusBar() == nullptr || text.trimmed().isEmpty())

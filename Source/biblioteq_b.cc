@@ -3873,7 +3873,6 @@ int biblioteq::populateTable(const int search_type_arg,
   QHash<QString, QString> dateFormats;
   QLocale locale;
   QMap<QByteArray, QImage> images;
-  auto const availabilityColors = this->availabilityColors();
   auto const booksAccessionNumberIndex =
     m_otherOptions->booksAccessionNumberIndex();
   auto const showBookReadStatus = m_db.driverName() == "QSQLITE" &&
@@ -4053,8 +4052,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		      item = new biblioteq_numeric_table_item
 			(query.value(j).toInt());
 
-		      if(availabilityColors &&
-			 fieldName.endsWith("availability"))
+		      if(fieldName.endsWith("availability"))
 			availabilityItem =
 			  dynamic_cast<biblioteq_numeric_table_item *> (item);
 		    }
@@ -4190,8 +4188,13 @@ int biblioteq::populateTable(const int search_type_arg,
 		}
 	    }
 
-	  if(availabilityItem && availabilityItem->value().toInt() > 0)
-	    availabilityItem->setBackground(availabilityColor(itemType));
+	  if(availabilityItem)
+	    {
+	      if(availabilityItem->value().toInt() > 0)
+		availabilityItem->setBackground(availabilityColor(itemType));
+	      else
+		availabilityItem->setBackground(QColor(Qt::white));
+	    }
 
 	  if(first && showMainTableImages)
 	    {

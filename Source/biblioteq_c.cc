@@ -802,7 +802,6 @@ int biblioteq::populateTable(QSqlQuery *query,
   QLocale locale;
   QMap<QByteArray, QImage> images;
   QSettings settings;
-  auto const availabilityColors = this->availabilityColors();
   auto const booksAccessionNumberIndex =
     m_otherOptions->booksAccessionNumberIndex();
   auto const columnNames(ui.table->columnNames());
@@ -987,8 +986,7 @@ int biblioteq::populateTable(QSqlQuery *query,
 		      item = new biblioteq_numeric_table_item
 			(m_searchQuery->value(j).toInt());
 
-		      if(availabilityColors &&
-			 fieldName.endsWith("availability"))
+		      if(fieldName.endsWith("availability"))
 			availabilityItem = dynamic_cast
 			  <biblioteq_numeric_table_item *> (item);
 		    }
@@ -1126,8 +1124,13 @@ int biblioteq::populateTable(QSqlQuery *query,
 		}
 	    }
 
-	  if(availabilityItem && availabilityItem->value().toInt() > 0)
-	    availabilityItem->setBackground(availabilityColor(itemType));
+	  if(availabilityItem)
+	    {
+	      if(availabilityItem->value().toInt() > 0)
+		availabilityItem->setBackground(availabilityColor(itemType));
+	      else
+		availabilityItem->setBackground(QColor(Qt::white));
+	    }
 
 	  if(first && showMainTableImages)
 	    {

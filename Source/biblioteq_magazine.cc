@@ -674,7 +674,7 @@ void biblioteq_magazine::insert(void)
   ma.publication_date->setDate
     (QDate::fromString("01/01/2000", biblioteq::s_databaseDateFormat));
   ma.publisher->setPlainText("N/A");
-  ma.quantity->setMinimum(1);
+  ma.quantity->setMinimum(0);
   ma.quantity->setValue(1);
   ma.showUserButton->setEnabled(false);
   ma.sruQueryButton->setVisible(true);
@@ -811,7 +811,7 @@ void biblioteq_magazine::modify(const int state)
   ma.issue->setMinimum(0);
   ma.okButton->setText(tr("&Save"));
   ma.price->setMinimum(0.00);
-  ma.quantity->setMinimum(1);
+  ma.quantity->setMinimum(0);
   ma.volume->setMinimum(0);
   prepareIcons(this);
   str = m_oid;
@@ -2988,6 +2988,10 @@ void biblioteq_magazine::slotGo(void)
 			       errorstr,
 			       __FILE__,
 			       __LINE__);
+
+			  qmain->setAvailabilityBackground
+			    (qmain->getUI().table->item(m_index->row(), i),
+			     m_subType);
 			}
 		      else if(names.at(i) == "Call Number")
 			qmain->getUI().table->item(m_index->row(), i)->setText

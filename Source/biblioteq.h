@@ -418,6 +418,8 @@ class biblioteq: public QMainWindow
   void replacePhotographCollection
     (const QString &id, biblioteq_photographcollection *photograph);
   void replaceVideoGame(const QString &id, biblioteq_videogame *videogame);
+  void setAvailabilityBackground
+    (QTableWidgetItem *item, const QString &itemType);
   void setGlobalFonts(const QFont &font);
   void setSummaryImages(const QImage &back, const QImage &front);
   void showMain(void);
