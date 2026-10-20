@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 # Alexis Megas.
+# Qt LTS only please!
+
+# Please execute this script in an Apple terminal because
+# Apple may prompt for a certificate password (codesign).
 
 if [ ! -e biblioteq.macos.pro ]
 then
@@ -16,7 +20,6 @@ fi
 make distclean 1>/dev/null 2>/dev/null
 
 declare -a qmakes=("$HOME/Qt/6.12.0/macos/bin/qmake"
-		   "$HOME/Qt/6.11.1/macos/bin/qmake"
 		   "$HOME/Qt/6.8.3/macos/bin/qmake")
 qmake=""
 
