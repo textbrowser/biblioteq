@@ -45,3 +45,8 @@ ALTER TABLE member ADD maximum_reserved_journals INTEGER NOT NULL DEFAULT 0;
 ALTER TABLE member ADD maximum_reserved_magazines INTEGER NOT NULL DEFAULT 0;
 ALTER TABLE member ADD maximum_reserved_video_games INTEGER NOT NULL
       	    DEFAULT 0;
+
+/* Version 2026.10.25 */
+
+ALTER TABLE journal ADD display_number INTEGER;
+ALTER TABLE magazine ADD display_number INTEGER;

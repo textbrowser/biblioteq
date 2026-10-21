@@ -816,17 +816,28 @@ void biblioteq_magazine::modify(const int state)
   prepareIcons(this);
   str = m_oid;
   query.prepare(QString("SELECT title, "
-			"publisher, pdate, place, issuevolume, "
-			"category, language, id, "
-			"price, monetary_units, quantity, "
+			"publisher, "
+			"pdate, "
+			"place, "
+			"issuevolume, "
+			"category, "
+			"language, "
+			"id, "
+			"price, "
+			"monetary_units, "
+			"quantity, "
 			"issueno, "
-			"location, lccontrolnumber, callnumber, "
-			"deweynumber, description, "
+			"location, "
+			"lccontrolnumber, "
+			"callnumber, "
+			"deweynumber, "
+			"description, "
 			"front_cover, "
 			"back_cover, "
 			"marc_tags, "
 			"keyword, "
-			"accession_number "
+			"accession_number, "
+			"display_number "
 			"FROM "
 			"%1 "
 			"WHERE myoid = ?").arg(m_subType));
@@ -883,8 +894,8 @@ void biblioteq_magazine::modify(const int state)
 
       for(i = 0; i < record.count(); i++)
 	{
-	  var = record.field(i).value();
 	  fieldname = record.fieldName(i);
+	  var = record.field(i).value();
 
 	  if(fieldname == "accession_number")
 	    ma.accession_number->setText(var.toString().trimmed());
@@ -914,6 +925,13 @@ void biblioteq_magazine::modify(const int state)
 	    ma.description->setPlainText(var.toString().trimmed());
 	  else if(fieldname == "deweynumber")
 	    ma.deweynum->setText(var.toString().trimmed());
+	  else if(fieldname == "display_number")
+	    {
+	      if(record.field(i).isNull() || var.toInt() < 0)
+		ma.display_number->setValue(-1);
+	      else
+		ma.display_number->setValue(var.toInt());
+	    }
 	  else if(fieldname == "front_cover")
 	    {
 	      if(!record.field(i).isNull())
@@ -2564,43 +2582,114 @@ void biblioteq_magazine::slotGo(void)
 			      "place = ?, "
 			      "marc_tags = ?, "
 			      "keyword = ?, "
-			      "accession_number = ? "
+			      "accession_number = ?, "
+			      "display_number = ? "
 			      "WHERE "
 			      "myoid = ?").arg(m_subType));
       else if(qmain->getDB().driverName() != "QSQLITE")
 	query.prepare(QString("INSERT INTO %1 "
 			      "(id, "
 			      "title, "
-			      "pdate, publisher, "
-			      "category, price, description, language, "
-			      "monetary_units, quantity, "
-			      "location, issuevolume, issueno, "
-			      "lccontrolnumber, callnumber, deweynumber, "
-			      "front_cover, back_cover, "
-			      "place, marc_tags, keyword, accession_number, "
+			      "pdate, "
+			      "publisher, "
+			      "category, "
+			      "price, "
+			      "description, "
+			      "language, "
+			      "monetary_units, "
+			      "quantity, "
+			      "location, "
+			      "issuevolume, "
+			      "issueno, "
+			      "lccontrolnumber, "
+			      "callnumber, "
+			      "deweynumber, "
+			      "front_cover, "
+			      "back_cover, "
+			      "place, "
+			      "marc_tags, "
+			      "keyword, "
+			      "accession_number, "
+			      "display_number, "
 			      "type) "
-			      "VALUES (?, ?, ?, ?, "
-			      "?, ?, "
-			      "?, ?, ?, ?, "
-			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) "
+			      "VALUES (?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?) "
 			      "RETURNING myoid").arg
 		      (m_subType));
       else
 	query.prepare(QString("INSERT INTO %1 "
 			      "(id, "
 			      "title, "
-			      "pdate, publisher, "
-			      "category, price, description, language, "
-			      "monetary_units, quantity, "
-			      "location, issuevolume, issueno, "
-			      "lccontrolnumber, callnumber, deweynumber, "
-			      "front_cover, back_cover, "
-			      "place, marc_tags, keyword, accession_number, "
-			      "type, myoid) "
-			      "VALUES (?, ?, ?, ?, ?, "
-			      "?, ?, ?, "
-			      "?, ?, "
-			      "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)").arg
+			      "pdate, "
+			      "publisher, "
+			      "category, "
+			      "price, "
+			      "description, "
+			      "language, "
+			      "monetary_units, "
+			      "quantity, "
+			      "location, "
+			      "issuevolume, "
+			      "issueno, "
+			      "lccontrolnumber, "
+			      "callnumber, "
+			      "deweynumber, "
+			      "front_cover, "
+			      "back_cover, "
+			      "place, "
+			      "marc_tags, "
+			      "keyword, "
+			      "accession_number, "
+			      "display_number, "
+			      "type, "
+			      "myoid) "
+			      "VALUES (?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?, "
+			      "?)").arg
 		      (m_subType));
 
       if(ma.issnAvailableCheckBox->isChecked() && !ma.id->text().isEmpty())
@@ -2715,10 +2804,21 @@ void biblioteq_magazine::slotGo(void)
       query.bindValue(20, ma.keyword->toPlainText().trimmed());
       query.bindValue(21, ma.accession_number->text().trimmed());
 
-      if(m_engWindowTitle.contains("Modify"))
-	query.bindValue(22, m_oid);
+      if(ma.display_number->value() < 0)
+	{
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	  query.bindValue(22, QVariant(QMetaType(QMetaType::Int)));
+#else
+	  query.bindValue(22, QVariant(QVariant::Int));
+#endif
+	}
       else
-	query.bindValue(22, m_subType);
+	query.bindValue(22, ma.display_number->value());
+
+      if(m_engWindowTitle.contains("Modify"))
+	query.bindValue(23, m_oid);
+      else
+	query.bindValue(23, m_subType);
 
       if(m_engWindowTitle.contains("Create"))
 	if(qmain->getDB().driverName() == "QSQLITE")
@@ -2728,7 +2828,7 @@ void biblioteq_magazine::slotGo(void)
 
 	    if(errorstr.isEmpty())
 	      {
-		query.bindValue(23, value);
+		query.bindValue(24, value);
 		m_oid = QString::number(value);
 	      }
 	    else

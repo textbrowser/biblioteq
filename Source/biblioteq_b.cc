@@ -5774,7 +5774,6 @@ void biblioteq::slotUpgradeSqliteScheme(void)
   list.append("ALTER TABLE magazine_copy_info ADD notes TEXT");
   list.append("ALTER TABLE videogame_copy_info ADD notes TEXT");
   list.append("ALTER TABLE book ADD series_title TEXT");
- recent_label:
   list.append("ALTER TABLE member ADD maximum_reserved_cds "
 	      "INTEGER NOT NULL DEFAULT 0");
   list.append("ALTER TABLE member ADD maximum_reserved_dvds "
@@ -5861,6 +5860,9 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "WHERE book.myoid = NEW.item_oid;"
 	      "END;");
   list.append("ALTER TABLE book_history ADD target_audience TEXT");
+ recent_label:
+  list.append("ALTER TABLE journal ADD display_number INTEGER");
+  list.append("ALTER TABLE magazine ADD display_number INTEGER");
 
   QString errors("<html>");
   int ct = 1;
