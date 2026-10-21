@@ -3377,6 +3377,14 @@ void biblioteq_magazine::slotGo(void)
       values.append
 	(biblioteq_myqstring::escape(ma.accession_number->text().trimmed()));
 
+      if(ma.display_number->value() < 0)
+	searchstr.append("AND display_number IS NULL ");
+      else
+	{
+	  searchstr.append("AND display_number = ? ");
+	  values.append(ma.display_number->value());
+	}
+
       if(m_subType == "Journal")
 	searchstr.append("GROUP BY journal.title, "
 			 "journal.publisher, "
