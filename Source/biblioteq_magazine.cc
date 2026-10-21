@@ -3106,6 +3106,9 @@ void biblioteq_magazine::slotGo(void)
 		      else if(names.at(i) == "Dewey Number")
 			qmain->getUI().table->item(m_index->row(), i)->setText
 			  (ma.deweynum->text());
+		      else if(names.at(i) == "Display Number")
+			qmain->getUI().table->item(m_index->row(), i)->setText
+			  (ma.display_number->text());
 		      else if(names.at(i) == "ID Number" ||
 			      names.at(i) == "ISSN")
 			qmain->getUI().table->item(m_index->row(), i)->setText
@@ -3244,6 +3247,7 @@ void biblioteq_magazine::slotGo(void)
 			  "%1.place, "
 			  "%1.issuevolume, "
 			  "%1.issueno, "
+			  "%1.display_number, "
 			  "%1.category, "
 			  "%1.language, "
 			  "%1.id, "
@@ -3298,8 +3302,7 @@ void biblioteq_magazine::slotGo(void)
 			 " AND ");
 
       if(ma.issue->value() != -1)
-	searchstr.append("issueno = " + ma.issue->text() +
-			 " AND ");
+	searchstr.append("issueno = " + ma.issue->text() + " AND ");
 
       searchstr.append
 	(UNACCENT + "(LOWER(title)) LIKE " + UNACCENT +
@@ -3396,6 +3399,7 @@ void biblioteq_magazine::slotGo(void)
 			 "journal.place, "
 			 "journal.issuevolume, "
 			 "journal.issueno, "
+			 "journal.display_number, "
 			 "journal.category, "
 			 "journal.language, "
 			 "journal.id, "
@@ -3417,6 +3421,7 @@ void biblioteq_magazine::slotGo(void)
 			 "magazine.place, "
 			 "magazine.issuevolume, "
 			 "magazine.issueno, "
+			 "magazine.display_number, "
 			 "magazine.category, "
 			 "magazine.language, "
 			 "magazine.id, "

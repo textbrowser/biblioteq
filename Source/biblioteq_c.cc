@@ -963,6 +963,7 @@ int biblioteq::populateTable(QSqlQuery *query,
 		}
 	      else if(fieldName.endsWith("availability") ||
 		      fieldName.endsWith("cddiskcount") ||
+		      fieldName.endsWith("display_number") ||
 		      fieldName.endsWith("dvddiskcount") ||
 		      fieldName.endsWith("file_count") ||
 		      fieldName.endsWith("issue") ||

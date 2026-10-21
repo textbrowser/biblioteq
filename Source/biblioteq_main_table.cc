@@ -511,6 +511,7 @@ void biblioteq_main_table::setColumns(const QString &username,
       list.append(tr("Place of Publication"));
       list.append(tr("Volume"));
       list.append(tr("Issue"));
+      list.append(tr("Display Number"));
       list.append(tr("Categories"));
       list.append(tr("Language"));
       list.append(tr("ISSN"));
@@ -532,6 +533,7 @@ void biblioteq_main_table::setColumns(const QString &username,
       m_columnHeaderIndexes.append("Place of Publication");
       m_columnHeaderIndexes.append("Volume");
       m_columnHeaderIndexes.append("Issue");
+      m_columnHeaderIndexes.append("Display Number");
       m_columnHeaderIndexes.append("Categories");
       m_columnHeaderIndexes.append("Language");
       m_columnHeaderIndexes.append("ISSN");

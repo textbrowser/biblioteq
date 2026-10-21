@@ -3128,6 +3128,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				"%1.place, "
 				"%1.issuevolume, "
 				"%1.issueno, "
+				"%1.display_number, "
 				"%1.category, "
 				"%1.language, "
 				"%1.id, "
@@ -3161,6 +3162,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				"%1.place, "
 				"%1.issuevolume, "
 				"%1.issueno, "
+				"%1.display_number, "
 				"%1.category, "
 				"%1.language, "
 				"%1.id, "
@@ -3445,6 +3447,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "journal.place, "
 				 "journal.issuevolume, "
 				 "journal.issueno, "
+				 "journal.display_number, "
 				 "journal.category, "
 				 "journal.language, "
 				 "journal.id, "
@@ -3482,6 +3485,7 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "magazine.place, "
 				 "magazine.issuevolume, "
 				 "magazine.issueno, "
+				 "magazine.display_number, "
 				 "magazine.category, "
 				 "magazine.language, "
 				 "magazine.id, "
@@ -4030,6 +4034,7 @@ int biblioteq::populateTable(const int search_type_arg,
 		}
 	      else if(fieldName.endsWith("availability") ||
 		      fieldName.endsWith("cddiskcount") ||
+		      fieldName.endsWith("display_number") ||
 		      fieldName.endsWith("dvddiskcount") ||
 		      fieldName.endsWith("file_count") ||
 		      fieldName.endsWith("issue") ||
@@ -5588,6 +5593,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "location TEXT NOT NULL,"
 	      "issuevolume INTEGER NOT NULL DEFAULT 0,"
 	      "issueno INTEGER NOT NULL DEFAULT 0,"
+	      "display_number INTEGER, "
 	      "lccontrolnumber VARCHAR(64),"
 	      "callnumber VARCHAR(64),"
 	      "deweynumber VARCHAR(64),"
@@ -5614,6 +5620,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "location, "
 	      "issuevolume, "
 	      "issueno, "
+	      "display_number, "
 	      "lccontrolnumber, "
 	      "callnumber, "
 	      "deweynumber, "
@@ -5642,6 +5649,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "location TEXT NOT NULL,"
 	      "issuevolume INTEGER NOT NULL DEFAULT 0,"
 	      "issueno INTEGER NOT NULL DEFAULT 0,"
+	      "display_number INTEGER, "
 	      "lccontrolnumber VARCHAR(64),"
 	      "callnumber VARCHAR(64),"
 	      "deweynumber VARCHAR(64),"
@@ -5668,6 +5676,7 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "location, "
 	      "issuevolume, "
 	      "issueno, "
+	      "display_number, "
 	      "lccontrolnumber, "
 	      "callnumber, "
 	      "deweynumber, "
