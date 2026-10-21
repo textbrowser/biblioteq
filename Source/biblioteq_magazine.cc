@@ -276,6 +276,10 @@ biblioteq_magazine::biblioteq_magazine(biblioteq *parentArg,
 	  SIGNAL(triggered(void)),
 	  this,
 	  SLOT(slotReset(void)));
+  connect(menu->addAction(tr("Reset Display Number")),
+	  SIGNAL(triggered(void)),
+	  this,
+	  SLOT(slotReset(void)));
   connect(qmain,
 	  SIGNAL(fontChanged(const QFont &)),
 	  this,
@@ -3589,7 +3593,7 @@ void biblioteq_magazine::slotReset(void)
     {
       auto const actions = ma.resetButton->menu()->actions();
 
-      if(actions.size() < 22)
+      if(actions.size() < 23)
 	{
 	  // Error.
 	}
@@ -3734,6 +3738,11 @@ void biblioteq_magazine::slotReset(void)
 	  ma.accession_number->clear();
 	  ma.accession_number->setFocus();
 	}
+      else if(action == actions[22])
+	{
+	  ma.display_number->setValue(-1);
+	  ma.display_number->setFocus();
+	}
     }
   else
     {
@@ -3765,6 +3774,7 @@ void biblioteq_magazine::slotReset(void)
       ma.back_image->clear();
       ma.callnum->clear();
       ma.deweynum->clear();
+      ma.display_number->setValue(-1);
       ma.front_image->clear();
       ma.id->clear();
       ma.id->setCursorPosition(0);
