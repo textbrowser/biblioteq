@@ -54,8 +54,10 @@ biblioteq_documentationwindow::biblioteq_documentationwindow
   m_ui.text->setSource(url);
   m_originalFindPalette = m_ui.find->palette();
 
+#ifdef Q_OS_ANDROID
   if(menuBar())
     menuBar()->setNativeMenuBar(true);
+#endif
 
 #ifdef BIBLIOTEQ_QT_PDF_SUPPORTED
   if(url.fileName().toLower().trimmed().endsWith(".pdf"))

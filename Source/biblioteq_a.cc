@@ -234,8 +234,10 @@ biblioteq::biblioteq(void):QMainWindow()
   biblioteq_misc_functions::boldText(ui.pagesLabel, tr("1"));
   ui.table->setQMain(this);
 
+#ifdef Q_OS_ANDROID
   if(menuBar())
     menuBar()->setNativeMenuBar(true);
+#endif
 
   m_about = nullptr;
 #ifdef Q_OS_ANDROID
@@ -585,7 +587,9 @@ biblioteq::biblioteq(void):QMainWindow()
   ab.splitter->setStretchFactor(0, 0);
   ab.splitter->setStretchFactor(1, 1);
   al.quantity->setMaximum(static_cast<int> (biblioteq::Limits::QUANTITY));
+#ifdef Q_OS_ANDROID
   bb.menuBar ? bb.menuBar->setNativeMenuBar(true) : (void) 0;
+#endif
   m_branch_diag->setModal(true);
   m_otherOptions->prepareMembersVisibleColumns(bb.table);
   m_pass_diag->setModal(true);

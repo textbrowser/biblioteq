@@ -48,8 +48,10 @@ biblioteq_pdfreader::biblioteq_pdfreader(QWidget *parent):QMainWindow(parent)
 {
   m_ui.setupUi(this);
 
+#ifdef Q_OS_ANDROID
   if(menuBar())
     menuBar()->setNativeMenuBar(true);
+#endif
 
 #if defined(BIBLIOTEQ_LINKED_WITH_POPPLER)
   m_document = nullptr;
