@@ -1694,8 +1694,14 @@ void biblioteq_batch_activities::setReadOnly(const QString &role)
 
 	  for(int i = 0; i < m_ui.tab->count(); i++)
 	    m_ui.tab->setTabEnabled(i, true);
+
+	  return;
 	}
-      else if(role.contains("circulation"))
+
+      for(int i = 0; i < m_ui.tab->count(); i++)
+	m_ui.tab->setTabEnabled(i, false);
+
+      if(role.contains("circulation"))
 	{
 	  /*
 	  ** Enable all pages except for Add.
@@ -1703,11 +1709,16 @@ void biblioteq_batch_activities::setReadOnly(const QString &role)
 
 	  for(int i = 0; i < m_ui.tab->count(); i++)
 	    if(Pages::Add == static_cast<Pages> (i))
-	      m_ui.tab->setTabEnabled(i, false);
+	      {
+	      }
 	    else
-	      m_ui.tab->setTabEnabled(i, true);
+	      {
+		m_ui.tab->setCurrentIndex(i);
+		m_ui.tab->setTabEnabled(i, true);
+	      }
 	}
-      else if(role.contains("librarian"))
+
+      if(role.contains("librarian"))
 	{
 	  /*
 	  ** Enable Add, Discover, and Export Photographs.
@@ -1717,11 +1728,16 @@ void biblioteq_batch_activities::setReadOnly(const QString &role)
 	    if(Pages::Add == static_cast<Pages> (i) ||
 	       Pages::Discover == static_cast<Pages> (i) ||
 	       Pages::ExportPhotographs == static_cast<Pages> (i))
-	      m_ui.tab->setTabEnabled(i, true);
+	      {
+		m_ui.tab->setCurrentIndex(i);
+		m_ui.tab->setTabEnabled(i, true);
+	      }
 	    else
-	      m_ui.tab->setTabEnabled(i, false);
+	      {
+	      }
 	}
-      else if(role.contains("membership"))
+
+      if(role.contains("membership"))
 	{
 	  /*
 	  ** Enable only Export Photographs.
@@ -1734,7 +1750,8 @@ void biblioteq_batch_activities::setReadOnly(const QString &role)
 		m_ui.tab->setTabEnabled(i, true);
 	      }
 	    else
-	      m_ui.tab->setTabEnabled(i, false);
+	      {
+	      }
 	}
     }
 }

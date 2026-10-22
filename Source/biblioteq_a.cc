@@ -88,6 +88,9 @@ qreal biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER = 2.5;
 int main(int argc, char *argv[])
 {
 #if defined(Q_OS_MACOS) || defined(Q_OS_WINDOWS)
+  QCoreApplication::setAttribute(Qt::AA_DontUseNativeDialogs, true);
+  QCoreApplication::setAttribute(Qt::AA_DontUseNativeMenuBar, true);
+  QCoreApplication::setAttribute(Qt::AA_NativeWindows, false);
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
   QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
   QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
