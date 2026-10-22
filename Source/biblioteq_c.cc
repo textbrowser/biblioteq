@@ -3468,7 +3468,7 @@ void biblioteq::slotConnectDB(void)
       ** Guest.
       */
 
-      m_batchActivities->setReadOnly(true);
+      m_batchActivities->setReadOnly(m_roles);
       m_status_bar_label != nullptr ?
 	m_status_bar_label->setToolTip(tr("Guest Mode")) : (void) 0;
       ui.actionBatchActivitiesBrowser->setEnabled(true);
@@ -3480,7 +3480,7 @@ void biblioteq::slotConnectDB(void)
       ** Patron.
       */
 
-      m_batchActivities->setReadOnly(true);
+      m_batchActivities->setReadOnly(m_roles);
       m_status_bar_label != nullptr ?
 	m_status_bar_label->setToolTip(tr("Patron Mode")) : (void) 0;
       ui.actionBatchActivitiesBrowser->setEnabled(true);

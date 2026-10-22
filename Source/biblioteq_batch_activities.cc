@@ -1667,12 +1667,12 @@ void biblioteq_batch_activities::returnItems(void)
     (query, "All Reserved", biblioteq::NEW_PAGE, biblioteq::POPULATE_SEARCH);
 }
 
-void biblioteq_batch_activities::setReadOnly(const bool state)
+void biblioteq_batch_activities::setReadOnly(const QString &role)
 {
-  if(state)
+  if(role.trimmed().isEmpty())
     {
       /*
-      ** Only Export Photographs is available.
+      ** Enable only Export Photographs.
       */
 
       for(int i = 0; i < m_ui.tab->count(); i++)
@@ -1685,8 +1685,58 @@ void biblioteq_batch_activities::setReadOnly(const bool state)
 	  m_ui.tab->setTabEnabled(i, false);
     }
   else
-    for(int i = 0; i < m_ui.tab->count(); i++)
-      m_ui.tab->setTabEnabled(i, true);
+    {
+      if(role.contains("administrator"))
+	{
+	  /*
+	  ** Enable all pages.
+	  */
+
+	  for(int i = 0; i < m_ui.tab->count(); i++)
+	    m_ui.tab->setTabEnabled(i, true);
+	}
+      else if(role.contains("circulation"))
+	{
+	  /*
+	  ** Enable all pages except for Add.
+	  */
+
+	  for(int i = 0; i < m_ui.tab->count(); i++)
+	    if(Pages::Add == static_cast<Pages> (i))
+	      m_ui.tab->setTabEnabled(i, false);
+	    else
+	      m_ui.tab->setTabEnabled(i, true);
+	}
+      else if(role.contains("librarian"))
+	{
+	  /*
+	  ** Enable Add, Discover, and Export Photographs.
+	  */
+
+	  for(int i = 0; i < m_ui.tab->count(); i++)
+	    if(Pages::Add == static_cast<Pages> (i) ||
+	       Pages::Discover == static_cast<Pages> (i) ||
+	       Pages::ExportPhotographs == static_cast<Pages> (i))
+	      m_ui.tab->setTabEnabled(i, true);
+	    else
+	      m_ui.tab->setTabEnabled(i, false);
+	}
+      else if(role.contains("membership"))
+	{
+	  /*
+	  ** Enable only Export Photographs.
+	  */
+
+	  for(int i = 0; i < m_ui.tab->count(); i++)
+	    if(Pages::ExportPhotographs == static_cast<Pages> (i))
+	      {
+		m_ui.tab->setCurrentIndex(i);
+		m_ui.tab->setTabEnabled(i, true);
+	      }
+	    else
+	      m_ui.tab->setTabEnabled(i, false);
+	}
+    }
 }
 
 void biblioteq_batch_activities::show(QMainWindow *parent, const bool center)
