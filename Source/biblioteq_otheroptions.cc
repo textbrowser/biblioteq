@@ -25,6 +25,9 @@
 ** BIBLIOTEQ, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#include <QCompleter>
+#include <QStyleFactory>
+
 #include "biblioteq_otheroptions.h"
 
 static QColor s_overdueColor = QColor(255, 114, 118);
@@ -99,6 +102,12 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):
   m_ui.sqlite_runtime_loadable_extensions->setToolTip
     (m_ui.sqlite_runtime_loadable_extensions->placeholderText());
 #endif
+  m_ui.style_override->setCompleter
+    (new QCompleter(biblioteq_misc_functions::sort(QStyleFactory::keys()),
+		    this));
+  m_ui.style_override->completer()->setCompletionMode
+    (QCompleter::UnfilteredPopupCompletion);
+  m_ui.style_override->completer()->setCaseSensitivity(Qt::CaseInsensitive);
   prepareSQLKeywords();
   prepareSettings();
   prepareShortcuts();

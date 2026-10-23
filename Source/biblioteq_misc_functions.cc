@@ -1376,6 +1376,14 @@ QStringList biblioteq_misc_functions::getVideoGameRatings
   return ratings;
 }
 
+QStringList biblioteq_misc_functions::sort(const QStringList &list)
+{
+  auto sorted(list);
+
+  std::sort(sorted.begin(), sorted.end());
+  return sorted;
+}
+
 bool biblioteq_misc_functions::cryptographicDigestOfFile
 (QByteArray &data, QByteArray &digest, const QString &fileName)
 {
