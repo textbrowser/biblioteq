@@ -50,6 +50,7 @@ QMAKE_CXXFLAGS_RELEASE         += -Wall \
                                   -Wcast-qual \
                                   -Wextra \
                                   -Wformat=2 \
+				  -Wno-c++20-attribute-extensions \
                                   -Wno-deprecated-declarations \
                                   -Woverloaded-virtual \
                                   -Wpointer-arith \
