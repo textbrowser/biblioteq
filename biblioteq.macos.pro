@@ -52,6 +52,7 @@ QMAKE_CXXFLAGS_RELEASE         += -Wall \
                                   -Wformat=2 \
 				  -Wno-c++20-attribute-extensions \
                                   -Wno-deprecated-declarations \
+                                  -Wno-gnu-include-next \
                                   -Woverloaded-virtual \
                                   -Wpointer-arith \
                                   -Wstack-protector \
