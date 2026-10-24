@@ -105,9 +105,9 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):
   m_ui.style_override->setCompleter
     (new QCompleter(biblioteq_misc_functions::sort(QStyleFactory::keys()),
 		    this));
+  m_ui.style_override->completer()->setCaseSensitivity(Qt::CaseInsensitive);
   m_ui.style_override->completer()->setCompletionMode
     (QCompleter::UnfilteredPopupCompletion);
-  m_ui.style_override->completer()->setCaseSensitivity(Qt::CaseInsensitive);
   prepareSQLKeywords();
   prepareSettings();
   prepareShortcuts();
