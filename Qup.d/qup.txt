@@ -19,7 +19,7 @@ file = libstdc++-6.dll
 file = libwinpthread-1.dll
 file_destination = .
 url = https://raw.githubusercontent.com/textbrowser/\ # First Part
-      qt-products/master/6.5_LTS/Windows              # Second Part
+      qt-products/master/6.8_LTS/Windows              # Second Part
 
 [General]
 
