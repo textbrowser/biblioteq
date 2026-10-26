@@ -1917,6 +1917,8 @@ void biblioteq::slotTabClosed(int index)
 void biblioteq::slotTabbedItemWindows(bool state)
 {
   QSettings().setValue("tabbed_item_windows", state);
+  slotAboutToShowMenuEdit();
+  slotAboutToShowMenuView();
 }
 
 void biblioteq::slotTableFindNext(void)
