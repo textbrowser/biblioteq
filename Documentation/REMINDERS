@@ -682,6 +682,7 @@ Completed Items
      Files Browser (Completed)
      Members Browser (Completed)
 347. Display ellipses on torn menus if necessary.
+348. Attach generic search to tab if necessary.
 
 Remaining Items
 
@@ -696,4 +697,3 @@ Remaining Items
      QSqlDriver::subscribeToNotification().
 9.   Replace apt with snap.
 10.  Add format options for deleted_date and reserved_date.
-11.  Attach generic search to tab if necessary.

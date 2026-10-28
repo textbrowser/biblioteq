@@ -634,6 +634,10 @@ biblioteq::biblioteq(void):QMainWindow()
 	  m_all_diag,
 	  SLOT(close(void)));
 #endif
+  connect(al.cancelButton,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotGenericSearchClosed(void)));
   connect(al.caseinsensitive,
 	  SIGNAL(toggled(bool)),
 	  this,
@@ -5261,21 +5265,8 @@ void biblioteq::slotSearch(void)
 {
   if(!m_db.isOpen())
     return;
-  else if(!al.resetButton->isEnabled())
-    {
-#ifdef Q_OS_ANDROID
-      m_all_diag->showMaximized();
-#else
-      if(!m_all_diag->isVisible())
-	m_all_diag->updateGeometry();
-
-      biblioteq_misc_functions::center(m_all_diag, this);
-      m_all_diag->showNormal();
-#endif
-      m_all_diag->activateWindow();
-      m_all_diag->raise();
-      return;
-    }
+  else
+    addItemWindowToTab(m_all_diag);
 
   QString errorstr("");
 
@@ -5293,6 +5284,7 @@ void biblioteq::slotSearch(void)
   al.category->clear();
   al.description->clear();
   al.idnumber->clear();
+  al.idnumber->setFocus();
   al.keyword->clear();
   al.keywords_checkbox->setChecked(false);
   al.language->clear();
@@ -5352,7 +5344,6 @@ void biblioteq::slotSearch(void)
        __FILE__,
        __LINE__);
 
-  al.idnumber->setFocus();
   al.language->addItem(s_unknown);
   al.language->insertItem(0, tr("Any"));
   al.language->setCurrentIndex(0);
@@ -5364,28 +5355,6 @@ void biblioteq::slotSearch(void)
   al.monetary_units->setCurrentIndex(0);
  done_label:
   m_allSearchShown = true;
-
-  if(!m_all_diag->isVisible())
-    m_all_diag->updateGeometry();
-
-#ifdef Q_OS_ANDROID
-  m_all_diag->showMaximized();
-#else
-  auto static resized = false;
-
-  if(!resized)
-    m_all_diag->resize
-      (qRound(0.95 * size().width()), qRound(0.95 * size().height()));
-
-  resized = true;
-
-  if(!m_all_diag->isVisible())
-    biblioteq_misc_functions::center(m_all_diag, this);
-
-  m_all_diag->showNormal();
-#endif
-  m_all_diag->activateWindow();
-  m_all_diag->raise();
 }
 
 void biblioteq::slotSectionResized(int logicalIndex, int oldSize, int newSize)

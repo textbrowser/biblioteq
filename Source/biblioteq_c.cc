@@ -3585,6 +3585,7 @@ void biblioteq::slotDisconnect(void)
 	QApplication::restoreOverrideCursor();
     }
 
+  al.cancelButton->click();
   br.show_password->setChecked(false);
   m_allSearchShown = false;
   m_attachedWindows.clear();

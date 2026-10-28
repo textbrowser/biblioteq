@@ -256,17 +256,19 @@ void biblioteq::addItemWindowToTab(QMainWindow *window)
 	  this,
 	  SLOT(slotItemWindowClosed(void)),
 	  Qt::UniqueConnection);
-  connect(window,
-	  SIGNAL(imageChanged(const QImage &)),
-	  this,
-	  SLOT(slotItemImageChanged(const QImage &)),
-	  Qt::UniqueConnection);
-  connect(window,
-	  SIGNAL(windowTitleChanged(const QString &)),
-	  this,
-	  SLOT(slotItemTitleChanged(const QString &)),
-	  static_cast<Qt::ConnectionType> (Qt::QueuedConnection |
-					   Qt::UniqueConnection));
+  item ? connect(window,
+		 SIGNAL(imageChanged(const QImage &)),
+		 this,
+		 SLOT(slotItemImageChanged(const QImage &)),
+		 Qt::UniqueConnection) :
+    true;
+  item ? connect(window,
+		 SIGNAL(windowTitleChanged(const QString &)),
+		 this,
+		 SLOT(slotItemTitleChanged(const QString &)),
+		 static_cast<Qt::ConnectionType> (Qt::QueuedConnection |
+						  Qt::UniqueConnection)) :
+    true;
   ui.tab->addTab(window, QIcon(":/missing_image.png"), title);
   ui.tab->setCurrentIndex(ui.tab->count() - 1);
   ui.tab->setTabToolTip(ui.tab->count() - 1, title);
@@ -1307,6 +1309,18 @@ void biblioteq::slotGenerateAndCopyMemberLetter(void)
   clipboard->setText(str);
 }
 
+void biblioteq::slotGenericSearchClosed(void)
+{
+  auto const index = ui.tab->indexOf(m_all_diag);
+
+  if(index >= 0)
+    {
+      ui.tab->removeTab(index);
+      m_all_diag->setParent(nullptr, m_all_diag->windowFlags()); // Order!
+      prepareTabWidgetCloseButtons();
+    }
+}
+
 void biblioteq::slotItemImageChanged(const QImage &image)
 {
   auto widget = qobject_cast<QWidget *> (sender());
@@ -1572,6 +1586,10 @@ void biblioteq::slotSelectItemTab(void)
     return;
   else if(action->data().toInt() < 0)
     {
+      /*
+      ** Close all tabs.
+      */
+
       for(int i = ui.tab->count() - 1; i > 0; i--)
 	slotTabClosed(i);
 
@@ -1908,6 +1926,15 @@ void biblioteq::slotTabClosed(int index)
   if(deleted || ui.tab->widget(index) == nullptr)
     {
       ui.tab->removeTab(index);
+
+      if(sender()) // Avoid iterations.
+	prepareTabWidgetCloseButtons();
+    }
+
+  if(m_all_diag == ui.tab->widget(index))
+    {
+      ui.tab->removeTab(index);
+      m_all_diag->setParent(nullptr, m_all_diag->windowFlags()); // Order!
 
       if(sender()) // Avoid iterations.
 	prepareTabWidgetCloseButtons();
