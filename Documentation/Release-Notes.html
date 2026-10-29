@@ -14,8 +14,11 @@
 	in the main table.</li>
       <li>Corrected LTS version BIBLIOTEQ_VERSION_LTS. Correct value
 	is 2026.09.15.</li>
+      <li>Corrected removal of item windows during database deletions.
+	The state of an important mutex must be ignored during the
+	delete process.	Otherwise, windows are not destroyed.</li>
       <li>Date and numeric sorting in Members Browser.</li>
-      <li>Disable native dialogs, menu bars, and windows on MacOS and
+      <li>Disable native dialogs and menu bars on MacOS and
 	Windows. Prefer Qt widgets.</li>
       <li>Due Date cell background will now be white for a current
 	(non-expired) entry.</li>

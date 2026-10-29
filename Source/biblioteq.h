@@ -401,14 +401,19 @@ class biblioteq: public QMainWindow
   void populateFavorites(void);
   void prepareCustomQueryFavoriteShortcut(void);
   void refresh(const QString &filter);
-  void removeBook(biblioteq_book *book);
-  void removeCD(biblioteq_cd *cd);
-  void removeDVD(biblioteq_dvd *dvd);
-  void removeGreyLiterature(biblioteq_grey_literature *gl);
-  void removeJournal(biblioteq_journal *journal);
-  void removeMagazine(biblioteq_magazine *magazine);
-  void removePhotographCollection(biblioteq_photographcollection *pc);
-  void removeVideoGame(biblioteq_videogame *videogame);
+  void removeBook(biblioteq_book *book, const bool ignoreLock = false);
+  void removeCD(biblioteq_cd *cd, const bool ignoreLock = false);
+  void removeDVD(biblioteq_dvd *dvd, const bool ignoreLock = false);
+  void removeGreyLiterature
+    (biblioteq_grey_literature *gl, const bool ignoreLock = false);
+  void removeJournal
+    (biblioteq_journal *journal, const bool ignoreLock = false);
+  void removeMagazine
+    (biblioteq_magazine *magazine, const bool ignoreLock = false);
+  void removePhotographCollection(biblioteq_photographcollection *pc,
+				  const bool ignoreLock = false);
+  void removeVideoGame
+    (biblioteq_videogame *videogame, const bool ignoreLock = false);
   void replaceBook(const QString &id, biblioteq_book *book);
   void replaceCD(const QString &id, biblioteq_cd *cd);
   void replaceDVD(const QString &id, biblioteq_dvd *dvd);
@@ -586,7 +591,9 @@ class biblioteq: public QMainWindow
   void closeEvent(QCloseEvent *event);
   void createConfigToolMenu(void);
   void createSqliteMenuActions(void);
-  void deleteItem(const QString &oid, const QString &itemType);
+  void deleteItem(const QString &oid,
+		  const QString &itemType,
+		  const bool ignoreLock = false);
   void exportAsCSV(QTableWidget *table, QWidget *parent, const QString &title);
   void initialUpdate(void);
   void prepareContextMenus(void);

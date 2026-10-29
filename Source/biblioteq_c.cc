@@ -1306,14 +1306,15 @@ void biblioteq::createConfigToolMenu(void)
     }
 }
 
-void biblioteq::deleteItem(const QString &oid, const QString &itemType)
+void biblioteq::deleteItem
+(const QString &oid, const QString &itemType, const bool ignoreLock)
 {
   if(itemType == "book")
     {
       auto item = dynamic_cast<biblioteq_book *> (findItemInTab(oid));
 
       if(item)
-	removeBook(item);
+	removeBook(item, ignoreLock);
       else
 	{
 	  foreach(auto w, QApplication::topLevelWidgets())
@@ -1322,7 +1323,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
 
 	      if(book && book->getID() == oid)
 		{
-		  removeBook(book);
+		  removeBook(book, ignoreLock);
 		  break;
 		}
 	    }
@@ -1333,7 +1334,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
       auto item = dynamic_cast<biblioteq_cd *> (findItemInTab(oid));
 
       if(item)
-	removeCD(item);
+	removeCD(item, ignoreLock);
       else
 	{
 	  foreach(auto w, QApplication::topLevelWidgets())
@@ -1342,7 +1343,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
 
 	      if(cd && cd->getID() == oid)
 		{
-		  removeCD(cd);
+		  removeCD(cd, ignoreLock);
 		  break;
 		}
 	    }
@@ -1353,7 +1354,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
       auto item = dynamic_cast<biblioteq_dvd *> (findItemInTab(oid));
 
       if(item)
-	removeDVD(item);
+	removeDVD(item, ignoreLock);
       else
 	{
 	  foreach(auto w, QApplication::topLevelWidgets())
@@ -1362,7 +1363,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
 
 	      if(dvd && dvd->getID() == oid)
 		{
-		  removeDVD(dvd);
+		  removeDVD(dvd, ignoreLock);
 		  break;
 		}
 	    }
@@ -1374,7 +1375,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
 	(findItemInTab(oid));
 
       if(item)
-	removeGreyLiterature(item);
+	removeGreyLiterature(item, ignoreLock);
       else
 	{
 	  foreach(auto w, QApplication::topLevelWidgets())
@@ -1383,7 +1384,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
 
 	      if(gl && gl->getID() == oid)
 		{
-		  removeGreyLiterature(gl);
+		  removeGreyLiterature(gl, ignoreLock);
 		  break;
 		}
 	    }
@@ -1394,7 +1395,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
       auto item = dynamic_cast<biblioteq_journal *> (findItemInTab(oid));
 
       if(item)
-	removeJournal(item);
+	removeJournal(item, ignoreLock);
       else
 	{
 	  foreach(auto w, QApplication::topLevelWidgets())
@@ -1403,7 +1404,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
 
 	      if(journal && journal->getID() == oid)
 		{
-		  removeJournal(journal);
+		  removeJournal(journal, ignoreLock);
 		  break;
 		}
 	    }
@@ -1414,7 +1415,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
       auto item = dynamic_cast<biblioteq_magazine *> (findItemInTab(oid));
 
       if(item)
-	removeMagazine(item);
+	removeMagazine(item, ignoreLock);
       else
 	{
 	  foreach(auto w, QApplication::topLevelWidgets())
@@ -1428,7 +1429,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
 	      if(!qobject_cast<biblioteq_journal *> (w))
 		if(magazine && magazine->getID() == oid)
 		  {
-		    removeMagazine(magazine);
+		    removeMagazine(magazine, ignoreLock);
 		    break;
 		  }
 	    }
@@ -1440,7 +1441,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
 	(findItemInTab(oid));
 
       if(item)
-	removePhotographCollection(item);
+	removePhotographCollection(item, ignoreLock);
       else
 	{
 	  foreach(auto w, QApplication::topLevelWidgets())
@@ -1450,7 +1451,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
 
 	      if(photograph && photograph->getID() == oid)
 		{
-		  removePhotographCollection(photograph);
+		  removePhotographCollection(photograph, ignoreLock);
 		  break;
 		}
 	    }
@@ -1462,7 +1463,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
 	(findItemInTab(oid));
 
       if(item)
-	removeVideoGame(item);
+	removeVideoGame(item, ignoreLock);
       else
 	{
 	  foreach(auto w, QApplication::topLevelWidgets())
@@ -1471,7 +1472,7 @@ void biblioteq::deleteItem(const QString &oid, const QString &itemType)
 
 	      if(videogame && videogame->getID() == oid)
 		{
-		  removeVideoGame(videogame);
+		  removeVideoGame(videogame, ignoreLock);
 		  break;
 		}
 	    }

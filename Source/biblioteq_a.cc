@@ -2216,106 +2216,135 @@ void biblioteq::quit(void)
 #endif
 }
 
-void biblioteq::removeBook(biblioteq_book *book)
+void biblioteq::removeBook(biblioteq_book *book, const bool ignoreLock)
 {
   if(!book)
     return;
 
-  std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
+  if(!ignoreLock)
+    {
+      std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
-  if(!lock.try_lock())
-    return;
+      if(!lock.try_lock())
+	return;
+    }
 
   book->deleteLater();
 }
 
-void biblioteq::removeCD(biblioteq_cd *cd)
+void biblioteq::removeCD(biblioteq_cd *cd, const bool ignoreLock)
 {
   if(!cd)
     return;
 
-  std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
+  if(!ignoreLock)
+    {
+      std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
-  if(!lock.try_lock())
-    return;
+      if(!lock.try_lock())
+	return;
+    }
 
   cd->deleteLater();
 }
 
-void biblioteq::removeDVD(biblioteq_dvd *dvd)
+void biblioteq::removeDVD(biblioteq_dvd *dvd, const bool ignoreLock)
 {
   if(!dvd)
     return;
 
-  std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
+  if(!ignoreLock)
+    {
+      std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
-  if(!lock.try_lock())
-    return;
+      if(!lock.try_lock())
+	return;
+    }
 
   dvd->deleteLater();
 }
 
-void biblioteq::removeGreyLiterature(biblioteq_grey_literature *gl)
+void biblioteq::removeGreyLiterature
+(biblioteq_grey_literature *gl, const bool ignoreLock)
 {
   if(!gl)
     return;
 
-  std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
+  if(!ignoreLock)
+    {
+      std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
-  if(!lock.try_lock())
-    return;
+      if(!lock.try_lock())
+	return;
+    }
 
   gl->deleteLater();
 }
 
-void biblioteq::removeJournal(biblioteq_journal *journal)
+void biblioteq::removeJournal
+(biblioteq_journal *journal, const bool ignoreLock)
 {
   if(!journal)
     return;
 
-  std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
+  if(!ignoreLock)
+    {
+      std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
-  if(!lock.try_lock())
-    return;
+      if(!lock.try_lock())
+	return;
+    }
 
   journal->deleteLater();
 }
 
-void biblioteq::removeMagazine(biblioteq_magazine *magazine)
+void biblioteq::removeMagazine
+(biblioteq_magazine *magazine, const bool ignoreLock)
 {
   if(!magazine)
     return;
 
-  std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
+  if(!ignoreLock)
+    {
+      std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
-  if(!lock.try_lock())
-    return;
+      if(!lock.try_lock())
+	return;
+    }
 
   magazine->deleteLater();
 }
 
-void biblioteq::removePhotographCollection(biblioteq_photographcollection *pc)
+void biblioteq::removePhotographCollection
+(biblioteq_photographcollection *pc, const bool ignoreLock)
 {
   if(!pc)
     return;
 
-  std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
+  if(!ignoreLock)
+    {
+      std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
-  if(!lock.try_lock())
-    return;
+      if(!lock.try_lock())
+	return;
+    }
 
   pc->deleteLater();
 }
 
-void biblioteq::removeVideoGame(biblioteq_videogame *videogame)
+void biblioteq::removeVideoGame
+(biblioteq_videogame *videogame, const bool ignoreLock)
 {
   if(!videogame)
     return;
 
-  std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
+  if(!ignoreLock)
+    {
+      std::unique_lock<std::mutex> lock{m_mutex, std::defer_lock};
 
-  if(!lock.try_lock())
-    return;
+      if(!lock.try_lock())
+	return;
+    }
 
   videogame->deleteLater();
 }
@@ -3268,8 +3297,6 @@ void biblioteq::slotDelete(void)
   QString errorstr = "";
   auto const col = ui.table->columnNumber("MYOID");
   auto error = false;
-  auto isCheckedOut = false;
-  auto isRequested = false;
   int numdeleted = 0;
 
   foreach(auto const &index, list)
@@ -3301,35 +3328,10 @@ void biblioteq::slotDelete(void)
 	}
 
       QApplication::setOverrideCursor(Qt::WaitCursor);
-      isCheckedOut = biblioteq_misc_functions::isCheckedOut
+
+      auto const isRequested = biblioteq_misc_functions::isRequested
 	(m_db, oid, itemType, errorstr);
-      QApplication::restoreOverrideCursor();
 
-      if(!errorstr.isEmpty())
-	{
-	  addError(tr("Database Error"),
-		   tr("Unable to determine if the item has been reserved."),
-		   errorstr,
-		   __FILE__,
-		   __LINE__);
-	  QMessageBox::critical(this,
-				tr("BiblioteQ: Database Error"),
-				tr("Unable to determine if the item has "
-				   "been reserved."));
-	  return;
-	}
-
-      if(isCheckedOut)
-	{
-	  QMessageBox::critical(this,
-				tr("BiblioteQ: User Error"),
-				tr("Reserved items may not be deleted."));
-	  return;
-	}
-
-      QApplication::setOverrideCursor(Qt::WaitCursor);
-      isRequested = biblioteq_misc_functions::isRequested
-	(m_db, oid, itemType, errorstr);
       QApplication::restoreOverrideCursor();
 
       if(!errorstr.isEmpty())
@@ -3351,6 +3353,35 @@ void biblioteq::slotDelete(void)
 	  QMessageBox::critical(this,
 				tr("BiblioteQ: User Error"),
 				tr("Requested items may not be deleted."));
+	  return;
+	}
+
+      QApplication::setOverrideCursor(Qt::WaitCursor);
+
+      auto const isReserved = biblioteq_misc_functions::isCheckedOut
+	(m_db, oid, itemType, errorstr);
+
+      QApplication::restoreOverrideCursor();
+
+      if(!errorstr.isEmpty())
+	{
+	  addError(tr("Database Error"),
+		   tr("Unable to determine if the item has been reserved."),
+		   errorstr,
+		   __FILE__,
+		   __LINE__);
+	  QMessageBox::critical(this,
+				tr("BiblioteQ: Database Error"),
+				tr("Unable to determine if the item has "
+				   "been reserved."));
+	  return;
+	}
+
+      if(isReserved)
+	{
+	  QMessageBox::critical(this,
+				tr("BiblioteQ: User Error"),
+				tr("Reserved items may not be deleted."));
 	  return;
 	}
     }
@@ -3425,7 +3456,7 @@ void biblioteq::slotDelete(void)
 	}
       else
 	{
-	  deleteItem(str, itemType);
+	  deleteItem(str, itemType, true); // Ignore the lock m_mutex.
 	  numdeleted += 1;
 
 	  /*
