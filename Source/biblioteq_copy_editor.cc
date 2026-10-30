@@ -364,6 +364,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
   list.append(tr("Availability"));
   list.append(tr("Status"));
   list.append(tr("Notes"));
+  list.append(tr("Location"));
   list.append("ITEM_OID");
   list.append("Copy Number");
   m_columnHeaderIndexes.clear();
@@ -372,6 +373,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
   m_columnHeaderIndexes.append("Availability");
   m_columnHeaderIndexes.append("Status");
   m_columnHeaderIndexes.append("Notes");
+  m_columnHeaderIndexes.append("Location");
   m_columnHeaderIndexes.append("ITEM_OID");
   m_columnHeaderIndexes.append("Copy Number");
   m_cb.table->horizontalScrollBar()->setValue(0);
@@ -499,6 +501,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 			    "(1 - COUNT(item_borrower.copyid)), "
 			    "%1_copy_info.status, "
 			    "%1_copy_info.notes, "
+			    "%1_copy_info.location, "
 			    "%1_copy_info.item_oid, "
 			    "%1_copy_info.copy_number "
 			    "FROM "
@@ -514,6 +517,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 			    "%1_copy_info.copyid, "
 			    "%1_copy_info.status, "
 			    "%1_copy_info.notes, "
+			    "%1_copy_info.location, "
 			    "%1_copy_info.item_oid, "
 			    "%1_copy_info.copy_number "
 			    "ORDER BY %1_copy_info.copy_number").
@@ -1064,18 +1068,22 @@ void biblioteq_copy_editor::slotSaveCopies(void)
       item3 = m_cb.table->item(i, static_cast<int> (Columns::MYOID));
       item4 = m_cb.table->item(i, static_cast<int> (Columns::NOTES));
 
+      auto location = m_cb.table->item(i, static_cast<int> (Columns::LOCATION));
+
       if(comboBox == nullptr ||
 	 item1 == nullptr ||
 	 item2 == nullptr ||
 	 item3 == nullptr ||
-	 item4 == nullptr)
+	 item4 == nullptr ||
+	 location == nullptr)
 	continue;
 
-      copy = new copy_class(item1->text().trimmed(),            // Copy ID
-			    item2->text(),                      // Copy Number
-			    item3->text(),                      // Item OID
-			    item4->text(),                      // Notes
-			    comboBox->currentText().trimmed()); // Status
+      copy = new copy_class(item1->text(),            // Copy ID
+			    item2->text(),            // Copy Number
+			    item3->text(),            // Item OID
+			    location->text(),         // Location
+			    item4->text(),            // Notes
+			    comboBox->currentText()); // Status
       m_copies.append(copy);
     }
 

@@ -35,7 +35,7 @@
            <item>
             <spacer>
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -71,7 +71,7 @@
            <item>
             <spacer>
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -109,25 +109,25 @@
       <item>
        <widget class="QTableWidget" name="table">
         <property name="focusPolicy">
-         <enum>Qt::StrongFocus</enum>
+         <enum>Qt::FocusPolicy::StrongFocus</enum>
         </property>
         <property name="editTriggers">
-         <set>QAbstractItemView::DoubleClicked</set>
+         <set>QAbstractItemView::EditTrigger::DoubleClicked</set>
         </property>
         <property name="alternatingRowColors">
          <bool>true</bool>
         </property>
         <property name="selectionMode">
-         <enum>QAbstractItemView::SingleSelection</enum>
+         <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
         </property>
         <property name="selectionBehavior">
-         <enum>QAbstractItemView::SelectRows</enum>
+         <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
         </property>
         <property name="verticalScrollMode">
-         <enum>QAbstractItemView::ScrollPerPixel</enum>
+         <enum>QAbstractItemView::ScrollMode::ScrollPerPixel</enum>
         </property>
         <property name="horizontalScrollMode">
-         <enum>QAbstractItemView::ScrollPerPixel</enum>
+         <enum>QAbstractItemView::ScrollMode::ScrollPerPixel</enum>
         </property>
         <property name="cornerButtonEnabled">
          <bool>false</bool>
@@ -171,6 +171,11 @@
         </column>
         <column>
          <property name="text">
+          <string>Location</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
           <string>MYOID</string>
          </property>
         </column>
@@ -192,10 +197,10 @@
      <item>
       <spacer>
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeType">
-        <enum>QSizePolicy::Expanding</enum>
+        <enum>QSizePolicy::Policy::Expanding</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -259,7 +264,7 @@
      <item>
       <spacer>
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>

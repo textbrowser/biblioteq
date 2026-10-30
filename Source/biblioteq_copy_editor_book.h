@@ -58,6 +58,7 @@ class biblioteq_copy_editor_book: public biblioteq_copy_editor
 	       const QString &copyid,
 	       const QString &copynumber,
 	       const QString &itemoid,
+	       const QString &location,
 	       const QString &notes,
 	       const QString &originality,
 	       const QString &status)
@@ -66,6 +67,7 @@ class biblioteq_copy_editor_book: public biblioteq_copy_editor
       m_copyid = copyid.trimmed();
       m_copynumber = copynumber.trimmed();
       m_itemoid = itemoid.trimmed();
+      m_location = location.trimmed();
       m_originality = originality.trimmed();
       m_notes = notes.trimmed();
       m_status = status.trimmed();
@@ -76,6 +78,7 @@ class biblioteq_copy_editor_book: public biblioteq_copy_editor
     QString m_copyid;
     QString m_copynumber;
     QString m_itemoid;
+    QString m_location;
     QString m_notes;
     QString m_originality;
     QString m_status;
@@ -86,8 +89,9 @@ class biblioteq_copy_editor_book: public biblioteq_copy_editor
       AVAILABILITY = 2,
       BARCODE = 1,
       CONDITION = 4,
-      COPY_NUMBER = 8,
-      MYOID = 7,
+      COPY_NUMBER = 9,
+      LOCATION = 7,
+      MYOID = 8,
       NOTES = 6,
       ORIGINALITY = 3,
       STATUS = 5,

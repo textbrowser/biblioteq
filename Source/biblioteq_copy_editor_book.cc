@@ -316,6 +316,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
   list.append(tr("Condition"));
   list.append(tr("Status"));
   list.append(tr("Notes"));
+  list.append(tr("Location"));
   list.append("ITEM_OID");
   list.append("Copy Number");
   m_columnHeaderIndexes.clear();
@@ -326,6 +327,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
   m_columnHeaderIndexes.append("Condition");
   m_columnHeaderIndexes.append("Status");
   m_columnHeaderIndexes.append("Notes");
+  m_columnHeaderIndexes.append("Location");
   m_columnHeaderIndexes.append("ITEM_OID");
   m_columnHeaderIndexes.append("Copy Number");
   m_cb.table->horizontalScrollBar()->setValue(0);
@@ -470,6 +472,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 			"%1_copy_info.condition, "
 			"%1_copy_info.status, "
 			"%1_copy_info.notes, "
+			"%1_copy_info.location, "
 			"%1_copy_info.item_oid, "
 			"%1_copy_info.copy_number "
 			"FROM "
@@ -487,6 +490,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 			"%1_copy_info.condition, "
 			"%1_copy_info.status, "
 			"%1_copy_info.notes, "
+			"%1_copy_info.location, "
 			"%1_copy_info.item_oid, "
 			"%1_copy_info.copy_number "
 			"ORDER BY %1_copy_info.copy_number").arg
@@ -802,23 +806,28 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
       item3 = m_cb.table->item(i, static_cast<int> (Columns::MYOID));
       item4 = m_cb.table->item(i, static_cast<int> (Columns::NOTES));
 
+      auto location = m_cb.table->item
+	(i, static_cast<int> (Columns::LOCATION));
+
       if(!comboBox1 ||
 	 !comboBox2 ||
 	 !comboBox3 ||
 	 !item1 ||
 	 !item2 ||
 	 !item3 ||
-	 !item4)
+	 !item4 ||
+	 !location)
 	continue;
 
       copy = new copy_class
-	(comboBox2->currentText().trimmed(),
-	 item1->text().trimmed(),
+	(comboBox2->currentText(),
+	 item1->text(),
 	 item2->text(),
 	 item3->text(),
+	 location->text(),
 	 item4->text(),
-	 comboBox1->currentText().trimmed(),
-	 comboBox3->currentText().trimmed());
+	 comboBox1->currentText(),
+	 comboBox3->currentText());
       m_copies.append(copy);
     }
 
