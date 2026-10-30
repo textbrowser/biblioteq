@@ -46,7 +46,13 @@ ALTER TABLE member ADD maximum_reserved_magazines INTEGER NOT NULL DEFAULT 0;
 ALTER TABLE member ADD maximum_reserved_video_games INTEGER NOT NULL
       	    DEFAULT 0;
 
-/* Version 2026.10.25 */
+/* Version 2026.10.31 */
 
+ALTER TABLE book_copy_info ADD location TEXT NOT NULL DEFAULT 'UNKNOWN';
+ALTER TABLE cd_copy_info ADD location TEXT NOT NULL DEFAULT 'UNKNOWN';
+ALTER TABLE dvd_copy_info ADD location TEXT NOT NULL DEFAULT 'UNKNOWN';
 ALTER TABLE journal ADD display_number INTEGER;
+ALTER TABLE journal_copy_info ADD location TEXT NOT NULL DEFAULT 'UNKNOWN';
 ALTER TABLE magazine ADD display_number INTEGER;
+ALTER TABLE magazine_copy_info ADD location TEXT NOT NULL DEFAULT 'UNKNOWN';
+ALTER TABLE videogame_copy_info ADD location TEXT NOT NULL DEFAULT 'UNKNOWN';

@@ -85,6 +85,7 @@ CREATE TABLE book_copy_info						\
     copy_number	INTEGER NOT NULL DEFAULT 1,				\
     copyid	VARCHAR(64) NOT NULL,					\
     item_oid	BIGINT NOT NULL,					\
+    location    TEXT NOT NULL,						\
     myoid	BIGINT NOT NULL,					\
     notes       TEXT,							\
     originality TEXT,							\
@@ -168,6 +169,7 @@ CREATE TABLE cd_copy_info						\
     copy_number	INTEGER NOT NULL DEFAULT 1,				\
     copyid	VARCHAR(64) NOT NULL,					\
     item_oid	BIGINT NOT NULL,					\
+    location    TEXT NOT NULL,						\
     myoid	BIGINT NOT NULL,					\
     notes       TEXT,							\
     status	TEXT,							\
@@ -222,6 +224,7 @@ CREATE TABLE dvd_copy_info						\
     copy_number	INTEGER NOT NULL DEFAULT 1,				\
     copyid	VARCHAR(64) NOT NULL,					\
     item_oid	BIGINT NOT NULL,					\
+    location    TEXT NOT NULL,						\
     myoid	BIGINT NOT NULL,					\
     notes       TEXT,							\
     status      TEXT,							\
@@ -297,6 +300,7 @@ CREATE TABLE journal_copy_info						\
     copy_number	INTEGER NOT NULL DEFAULT 1,				\
     copyid	VARCHAR(64) NOT NULL,					\
     item_oid	BIGINT NOT NULL,					\
+    location    TEXT NOT NULL,						\
     myoid	BIGINT NOT NULL,					\
     notes       TEXT,							\
     status      TEXT,							\
@@ -351,6 +355,7 @@ CREATE TABLE magazine_copy_info						\
     copy_number	INTEGER NOT NULL DEFAULT 1,				\
     copyid	VARCHAR(64) NOT NULL,					\
     item_oid	BIGINT NOT NULL,					\
+    location    TEXT NOT NULL,						\
     myoid	BIGINT NOT NULL,					\
     notes       TEXT,							\
     status      TEXT,							\
@@ -442,6 +447,7 @@ CREATE TABLE videogame_copy_info					\
     copy_number INTEGER NOT NULL DEFAULT 1,				\
     copyid	VARCHAR(64) NOT NULL,					\
     item_oid	BIGINT NOT NULL,					\
+    location    TEXT NOT NULL,						\
     myoid	BIGINT NOT NULL,					\
     notes       TEXT,							\
     status      TEXT,							\
