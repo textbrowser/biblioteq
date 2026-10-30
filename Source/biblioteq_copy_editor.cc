@@ -1016,20 +1016,13 @@ void biblioteq_copy_editor::slotDeleteCopy(void)
 
 void biblioteq_copy_editor::slotSaveCopies(void)
 {
-  QComboBox *comboBox = nullptr;
   QString errormsg = "";
   QString errorstr = "";
   QStringList duplicates;
-  QTableWidgetItem *item1 = nullptr;
-  QTableWidgetItem *item2 = nullptr;
-  QTableWidgetItem *item3 = nullptr;
-  QTableWidgetItem *item4 = nullptr;
-  copy_class *copy = nullptr;
-  int i = 0;
 
   m_cb.table->setFocus();
 
-  for(i = 0; i < m_cb.table->rowCount(); i++)
+  for(int i = 0; i < m_cb.table->rowCount(); i++)
     if(m_cb.table->item(i, static_cast<int> (Columns::BARCODE)) != nullptr &&
        m_cb.table->item(i, static_cast<int> (Columns::BARCODE))->
        text().trimmed().isEmpty())
@@ -1076,15 +1069,14 @@ void biblioteq_copy_editor::slotSaveCopies(void)
 
   QApplication::restoreOverrideCursor();
 
-  for(i = 0; i < m_cb.table->rowCount(); i++)
+  for(int i = 0; i < m_cb.table->rowCount(); i++)
     {
-      comboBox = qobject_cast<QComboBox *>
+      auto comboBox = qobject_cast<QComboBox *>
 	(m_cb.table->cellWidget(i, static_cast<int> (Columns::STATUS)));
-      item1 = m_cb.table->item(i, static_cast<int> (Columns::BARCODE));
-      item2 = m_cb.table->item(i, static_cast<int> (Columns::COPY_NUMBER));
-      item3 = m_cb.table->item(i, static_cast<int> (Columns::MYOID));
-      item4 = m_cb.table->item(i, static_cast<int> (Columns::NOTES));
-
+      auto item1 = m_cb.table->item(i, static_cast<int> (Columns::BARCODE));
+      auto item2 = m_cb.table->item(i, static_cast<int> (Columns::COPY_NUMBER));
+      auto item3 = m_cb.table->item(i, static_cast<int> (Columns::MYOID));
+      auto item4 = m_cb.table->item(i, static_cast<int> (Columns::NOTES));
       auto location = qobject_cast<QComboBox *>
 	(m_cb.table->cellWidget(i, static_cast<int> (Columns::LOCATION)));
 
@@ -1096,12 +1088,13 @@ void biblioteq_copy_editor::slotSaveCopies(void)
 	 location == nullptr)
 	continue;
 
-      copy = new copy_class(item1->text(),            // Copy ID
-			    item2->text(),            // Copy Number
-			    item3->text(),            // Item OID
-			    location->currentText(),  // Location
-			    item4->text(),            // Notes
-			    comboBox->currentText()); // Status
+      auto copy = new copy_class(item1->text(),            // Copy ID
+				 item2->text(),            // Copy Number
+				 item3->text(),            // Item OID
+				 location->currentText(),  // Location
+				 item4->text(),            // Notes
+				 comboBox->currentText()); // Status
+
       m_copies.append(copy);
     }
 
