@@ -457,7 +457,6 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 	if(m_showForLending)
 	  item->setFlags(Qt::NoItemFlags);
 	else if(j == static_cast<int> (Columns::BARCODE) ||
-		j == static_cast<int> (Columns::LOCATION) ||
 		j == static_cast<int> (Columns::NOTES))
 	  item->setFlags
 	    (Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
@@ -627,7 +626,6 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 		      m_cb.table->selectRow(row);
 		  }
 		else if(j == static_cast<int> (Columns::BARCODE) ||
-			j == static_cast<int> (Columns::LOCATION) ||
 			j == static_cast<int> (Columns::NOTES))
 		  m_cb.table->item(row, j)->setFlags
 		    (Qt::ItemIsEditable |
