@@ -149,9 +149,10 @@ QString biblioteq_copy_editor::saveCopies(void)
 				  "copy_number, "
 				  "copyid, "
 				  "status, "
-				  "notes) "
+				  "notes, "
+				  "location) "
 				  "VALUES "
-				  "(?, ?, ?, ?, ?)").arg
+				  "(?, ?, ?, ?, ?, ?)").arg
 			  (m_itemType.toLower().remove(" ")));
 	  else
 	    query.prepare(QString("INSERT INTO %1_copy_info "
@@ -160,8 +161,9 @@ QString biblioteq_copy_editor::saveCopies(void)
 				  "copyid, "
 				  "myoid, "
 				  "status, "
-				  "notes) "
-				  "VALUES (?, ?, ?, ?, ?, ?)").
+				  "notes, "
+				  "location) "
+				  "VALUES (?, ?, ?, ?, ?, ?, ?)").
 			  arg(m_itemType.toLower().remove(" ")));
 
 	  query.addBindValue(copy->m_itemoid);
@@ -197,6 +199,7 @@ QString biblioteq_copy_editor::saveCopies(void)
 
 	  query.addBindValue(copy->m_status);
 	  query.addBindValue(copy->m_notes);
+	  query.addBindValue(copy->m_location);
 
 	  if(!query.exec())
 	    {
@@ -440,6 +443,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 	if(m_showForLending)
 	  item->setFlags(Qt::NoItemFlags);
 	else if(j == static_cast<int> (Columns::BARCODE) ||
+		j == static_cast<int> (Columns::LOCATION) ||
 		j == static_cast<int> (Columns::NOTES))
 	  item->setFlags
 	    (Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
@@ -609,6 +613,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 		      m_cb.table->selectRow(row);
 		  }
 		else if(j == static_cast<int> (Columns::BARCODE) ||
+			j == static_cast<int> (Columns::LOCATION) ||
 			j == static_cast<int> (Columns::NOTES))
 		  m_cb.table->item(row, j)->setFlags
 		    (Qt::ItemIsEditable |

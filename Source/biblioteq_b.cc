@@ -5870,8 +5870,20 @@ void biblioteq::slotUpgradeSqliteScheme(void)
 	      "END;");
   list.append("ALTER TABLE book_history ADD target_audience TEXT");
  recent_label:
+  list.append("ALTER TABLE book_copy_info ADD location "
+	      "TEXT NOT NULL DEFAULT 'UNKNOWN'");
+  list.append("ALTER TABLE cd_copy_info ADD location "
+	      "TEXT NOT NULL DEFAULT 'UNKNOWN'");
+  list.append("ALTER TABLE dvd_copy_info ADD location "
+	      "TEXT NOT NULL DEFAULT 'UNKNOWN'");
   list.append("ALTER TABLE journal ADD display_number INTEGER");
+  list.append("ALTER TABLE journal_copy_info ADD location "
+	      "TEXT NOT NULL DEFAULT 'UNKNOWN'");
   list.append("ALTER TABLE magazine ADD display_number INTEGER");
+  list.append("ALTER TABLE magazine_copy_info ADD location "
+	      "TEXT NOT NULL DEFAULT 'UNKNOWN'");
+  list.append("ALTER TABLE videogame_copy_info ADD location "
+	      "TEXT NOT NULL DEFAULT 'UNKNOWN'");
 
   QString errors("<html>");
   int ct = 1;
