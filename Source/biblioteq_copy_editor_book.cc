@@ -127,8 +127,9 @@ QString biblioteq_copy_editor_book::saveCopies(void)
 				  "originality, "
 				  "condition, "
 				  "status, "
-				  "notes) "
-				  "VALUES (?, ?, ?, ?, ?, ?, ?)").arg
+				  "notes, "
+				  "location) "
+				  "VALUES (?, ?, ?, ?, ?, ?, ?, ?)").arg
 			  (m_itemType.toLower().remove(" ")));
 	  else
 	    query.prepare(QString("INSERT INTO %1_copy_info "
@@ -139,8 +140,9 @@ QString biblioteq_copy_editor_book::saveCopies(void)
 				  "condition, "
 				  "myoid, "
 				  "status, "
-				  "notes) "
-				  "VALUES (?, ?, ?, ?, ?, ?, ?, ?)").arg
+				  "notes, "
+				  "location) "
+				  "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)").arg
 			  (m_itemType.toLower().remove(" ")));
 
 	  query.addBindValue(copy->m_itemoid);
@@ -178,6 +180,7 @@ QString biblioteq_copy_editor_book::saveCopies(void)
 
 	  query.addBindValue(copy->m_status);
 	  query.addBindValue(copy->m_notes);
+	  query.addBindValue(copy->m_location);
 
 	  if(!query.exec())
 	    {
@@ -367,6 +370,7 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
     {
       for(j = 0; j < m_cb.table->columnCount(); j++)
 	if(j == static_cast<int> (Columns::CONDITION) ||
+	   j == static_cast<int> (Columns::LOCATION) ||
 	   j == static_cast<int> (Columns::ORIGINALITY))
 	  {
 	    QString error("");
@@ -377,11 +381,14 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 	      (40, 20, QSizePolicy::Expanding, QSizePolicy::Expanding);
 	    auto widget = new QWidget();
 
-	    if(j == static_cast<int> (Columns::ORIGINALITY))
-	      list = biblioteq_misc_functions::getBookOriginality
-		(qmain->getDB(), error);
-	    else
+	    if(j == static_cast<int> (Columns::CONDITION))
 	      list = biblioteq_misc_functions::getBookConditions
+		(qmain->getDB(), error);
+	    else if(j == static_cast<int> (Columns::LOCATION))
+	      list = biblioteq_misc_functions::getLocations
+		(qmain->getDB(), "Book", error);
+	    else
+	      list = biblioteq_misc_functions::getBookOriginality
 		(qmain->getDB(), error);
 
 	    comboBox->addItems(list << biblioteq::s_unknown);
@@ -724,9 +731,6 @@ void biblioteq_copy_editor_book::slotDeleteCopy(void)
 
 void biblioteq_copy_editor_book::slotSaveCopies(void)
 {
-  QComboBox *comboBox1 = nullptr;
-  QComboBox *comboBox2 = nullptr;
-  QComboBox *comboBox3 = nullptr;
   QString errormsg = "";
   QString errorstr = "";
   QStringList duplicates;
@@ -788,46 +792,46 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
 
   for(i = 0; i < m_cb.table->rowCount(); i++)
     {
-      auto widget1 = m_cb.table->cellWidget
-	(i, static_cast<int> (Columns::ORIGINALITY));
-      auto widget2 = m_cb.table->cellWidget
+      auto condition = m_cb.table->cellWidget
 	(i, static_cast<int> (Columns::CONDITION));
-      auto widget3 = m_cb.table->cellWidget
+      auto location = m_cb.table->cellWidget
+	(i, static_cast<int> (Columns::LOCATION));
+      auto originality = m_cb.table->cellWidget
+	(i, static_cast<int> (Columns::ORIGINALITY));
+      auto status = m_cb.table->cellWidget
 	(i, static_cast<int> (Columns::STATUS));
 
-      if(!widget1 || !widget2 || !widget3)
+      if(!condition || !location || !originality || !status)
 	continue;
 
-      comboBox1 = widget1->findChild<QComboBox *> ();
-      comboBox2 = widget2->findChild<QComboBox *> ();
-      comboBox3 = widget3->findChild<QComboBox *> ();
+      auto conditionComboBox = condition->findChild<QComboBox *> ();
+      auto locationComboBox = location->findChild<QComboBox *> ();
+      auto originalityComboBox = originality->findChild<QComboBox *> ();
+      auto statusComboBox = status->findChild<QComboBox *> ();
+
+      if(!conditionComboBox ||
+	 !locationComboBox ||
+	 !originalityComboBox ||
+	 !statusComboBox)
+	continue;
+
       item1 = m_cb.table->item(i, static_cast<int> (Columns::BARCODE));
       item2 = m_cb.table->item(i, static_cast<int> (Columns::COPY_NUMBER));
       item3 = m_cb.table->item(i, static_cast<int> (Columns::MYOID));
       item4 = m_cb.table->item(i, static_cast<int> (Columns::NOTES));
 
-      auto location = m_cb.table->item
-	(i, static_cast<int> (Columns::LOCATION));
-
-      if(!comboBox1 ||
-	 !comboBox2 ||
-	 !comboBox3 ||
-	 !item1 ||
-	 !item2 ||
-	 !item3 ||
-	 !item4 ||
-	 !location)
+      if(!item1 || !item2 || !item3 || !item4)
 	continue;
 
       copy = new copy_class
-	(comboBox2->currentText(),
+	(conditionComboBox->currentText(),
 	 item1->text(),
 	 item2->text(),
 	 item3->text(),
-	 location->text(),
+	 locationComboBox->currentText(),
 	 item4->text(),
-	 comboBox1->currentText(),
-	 comboBox3->currentText());
+	 originalityComboBox->currentText(),
+	 statusComboBox->currentText());
       m_copies.append(copy);
     }
 
