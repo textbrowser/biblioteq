@@ -418,15 +418,29 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
   for(i = 0; i < m_quantity && !progress1.wasCanceled(); i++)
     for(j = 0; j < m_cb.table->columnCount(); j++)
       {
-	if(j == static_cast<int> (Columns::STATUS))
+	if(j == static_cast<int> (Columns::LOCATION) ||
+	   j == static_cast<int> (Columns::STATUS))
 	  {
 	    comboBox = new QComboBox();
-	    comboBox->addItem(tr("Available"));
-	    comboBox->addItem(tr("Deleted"));
-	    comboBox->addItem(tr("Expired"));
-	    comboBox->addItem(tr("Lost"));
-	    comboBox->addItem(tr("Not Available"));
-	    comboBox->addItem(tr("Recalled"));
+
+	    if(j == static_cast<int> (Columns::LOCATION))
+	      {
+		QString error("");
+
+		comboBox->addItems
+		  (biblioteq_misc_functions::getLocations
+		  (qmain->getDB(), m_itemType, error));
+	      }
+	    else
+	      {
+		comboBox->addItem(tr("Available"));
+		comboBox->addItem(tr("Deleted"));
+		comboBox->addItem(tr("Expired"));
+		comboBox->addItem(tr("Lost"));
+		comboBox->addItem(tr("Not Available"));
+		comboBox->addItem(tr("Recalled"));
+	      }
+
 	    comboBox->addItem(biblioteq::s_unknown);
 	    comboBox->setEnabled(!m_showForLending);
 	    comboBox->setSizeAdjustPolicy(QComboBox::AdjustToContents);
@@ -1073,7 +1087,8 @@ void biblioteq_copy_editor::slotSaveCopies(void)
       item3 = m_cb.table->item(i, static_cast<int> (Columns::MYOID));
       item4 = m_cb.table->item(i, static_cast<int> (Columns::NOTES));
 
-      auto location = m_cb.table->item(i, static_cast<int> (Columns::LOCATION));
+      auto location = qobject_cast<QComboBox *>
+	(m_cb.table->cellWidget(i, static_cast<int> (Columns::LOCATION)));
 
       if(comboBox == nullptr ||
 	 item1 == nullptr ||
@@ -1086,7 +1101,7 @@ void biblioteq_copy_editor::slotSaveCopies(void)
       copy = new copy_class(item1->text(),            // Copy ID
 			    item2->text(),            // Copy Number
 			    item3->text(),            // Item OID
-			    location->text(),         // Location
+			    location->currentText(),  // Location
 			    item4->text(),            // Notes
 			    comboBox->currentText()); // Status
       m_copies.append(copy);
