@@ -81,6 +81,7 @@ class biblioteq_photographcollection: public QMainWindow, public biblioteq_item
   Ui_pcDialog pc;
   Ui_photographDialog photo;
   biblioteq_bgraphicsscene *m_scene;
+  static qint64 s_exportCounter;
   bool verifyItemFields(void);
   int photographsPerPage(void);
   void changeEvent(QEvent *event);

@@ -41,6 +41,8 @@
 
 #include <limits>
 
+qint64 biblioteq_photographcollection::s_exportCounter = 1;
+
 biblioteq_photographcollection::biblioteq_photographcollection
 (biblioteq *parentArg,
  const QString &oidArg,
@@ -1332,7 +1334,8 @@ void biblioteq_photographcollection::slotExportItem(void)
   dialog.setWindowTitle
     (tr("BiblioteQ: Photograph Collection Photograph Export"));
   dialog.selectFile
-    (QString("biblioteq-image-export.%1").
+    (QString("biblioteq-image-export-%1.%2").
+     arg(s_exportCounter).
      arg(biblioteq_misc_functions::imageFormatGuess(bytes)));
 
   if(dialog.exec() == QDialog::Accepted)
@@ -1346,6 +1349,7 @@ void biblioteq_photographcollection::slotExportItem(void)
 	  file.write(bytes);
 	  file.flush();
 	  file.close();
+	  s_exportCounter += 1;
 	}
     }
 
