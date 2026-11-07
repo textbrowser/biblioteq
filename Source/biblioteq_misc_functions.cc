@@ -2515,10 +2515,14 @@ void biblioteq_misc_functions::createInitialCopies(const QString &idArg,
 	       itemType == "magazine" ||
 	       itemType == "videogame")
 	      query.prepare(QString("INSERT INTO %1_copy_info "
-				    "(item_oid, copy_number, "
-				    "copyid) "
+				    "(item_oid, "
+				    "copy_number, "
+				    "copyid, "
+				    "location) "
 				    "VALUES (?, "
-				    "?, ?)").arg(itemType));
+				    "?, "
+				    "?, "
+				    "?)").arg(itemType));
 	  }
 	else
 	  {
@@ -2529,22 +2533,29 @@ void biblioteq_misc_functions::createInitialCopies(const QString &idArg,
 	       itemType == "magazine" ||
 	       itemType == "videogame")
 	      query.prepare(QString("INSERT INTO %1_copy_info "
-				    "(item_oid, copy_number, "
-				    "copyid, myoid) "
+				    "(item_oid, "
+				    "copy_number, "
+				    "copyid, "
+				    "location, "
+				    "myoid) "
 				    "VALUES (?, "
-				    "?, ?, ?)").arg(itemType));
+				    "?, "
+				    "?, "
+				    "?, "
+				    "?)").arg(itemType));
 	  }
 
 	query.bindValue(0, itemoid);
 	query.bindValue(1, i + 1);
 	query.bindValue(2, id + "-" + QString::number(i + 1));
+	query.bindValue(3, biblioteq::s_unknown);
 
 	if(db.driverName() == "QSQLITE")
 	  {
 	    auto const value = getSqliteUniqueId(db, errorstr);
 
 	    if(errorstr.isEmpty())
-	      query.bindValue(3, value);
+	      query.bindValue(4, value);
 	    else
 	      break;
 	  }

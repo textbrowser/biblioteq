@@ -2949,13 +2949,26 @@ void biblioteq_magazine::slotGo(void)
 
 	      if(ma.id->text().trimmed().isEmpty())
 		biblioteq_misc_functions::createInitialCopies
-		  (m_oid + "," + ma.volume->text() + "," + ma.issue->text(),
-		   ma.quantity->value(), qmain->getDB(), m_subType, errorstr);
+		  (m_oid +
+		   "," +
+		   ma.volume->text() +
+		   "," +
+		   ma.issue->text(),
+		   ma.quantity->value(),
+		   qmain->getDB(),
+		   m_subType,
+		   errorstr);
 	      else
 		biblioteq_misc_functions::createInitialCopies
-		  (ma.id->text().trimmed() + "," + ma.volume->text() + "," +
-		   ma.issue->text(), ma.quantity->value(),
-		   qmain->getDB(), m_subType, errorstr);
+		  (ma.id->text().trimmed() +
+		   "," +
+		   ma.volume->text() +
+		   "," +
+		   ma.issue->text(),
+		   ma.quantity->value(),
+		   qmain->getDB(),
+		   m_subType,
+		   errorstr);
 
 	      if(!errorstr.isEmpty())
 		{
