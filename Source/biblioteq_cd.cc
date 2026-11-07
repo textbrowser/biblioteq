@@ -1425,10 +1425,12 @@ void biblioteq_cd::slotGo(void)
 	      */
 
 	      biblioteq_misc_functions::createInitialCopies
-		(cd.id->text(),
+		("",
+		 cd.id->text(),
 		 cd.quantity->value(),
 		 qmain->getDB(),
-		 "CD", errorstr);
+		 "CD",
+		 errorstr);
 
 	      if(!errorstr.isEmpty())
 		{

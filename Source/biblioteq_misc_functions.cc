@@ -2455,11 +2455,13 @@ void biblioteq_misc_functions::createBookCopy(const QString &idArg,
     }
 }
 
-void biblioteq_misc_functions::createInitialCopies(const QString &idArg,
-						   const int numCopies,
-						   const QSqlDatabase &db,
-						   const QString &itemTypeArg,
-						   QString &errorstr)
+void biblioteq_misc_functions::createInitialCopies
+(QString const &displayNumber,
+ QString const &idArg,
+ const int numCopies,
+ QSqlDatabase const &db,
+ QString const &itemTypeArg,
+ QString &errorstr)
 {
   QSqlQuery query(db);
   QString id("");
@@ -2467,6 +2469,7 @@ void biblioteq_misc_functions::createInitialCopies(const QString &idArg,
   QString itemoid("");
   auto const copies = qBound
     (0, numCopies, static_cast<int> (biblioteq::Limits::QUANTITY));
+  auto const tokens(idArg.split(','));
 
   /*
   ** Retrieve the item's OID. Use the OID to create initial copies.
@@ -2547,7 +2550,25 @@ void biblioteq_misc_functions::createInitialCopies(const QString &idArg,
 
 	query.addBindValue(itemoid);
 	query.addBindValue(i + 1);
-	query.addBindValue(id + "-" + QString::number(i + 1));
+
+	if(itemType == "journal" || itemType == "magazine")
+	  {
+	    if(displayNumber.trimmed() == "-1")
+	      query.addBindValue
+		(id +
+		 "-" +
+		 tokens.value(1) +
+		 "-" +
+		 tokens.value(2) +
+		 "-" +
+		 QString::number(i + 1));
+	    else
+	      query.addBindValue
+		(id + "-" + displayNumber + "-" + QString::number(i + 1));
+	  }
+	else
+	  query.addBindValue(id + "-" + QString::number(i + 1));
+
 	query.addBindValue(biblioteq::s_unknown);
 
 	if(db.driverName() == "QSQLITE")

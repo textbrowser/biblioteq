@@ -3812,16 +3812,20 @@ void biblioteq_book::slotGo(void)
 
 	      if(id.id->text().remove('-').isEmpty())
 		biblioteq_misc_functions::
-		  createInitialCopies(m_oid,
+		  createInitialCopies("",
+				      m_oid,
 				      id.quantity->value(),
 				      qmain->getDB(),
-				      "Book", errorstr);
+				      "Book",
+				      errorstr);
 	      else
 		biblioteq_misc_functions::
-		  createInitialCopies(id.id->text().remove('-'),
+		  createInitialCopies("",
+				      id.id->text().remove('-'),
 				      id.quantity->value(),
 				      qmain->getDB(),
-				      "Book", errorstr);
+				      "Book",
+				      errorstr);
 
 	      if(!errorstr.isEmpty())
 		{

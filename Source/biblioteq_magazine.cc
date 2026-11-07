@@ -2949,7 +2949,8 @@ void biblioteq_magazine::slotGo(void)
 
 	      if(ma.id->text().trimmed().isEmpty())
 		biblioteq_misc_functions::createInitialCopies
-		  (m_oid +
+		  (ma.display_number->text(),
+		   m_oid +
 		   "," +
 		   ma.volume->text() +
 		   "," +
@@ -2960,7 +2961,8 @@ void biblioteq_magazine::slotGo(void)
 		   errorstr);
 	      else
 		biblioteq_misc_functions::createInitialCopies
-		  (ma.id->text().trimmed() +
+		  (ma.display_number->text(),
+		   ma.id->text().trimmed() +
 		   "," +
 		   ma.volume->text() +
 		   "," +

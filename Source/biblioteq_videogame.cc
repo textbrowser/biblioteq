@@ -1307,7 +1307,8 @@ void biblioteq_videogame::slotGo(void)
 	      */
 
 	      biblioteq_misc_functions::createInitialCopies
-		(vg.id->text(),
+		("",
+		 vg.id->text(),
 		 vg.quantity->value(),
 		 qmain->getDB(),
 		 "Video Game",

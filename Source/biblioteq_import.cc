@@ -591,13 +591,19 @@ void biblioteq_import::importBooks(QProgressDialog *progress,
 
 		  if(!id.isEmpty())
 		    biblioteq_misc_functions::createInitialCopies
-		      (id, quantity, m_qmain->getDB(), "Book", errorstr);
+		      ("", id, quantity, m_qmain->getDB(), "Book", errorstr);
 		  else if(!isbn13.isEmpty())
 		    biblioteq_misc_functions::createInitialCopies
-		      (isbn13, quantity, m_qmain->getDB(), "Book", errorstr);
+		      ("",
+		       isbn13,
+		       quantity,
+		       m_qmain->getDB(),
+		       "Book",
+		       errorstr);
 		  else
 		    biblioteq_misc_functions::createInitialCopies
-		      (QString::number(oid),
+		      ("",
+		       QString::number(oid),
 		       quantity,
 		       m_qmain->getDB(),
 		       "Book",

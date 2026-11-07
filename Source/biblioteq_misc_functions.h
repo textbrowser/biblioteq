@@ -229,9 +229,10 @@ class biblioteq_misc_functions
 			     const QSqlDatabase &,
 			     QString &);
   static void createInitialCopies(QString const &,
+				  QString const &,
 				  const int,
-				  const QSqlDatabase &,
-				  const QString &,
+				  QSqlDatabase const &,
+				  QString const &,
 				  QString &);
   static void exportPhotographs(const QSqlDatabase &,
 				const QString &,

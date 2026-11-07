@@ -1455,9 +1455,11 @@ void biblioteq_dvd::slotGo(void)
 	      */
 
 	      biblioteq_misc_functions::createInitialCopies
-		(dvd.id->text(),
+		("",
+		 dvd.id->text(),
 		 dvd.quantity->value(),
-		 qmain->getDB(), "DVD",
+		 qmain->getDB(),
+		 "DVD",
 		 errorstr);
 
 	      if(!errorstr.isEmpty())
