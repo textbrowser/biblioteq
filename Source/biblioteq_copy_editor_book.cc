@@ -44,6 +44,10 @@ biblioteq_copy_editor_book::biblioteq_copy_editor_book
 {
   m_bitem = bitemArg;
   m_cb.setupUi(this);
+  connect(m_cb.table->horizontalHeader(),
+	  SIGNAL(sectionMoved(int, int, int)),
+	  this,
+	  SLOT(slotSectionMoved(int, int, int)));
   m_cb.table->horizontalHeader()->setSectionsMovable(true);
   m_cb.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
   m_ioid = ioidArg;
@@ -348,6 +352,8 @@ void biblioteq_copy_editor_book::populateCopiesEditor(void)
 
   m_cb.table->setColumnHidden(m_cb.table->columnCount() - 1, true);
   m_cb.table->setColumnHidden(m_cb.table->columnCount() - 2, true);
+  m_cb.table->horizontalHeader()->restoreState
+    (QSettings().value("copy_editor_book/table_state").toByteArray());
   updateGeometry();
 #ifdef Q_OS_ANDROID
   showMaximized();
@@ -942,4 +948,14 @@ void biblioteq_copy_editor_book::slotSaveCopies(void)
     m_spinbox->setValue(m_copies.size());
 
   clearCopiesList();
+}
+
+void biblioteq_copy_editor_book::slotSectionMoved(int a, int b, int c)
+{
+  Q_UNUSED(a);
+  Q_UNUSED(b);
+  Q_UNUSED(c);
+  QSettings().setValue
+    ("copy_editor_book/table_state",
+     m_cb.table->horizontalHeader()->saveState());
 }
