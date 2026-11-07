@@ -60,6 +60,10 @@ biblioteq_copy_editor::biblioteq_copy_editor
 {
   m_bitem = bitemArg;
   m_cb.setupUi(this);
+  connect(m_cb.table->horizontalHeader(),
+	  SIGNAL(sectionMoved(int, int, int)),
+	  this,
+	  SLOT(slotSectionMoved(int, int, int)));
   m_cb.deleteButton->setVisible(false);
   m_cb.information->setVisible(showForLendingArg);
   m_cb.table->horizontalHeader()->setSectionsMovable(true);
@@ -99,7 +103,7 @@ QString biblioteq_copy_editor::saveCopies(void)
 
   query.prepare
     (QString("DELETE FROM %1_copy_info WHERE item_oid = ?").
-     arg(m_itemType.toLower().remove(" ")));
+     arg(m_itemType.remove(" ").toLower()));
   query.addBindValue(m_ioid);
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
@@ -154,7 +158,7 @@ QString biblioteq_copy_editor::saveCopies(void)
 				  "location) "
 				  "VALUES "
 				  "(?, ?, ?, ?, ?, ?)").arg
-			  (m_itemType.toLower().remove(" ")));
+			  (m_itemType.remove(" ").toLower()));
 	  else
 	    query.prepare(QString("INSERT INTO %1_copy_info "
 				  "(item_oid, "
@@ -165,7 +169,7 @@ QString biblioteq_copy_editor::saveCopies(void)
 				  "notes, "
 				  "location) "
 				  "VALUES (?, ?, ?, ?, ?, ?, ?)").
-			  arg(m_itemType.toLower().remove(" ")));
+			  arg(m_itemType.remove(" ").toLower()));
 
 	  query.addBindValue(copy->m_itemoid);
 
@@ -394,6 +398,9 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 
   m_cb.table->setColumnHidden(m_cb.table->columnCount() - 1, true);
   m_cb.table->setColumnHidden(m_cb.table->columnCount() - 2, true);
+  m_cb.table->horizontalHeader()->restoreState
+    (QSettings().value(QString("copy_editor_%1/table_state").
+		       arg(m_itemType.remove(" ").toLower())).toByteArray());
   updateGeometry();
 #ifdef Q_OS_ANDROID
   showMaximized();
@@ -539,7 +546,7 @@ void biblioteq_copy_editor::populateCopiesEditor(void)
 			    "%1_copy_info.item_oid, "
 			    "%1_copy_info.copy_number "
 			    "ORDER BY %1_copy_info.copy_number").
-		    arg(m_itemType.toLower().remove(" ")));
+		    arg(m_itemType.remove(" ").toLower()));
       query.addBindValue(m_itemType);
       query.addBindValue(m_ioid);
       query.addBindValue(m_ioid);
@@ -1205,4 +1212,15 @@ void biblioteq_copy_editor::slotSaveCopies(void)
     m_spinbox->setValue(m_copies.size());
 
   clearCopiesList();
+}
+
+void biblioteq_copy_editor::slotSectionMoved(int a, int b, int c)
+{
+  Q_UNUSED(a);
+  Q_UNUSED(b);
+  Q_UNUSED(c);
+  QSettings().setValue
+    (QString("copy_editor_%1/table_state").
+     arg(m_itemType.remove(" ").toLower()),
+     m_cb.table->horizontalHeader()->saveState());
 }

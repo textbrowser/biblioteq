@@ -125,6 +125,7 @@ class biblioteq_copy_editor: public QDialog
   void slotCheckoutCopy(void);
   void slotDeleteCopy(void);
   void slotSaveCopies(void);
+  void slotSectionMoved(int a, int b, int c);
 };
 
 #endif
