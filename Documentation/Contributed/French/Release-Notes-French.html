@@ -1,6 +1,11 @@
 <html>
   <body>
-    <p><u>25 octobre 2026</u></p>
+    <p><u>8 novembre 2026</u></p>
+    <ul>
+      <li>Ajout de filtres de défilement par molette de souris aux widgets de liste déroulante « Nom du champ du tableau » de BiblioteQ dans le navigateur d'importation CSV. <b>GitHub #482.</b></li>
+      <li>Correction de la fonction `biblioteq_misc_functions::createInitialCopies()`. Le champ « location », introduit le 31 octobre 2026, est un champ obligatoire dans les tables de copies d'éléments de la base de données.</li>
+    </ul>
+    <p><u>31 octobre 2026</u></p>
     <ul>
       <li>Modifier la couleur indiquant la disponibilité d'un article si les données de celui-ci sont mises à jour.</li>
       <li>Autoriser les quantités nulles pour les magazines et les revues.</li>
@@ -8,13 +13,16 @@
       <li>Activités par lots : préparation des états de page pour différents rôles PostgreSQL. La page enregistrée dans le fichier INI peut ne pas être exacte lors d'une nouvelle session, car la page enregistrée peut être désactivée pour le rôle actuel.</li>
       <li>Convertir un numéro d'accès en entier de 64 bits pour le tri dans la table principale..</li>      
       <li>Version LTS corrigée : BIBLIOTEQ_VERSION_LTS. La valeur correcte est 15/09/2026.</li>
+      <li>Correction de la suppression des fenêtres d'éléments lors des suppressions dans la base de données. L'état d'un mutex important doit être ignoré pendant le processus de suppression. Sinon, les fenêtres ne sont pas détruites.</li>
       <li>Tri par date et par valeur numérique dans le navigateur des membres.</li>
-      <li>Désactivez les boîtes de dialogue, barres de menus et fenêtres natives sous macOS et Windows. Privilégiez les widgets Qt.</li>
+      <li>Désactivez les boîtes de dialogue, barres de menus et fenêtres natives sous MacOS et Windows. Privilégiez les widgets Qt.</li>
       <li>La couleur de fond de la cellule « Date d'échéance » sera désormais blanche pour une entrée en cours (non expirée).</li>
       <li>Nouveau champ « display_number » pour les tables de la base de données des revues et magazines. <b>GitHub #478.</b></li>
+      <li>Nouveau champ de base de données « emplacement » pour les tables de la base de données des copies d'éléments. <b>GitHub #480.</b></li>
       <li>Nouvel outil de personnalisation pour « Autres options » -> « Affichage » -> « Remplacer le style ».</li>
       <li>PostgreSQL 16.15.5; Windows.</li>
       <li>Recréer certains éléments des menus « Édition » et « Affichage » si l'option « Options -> Fenêtres d'éléments sous onglets » est modifiée. Points de suspension.</li>
+      <li>La recherche générale sera désormais ancrée à la fenêtre principale si elle a été configurée.</li>
     </ul>
     <p><u>15 septembre 2026</u></p>
     <ul>
