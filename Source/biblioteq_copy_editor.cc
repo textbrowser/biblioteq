@@ -62,6 +62,7 @@ biblioteq_copy_editor::biblioteq_copy_editor
   m_cb.setupUi(this);
   m_cb.deleteButton->setVisible(false);
   m_cb.information->setVisible(showForLendingArg);
+  m_cb.table->horizontalHeader()->setSectionsMovable(true);
   m_cb.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
   m_ioid = ioidArg;
   m_itemType = itemTypeArg;

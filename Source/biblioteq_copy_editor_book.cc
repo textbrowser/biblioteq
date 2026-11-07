@@ -44,6 +44,7 @@ biblioteq_copy_editor_book::biblioteq_copy_editor_book
 {
   m_bitem = bitemArg;
   m_cb.setupUi(this);
+  m_cb.table->horizontalHeader()->setSectionsMovable(true);
   m_cb.table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
   m_ioid = ioidArg;
   m_itemType = "Book";
