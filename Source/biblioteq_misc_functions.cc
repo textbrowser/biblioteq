@@ -2545,17 +2545,17 @@ void biblioteq_misc_functions::createInitialCopies(const QString &idArg,
 				    "?)").arg(itemType));
 	  }
 
-	query.bindValue(0, itemoid);
-	query.bindValue(1, i + 1);
-	query.bindValue(2, id + "-" + QString::number(i + 1));
-	query.bindValue(3, biblioteq::s_unknown);
+	query.addBindValue(itemoid);
+	query.addBindValue(i + 1);
+	query.addBindValue(id + "-" + QString::number(i + 1));
+	query.addBindValue(biblioteq::s_unknown);
 
 	if(db.driverName() == "QSQLITE")
 	  {
 	    auto const value = getSqliteUniqueId(db, errorstr);
 
 	    if(errorstr.isEmpty())
-	      query.bindValue(4, value);
+	      query.addBindValue(value);
 	    else
 	      break;
 	  }
