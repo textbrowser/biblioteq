@@ -162,6 +162,7 @@ HEADERS	     = Source/biblioteq.h \
                Source/biblioteq_photographcollection.h \
                Source/biblioteq_photograph_view.h \
                Source/biblioteq_query_history.h \
+               Source/biblioteq_scroll_filter.h \
                Source/biblioteq_sql_syntax_highlighter.h \
                Source/biblioteq_sqlite_merge_databases.h \
                Source/biblioteq_sruResults.h \

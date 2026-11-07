@@ -35,6 +35,7 @@
 #include "biblioteq.h"
 #include "biblioteq_import.h"
 #include "biblioteq_misc_functions.h"
+#include "biblioteq_scroll_filter.h"
 #include "ui_biblioteq_generalmessagediag.h"
 
 biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
@@ -1039,6 +1040,8 @@ void biblioteq_import::slotAddRow(void)
 
   auto comboBox = new QComboBox();
   auto widget = new QWidget();
+
+  comboBox->installEventFilter(new biblioteq_scroll_filter(this));
 
   switch(static_cast<Templates> (m_ui.templates->currentIndex()))
     {
