@@ -25,17 +25,36 @@
 ** BIBLIOTEQ, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#include <QComboBox> //meteos77
 #include <QElapsedTimer>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QProgressDialog>
 #include <QSettings>
 #include <QtMath>
+#include <QWheelEvent> //meteos77
 
 #include "biblioteq.h"
 #include "biblioteq_import.h"
 #include "biblioteq_misc_functions.h"
 #include "ui_biblioteq_generalmessagediag.h"
+
+// start : meteos77
+class biblioteq_import_combo_box: public QComboBox
+{
+public:
+  explicit biblioteq_import_combo_box(QWidget *parent = nullptr):
+    QComboBox(parent)
+  {
+  }
+
+protected:
+  void wheelEvent(QWheelEvent *event) override
+  {
+    event->accept();
+  }
+};
+// end : meteos77
 
 biblioteq_import::biblioteq_import(biblioteq *parent):QMainWindow(parent)
 {
@@ -1037,7 +1056,10 @@ void biblioteq_import::slotAddRow(void)
   m_ui.rows->setItem
     (m_ui.rows->rowCount() - 1, static_cast<int> (Columns::CSV_PREVIEW), item);
 
-  auto comboBox = new QComboBox();
+// start : meteos77
+//  auto comboBox = new QComboBox();
+  auto comboBox = new biblioteq_import_combo_box();
+// end : meteos77 
   auto widget = new QWidget();
 
   switch(static_cast<Templates> (m_ui.templates->currentIndex()))
