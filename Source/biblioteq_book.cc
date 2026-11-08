@@ -27,6 +27,9 @@
 
 #include "biblioteq.h"
 #include "biblioteq_book.h"
+// START COVER : METEOS77
+#include "biblioteq_book_covers.h"
+// END COVER : METEOS77
 #include "biblioteq_borrowers_editor.h"
 #include "biblioteq_copy_editor_book.h"
 #ifdef BIBLIOTEQ_QT_PDF_SUPPORTED
@@ -1498,6 +1501,28 @@ void biblioteq_book::modify(const int state)
 	  else if(fieldname == "volume_number")
 	    id.volume_number->setText(var.toString().trimmed());
 	}
+
+// START COVER : METEOS77
+      /*
+       * If the front cover is not available in SQLite,
+       * attempt to load it from the filesystem.
+       */
+      if(id.front_image->m_image.isNull() &&
+         qmain->getDB().driverName() == "QSQLITE")
+        {
+          const QString databasePath =
+            qmain->getDB().databaseName();
+
+          const QString isbn13 =
+            id.isbn13->text().remove('-').trimmed();
+
+          const QByteArray bytes =
+            biblioteq_covers::load(databasePath, isbn13);
+
+          if(!bytes.isEmpty())
+            id.front_image->loadFromData(bytes);
+        }
+// END COVER : METEOS77
 
       foreach(auto textfield, findChildren<QLineEdit *> ())
 	textfield->setCursorPosition(0);
