@@ -1220,11 +1220,13 @@ void biblioteq_import::slotImport(void)
 {
   if(m_ui.csv_file->text().trimmed().isEmpty() ||
      m_ui.templates->currentIndex() == 0)
-    /*
-    ** A template has not been selected!
-    */
-
-    return;
+    {
+      QMessageBox::critical
+	(this,
+	 tr("BiblioteQ: Error"),
+	 tr("Please complete the required sections (#1, #3)."));
+      return;
+    }
 
   /*
   ** Test if the specified file is readable.
