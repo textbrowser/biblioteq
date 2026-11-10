@@ -98,7 +98,12 @@ QString biblioteq_image_drop_site::fileNameFromMimeData
     }
 
   if(data->hasUrls())
-    return data->urls().value(0).toLocalFile();
+    {
+      auto const url(data->urls().value(0));
+
+      if(url.isLocalFile())
+	return url.toLocalFile();
+    }
 
   return "";
 }
