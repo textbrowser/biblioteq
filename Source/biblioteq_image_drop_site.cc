@@ -172,9 +172,7 @@ void biblioteq_image_drop_site::dropEvent(QDropEvent *event)
 
   if(fileName.isEmpty())
     {
-      if(event)
-	event->ignore();
-
+      event->ignore();
       return;
     }
 
