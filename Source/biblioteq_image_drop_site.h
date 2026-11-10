@@ -30,6 +30,8 @@
 
 #include <QGraphicsView>
 
+class QMimeData;
+
 class biblioteq_image_drop_site: public QGraphicsView
 {
   Q_OBJECT
@@ -51,7 +53,8 @@ class biblioteq_image_drop_site: public QGraphicsView
   bool m_doubleClicked;
   bool m_readOnly;
   QString determineFormat(const QByteArray &bytes) const;
-  QString determineFormat(const QString &filename) const;
+  QString determineFormat(const QString &fileName) const;
+  QString fileNameFromMimeData(const QMimeData *data) const;
   void dragEnterEvent(QDragEnterEvent *event);
   void dragLeaveEvent(QDragLeaveEvent *event);
   void dragMoveEvent(QDragMoveEvent *event);

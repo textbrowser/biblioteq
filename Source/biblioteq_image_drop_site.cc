@@ -56,10 +56,13 @@ QString biblioteq_image_drop_site::determineFormat
 }
 
 QString biblioteq_image_drop_site::determineFormat
-(const QString &filename) const
+(const QString &fileName) const
 {
+  if(fileName.trimmed().isEmpty())
+    return "JPG";
+
   QByteArray bytes(10, 0);
-  QFile file(filename);
+  QFile file(fileName);
   QString imgf("");
 
   if(file.open(QIODevice::ReadOnly) &&
@@ -68,7 +71,7 @@ QString biblioteq_image_drop_site::determineFormat
 
   if(imgf.isEmpty())
     {
-      auto const ext(QFileInfo(filename).suffix());
+      auto const ext(QFileInfo(fileName).suffix());
 
       if(ext.isEmpty())
 	imgf = "JPG";
@@ -78,6 +81,26 @@ QString biblioteq_image_drop_site::determineFormat
 
   file.close();
   return imgf;
+}
+
+QString biblioteq_image_drop_site::fileNameFromMimeData
+(const QMimeData *data) const
+{
+  if(!data)
+    return "";
+
+  if(data->hasText())
+    {
+      auto const url(QUrl::fromUserInput(data->text()));
+
+      if(url.isLocalFile())
+	return url.toLocalFile();
+    }
+
+  if(data->hasUrls())
+    return data->urls().value(0).toLocalFile();
+
+  return "";
 }
 
 void biblioteq_image_drop_site::clear(void)
@@ -91,7 +114,7 @@ void biblioteq_image_drop_site::clear(void)
 
 void biblioteq_image_drop_site::dragEnterEvent(QDragEnterEvent *event)
 {
-  if(m_readOnly)
+  if(!event || m_readOnly)
     {
       if(event)
 	event->ignore();
@@ -99,45 +122,12 @@ void biblioteq_image_drop_site::dragEnterEvent(QDragEnterEvent *event)
       return;
     }
 
-  QString filename("");
+  auto const f(determineFormat(fileNameFromMimeData(event->mimeData())));
 
-#if defined(Q_OS_WINDOWS)
-  if(event)
-    {
-      for(int i = 0; i < event->mimeData()->formats().size(); i++)
-	if(event->mimeData()->formats()[i].toLower().contains("filename"))
-	  {
-	    filename = QString
-	      (event->mimeData()->data(event->mimeData()->formats()[i])).
-	      trimmed();
-	    break;
-	  }
-
-      if(filename.isEmpty())
-	filename = event->mimeData()->urls().value(0).toLocalFile().trimmed();
-
-      if(filename.isEmpty())
-	{
-	  QUrl const url(event->mimeData()->text());
-
-	  filename = url.toLocalFile().trimmed();
-	}
-    }
-#elif defined(Q_OS_MACOS)
-  if(event)
-    filename = event->mimeData()->urls().value(0).toLocalFile().trimmed();
-#else
-  if(event)
-    filename = event->mimeData()->text().trimmed();
-#endif
-
-  if(event)
-    {
-      auto const f(determineFormat(filename));
-
-      if(f == "BMP" || f == "JPEG" || f == "JPG" || f == "PNG")
-	event->acceptProposedAction();
-    }
+  if(f == "BMP" || f == "JPEG" || f == "JPG" || f == "PNG")
+    event->acceptProposedAction();
+  else
+    event->ignore();
 }
 
 void biblioteq_image_drop_site::dragLeaveEvent(QDragLeaveEvent *event)
@@ -147,7 +137,7 @@ void biblioteq_image_drop_site::dragLeaveEvent(QDragLeaveEvent *event)
 
 void biblioteq_image_drop_site::dragMoveEvent(QDragMoveEvent *event)
 {
-  if(m_readOnly)
+  if(!event || m_readOnly)
     {
       if(event)
 	event->ignore();
@@ -157,50 +147,15 @@ void biblioteq_image_drop_site::dragMoveEvent(QDragMoveEvent *event)
 
   QGraphicsView::dragMoveEvent(event);
 
-  QString filename("");
+  auto const f(determineFormat(fileNameFromMimeData(event->mimeData())));
 
-#if defined(Q_OS_WINDOWS)
-  if(event)
-    {
-      for(int i = 0; i < event->mimeData()->formats().size(); i++)
-	if(event->mimeData()->formats()[i].toLower().contains("filename"))
-	  {
-	    filename = QString
-	      (event->mimeData()->data(event->mimeData()->formats()[i])).
-	      trimmed();
-	    break;
-	  }
-
-      if(filename.isEmpty())
-	filename = event->mimeData()->urls().value(0).toLocalFile().trimmed();
-
-      if(filename.isEmpty())
-	{
-	  QUrl const url(event->mimeData()->text());
-
-	  filename = url.toLocalFile().trimmed();
-	}
-    }
-#elif defined(Q_OS_MACOS)
-  if(event)
-    filename = event->mimeData()->urls().value(0).toLocalFile().trimmed();
-#else
-  if(event)
-    filename = event->mimeData()->text().trimmed();
-#endif
-
-  if(event)
-    {
-      auto const f(determineFormat(filename));
-
-      if(f == "BMP" || f == "JPEG" || f == "JPG" || f == "PNG")
-	event->acceptProposedAction();
-    }
+  if(f == "BMP" || f == "JPEG" || f == "JPG" || f == "PNG")
+    event->acceptProposedAction();
 }
 
 void biblioteq_image_drop_site::dropEvent(QDropEvent *event)
 {
-  if(m_readOnly)
+  if(!event || m_readOnly)
     {
       if(event)
 	event->ignore();
@@ -208,51 +163,23 @@ void biblioteq_image_drop_site::dropEvent(QDropEvent *event)
       return;
     }
 
-  QString filename("");
-  QString imgf("");
+  auto const fileName(fileNameFromMimeData(event->mimeData()));
 
-#if defined(Q_OS_WINDOWS)
-  if(event)
+  if(fileName.isEmpty())
     {
-      for(int i = 0; i < event->mimeData()->formats().size(); i++)
-	if(event->mimeData()->formats()[i].toLower().contains("filename"))
-	  {
-	    filename = QString
-	      (event->mimeData()->data(event->mimeData()->formats()[i])).
-	      trimmed();
-	    break;
-	  }
+      if(event)
+	event->ignore();
 
-      if(filename.isEmpty())
-	filename = event->mimeData()->urls().value(0).toLocalFile().trimmed();
-
-      if(filename.isEmpty())
-	{
-	  QUrl const url(event->mimeData()->text());
-
-	  filename = url.toLocalFile().trimmed();
-	}
+      return;
     }
-#elif defined(Q_OS_MACOS)
-  if(event)
-    filename = event->mimeData()->urls().value(0).toLocalFile().trimmed();
-#else
-  if(event)
-    {
-      QUrl const url(event->mimeData()->text());
 
-      filename = url.toLocalFile().trimmed();
-    }
-#endif
+  auto const imgf(determineFormat(fileName));
 
-  imgf = determineFormat(filename);
-  m_image = QImage(filename, imgf.toLatin1().data());
+  m_image = QImage(fileName, imgf.toLatin1().data());
 
   if(!m_image.isNull())
     {
-      if(event)
-	event->acceptProposedAction();
-
+      event->acceptProposedAction();
       m_doubleClicked = false;
       m_imageFormat = imgf;
       scene()->clear();
