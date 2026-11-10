@@ -113,7 +113,7 @@ void biblioteq_image_drop_site::dragEnterEvent(QDragEnterEvent *event)
 	    break;
 	  }
 
-      if(fileName.isEmpty())
+      if(filename.isEmpty())
 	filename = event->mimeData()->urls().value(0).toLocalFile().trimmed();
 
       if(filename.isEmpty())
@@ -171,7 +171,7 @@ void biblioteq_image_drop_site::dragMoveEvent(QDragMoveEvent *event)
 	    break;
 	  }
 
-      if(fileName.isEmpty())
+      if(filename.isEmpty())
 	filename = event->mimeData()->urls().value(0).toLocalFile().trimmed();
 
       if(filename.isEmpty())
@@ -223,7 +223,7 @@ void biblioteq_image_drop_site::dropEvent(QDropEvent *event)
 	    break;
 	  }
 
-      if(fileName.isEmpty())
+      if(filename.isEmpty())
 	filename = event->mimeData()->urls().value(0).toLocalFile().trimmed();
 
       if(filename.isEmpty())
