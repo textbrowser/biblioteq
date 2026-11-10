@@ -103,14 +103,26 @@ void biblioteq_image_drop_site::dragEnterEvent(QDragEnterEvent *event)
 
 #if defined(Q_OS_WINDOWS)
   if(event)
-    for(int i = 0; i < event->mimeData()->formats().size(); i++)
-      if(event->mimeData()->formats()[i].toLower().contains("filename"))
+    {
+      for(int i = 0; i < event->mimeData()->formats().size(); i++)
+	if(event->mimeData()->formats()[i].toLower().contains("filename"))
+	  {
+	    filename = QString
+	      (event->mimeData()->data(event->mimeData()->formats()[i])).
+	      trimmed();
+	    break;
+	  }
+
+      if(fileName.isEmpty())
+	filename = event->mimeData()->urls().value(0).toLocalFile().trimmed();
+
+      if(filename.isEmpty())
 	{
-	  filename = QString
-	    (event->mimeData()->data(event->mimeData()->formats()[i])).
-	    trimmed();
-	  break;
+	  QUrl const url(event->mimeData()->text());
+
+	  filename = url.toLocalFile().trimmed();
 	}
+    }
 #elif defined(Q_OS_MACOS)
   if(event)
     filename = event->mimeData()->urls().value(0).toLocalFile().trimmed();
@@ -149,14 +161,26 @@ void biblioteq_image_drop_site::dragMoveEvent(QDragMoveEvent *event)
 
 #if defined(Q_OS_WINDOWS)
   if(event)
-    for(int i = 0; i < event->mimeData()->formats().size(); i++)
-      if(event->mimeData()->formats()[i].toLower().contains("filename"))
+    {
+      for(int i = 0; i < event->mimeData()->formats().size(); i++)
+	if(event->mimeData()->formats()[i].toLower().contains("filename"))
+	  {
+	    filename = QString
+	      (event->mimeData()->data(event->mimeData()->formats()[i])).
+	      trimmed();
+	    break;
+	  }
+
+      if(fileName.isEmpty())
+	filename = event->mimeData()->urls().value(0).toLocalFile().trimmed();
+
+      if(filename.isEmpty())
 	{
-	  filename = QString
-	    (event->mimeData()->data(event->mimeData()->formats()[i])).
-	    trimmed();
-	  break;
+	  QUrl const url(event->mimeData()->text());
+
+	  filename = url.toLocalFile().trimmed();
 	}
+    }
 #elif defined(Q_OS_MACOS)
   if(event)
     filename = event->mimeData()->urls().value(0).toLocalFile().trimmed();
@@ -189,14 +213,26 @@ void biblioteq_image_drop_site::dropEvent(QDropEvent *event)
 
 #if defined(Q_OS_WINDOWS)
   if(event)
-    for(int i = 0; i < event->mimeData()->formats().size(); i++)
-      if(event->mimeData()->formats()[i].toLower().contains("filename"))
+    {
+      for(int i = 0; i < event->mimeData()->formats().size(); i++)
+	if(event->mimeData()->formats()[i].toLower().contains("filename"))
+	  {
+	    filename = QString
+	      (event->mimeData()->data(event->mimeData()->formats()[i])).
+	      trimmed();
+	    break;
+	  }
+
+      if(fileName.isEmpty())
+	filename = event->mimeData()->urls().value(0).toLocalFile().trimmed();
+
+      if(filename.isEmpty())
 	{
-	  filename = QString
-	    (event->mimeData()->data(event->mimeData()->formats()[i])).
-	    trimmed();
-	  break;
+	  QUrl const url(event->mimeData()->text());
+
+	  filename = url.toLocalFile().trimmed();
 	}
+    }
 #elif defined(Q_OS_MACOS)
   if(event)
     filename = event->mimeData()->urls().value(0).toLocalFile().trimmed();
