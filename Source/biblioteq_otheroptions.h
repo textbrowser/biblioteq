@@ -411,6 +411,7 @@ class biblioteq_otheroptions: public QMainWindow
   void slotResetCustomQueryColors(void);
   void slotSave(void);
   void slotSelectColor(void);
+  void slotSelectDirectory(void);
   void slotSelectMainwindowCanvasBackgroundColor(void);
   void slotShowCustomQuery(void);
 

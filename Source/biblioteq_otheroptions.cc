@@ -26,6 +26,7 @@
 */
 
 #include <QCompleter>
+#include <QFileDialog>
 #include <QStandardPaths>
 #include <QStyleFactory>
 
@@ -51,6 +52,10 @@ biblioteq_otheroptions::biblioteq_otheroptions(biblioteq *parent):
 	  SIGNAL(clicked(void)),
 	  this,
 	  SLOT(slotResetCustomQueryColors(void)));
+  connect(m_ui.default_cover_image_directory_select,
+	  SIGNAL(clicked(void)),
+	  this,
+	  SLOT(slotSelectDirectory(void)));
   connect(m_ui.item_mandatory_field_color,
 	  SIGNAL(clicked(void)),
 	  this,
@@ -1515,6 +1520,10 @@ void biblioteq_otheroptions::slotSelectColor(void)
 	(pushButton, dialog.selectedColor());
       pushButton->setText(dialog.selectedColor().name());
     }
+}
+
+void biblioteq_otheroptions::slotSelectDirectory(void)
+{
 }
 
 void biblioteq_otheroptions::slotSelectMainwindowCanvasBackgroundColor(void)
