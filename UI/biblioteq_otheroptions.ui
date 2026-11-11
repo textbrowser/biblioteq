@@ -269,6 +269,34 @@
          </widget>
         </item>
         <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_14">
+          <item>
+           <widget class="QLabel" name="label_27">
+            <property name="text">
+             <string>Default Cover Image Directory</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="default_cover_image_directory">
+            <property name="placeholderText">
+             <string>Default Cover Image Directory</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="default_cover_image_directory_select">
+            <property name="text">
+             <string>Select...</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
          <widget class="QGroupBox" name="groupBox_2">
           <property name="title">
            <string>ISBN Display Formats</string>
@@ -1321,6 +1349,8 @@
   <tabstop>custom_query_icon</tabstop>
   <tabstop>general_database_search_icon</tabstop>
   <tabstop>members_browser_icon</tabstop>
+  <tabstop>default_cover_image_directory</tabstop>
+  <tabstop>default_cover_image_directory_select</tabstop>
   <tabstop>isbn10_display_format</tabstop>
   <tabstop>isbn13_display_format</tabstop>
   <tabstop>item_mandatory_field_color</tabstop>

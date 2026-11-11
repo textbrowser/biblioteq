@@ -26,6 +26,7 @@
 */
 
 #include <QCompleter>
+#include <QStandardPaths>
 #include <QStyleFactory>
 
 #include "biblioteq_otheroptions.h"
@@ -272,6 +273,14 @@ QString biblioteq_otheroptions::dateFormat(const QString &it) const
     return biblioteq::s_databaseDateFormat;
   else
     return format;
+}
+
+QString biblioteq_otheroptions::defaultCoverImageDirectory(void)
+{
+  return QSettings().value
+    ("otheroptions/default_cover_image_directory",
+     QStandardPaths::standardLocations(QStandardPaths::DesktopLocation).
+     value(0)).toString();
 }
 
 QString biblioteq_otheroptions::sqliteDatabaseEncoding(void) const
@@ -802,6 +811,7 @@ void biblioteq_otheroptions::prepareSettings(void)
   m_ui.date_format->resizeRowsToContents();
   m_ui.date_format->setSortingEnabled(true);
   m_ui.date_format->sortByColumn(0, Qt::AscendingOrder);
+  m_ui.default_cover_image_directory->setText(defaultCoverImageDirectory());
   m_ui.display_icon_set->setCurrentIndex
     (qBound(0,
 	    settings.value("otheroptions/display_icon_set_index", 0).toInt(),

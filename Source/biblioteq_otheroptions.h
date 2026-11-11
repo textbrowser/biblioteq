@@ -325,6 +325,7 @@ class biblioteq_otheroptions: public QMainWindow
   bool showMainTableProgressDialogs(void) const;
   int booksAccessionNumberIndex(void) const;
   int iconsViewColumnCount(void) const;
+  static QString defaultCoverImageDirectory(void);
   static void prepareEnvironmentVariables(void);
   void prepareMembersVisibleColumns(QTableWidget *table);
   void prepareSettings(void);
