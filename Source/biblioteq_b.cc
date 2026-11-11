@@ -42,6 +42,46 @@
 #include <QStandardPaths>
 #include <QtMath>
 
+class biblioteq_publication_title_table_item: public QTableWidgetItem
+{
+ public:
+  biblioteq_publication_title_table_item(const QString &title,
+					 const int volume,
+					 const int issue,
+					 const int displayNumber):
+    QTableWidgetItem(title),
+    m_issue(issue),
+    m_volume(volume),
+    m_displayNumber(displayNumber)
+  {
+  }
+
+  bool operator <(const QTableWidgetItem &other) const override
+  {
+    if(text() != other.text())
+      return QTableWidgetItem::operator <(other);
+
+    auto const publication =
+      dynamic_cast<const biblioteq_publication_title_table_item *> (&other);
+
+    if(!publication)
+      return QTableWidgetItem::operator <(other);
+
+    if(m_volume != publication->m_volume)
+      return m_volume < publication->m_volume;
+
+    if(m_issue != publication->m_issue)
+      return m_issue < publication->m_issue;
+
+    return m_displayNumber < publication->m_displayNumber;
+  }
+
+ private:
+  int m_issue;
+  int m_volume;
+  int m_displayNumber;
+};
+
 QString biblioteq::homePath(void)
 {
 #ifdef BIBLIOTEQ_NON_PORTABLE
@@ -3178,7 +3218,10 @@ int biblioteq::populateTable(const int search_type_arg,
 				"%1.myoid, "
 				"%1.front_cover "
 				"ORDER BY "
-				"%1.title").arg(type);
+				"%1.title, "
+				"%1.issuevolume, "
+				"%1.issueno, "
+				"%1.display_number").arg(type);
 	    searchstr += limitStr + offsetStr;
 	  }
 	else if(typefilter == "Music CDs")
@@ -3464,7 +3507,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "journal.front_cover "
 				 "ORDER BY journal.title, "
 				 "journal.issuevolume, "
-				 "journal.issueno");
+				 "journal.issueno, "
+				 "journal.display_number");
 	      }
 
 	    if(searchstr.lastIndexOf("LIMIT") != -1)
@@ -3502,7 +3546,8 @@ int biblioteq::populateTable(const int search_type_arg,
 				 "magazine.front_cover "
 				 "ORDER BY magazine.title, "
 				 "magazine.issuevolume, "
-				 "magazine.issueno");
+				 "magazine.issueno, "
+				 "magazine.display_number");
 	      }
 
 	    if(searchstr.lastIndexOf("LIMIT") != -1)
@@ -4162,6 +4207,28 @@ int biblioteq::populateTable(const int search_type_arg,
 		      iconTableColumnIdx = 0;
 		      iconTableRowIdx += 1;
 		    }
+		}
+	      else if(fieldName == "title")
+		{
+#if QT_VERSION > 0x050501
+		  auto const tableName(record.field(j).tableName());
+#else
+		  auto const tableName(itemType);
+#endif
+
+		  if((tableName == "journal" || tableName == "magazine") &&
+		     record.field("issuevolume").isValid() &&
+		     record.field("issueno").isValid() &&
+		     record.field("display_number").isValid())
+		    {
+		      item = new biblioteq_publication_title_table_item
+			(str,
+			 record.field("issuevolume").value().toInt(),
+			 record.field("issueno").value().toInt(),
+			 record.field("display_number").value().toInt());
+		    }
+		  else
+		    item = new QTableWidgetItem();
 		}
 	      else
 		item = new QTableWidgetItem();
