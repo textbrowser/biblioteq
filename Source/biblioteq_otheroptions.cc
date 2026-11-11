@@ -1211,6 +1211,9 @@ void biblioteq_otheroptions::slotReset(void)
   m_ui.date_format->resizeRowsToContents();
   m_ui.date_format->scrollToTop();
   m_ui.date_format->sortByColumn(0, Qt::AscendingOrder);
+  m_ui.default_cover_image_directory->setText
+    (QStandardPaths::standardLocations(QStandardPaths::DesktopLocation).
+     value(0));
   m_ui.display_icon_set->setCurrentIndex(0);
   m_ui.general_database_search_icon->setChecked(false);
   m_ui.generated_letter->clear();
@@ -1405,6 +1408,9 @@ void biblioteq_otheroptions::slotSave(void)
   settings.setValue
     ("otheroptions/custom_query_icon", m_ui.custom_query_icon->isChecked());
   settings.setValue
+    ("otheroptions/default_cover_image_directory",
+     m_ui.default_cover_image_directory->text());
+  settings.setValue
     ("otheroptions/display_icon_set_index",
      m_ui.display_icon_set->currentIndex());
   settings.setValue
@@ -1524,6 +1530,20 @@ void biblioteq_otheroptions::slotSelectColor(void)
 
 void biblioteq_otheroptions::slotSelectDirectory(void)
 {
+  QFileDialog dialog(this);
+
+  dialog.setDirectory(m_ui.default_cover_image_directory->text());
+  dialog.setFileMode(QFileDialog::Directory);
+  dialog.setOption(QFileDialog::DontUseNativeDialog);
+  dialog.setWindowTitle(tr("BiblioteQ: Select Default Cover Image Directory"));
+  dialog.exec();
+
+  if(dialog.result() == QDialog::Accepted)
+    {
+      repaint();
+      m_ui.default_cover_image_directory->setText
+	(dialog.selectedFiles().value(0));
+    }
 }
 
 void biblioteq_otheroptions::slotSelectMainwindowCanvasBackgroundColor(void)
