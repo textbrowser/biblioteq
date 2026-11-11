@@ -29,6 +29,7 @@
 #include "biblioteq_borrowers_editor.h"
 #include "biblioteq_cd.h"
 #include "biblioteq_copy_editor.h"
+#include "biblioteq_otheroptions.h"
 
 #include <QFileDialog>
 #include <QScrollBar>
@@ -2655,7 +2656,7 @@ void biblioteq_cd::slotSelectImage(void)
   QFileDialog dialog(this);
   auto button = qobject_cast<QPushButton *> (sender());
 
-  dialog.setDirectory(QDir::homePath());
+  dialog.setDirectory(biblioteq_otheroptions::defaultCoverImageDirectory());
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setOption(QFileDialog::DontUseNativeDialog);
 

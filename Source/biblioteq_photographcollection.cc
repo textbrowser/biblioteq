@@ -28,6 +28,7 @@
 #include "biblioteq.h"
 #include "biblioteq_bgraphicsscene.h"
 #include "biblioteq_graphicsitempixmap.h"
+#include "biblioteq_otheroptions.h"
 #include "biblioteq_photographcollection.h"
 
 #include <QFileDialog>
@@ -2785,7 +2786,7 @@ void biblioteq_photographcollection::slotSelectImage(void)
   QFileDialog dialog(this);
   auto button = qobject_cast<QPushButton *> (sender());
 
-  dialog.setDirectory(QDir::homePath());
+  dialog.setDirectory(biblioteq_otheroptions::defaultCoverImageDirectory());
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setOption(QFileDialog::DontUseNativeDialog);
 

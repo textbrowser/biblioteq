@@ -33,6 +33,7 @@
 #include "biblioteq_documentationwindow.h"
 #endif
 #include "biblioteq_filesize_table_item.h"
+#include "biblioteq_otheroptions.h"
 #include "biblioteq_pdfreader.h"
 
 #include <QActionGroup>
@@ -5674,7 +5675,7 @@ void biblioteq_book::slotSelectImage(void)
 
   QFileDialog dialog(this);
 
-  dialog.setDirectory(QDir::homePath());
+  dialog.setDirectory(biblioteq_otheroptions::defaultCoverImageDirectory());
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setOption(QFileDialog::DontUseNativeDialog);
 

@@ -34,6 +34,7 @@
 #include "biblioteq_filesize_table_item.h"
 #include "biblioteq_magazine.h"
 #include "biblioteq_marc.h"
+#include "biblioteq_otheroptions.h"
 #include "biblioteq_pdfreader.h"
 #include "biblioteq_sruResults.h"
 #include "biblioteq_z3950results.h"
@@ -4104,7 +4105,7 @@ void biblioteq_magazine::slotSelectImage(void)
   QFileDialog dialog(this);
   auto button = qobject_cast<QPushButton *> (sender());
 
-  dialog.setDirectory(QDir::homePath());
+  dialog.setDirectory(biblioteq_otheroptions::defaultCoverImageDirectory());
   dialog.setFileMode(QFileDialog::ExistingFile);
   dialog.setOption(QFileDialog::DontUseNativeDialog);
 
