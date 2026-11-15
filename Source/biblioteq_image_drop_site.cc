@@ -108,6 +108,47 @@ QString biblioteq_image_drop_site::fileNameFromMimeData
   return "";
 }
 
+bool biblioteq_image_drop_site::loadFromData(const QByteArray &bytes)
+{
+  QPixmap pixmap;
+  auto ok = true;
+
+  m_doubleClicked = false;
+  m_imageFormat = determineFormat(bytes);
+  m_image.loadFromData(bytes, m_imageFormat.toLatin1().data());
+
+  if(height() < m_image.height() || m_image.width() > width())
+    {
+      pixmap = QPixmap::fromImage(m_image);
+
+      if(!pixmap.isNull())
+	pixmap = pixmap.scaled
+	  (0.50 * size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    }
+  else
+    pixmap = QPixmap::fromImage(m_image);
+
+  scene()->clear();
+
+  if(pixmap.isNull())
+    {
+      m_image = QImage(":/missing_image.png");
+      m_imageFormat = "PNG";
+      ok = false;
+      pixmap = QPixmap(":/missing_image.png");
+    }
+
+  scene()->addPixmap(pixmap);
+
+  if(acceptDrops())
+    if(!scene()->items().isEmpty())
+      scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
+
+  scene()->setSceneRect(scene()->itemsBoundingRect());
+  emit imageChanged(m_image);
+  return ok;
+}
+
 void biblioteq_image_drop_site::clear(void)
 {
   m_doubleClicked = false;
@@ -232,44 +273,6 @@ void biblioteq_image_drop_site::keyPressEvent(QKeyEvent *event)
 	clear();
 
   QGraphicsView::keyPressEvent(event);
-}
-
-void biblioteq_image_drop_site::loadFromData(const QByteArray &bytes)
-{
-  QPixmap pixmap;
-
-  m_doubleClicked = false;
-  m_imageFormat = determineFormat(bytes);
-  m_image.loadFromData(bytes, m_imageFormat.toLatin1().data());
-
-  if(height() < m_image.height() || m_image.width() > width())
-    {
-      pixmap = QPixmap::fromImage(m_image);
-
-      if(!pixmap.isNull())
-	pixmap = pixmap.scaled
-	  (0.50 * size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    }
-  else
-    pixmap = QPixmap::fromImage(m_image);
-
-  scene()->clear();
-
-  if(pixmap.isNull())
-    {
-      m_image = QImage(":/missing_image.png");
-      m_imageFormat = "PNG";
-      pixmap = QPixmap(":/missing_image.png");
-    }
-
-  scene()->addPixmap(pixmap);
-
-  if(acceptDrops())
-    if(!scene()->items().isEmpty())
-      scene()->items().at(0)->setFlags(QGraphicsItem::ItemIsSelectable);
-
-  scene()->setSceneRect(scene()->itemsBoundingRect());
-  emit imageChanged(m_image);
 }
 
 void biblioteq_image_drop_site::mouseDoubleClickEvent(QMouseEvent *event)

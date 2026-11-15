@@ -40,9 +40,9 @@ class biblioteq_image_drop_site: public QGraphicsView
   QImage m_image;
   QString m_imageFormat;
   biblioteq_image_drop_site(QWidget *parent);
+  bool loadFromData(const QByteArray &bytes);
   void clear(void);
   void enableDoubleClickResize(const bool state);
-  void loadFromData(const QByteArray &bytes);
   void setImage(const QImage &image);
   void setImageFromClipboard(void);
   void setReadOnly(const bool readOnly);
