@@ -633,10 +633,8 @@ void biblioteq_cd::modify(const int state)
 	    {
 	      if(!record.field(i).isNull())
 		{
-		  cd.back_image->loadFromData
-		    (QByteArray::fromBase64(var.toByteArray()));
-
-		  if(cd.back_image->m_image.isNull())
+		  if(!cd.back_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray())))
 		    cd.back_image->loadFromData(var.toByteArray());
 		}
 	    }
@@ -678,10 +676,8 @@ void biblioteq_cd::modify(const int state)
 	    {
 	      if(!record.field(i).isNull())
 		{
-		  cd.front_image->loadFromData
-		    (QByteArray::fromBase64(var.toByteArray()));
-
-		  if(cd.front_image->m_image.isNull())
+		  if(cd.front_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray())))
 		    cd.front_image->loadFromData(var.toByteArray());
 		}
 	    }
@@ -1296,7 +1292,11 @@ void biblioteq_cd::slotGo(void)
 	    {
 	      cd.front_image->m_image.save
 		(&buffer, cd.front_image->m_imageFormat.toLatin1(), 100);
-	      query.bindValue(17, bytes.toBase64());
+
+	      if(biblioteq_otheroptions::recordCoverImageAsBinary())
+		query.bindValue(17, bytes);
+	      else
+		query.bindValue(17, bytes.toBase64());
 	    }
 	  else
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
@@ -1324,7 +1324,11 @@ void biblioteq_cd::slotGo(void)
 	    {
 	      cd.back_image->m_image.save
 		(&buffer, cd.back_image->m_imageFormat.toLatin1(), 100);
-	      query.bindValue(18, bytes.toBase64());
+
+	      if(biblioteq_otheroptions::recordCoverImageAsBinary())
+		query.bindValue(18, bytes);
+	      else
+		query.bindValue(18, bytes.toBase64());
 	    }
 	  else
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))

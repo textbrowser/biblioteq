@@ -632,10 +632,8 @@ void biblioteq_dvd::modify(const int state)
 	    {
 	      if(!record.field(i).isNull())
 		{
-		  dvd.back_image->loadFromData
-		    (QByteArray::fromBase64(var.toByteArray()));
-
-		  if(dvd.back_image->m_image.isNull())
+		  if(dvd.back_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray())))
 		    dvd.back_image->loadFromData(var.toByteArray());
 		}
 	    }
@@ -688,10 +686,8 @@ void biblioteq_dvd::modify(const int state)
 	    {
 	      if(!record.field(i).isNull())
 		{
-		  dvd.front_image->loadFromData
-		    (QByteArray::fromBase64(var.toByteArray()));
-
-		  if(dvd.front_image->m_image.isNull())
+		  if(dvd.front_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray())))
 		    dvd.front_image->loadFromData(var.toByteArray());
 		}
 	    }
@@ -1325,7 +1321,11 @@ void biblioteq_dvd::slotGo(void)
 	    {
 	      dvd.front_image->m_image.save
 		(&buffer, dvd.front_image->m_imageFormat.toLatin1(), 100);
-	      query.bindValue(19, bytes.toBase64());
+
+	      if(biblioteq_otheroptions::recordCoverImageAsBinary())
+		query.bindValue(19, bytes);
+	      else
+		query.bindValue(19, bytes.toBase64());
 	    }
 	  else
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
@@ -1353,7 +1353,11 @@ void biblioteq_dvd::slotGo(void)
 	    {
 	      dvd.back_image->m_image.save
 		(&buffer, dvd.back_image->m_imageFormat.toLatin1(), 100);
-	      query.bindValue(20, bytes.toBase64());
+
+	      if(biblioteq_otheroptions::recordCoverImageAsBinary())
+		query.bindValue(20, bytes);
+	      else
+		query.bindValue(20, bytes.toBase64());
 	    }
 	  else
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
