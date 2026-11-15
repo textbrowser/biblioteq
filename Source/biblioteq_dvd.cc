@@ -632,7 +632,7 @@ void biblioteq_dvd::modify(const int state)
 	    {
 	      if(!record.field(i).isNull())
 		{
-		  if(dvd.back_image->loadFromData
+		  if(!dvd.back_image->loadFromData
 		    (QByteArray::fromBase64(var.toByteArray())))
 		    dvd.back_image->loadFromData(var.toByteArray());
 		}
@@ -686,7 +686,7 @@ void biblioteq_dvd::modify(const int state)
 	    {
 	      if(!record.field(i).isNull())
 		{
-		  if(dvd.front_image->loadFromData
+		  if(!dvd.front_image->loadFromData
 		    (QByteArray::fromBase64(var.toByteArray())))
 		    dvd.front_image->loadFromData(var.toByteArray());
 		}

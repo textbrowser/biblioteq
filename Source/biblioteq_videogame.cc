@@ -581,10 +581,8 @@ void biblioteq_videogame::modify(const int state)
 	    {
 	      if(!record.field(i).isNull())
 		{
-		  vg.back_image->loadFromData
-		    (QByteArray::fromBase64(var.toByteArray()));
-
-		  if(vg.back_image->m_image.isNull())
+		  if(!vg.back_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray())))
 		    vg.back_image->loadFromData(var.toByteArray());
 		}
 	    }
@@ -597,10 +595,8 @@ void biblioteq_videogame::modify(const int state)
 	    {
 	      if(!record.field(i).isNull())
 		{
-		  vg.front_image->loadFromData
-		    (QByteArray::fromBase64(var.toByteArray()));
-
-		  if(vg.front_image->m_image.isNull())
+		  if(!vg.front_image->loadFromData
+		    (QByteArray::fromBase64(var.toByteArray())))
 		    vg.front_image->loadFromData(var.toByteArray());
 		}
 	    }
@@ -1178,7 +1174,11 @@ void biblioteq_videogame::slotGo(void)
 	    {
 	      vg.front_image->m_image.save
 		(&buffer, vg.front_image->m_imageFormat.toLatin1(), 100);
-	      query.bindValue(15, bytes.toBase64());
+
+	      if(biblioteq_otheroptions::recordCoverImageAsBinary())
+		query.bindValue(15, bytes);
+	      else
+		query.bindValue(15, bytes.toBase64());
 	    }
 	  else
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
@@ -1206,7 +1206,11 @@ void biblioteq_videogame::slotGo(void)
 	    {
 	      vg.back_image->m_image.save
 		(&buffer, vg.back_image->m_imageFormat.toLatin1(), 100);
-	      query.bindValue(16, bytes.toBase64());
+
+	      if(biblioteq_otheroptions::recordCoverImageAsBinary())
+		query.bindValue(16, bytes);
+	      else
+		query.bindValue(16, bytes.toBase64());
 	    }
 	  else
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))

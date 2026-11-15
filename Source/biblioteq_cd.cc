@@ -676,7 +676,7 @@ void biblioteq_cd::modify(const int state)
 	    {
 	      if(!record.field(i).isNull())
 		{
-		  if(cd.front_image->loadFromData
+		  if(!cd.front_image->loadFromData
 		    (QByteArray::fromBase64(var.toByteArray())))
 		    cd.front_image->loadFromData(var.toByteArray());
 		}
