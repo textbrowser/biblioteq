@@ -326,6 +326,7 @@ class biblioteq_otheroptions: public QMainWindow
   int booksAccessionNumberIndex(void) const;
   int iconsViewColumnCount(void) const;
   static QString defaultCoverImageDirectory(void);
+  static bool recordCoverImageAsBinary(void);
   static void prepareEnvironmentVariables(void);
   void prepareMembersVisibleColumns(QTableWidget *table);
   void prepareSettings(void);

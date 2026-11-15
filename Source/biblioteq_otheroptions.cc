@@ -331,6 +331,12 @@ bool biblioteq_otheroptions::isMembersColumnVisible(const QString &text) const
   return false;
 }
 
+bool biblioteq_otheroptions::recordCoverImageAsBinary(void)
+{
+  return QSettings().value
+    ("otheroptions/save_cover_images_as_binary", false).toBool();
+}
+
 bool biblioteq_otheroptions::showBookReadStatus(void) const
 {
   return QSettings().value("otheroptions/book_read_status", false).toBool();
@@ -878,6 +884,9 @@ void biblioteq_otheroptions::prepareSettings(void)
   m_ui.members_mandatory_field_color->setText(color.name());
   m_ui.only_utf8_printable_text->setChecked
     (settings.value("otheroptions/only_utf8_printable_text", false).toBool());
+  m_ui.save_cover_images_as_binary->setChecked
+    (settings.value("otheroptions/save_cover_images_as_binary", false).
+     toBool());
   m_ui.scripts->setPlainText
     (settings.value("otheroptions/scripts", "").toString().trimmed());
   m_ui.show_maintable_images->setChecked
@@ -1228,6 +1237,7 @@ void biblioteq_otheroptions::slotReset(void)
   m_ui.overdue_color->resizeRowsToContents();
   m_ui.overdue_color->scrollToTop();
   m_ui.overdue_color->sortByColumn(0, Qt::AscendingOrder);
+  m_ui.save_cover_images_as_binary->setChecked(false);
   m_ui.scripts->clear();
   m_ui.show_maintable_images->setChecked(true);
   m_ui.show_maintable_progress_dialogs->setChecked(true);
@@ -1443,6 +1453,9 @@ void biblioteq_otheroptions::slotSave(void)
   settings.setValue
     ("otheroptions/only_utf8_printable_text",
      m_ui.only_utf8_printable_text->isChecked());
+  settings.setValue
+    ("otheroptions/save_cover_images_as_binary",
+     m_ui.save_cover_images_as_binary->isChecked());
   settings.setValue
     ("otheroptions/scripts", m_ui.scripts->toPlainText().trimmed());
   settings.setValue
