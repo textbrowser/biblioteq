@@ -35,6 +35,7 @@ Please visit https://resources.kohasupport.com/z3950 for Z39.50 servers.
   - French
   - German
   - Greek
+  - Hebrew
   - Hungarian
   - Polish
   - Portuguese
