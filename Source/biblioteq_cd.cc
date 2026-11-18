@@ -1817,7 +1817,8 @@ void biblioteq_cd::slotGo(void)
 		       "cd.accession_number, "
 		       "cd.type, "
 		       "cd.myoid, "
-		       "cd.front_cover");
+		       "cd.front_cover "
+		       "ORDER BY cd.title");
 
       auto query = new QSqlQuery(qmain->getDB());
 

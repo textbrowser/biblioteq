@@ -1829,7 +1829,8 @@ void biblioteq_photographcollection::slotGo(void)
 		       "photograph_collection.accession_number, "
 		       "photograph_collection.type, "
 		       "photograph_collection.myoid, "
-		       "photograph_collection.image_scaled");
+		       "photograph_collection.image_scaled "
+		       "ORDER BY photograph_collection.title");
 
       auto query = new QSqlQuery(qmain->getDB());
 

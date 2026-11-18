@@ -1690,7 +1690,8 @@ void biblioteq_videogame::slotGo(void)
 		       "videogame.accession_number, "
 		       "videogame.type, "
 		       "videogame.myoid, "
-		       "videogame.front_cover");
+		       "videogame.front_cover "
+		       "ORDER BY videogame.title");
 
       auto query = new QSqlQuery(qmain->getDB());
 

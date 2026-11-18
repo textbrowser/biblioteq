@@ -50,15 +50,15 @@ class biblioteq_publication_title_table_item: public QTableWidgetItem
 					 const int issue,
 					 const int displayNumber):
     QTableWidgetItem(title),
+    m_displayNumber(displayNumber),
     m_issue(issue),
-    m_volume(volume),
-    m_displayNumber(displayNumber)
+    m_volume(volume)
   {
   }
 
   bool operator <(const QTableWidgetItem &other) const override
   {
-    if(text() != other.text())
+    if(other.text() != text())
       return QTableWidgetItem::operator <(other);
 
     auto const publication =
@@ -77,9 +77,9 @@ class biblioteq_publication_title_table_item: public QTableWidgetItem
   }
 
  private:
+  int m_displayNumber;
   int m_issue;
   int m_volume;
-  int m_displayNumber;
 };
 
 QString biblioteq::homePath(void)
@@ -159,7 +159,6 @@ int biblioteq::populateTable(const int search_type_arg,
   QString limitStr("");
   QString offsetStr("");
   QString searchstr = "";
-  QString str = "";
   QString type = "";
   QStringList tmplist; // Used for custom queries.
   QTableWidgetItem *item = nullptr;
@@ -4019,6 +4018,7 @@ int biblioteq::populateTable(const int search_type_arg,
 	    {
 	      item = nullptr;
 
+	      QString str("");
 	      auto const fieldName(record.fieldName(j));
 
 	      if(!fieldName.endsWith("front_cover") &&
@@ -4220,13 +4220,11 @@ int biblioteq::populateTable(const int search_type_arg,
 		     record.field("issuevolume").isValid() &&
 		     record.field("issueno").isValid() &&
 		     record.field("display_number").isValid())
-		    {
-		      item = new biblioteq_publication_title_table_item
-			(str,
-			 record.field("issuevolume").value().toInt(),
-			 record.field("issueno").value().toInt(),
-			 record.field("display_number").value().toInt());
-		    }
+		    item = new biblioteq_publication_title_table_item
+		      (str,
+		       record.field("issuevolume").value().toInt(),
+		       record.field("issueno").value().toInt(),
+		       record.field("display_number").value().toInt());
 		  else
 		    item = new QTableWidgetItem();
 		}

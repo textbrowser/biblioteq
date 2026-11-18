@@ -1864,7 +1864,8 @@ void biblioteq_dvd::slotGo(void)
 		       "dvd.accession_number, "
 		       "dvd.type, "
 		       "dvd.myoid, "
-		       "dvd.front_cover");
+		       "dvd.front_cover "
+		       "ORDER BY dvd.title");
 
       auto query = new QSqlQuery(qmain->getDB());
 

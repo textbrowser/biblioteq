@@ -3433,7 +3433,12 @@ void biblioteq_magazine::slotGo(void)
 			 "journal.accession_number, "
 			 "journal.type, "
 			 "journal.myoid, "
-			 "journal.front_cover");
+			 "journal.front_cover "
+			 "ORDER BY "
+			 "journal.title, "
+			 "journal.issuevolume, "
+			 "journal.issueno, "
+			 "journal.display_number");
       else
 	searchstr.append("GROUP BY magazine.title, "
 			 "magazine.publisher, "
@@ -3455,7 +3460,12 @@ void biblioteq_magazine::slotGo(void)
 			 "magazine.accession_number, "
 			 "magazine.type, "
 			 "magazine.myoid, "
-			 "magazine.front_cover");
+			 "magazine.front_cover "
+			 "ORDER BY "
+			 "magazine.title, "
+			 "magazine.issuevolume, "
+			 "magazine.issueno, "
+			 "magazine.display_number");
 
       auto query = new QSqlQuery(qmain->getDB());
 
