@@ -66,7 +66,7 @@
 	  license.</p>
 	<p>The newest <b>software release</b> version is <b>2026.09.15</b>.
 	  <br>
-	  The newest <b>source release</b> version is <b>2026.10.31</b>.</p>
+	  The newest <b>source release</b> version is <b>2026.11.20</b>.</p>
 	<h3>BiblioteQ Summary</h3>
 	<ul>
 	  <li>AMD, ARM, Alpha, Apple Silicon, PowerPC,
@@ -135,6 +135,42 @@
 	</ul>
 	<hr>
 	<h3>Release Notes</h3>
+	<p>November 20, 2026</p>
+	<ul>
+	  <li>Added mouse-wheel-scroll filters to BiblioteQ Table
+	    Field Name combination box widgets in CSV Import Browser.
+	    GitHub #482.</li>
+	  <li>Corrected biblioteq_misc_functions::createInitialCopies().
+	    The location field, introduced in 2026.10.31, is a required
+	    database field in item copies tables.</li>
+	  <li>Corrected drag-and-drop operations for cover images
+	    on Windows. Also simplified the logic for other systems.
+	    GitHub #488.</li>
+	  <li>Corrected processing of cover image data from data bundles. The
+	    method biblioteq_image_drop_site::loadFromData() now returns a
+	    boolean. The method loadFromData() will set a default image if
+	    it's not able to restore the original image. Therefore, restoring
+	    an original cover image would not be possible if the first
+	    instance of loadFromData() failed. Some cover images are recorded
+	    as Base-64 objects while other cover images are recorded as
+	    binary objects.</li>
+	  <li>Display an error message if important sections are incomplete
+	    in CSV Import Browser.GitHub #486.</li>
+	  <li>Include order-by SQL clauses for item searches:
+	    cds, dvds, journals, magazines, photograph collections,
+	    video games.</li>
+	  <li>New Other Options -> Items -> Default Cover Image Directory.
+	    GitHub #488.</li>
+	  <li>New Other Options -> Items -> Save cover images as binary
+	    objects.</li>
+	  <li>PostgreSQL 16.16.1; Windows.</li>
+	  <li>Retain order of table columns in Copy Browser dialogs.
+	    GitHub #480.</li>
+	  <li>Sort journals and magazines by title, volume number,
+	    issue number, display number. GitHub #489.</li>
+	  <li>The SQLite run-time loadable extensions on MacOS are
+	    problematic. Removed. GitHub #421.</li>
+	</ul>
 	<p>October 31, 2026</p>
 	<ul>
 	  <li>Adjust item availability color if the item's data is
