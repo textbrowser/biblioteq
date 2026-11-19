@@ -5,6 +5,8 @@
       <li>Added mouse-wheel-scroll filters to BiblioteQ Table
 	Field Name combination box widgets in CSV Import Browser.
 	<b>GitHub #482.</b></li>
+      <li>Android: verify that QJniObject is valid before issuing
+	callMethod().</li>
       <li>Corrected biblioteq_misc_functions::createInitialCopies().
 	The location field, introduced in 2026.10.31, is a required
 	database field in item copies tables.</li>
@@ -23,11 +25,14 @@
       <li>Include order-by SQL clauses for item searches:
 	cds, dvds, journals, magazines, photograph collections,
 	video games.</li>
+      <li>MacOS: create CocoaInitializer before QApplication.</li>
       <li>New Other Options -> Items -> Default Cover Image Directory.
 	<b>GitHub #488.</b></li>
       <li>New Other Options -> Items -> Save cover images as binary
 	objects.</li>
       <li>PostgreSQL 16.16.1; Windows.</li>
+      <li>Prefer QDir().mkpath(biblioteq::homePath()) instead of
+	QDir().mkdir(biblioteq::homePath()).</li>
       <li>Retain order of table columns in Copy Browser dialogs.
 	<b>GitHub #480.</b></li>
       <li>Sort journals and magazines by title, volume number,

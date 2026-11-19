@@ -87,6 +87,7 @@ qreal biblioteq::PROGRESS_DIALOG_WIDTH_MULTIPLIER = 2.5;
 
 int main(int argc, char *argv[])
 {
+  QDir().mkpath(biblioteq::homePath());
 #if defined(Q_OS_MACOS) || defined(Q_OS_WINDOWS)
   QCoreApplication::setAttribute(Qt::AA_DontUseNativeDialogs, true);
   QCoreApplication::setAttribute(Qt::AA_DontUseNativeMenuBar, true);
@@ -102,13 +103,6 @@ int main(int argc, char *argv[])
     (QSettings::IniFormat, QSettings::UserScope, biblioteq::homePath());
   biblioteq_otheroptions::prepareEnvironmentVariables();
 
-  QApplication qapplication(argc, argv);
-  auto font(qapplication.font());
-
-  font.setStyleStrategy
-    (QFont::StyleStrategy(QFont::PreferAntialias | QFont::PreferQuality));
-  qapplication.setFont(font);
-
 #ifdef Q_OS_MACOS
   /*
   ** Eliminate warnings.
@@ -117,13 +111,13 @@ int main(int argc, char *argv[])
   CocoaInitializer ci;
 #endif
 
+  QApplication qapplication(argc, argv);
+  auto font(qapplication.font());
+
+  font.setStyleStrategy
+    (QFont::StyleStrategy(QFont::PreferAntialias | QFont::PreferQuality));
+  qapplication.setFont(font);
   qapplication.setWindowIcon(QIcon(":/book.png"));
-
-  /*
-  ** Prepare configuration settings.
-  */
-
-  QDir().mkdir(biblioteq::homePath());
 
   /*
   ** Remove old configuration settings.
@@ -2198,7 +2192,8 @@ void biblioteq::quit(const char *msg, const char *file, const int line)
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 1, 0))
   auto activity = QJniObject(QNativeInterface::QAndroidApplication::context());
 
-  activity.callMethod<void> ("finishAndRemoveTask");
+  if(activity.isValid())
+    activity.callMethod<void> ("finishAndRemoveTask");
 #endif
 #endif
 }
