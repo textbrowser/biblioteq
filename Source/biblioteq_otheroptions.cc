@@ -534,7 +534,8 @@ void biblioteq_otheroptions::prepareEnvironmentVariables(void)
     (QSettings().value("otheroptions/QT_STYLE_OVERRIDE").
      toByteArray().trimmed());
 
-  qputenv("QT_STYLE_OVERRIDE", variable);
+  if(QStyleFactory::keys().contains(variable))
+    qputenv("QT_STYLE_OVERRIDE", variable);
 }
 
 void biblioteq_otheroptions::prepareIcons(void)
