@@ -773,7 +773,7 @@ void biblioteq::prepareItemPagesMenu(void)
 
   for(int i = 0; i < ui.tab->count(); i++)
     {
-      auto action = new QAction(ui.tab->tabText(i), this);
+      auto action = new QAction(ui.tab->tabText(i), ui.menuItem_Pages);
       auto font(action->font());
 
       font.setBold(i == ui.tab->currentIndex());

@@ -2581,7 +2581,7 @@ void biblioteq::showMain(void)
   ** Perform additional user interface duties.
   */
 
-  auto group1 = new QActionGroup(this);
+  auto group1 = new QActionGroup(ui.menuPreferredSRUSite);
   auto list(m_sruMaps.keys());
 
   for(int i = 0; i < list.size(); i++)
@@ -2605,7 +2605,7 @@ void biblioteq::showMain(void)
       ui.menuPreferredSRUSite->addAction(tr("None"));
     }
 
-  auto group2 = new QActionGroup(this);
+  auto group2 = new QActionGroup(ui.menuPreferredZ3950Server);
 
   list = m_z3950Maps.keys();
 

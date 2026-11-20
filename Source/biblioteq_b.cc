@@ -4541,11 +4541,10 @@ void biblioteq::prepareContextMenus()
 
 void biblioteq::preparePhotographsPerPageMenu(void)
 {
-  auto group = new QActionGroup(this);
-
   ui.menuPhotographs_per_Page->clear();
 
   QSettings settings;
+  auto group = new QActionGroup(ui.menuPhotographs_per_Page);
   auto integer = settings.value("photographs_per_page", 25).toInt();
 
   if(!(integer == -1 || (integer >= 25 && integer <= 100)))
