@@ -1072,6 +1072,7 @@ void biblioteq::slotContributors(void)
 	    "Arti<br>"
 	    "Bill Burns<br>"
 	    "Ceres<br>"
+	    "Chris Charabaruk<br>"
 	    "Csanád Baksay<br>"
 	    "Fares Othman<br>"
 	    "Frans<br>"
