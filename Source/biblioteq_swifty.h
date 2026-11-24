@@ -49,6 +49,8 @@ class swifty: public QNetworkAccessManager
 
   ~swifty()
   {
+    if(m_reply)
+      m_reply->abort();
   }
 
   QString newest_version(void) const
