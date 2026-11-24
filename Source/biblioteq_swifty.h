@@ -109,6 +109,9 @@ class swifty: public QNetworkAccessManager
 
 	version = version.replace('"', "").trimmed();
 
+	if(version.isEmpty())
+	  return;
+
 	if(m_current_version != version)
 	  {
 	    m_newest_version = version;
