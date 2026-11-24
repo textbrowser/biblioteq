@@ -26,7 +26,6 @@ QMAKE_CXXFLAGS_RELEASE += -Wall \
                           -pedantic \
                           -std=c++17
 QMAKE_DISTCLEAN        += -r .qmake.cache .qmake.stash Temporary
-QMAKE_EXTRA_TARGETS    = purge
 
 INCLUDEPATH += Source
 LIBS	    +=
