@@ -198,7 +198,7 @@ class biblioteq_otheroptions_item_delegate: public QStyledItemDelegate
 
   ParentTypes m_type;
   QPointer<QWidget> m_parent;
-  mutable QModelIndex m_index;
+  mutable QPersistentModelIndex m_index;
 
  private slots:
   void slotResetRow(void)
